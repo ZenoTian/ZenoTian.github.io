@@ -1,0 +1,581 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="学习笔记," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/zeno.png?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="gulp-utilgulp的实用功能插件
+使用123456789101112var gutil = require(&apos;gulp-util&apos;); gutil.log(&apos;stuff happened&apos;, &apos;Really it did&apos;, gutil.colors.magenta(&apos;123&apos;));gutil.beep(); gutil.replaceExtension(&apos;file.coffee&apos;, &apos;.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习笔记——gulp-util">
+<meta property="og:url" content="http://yoursite.com/2016/10/27/gulp-util/index.html">
+<meta property="og:site_name" content="Zeno Tian">
+<meta property="og:description" content="gulp-utilgulp的实用功能插件
+使用123456789101112var gutil = require(&apos;gulp-util&apos;); gutil.log(&apos;stuff happened&apos;, &apos;Really it did&apos;, gutil.colors.magenta(&apos;123&apos;));gutil.beep(); gutil.replaceExtension(&apos;file.coffee&apos;, &apos;.">
+<meta property="og:updated_time" content="2016-10-28T01:53:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习笔记——gulp-util">
+<meta name="twitter:description" content="gulp-utilgulp的实用功能插件
+使用123456789101112var gutil = require(&apos;gulp-util&apos;); gutil.log(&apos;stuff happened&apos;, &apos;Really it did&apos;, gutil.colors.magenta(&apos;123&apos;));gutil.beep(); gutil.replaceExtension(&apos;file.coffee&apos;, &apos;.">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/27/gulp-util/"/>
+
+
+  <title> 学习笔记——gulp-util | Zeno Tian </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Zeno Tian</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                学习笔记——gulp-util
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-27T20:12:01+08:00" content="2016-10-27">
+              2016-10-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="gulp-util"><a href="#gulp-util" class="headerlink" title="gulp-util"></a>gulp-util</h1><p>gulp的实用功能插件</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gutil = <span class="built_in">require</span>(<span class="string">'gulp-util'</span>);</div><div class="line"> </div><div class="line">gutil.log(<span class="string">'stuff happened'</span>, <span class="string">'Really it did'</span>, gutil.colors.magenta(<span class="string">'123'</span>));</div><div class="line">gutil.beep();</div><div class="line"> </div><div class="line">gutil.replaceExtension(<span class="string">'file.coffee'</span>, <span class="string">'.js'</span>); <span class="comment">// file.js </span></div><div class="line"> </div><div class="line"><span class="keyword">var</span> opt = &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'todd'</span>,</div><div class="line">  <span class="attr">file</span>: someGulpFile</div><div class="line">&#125;;</div><div class="line">gutil.template(<span class="string">'test &lt;%= name %&gt; &lt;%= file.path %&gt;'</span>, opt) <span class="comment">// test todd /js/hi.js</span></div></pre></td></tr></table></figure>
+<h3 id="log-msg…"><a href="#log-msg…" class="headerlink" title="log(msg…)"></a>log(msg…)</h3><h3 id="color"><a href="#color" class="headerlink" title="color"></a>color</h3><p> <a href="https://github.com/sindresorhus/chalk" target="_blank" rel="external">chalk</a>的实例</p>
+<h3 id="replaceExtension-path-newExtension"><a href="#replaceExtension-path-newExtension" class="headerlink" title="replaceExtension(path, newExtension)"></a>replaceExtension(path, newExtension)</h3><p>替换路径中文件的后缀名，返回一个新的路径。</p>
+<h3 id="isStream-obj"><a href="#isStream-obj" class="headerlink" title="isStream(obj)"></a>isStream(obj)</h3><p>判断一个对象是不是一个stream，返回布尔值。</p>
+<h3 id="isBuffer-obj"><a href="#isBuffer-obj" class="headerlink" title="isBuffer(obj)"></a>isBuffer(obj)</h3><p>判断一个对象是不是一个Buffer，返回布尔值。</p>
+<h3 id="template-string-data"><a href="#template-string-data" class="headerlink" title="template(string[,data])"></a>template(string[,data])</h3><p>这是一个封装的lodash.template函数。你不洗在一个</p>
+<p>这是一个lodash.template函数包装。你必须传入有效的gulp文件对象，才能提供给给用户，否则会报错。您不能配置任何分隔符。看<a href="http://lodash.com/docs#template" target="_blank" rel="external">lodash</a>文档的获得更多信息。</p>
+<h3 id="new-File-obj"><a href="#new-File-obj" class="headerlink" title="new File(obj)"></a>new File(obj)</h3>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习笔记/" rel="tag">#学习笔记</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/26/JS读书笔记——函数/" rel="next" title="JS学习笔记——函数">
+                <i class="fa fa-chevron-left"></i> JS学习笔记——函数
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/28/计算机网络概论/" rel="prev" title="学习笔记——计算机网络概论(1)">
+                学习笔记——计算机网络概论(1) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Zeno Tian" />
+          <p class="site-author-name" itemprop="name">Zeno Tian</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zenotian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gulp-util"><span class="nav-number">1.</span> <span class="nav-text">gulp-util</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">1.1.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#log-msg…"><span class="nav-number">1.1.1.</span> <span class="nav-text">log(msg…)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#color"><span class="nav-number">1.1.2.</span> <span class="nav-text">color</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#replaceExtension-path-newExtension"><span class="nav-number">1.1.3.</span> <span class="nav-text">replaceExtension(path, newExtension)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isStream-obj"><span class="nav-number">1.1.4.</span> <span class="nav-text">isStream(obj)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isBuffer-obj"><span class="nav-number">1.1.5.</span> <span class="nav-text">isBuffer(obj)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#template-string-data"><span class="nav-number">1.1.6.</span> <span class="nav-text">template(string[,data])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new-File-obj"><span class="nav-number">1.1.7.</span> <span class="nav-text">new File(obj)</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zeno Tian</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
