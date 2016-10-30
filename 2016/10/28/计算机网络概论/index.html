@@ -84,7 +84,7 @@
 
 
 
-<meta name="description" content="计算机网络概论Applications应用通常人们如何通过什么途径认识网络？
+<meta name="description" content="计算机网络概论——网络基础Applications应用通常人们如何通过什么途径认识网络？
 
 浏览器
 在线游戏
@@ -99,12 +99,12 @@ URL(Uniform resource locater)
 HTTP(Hyper Text Transfer Protocol)
 TCP(Transmission Control Protocol)
 
-一次URL请求大概需要17次mes">
+一次URL请求大概需要">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习笔记——计算机网络概论(1)">
 <meta property="og:url" content="http://yoursite.com/2016/10/28/计算机网络概论/index.html">
 <meta property="og:site_name" content="Zeno Tian">
-<meta property="og:description" content="计算机网络概论Applications应用通常人们如何通过什么途径认识网络？
+<meta property="og:description" content="计算机网络概论——网络基础Applications应用通常人们如何通过什么途径认识网络？
 
 浏览器
 在线游戏
@@ -119,11 +119,11 @@ URL(Uniform resource locater)
 HTTP(Hyper Text Transfer Protocol)
 TCP(Transmission Control Protocol)
 
-一次URL请求大概需要17次mes">
-<meta property="og:updated_time" content="2016-10-28T01:49:55.000Z">
+一次URL请求大概需要">
+<meta property="og:updated_time" content="2016-10-30T15:50:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习笔记——计算机网络概论(1)">
-<meta name="twitter:description" content="计算机网络概论Applications应用通常人们如何通过什么途径认识网络？
+<meta name="twitter:description" content="计算机网络概论——网络基础Applications应用通常人们如何通过什么途径认识网络？
 
 浏览器
 在线游戏
@@ -138,7 +138,7 @@ URL(Uniform resource locater)
 HTTP(Hyper Text Transfer Protocol)
 TCP(Transmission Control Protocol)
 
-一次URL请求大概需要17次mes">
+一次URL请求大概需要">
 
 
 
@@ -322,7 +322,7 @@ TCP(Transmission Control Protocol)
       
 
       
-        <h1 id="计算机网络概论"><a href="#计算机网络概论" class="headerlink" title="计算机网络概论"></a>计算机网络概论</h1><h2 id="Applications应用"><a href="#Applications应用" class="headerlink" title="Applications应用"></a>Applications应用</h2><p>通常人们如何通过什么途径认识网络？</p>
+        <h1 id="计算机网络概论——网络基础"><a href="#计算机网络概论——网络基础" class="headerlink" title="计算机网络概论——网络基础"></a>计算机网络概论——网络基础</h1><h2 id="Applications应用"><a href="#Applications应用" class="headerlink" title="Applications应用"></a>Applications应用</h2><p>通常人们如何通过什么途径认识网络？</p>
 <ul>
 <li>浏览器</li>
 <li>在线游戏</li>
@@ -391,7 +391,116 @@ TCP(Transmission Control Protocol)
 <li>Data is transmitted based on demand of each flow</li>
 <li>FIFO先进先出， Round-Robin轮流，Priorities(Quality-of-Service(Qos)重要优先)</li>
 </ul>
-<h2 id="Logical-Channels"><a href="#Logical-Channels" class="headerlink" title="Logical Channels"></a>Logical Channels</h2>
+<h2 id="Logical-Channels-逻辑频道"><a href="#Logical-Channels-逻辑频道" class="headerlink" title="Logical Channels 逻辑频道"></a>Logical Channels 逻辑频道</h2><p>两个Host的连接，就叫做Logical Channel</p>
+<h2 id="Network-Reliability-网络可靠性"><a href="#Network-Reliability-网络可靠性" class="headerlink" title="Network Reliability 网络可靠性"></a>Network Reliability 网络可靠性</h2><ul>
+<li>网络应该隐藏错误</li>
+<li>Bits 丢失/错误<ul>
+<li>Bits error收到电场电磁波干扰，会出错（1，0错误）</li>
+<li>大量Bits错误，Burst errors。</li>
+<li>无法纠错会丢包</li>
+</ul>
+</li>
+<li>Packets are lost (Congestion)网络阻塞</li>
+<li>Links and Node failures</li>
+<li>Messages are delayed 延迟</li>
+<li>Messages are delivered out-of-order 封包顺序错乱</li>
+<li>Third parties eaves drop 第三次篡改</li>
+</ul>
+<h2 id="Network-Architecture-网络体系结构"><a href="#Network-Architecture-网络体系结构" class="headerlink" title="Network Architecture 网络体系结构"></a>Network Architecture 网络体系结构</h2><h2 id="Protocols-协议"><a href="#Protocols-协议" class="headerlink" title="Protocols 协议"></a>Protocols 协议</h2><ul>
+<li>定义横向通信规范<ul>
+<li>peer system</li>
+</ul>
+</li>
+<li>上层协议需要下层提供服务</li>
+<li>Building blocks of a network arch architecture </li>
+<li>每个协议有两个 interfaces<ul>
+<li>Service interface 为上层提供服务</li>
+<li>Peer-to-Peer interface 对等网络</li>
+</ul>
+</li>
+</ul>
+<h2 id="Protocols-interface"><a href="#Protocols-interface" class="headerlink" title="Protocols interface"></a>Protocols interface</h2><ul>
+<li>横向<ul>
+<li>格式</li>
+<li>流程</li>
+</ul>
+</li>
+<li>纵向<ul>
+<li>提供不同服务</li>
+</ul>
+</li>
+</ul>
+<h2 id="Protocols"><a href="#Protocols" class="headerlink" title="Protocols"></a>Protocols</h2><ul>
+<li>Protocols Specification 协议规格</li>
+<li>Interoperable 可以互通</li>
+<li>IETF 制定协议</li>
+</ul>
+<h2 id="Protocol-Architecture-协议结构"><a href="#Protocol-Architecture-协议结构" class="headerlink" title="Protocol Architecture 协议结构"></a>Protocol Architecture 协议结构</h2><p>下层服务加值提供给上层协议服务</p>
+<h2 id="OSA-Open-Systems-Interconnection-Architecture"><a href="#OSA-Open-Systems-Interconnection-Architecture" class="headerlink" title="OSA(Open Systems Interconnection)  Architecture"></a>OSA(Open Systems Interconnection)  Architecture</h2><ul>
+<li>Application 应用层</li>
+<li>Presentation 表现层/呈现层</li>
+<li>Session 会话层</li>
+<li>Transport 传输层<ul>
+<li>负责分类不同服务</li>
+<li>TCP/UTP</li>
+<li>只有两端host有</li>
+</ul>
+</li>
+<li>Network 网络层<ul>
+<li>如何送给对方host</li>
+<li>IP</li>
+</ul>
+</li>
+<li>Data Link 数据链路层<ul>
+<li>如何传输数据给下一个Router(下一步)</li>
+</ul>
+</li>
+<li>Physical 物理层<ul>
+<li>电缆，光纤，无线网络</li>
+<li>如何传输信号</li>
+</ul>
+</li>
+</ul>
+<h2 id="Host如何和Router链接"><a href="#Host如何和Router链接" class="headerlink" title="Host如何和Router链接"></a>Host如何和Router链接</h2><p>Host =&gt; LAN(交换机) =&gt; Router</p>
+<p>交换机只解析到Data Link链路层</p>
+<p>链路层传输依靠物理层网卡位置信息</p>
+<p>设备可以处理第几层，就是第几层的设备。</p>
+<h2 id="Description-of-Layers"><a href="#Description-of-Layers" class="headerlink" title="Description of Layers"></a>Description of Layers</h2><ul>
+<li>Physical Layer 物理层 如何在Link上传输<ul>
+<li>Coaxial cable 同轴电缆<ul>
+<li>Twisted pair 双绞线（搅在一起降低电磁干扰，8条线）</li>
+<li>Optical Fiber 光纤 （不受电磁波干扰， 传输距离远）</li>
+<li>Air space 电磁波 (wireless radio channel) </li>
+</ul>
+</li>
+<li>Different Signal Coding schems 不同编码<ul>
+<li>发送和接受要求速率相同</li>
+<li>不同材料不同coding</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Data Link Layer(如何将frame传给直接相连的主机或者设备)<ul>
+<li>Collects a streame of bits into a <code>frame</code></li>
+<li>How to transmit a frame to a directly connected host (destination)?</li>
+<li>MAC(Media Access Control Protocol) 媒体访问控制<ul>
+<li>CSMA/CD(IEEE 802.3 Ethernet) 监听是否有正在传输</li>
+<li>CSMA/CA(IEEE 802.11 Wireless LAN)</li>
+</ul>
+</li>
+<li>Layer 2 devlces 2层设备</li>
+<li>Switches 交换机</li>
+<li>Bridges</li>
+</ul>
+</li>
+<li>Network Layer (如何将封包送到目的地主机)<ul>
+<li>How to transmit frames to a host via the Internet?</li>
+<li>Handle <code>routing</code> among nodes within a packet-switched network</li>
+<li>Data exchanged between</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
 
@@ -429,6 +538,10 @@ TCP(Transmission Control Protocol)
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/28/--gulp中如何使用webpack/" rel="prev" title="gulp中如何使用webpack">
+                gulp中如何使用webpack <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -496,7 +609,7 @@ TCP(Transmission Control Protocol)
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -546,7 +659,7 @@ TCP(Transmission Control Protocol)
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络概论"><span class="nav-number">1.</span> <span class="nav-text">计算机网络概论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Applications应用"><span class="nav-number">1.1.</span> <span class="nav-text">Applications应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用层协议"><span class="nav-number">1.2.</span> <span class="nav-text">应用层协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络链接Network-Connectivity"><span class="nav-number">1.3.</span> <span class="nav-text">网络链接Network Connectivity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Important-terminologies"><span class="nav-number">1.3.1.</span> <span class="nav-text">Important terminologies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Terminologies"><span class="nav-number">1.3.2.</span> <span class="nav-text">Terminologies</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据元是如何在互联网上被传输的？How-datagrams-are-delivered-in-an-Internet"><span class="nav-number">1.4.</span> <span class="nav-text">数据元是如何在互联网上被传输的？How datagrams are delivered in an Internet?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合理的资源分配Cost-Effective-Resource-Sharing"><span class="nav-number">1.5.</span> <span class="nav-text">合理的资源分配Cost-Effective Resource Sharing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FDM-Frequency-Division-Multiplexing-频道分割"><span class="nav-number">1.5.1.</span> <span class="nav-text">FDM: Frequency Division Multiplexing 频道分割</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TDM：Time-division-Multiplexing-时间分割"><span class="nav-number">1.5.2.</span> <span class="nav-text">TDM：Time-division Multiplexing 时间分割</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Statistical-Multiplexing-统计多工"><span class="nav-number">1.5.3.</span> <span class="nav-text">Statistical Multiplexing 统计多工</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Logical-Channels"><span class="nav-number">1.6.</span> <span class="nav-text">Logical Channels</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络概论——网络基础"><span class="nav-number">1.</span> <span class="nav-text">计算机网络概论——网络基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Applications应用"><span class="nav-number">1.1.</span> <span class="nav-text">Applications应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用层协议"><span class="nav-number">1.2.</span> <span class="nav-text">应用层协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络链接Network-Connectivity"><span class="nav-number">1.3.</span> <span class="nav-text">网络链接Network Connectivity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Important-terminologies"><span class="nav-number">1.3.1.</span> <span class="nav-text">Important terminologies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Terminologies"><span class="nav-number">1.3.2.</span> <span class="nav-text">Terminologies</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据元是如何在互联网上被传输的？How-datagrams-are-delivered-in-an-Internet"><span class="nav-number">1.4.</span> <span class="nav-text">数据元是如何在互联网上被传输的？How datagrams are delivered in an Internet?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合理的资源分配Cost-Effective-Resource-Sharing"><span class="nav-number">1.5.</span> <span class="nav-text">合理的资源分配Cost-Effective Resource Sharing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FDM-Frequency-Division-Multiplexing-频道分割"><span class="nav-number">1.5.1.</span> <span class="nav-text">FDM: Frequency Division Multiplexing 频道分割</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TDM：Time-division-Multiplexing-时间分割"><span class="nav-number">1.5.2.</span> <span class="nav-text">TDM：Time-division Multiplexing 时间分割</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Statistical-Multiplexing-统计多工"><span class="nav-number">1.5.3.</span> <span class="nav-text">Statistical Multiplexing 统计多工</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Logical-Channels-逻辑频道"><span class="nav-number">1.6.</span> <span class="nav-text">Logical Channels 逻辑频道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Network-Reliability-网络可靠性"><span class="nav-number">1.7.</span> <span class="nav-text">Network Reliability 网络可靠性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Network-Architecture-网络体系结构"><span class="nav-number">1.8.</span> <span class="nav-text">Network Architecture 网络体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Protocols-协议"><span class="nav-number">1.9.</span> <span class="nav-text">Protocols 协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Protocols-interface"><span class="nav-number">1.10.</span> <span class="nav-text">Protocols interface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Protocols"><span class="nav-number">1.11.</span> <span class="nav-text">Protocols</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Protocol-Architecture-协议结构"><span class="nav-number">1.12.</span> <span class="nav-text">Protocol Architecture 协议结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OSA-Open-Systems-Interconnection-Architecture"><span class="nav-number">1.13.</span> <span class="nav-text">OSA(Open Systems Interconnection)  Architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Host如何和Router链接"><span class="nav-number">1.14.</span> <span class="nav-text">Host如何和Router链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Description-of-Layers"><span class="nav-number">1.15.</span> <span class="nav-text">Description of Layers</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

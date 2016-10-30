@@ -236,6 +236,102 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/28/--gulp中如何使用webpack/" itemprop="url">
+                  gulp中如何使用webpack
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-28T11:11:29+08:00" content="2016-10-28">
+              2016-10-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="gulp中如何使用webpack"><a href="#gulp中如何使用webpack" class="headerlink" title="gulp中如何使用webpack"></a>gulp中如何使用webpack</h1><p>单独使用webpack用来处理不同模块的依赖是没问题的，搭配gulp进行项目的流程控制将会让开发更高效。</p>
+<p>本文简单记录gulp中如何使用webpack配置</p>
+<p>将来会再更新一些详细的使用记录</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/28/计算机网络概论/" itemprop="url">
                   学习笔记——计算机网络概论(1)
                 </a>
@@ -280,7 +376,7 @@
       
         
           
-            <h1 id="计算机网络概论"><a href="#计算机网络概论" class="headerlink" title="计算机网络概论"></a>计算机网络概论</h1><h2 id="Applications应用"><a href="#Applications应用" class="headerlink" title="Applications应用"></a>Applications应用</h2><p>通常人们如何通过什么途径认识网络？</p>
+            <h1 id="计算机网络概论——网络基础"><a href="#计算机网络概论——网络基础" class="headerlink" title="计算机网络概论——网络基础"></a>计算机网络概论——网络基础</h1><h2 id="Applications应用"><a href="#Applications应用" class="headerlink" title="Applications应用"></a>Applications应用</h2><p>通常人们如何通过什么途径认识网络？</p>
 <ul>
 <li>浏览器</li>
 <li>在线游戏</li>
@@ -349,7 +445,116 @@
 <li>Data is transmitted based on demand of each flow</li>
 <li>FIFO先进先出， Round-Robin轮流，Priorities(Quality-of-Service(Qos)重要优先)</li>
 </ul>
-<h2 id="Logical-Channels"><a href="#Logical-Channels" class="headerlink" title="Logical Channels"></a>Logical Channels</h2>
+<h2 id="Logical-Channels-逻辑频道"><a href="#Logical-Channels-逻辑频道" class="headerlink" title="Logical Channels 逻辑频道"></a>Logical Channels 逻辑频道</h2><p>两个Host的连接，就叫做Logical Channel</p>
+<h2 id="Network-Reliability-网络可靠性"><a href="#Network-Reliability-网络可靠性" class="headerlink" title="Network Reliability 网络可靠性"></a>Network Reliability 网络可靠性</h2><ul>
+<li>网络应该隐藏错误</li>
+<li>Bits 丢失/错误<ul>
+<li>Bits error收到电场电磁波干扰，会出错（1，0错误）</li>
+<li>大量Bits错误，Burst errors。</li>
+<li>无法纠错会丢包</li>
+</ul>
+</li>
+<li>Packets are lost (Congestion)网络阻塞</li>
+<li>Links and Node failures</li>
+<li>Messages are delayed 延迟</li>
+<li>Messages are delivered out-of-order 封包顺序错乱</li>
+<li>Third parties eaves drop 第三次篡改</li>
+</ul>
+<h2 id="Network-Architecture-网络体系结构"><a href="#Network-Architecture-网络体系结构" class="headerlink" title="Network Architecture 网络体系结构"></a>Network Architecture 网络体系结构</h2><h2 id="Protocols-协议"><a href="#Protocols-协议" class="headerlink" title="Protocols 协议"></a>Protocols 协议</h2><ul>
+<li>定义横向通信规范<ul>
+<li>peer system</li>
+</ul>
+</li>
+<li>上层协议需要下层提供服务</li>
+<li>Building blocks of a network arch architecture </li>
+<li>每个协议有两个 interfaces<ul>
+<li>Service interface 为上层提供服务</li>
+<li>Peer-to-Peer interface 对等网络</li>
+</ul>
+</li>
+</ul>
+<h2 id="Protocols-interface"><a href="#Protocols-interface" class="headerlink" title="Protocols interface"></a>Protocols interface</h2><ul>
+<li>横向<ul>
+<li>格式</li>
+<li>流程</li>
+</ul>
+</li>
+<li>纵向<ul>
+<li>提供不同服务</li>
+</ul>
+</li>
+</ul>
+<h2 id="Protocols"><a href="#Protocols" class="headerlink" title="Protocols"></a>Protocols</h2><ul>
+<li>Protocols Specification 协议规格</li>
+<li>Interoperable 可以互通</li>
+<li>IETF 制定协议</li>
+</ul>
+<h2 id="Protocol-Architecture-协议结构"><a href="#Protocol-Architecture-协议结构" class="headerlink" title="Protocol Architecture 协议结构"></a>Protocol Architecture 协议结构</h2><p>下层服务加值提供给上层协议服务</p>
+<h2 id="OSA-Open-Systems-Interconnection-Architecture"><a href="#OSA-Open-Systems-Interconnection-Architecture" class="headerlink" title="OSA(Open Systems Interconnection)  Architecture"></a>OSA(Open Systems Interconnection)  Architecture</h2><ul>
+<li>Application 应用层</li>
+<li>Presentation 表现层/呈现层</li>
+<li>Session 会话层</li>
+<li>Transport 传输层<ul>
+<li>负责分类不同服务</li>
+<li>TCP/UTP</li>
+<li>只有两端host有</li>
+</ul>
+</li>
+<li>Network 网络层<ul>
+<li>如何送给对方host</li>
+<li>IP</li>
+</ul>
+</li>
+<li>Data Link 数据链路层<ul>
+<li>如何传输数据给下一个Router(下一步)</li>
+</ul>
+</li>
+<li>Physical 物理层<ul>
+<li>电缆，光纤，无线网络</li>
+<li>如何传输信号</li>
+</ul>
+</li>
+</ul>
+<h2 id="Host如何和Router链接"><a href="#Host如何和Router链接" class="headerlink" title="Host如何和Router链接"></a>Host如何和Router链接</h2><p>Host =&gt; LAN(交换机) =&gt; Router</p>
+<p>交换机只解析到Data Link链路层</p>
+<p>链路层传输依靠物理层网卡位置信息</p>
+<p>设备可以处理第几层，就是第几层的设备。</p>
+<h2 id="Description-of-Layers"><a href="#Description-of-Layers" class="headerlink" title="Description of Layers"></a>Description of Layers</h2><ul>
+<li>Physical Layer 物理层 如何在Link上传输<ul>
+<li>Coaxial cable 同轴电缆<ul>
+<li>Twisted pair 双绞线（搅在一起降低电磁干扰，8条线）</li>
+<li>Optical Fiber 光纤 （不受电磁波干扰， 传输距离远）</li>
+<li>Air space 电磁波 (wireless radio channel) </li>
+</ul>
+</li>
+<li>Different Signal Coding schems 不同编码<ul>
+<li>发送和接受要求速率相同</li>
+<li>不同材料不同coding</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Data Link Layer(如何将frame传给直接相连的主机或者设备)<ul>
+<li>Collects a streame of bits into a <code>frame</code></li>
+<li>How to transmit a frame to a directly connected host (destination)?</li>
+<li>MAC(Media Access Control Protocol) 媒体访问控制<ul>
+<li>CSMA/CD(IEEE 802.3 Ethernet) 监听是否有正在传输</li>
+<li>CSMA/CA(IEEE 802.11 Wireless LAN)</li>
+</ul>
+</li>
+<li>Layer 2 devlces 2层设备</li>
+<li>Switches 交换机</li>
+<li>Bridges</li>
+</ul>
+</li>
+<li>Network Layer (如何将封包送到目的地主机)<ul>
+<li>How to transmit frames to a host via the Internet?</li>
+<li>Handle <code>routing</code> among nodes within a packet-switched network</li>
+<li>Data exchanged between</li>
+</ul>
+</li>
+</ul>
+
           
         
       
@@ -450,7 +655,25 @@
 <h3 id="isBuffer-obj"><a href="#isBuffer-obj" class="headerlink" title="isBuffer(obj)"></a>isBuffer(obj)</h3><p>判断一个对象是不是一个Buffer，返回布尔值。</p>
 <h3 id="template-string-data"><a href="#template-string-data" class="headerlink" title="template(string[,data])"></a>template(string[,data])</h3><p>这是一个封装的lodash.template函数。你不洗在一个</p>
 <p>这是一个lodash.template函数包装。你必须传入有效的gulp文件对象，才能提供给给用户，否则会报错。您不能配置任何分隔符。看<a href="http://lodash.com/docs#template" target="_blank" rel="external">lodash</a>文档的获得更多信息。</p>
-<h3 id="new-File-obj"><a href="#new-File-obj" class="headerlink" title="new File(obj)"></a>new File(obj)</h3>
+<h3 id="new-File-obj"><a href="#new-File-obj" class="headerlink" title="new File(obj)"></a>new File(obj)</h3><p>参见 <a href="https://github.com/wearefractal/vinyl" target="_blank" rel="external">vinyl</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> file = <span class="keyword">new</span> gutil.File(&#123;</div><div class="line">  <span class="attr">base</span>: path.join(__dirname, <span class="string">'./fixtures/'</span>),</div><div class="line">  <span class="attr">cwd</span>: __dirname,</div><div class="line">  <span class="attr">path</span>: path.join(__dirname, <span class="string">'./fixtures/test.coffee'</span>)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="noop"><a href="#noop" class="headerlink" title="noop()"></a>noop()</h3><p>返回一个数据流，直接传输数据但是不进行任何操作</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// gulp should be called like this : </span></div><div class="line"><span class="comment">// $ gulp --type production </span></div><div class="line">gulp.task(<span class="string">'scripts'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  gulp.src(<span class="string">'src/**/*.js'</span>)</div><div class="line">    .pipe(concat(<span class="string">'script.js'</span>))</div><div class="line">    .pipe(gutil.env.type === <span class="string">'production'</span> ? uglify() : gutil.noop())</div><div class="line">    .pipe(gulp.dest(<span class="string">'dist/'</span>));</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="buffer-cb"><a href="#buffer-cb" class="headerlink" title="buffer(cb)"></a>buffer(cb)</h3><p>这类似于es.wait但不是缓冲文到string,而是缓冲区任何东西到一个数组（所以对于文件对象是非常有用的）。</p>
+<p>返回一个可以供pipe的数据流</p>
+<p>Stream竟会触发一个数据事件，将stream通过管道输送直到传输完毕。数据会像一个数组一样被传输到callback</p>
+<p>Callback是可选的，接收两个参数：错误和数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">gulp.src(<span class="string">'stuff/*.js'</span>)</div><div class="line">  .pipe(gutil.buffer(<span class="function"><span class="keyword">function</span>(<span class="params">err, files</span>) </span>&#123;</div><div class="line">  </div><div class="line">  &#125;));</div></pre></td></tr></table></figure>
+<h3 id="new-PluginError-pluginName-message-options"><a href="#new-PluginError-pluginName-message-options" class="headerlink" title="new PluginError(pluginName, message[,options])"></a>new PluginError(pluginName, message[,options])</h3><ul>
+<li>pluginName应该是你的插件的模块名称</li>
+<li>message可以是string或者现有error</li>
+<li>默认情况下，栈将不会显示。如果你认为堆栈为你的错误很重要设置options.showStack为true。</li>
+<li>如果你在为堆栈将从被拉消息传递一个错误，否则将创建一个。</li>
+<li>需要注意的是，如果你在一个自定义堆栈字符串传递需要包括沿消息。</li>
+<li>错误属性将被包括在<code>err.toString()</code>。可以通过包括省略<code>{showProperties: false}</code>在选项。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> err = <span class="keyword">new</span> gutil.PluginError(<span class="string">'test'</span>, &#123;</div><div class="line">  <span class="attr">message</span>: <span class="string">'something broke'</span></div><div class="line">&#125;);</div><div class="line"> </div><div class="line"><span class="keyword">var</span> err = <span class="keyword">new</span> gutil.PluginError(&#123;</div><div class="line">  <span class="attr">plugin</span>: <span class="string">'test'</span>,</div><div class="line">  <span class="attr">message</span>: <span class="string">'something broke'</span></div><div class="line">&#125;);</div><div class="line"> </div><div class="line"><span class="keyword">var</span> err = <span class="keyword">new</span> gutil.PluginError(<span class="string">'test'</span>, <span class="string">'something broke'</span>);</div><div class="line"> </div><div class="line"><span class="keyword">var</span> err = <span class="keyword">new</span> gutil.PluginError(<span class="string">'test'</span>, <span class="string">'something broke'</span>, &#123;<span class="attr">showStack</span>: <span class="literal">true</span>&#125;);</div><div class="line"> </div><div class="line"><span class="keyword">var</span> existingError = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'OMG'</span>);</div><div class="line"><span class="keyword">var</span> err = <span class="keyword">new</span> gutil.PluginError(<span class="string">'test'</span>, existingError, &#123;<span class="attr">showStack</span>: <span class="literal">true</span>&#125;);</div></pre></td></tr></table></figure>
+
           
         
       
@@ -627,7 +850,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
