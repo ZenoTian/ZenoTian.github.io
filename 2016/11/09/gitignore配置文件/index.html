@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="学习笔记," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,22 +84,58 @@
 
 
 
-<meta name="description" content="gulp中如何使用webpack单独使用webpack用来处理不同模块的依赖是没问题的，搭配gulp进行项目的流程控制将会让开发更高效。
-本文简单记录gulp中如何使用webpack配置
-将来会再更新一些详细的使用记录">
+<meta name="description" content=".gitignore配置文件.gitignore忽视规则
+#号开始代表注释
+
+/号代表当前目录（最开始）
+
+!号后面的已被前面忽视规则忽视的文件或目录被排除出忽视
+
+后缀
+1234*.a#忽视已a为后缀的文件*.[ab]#忽视已.a以及.b为后缀的文件
+
+文件及目录
+12345abc#忽视abc文件以及acb目录abc/#忽视abc目录/abc/忽视配置不生效的问题
+
+
+忽视配置不生效的问题在开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gulp中如何使用webpack">
-<meta property="og:url" content="http://yoursite.com/2016/10/28/--gulp中如何使用webpack/index.html">
+<meta property="og:title" content="Zeno Tian">
+<meta property="og:url" content="http://yoursite.com/2016/11/09/gitignore配置文件/index.html">
 <meta property="og:site_name" content="Zeno Tian">
-<meta property="og:description" content="gulp中如何使用webpack单独使用webpack用来处理不同模块的依赖是没问题的，搭配gulp进行项目的流程控制将会让开发更高效。
-本文简单记录gulp中如何使用webpack配置
-将来会再更新一些详细的使用记录">
-<meta property="og:updated_time" content="2016-10-28T03:21:15.000Z">
+<meta property="og:description" content=".gitignore配置文件.gitignore忽视规则
+#号开始代表注释
+
+/号代表当前目录（最开始）
+
+!号后面的已被前面忽视规则忽视的文件或目录被排除出忽视
+
+后缀
+1234*.a#忽视已a为后缀的文件*.[ab]#忽视已.a以及.b为后缀的文件
+
+文件及目录
+12345abc#忽视abc文件以及acb目录abc/#忽视abc目录/abc/忽视配置不生效的问题
+
+
+忽视配置不生效的问题在开发">
+<meta property="og:updated_time" content="2016-11-09T08:27:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gulp中如何使用webpack">
-<meta name="twitter:description" content="gulp中如何使用webpack单独使用webpack用来处理不同模块的依赖是没问题的，搭配gulp进行项目的流程控制将会让开发更高效。
-本文简单记录gulp中如何使用webpack配置
-将来会再更新一些详细的使用记录">
+<meta name="twitter:title" content="Zeno Tian">
+<meta name="twitter:description" content=".gitignore配置文件.gitignore忽视规则
+#号开始代表注释
+
+/号代表当前目录（最开始）
+
+!号后面的已被前面忽视规则忽视的文件或目录被排除出忽视
+
+后缀
+1234*.a#忽视已a为后缀的文件*.[ab]#忽视已.a以及.b为后缀的文件
+
+文件及目录
+12345abc#忽视abc文件以及acb目录abc/#忽视abc目录/abc/忽视配置不生效的问题
+
+
+忽视配置不生效的问题在开发">
 
 
 
@@ -120,10 +156,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/28/--gulp中如何使用webpack/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/09/gitignore配置文件/"/>
 
 
-  <title> gulp中如何使用webpack | Zeno Tian </title>
+  <title>  | Zeno Tian </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -243,7 +279,7 @@
             
             
               
-                gulp中如何使用webpack
+                
               
             
           </h1>
@@ -255,8 +291,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-28T11:11:29+08:00" content="2016-10-28">
-              2016-10-28
+            <time itemprop="dateCreated" datetime="2016-11-09T16:16:32+08:00" content="2016-11-09">
+              2016-11-09
             </time>
           </span>
 
@@ -283,9 +319,26 @@
       
 
       
-        <h1 id="gulp中如何使用webpack"><a href="#gulp中如何使用webpack" class="headerlink" title="gulp中如何使用webpack"></a>gulp中如何使用webpack</h1><p>单独使用webpack用来处理不同模块的依赖是没问题的，搭配gulp进行项目的流程控制将会让开发更高效。</p>
-<p>本文简单记录gulp中如何使用webpack配置</p>
-<p>将来会再更新一些详细的使用记录</p>
+        <h1 id="gitignore配置文件"><a href="#gitignore配置文件" class="headerlink" title=".gitignore配置文件"></a>.gitignore配置文件</h1><h2 id="gitignore忽视规则"><a href="#gitignore忽视规则" class="headerlink" title=".gitignore忽视规则"></a>.gitignore忽视规则</h2><ul>
+<li><p>#号开始代表注释</p>
+</li>
+<li><p>/号代表当前目录（最开始）</p>
+</li>
+<li><p>!号后面的已被前面忽视规则忽视的文件或目录被排除出忽视</p>
+</li>
+<li><p>后缀</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">*.a</div><div class="line">#忽视已a为后缀的文件</div><div class="line">*.[ab]</div><div class="line">#忽视已.a以及.b为后缀的文件</div></pre></td></tr></table></figure>
+</li>
+<li><p>文件及目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">abc</div><div class="line">#忽视abc文件以及acb目录</div><div class="line">abc/</div><div class="line">#忽视abc目录</div><div class="line">/abc/忽视配置不生效的问题</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="忽视配置不生效的问题"><a href="#忽视配置不生效的问题" class="headerlink" title="忽视配置不生效的问题"></a>忽视配置不生效的问题</h2><p>在开发过程中经常会有需要将已经追踪过的文件添加为忽略文件，但是直接配置.gitignore文件是不会生效的。这时候需要先把本地缓存删除然后再提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git rm -r --cached .</div></pre></td></tr></table></figure>
+<h2 id="强制添加已被忽略文件"><a href="#强制添加已被忽略文件" class="headerlink" title="强制添加已被忽略文件"></a>强制添加已被忽略文件</h2><p>想要添加文件到Git但是已经被忽略的，可以通过<code>-f</code>强制添加到Git</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git add -f filename</div></pre></td></tr></table></figure>
+<p>或者想修改<code>.gitignore</code>规则，可以使用<code>git check-ignore</code>命令检查当前文件是被<code>.gitingore</code>哪里的配置忽略掉的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git check-ignore -v filename</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -306,28 +359,18 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/学习笔记/" rel="tag">#学习笔记</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/28/计算机网络概论/" rel="next" title="学习笔记——计算机网络概论(1)">
-                <i class="fa fa-chevron-left"></i> 学习笔记——计算机网络概论(1)
+              <a href="/2016/11/07/babel-loader/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/31/Vue Sublime 常用插件/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -445,7 +488,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gulp中如何使用webpack"><span class="nav-number">1.</span> <span class="nav-text">gulp中如何使用webpack</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gitignore配置文件"><span class="nav-number">1.</span> <span class="nav-text">.gitignore配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#gitignore忽视规则"><span class="nav-number">1.1.</span> <span class="nav-text">.gitignore忽视规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#忽视配置不生效的问题"><span class="nav-number">1.2.</span> <span class="nav-text">忽视配置不生效的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强制添加已被忽略文件"><span class="nav-number">1.3.</span> <span class="nav-text">强制添加已被忽略文件</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

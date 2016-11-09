@@ -236,6 +236,650 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/09/gitignore配置文件/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-09T16:16:32+08:00" content="2016-11-09">
+              2016-11-09
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="gitignore配置文件"><a href="#gitignore配置文件" class="headerlink" title=".gitignore配置文件"></a>.gitignore配置文件</h1><h2 id="gitignore忽视规则"><a href="#gitignore忽视规则" class="headerlink" title=".gitignore忽视规则"></a>.gitignore忽视规则</h2><ul>
+<li><p>#号开始代表注释</p>
+</li>
+<li><p>/号代表当前目录（最开始）</p>
+</li>
+<li><p>!号后面的已被前面忽视规则忽视的文件或目录被排除出忽视</p>
+</li>
+<li><p>后缀</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">*.a</div><div class="line">#忽视已a为后缀的文件</div><div class="line">*.[ab]</div><div class="line">#忽视已.a以及.b为后缀的文件</div></pre></td></tr></table></figure>
+</li>
+<li><p>文件及目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">abc</div><div class="line">#忽视abc文件以及acb目录</div><div class="line">abc/</div><div class="line">#忽视abc目录</div><div class="line">/abc/忽视配置不生效的问题</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="忽视配置不生效的问题"><a href="#忽视配置不生效的问题" class="headerlink" title="忽视配置不生效的问题"></a>忽视配置不生效的问题</h2><p>在开发过程中经常会有需要将已经追踪过的文件添加为忽略文件，但是直接配置.gitignore文件是不会生效的。这时候需要先把本地缓存删除然后再提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git rm -r --cached .</div></pre></td></tr></table></figure>
+<h2 id="强制添加已被忽略文件"><a href="#强制添加已被忽略文件" class="headerlink" title="强制添加已被忽略文件"></a>强制添加已被忽略文件</h2><p>想要添加文件到Git但是已经被忽略的，可以通过<code>-f</code>强制添加到Git</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git add -f filename</div></pre></td></tr></table></figure>
+<p>或者想修改<code>.gitignore</code>规则，可以使用<code>git check-ignore</code>命令检查当前文件是被<code>.gitingore</code>哪里的配置忽略掉的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git check-ignore -v filename</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/07/babel-loader/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-07T19:32:25+08:00" content="2016-11-07">
+              2016-11-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="babel-loader"><a href="#babel-loader" class="headerlink" title="babel-loader"></a>babel-loader</h1><h2 id="Options"><a href="#Options" class="headerlink" title="Options"></a>Options</h2><ul>
+<li><p>cacheDirectory: Default <code>false</code>. When set, the given directory will be used to cache the results of the loader. Future webpack builds will attempt to read from the cache to avoid needing to run the potentially expensive Babel recompilation process on each run. If the value is blank (<code>loader: &#39;babel-loader?cacheDirectory&#39;</code>) the loader will use the default cache directory in <code>node_modules/.cache/babel-loader</code>.</p>
+<p>默认false。设置时，给定的目录将用于缓存加载器的结果。将来webpack构建将尝试从缓存中读取，以避免在每次运行时运行可能昂贵的Babel重新编译过程。如果值为空（loader：’babel-loader？cacheDirectory’），加载器将使用node_modules / .cache / babel-loader中的默认缓存目录。</p>
+</li>
+<li><p>​</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/07/babel-plugin-transform-runtime/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-07T19:27:34+08:00" content="2016-11-07">
+              2016-11-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="babel-plugin-transform-runtime"><a href="#babel-plugin-transform-runtime" class="headerlink" title="babel-plugin-transform-runtime"></a>babel-plugin-transform-runtime</h1><h2 id="Technical-details"><a href="#Technical-details" class="headerlink" title="Technical details"></a>Technical details</h2><p>The <code>runtime</code> transformer plugin does three things:</p>
+<ul>
+<li>Automatically requires <code>babel-runtime/regenerator</code> when you use generators/async functions.</li>
+<li>Automatically requires <code>babel-runtime/core-js</code> and maps ES6 static methods (<code>Object.assign</code>) and built-ins (<code>Promise</code>).</li>
+<li>Removes the inline babel helpers and uses the module <code>babel-runtime/helpers</code> instead.</li>
+</ul>
+<p>What does this actually mean though? Basically, you can use built-ins such as <code>Promise</code>, <code>Set</code>, <code>Symbol</code> etc as well use all the Babel features that require a polyfill seamlessly, without global pollution, making it extremely suitable for libraries.</p>
+<p>Make sure you include <code>babel-runtime</code> as a dependency.</p>
+<p><code>runtime</code>转换插件会做3件事情</p>
+<ul>
+<li><p>自动加载<code>babel-runtime/regenrator</code>当使用generators/async方法的时候。</p>
+</li>
+<li><p>自动加载<code>babel-runtime/core-js</code>和一些ES6的静态方法<code>Object.assign</code>和内置的<code>promise</code>。</p>
+</li>
+<li><p>移除babel helpers 使用<code>babel-runtime/helpers</code>模块代替。</p>
+<p>这是什么意思？基本上，您可以使用内置函数，如Promise，Set，Symbol等，以及使用所有需要polyfill无缝的所有Babel功能，没有全局污染，使其非常适合图书馆。</p>
+<p>​</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/07/Generator/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-07T15:13:34+08:00" content="2016-11-07">
+              2016-11-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li><p>Generator可以理解为一个状态机，封装了多个内部状态</p>
+</li>
+<li><p>执行Genertaor函数会返回一个遍历器对象。</p>
+</li>
+<li><p>特征</p>
+<ul>
+<li><code>function</code>关键字和函数名之间有一个*</li>
+<li>函数内部使用<code>yield</code>语句，用来定义不同状态。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">helloWorldGenerator</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">yield</span> <span class="string">'hello'</span>;</div><div class="line">  <span class="keyword">yield</span> <span class="string">'world'</span>;</div><div class="line">  <span class="keyword">return</span> <span class="string">'ending'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> hw = helloWorldGenerator();</div><div class="line">hw.next()</div><div class="line"><span class="comment">// &#123; value: 'hello', done: false &#125;</span></div><div class="line"></div><div class="line">hw.next()</div><div class="line"><span class="comment">// &#123; value: 'world', done: false &#125;</span></div><div class="line"></div><div class="line">hw.next()</div><div class="line"><span class="comment">// &#123; value: 'ending', done: true &#125;</span></div><div class="line"></div><div class="line">hw.next()</div><div class="line"><span class="comment">// &#123; value: undefined, done: true &#125;</span></div></pre></td></tr></table></figure>
+<p><code>Generator</code>函数调用不会执行，返回的是指向内部状态的指针对象。</p>
+<p>调用遍历器对象的<code>next</code>方法，使指针移向下移状态。</p>
+<p>每次调用<code>next</code>内部指针（执行流）从函数头部或者上次停止地方开始执行，直到下一个<code>yield</code>语句（或<code>return</code>）。</p>
+</li>
+</ul>
+<h2 id="yield语句"><a href="#yield语句" class="headerlink" title="yield语句"></a>yield语句</h2><ul>
+<li><code>next</code>调用时<ul>
+<li>执行到<code>yield</code>语句，暂停执行后面操作<code>yield</code>后表达之，作为返回的对象和的<code>value</code></li>
+<li>再次调用<code>yield</code>继续向下执行，直到下一个<code>yield</code>语句</li>
+<li>执行到<code>return</code>语句，将<code>return</code>语句后表达式的值，作为返回对象的<code>value</code></li>
+<li>函数没有<code>return</code>，返回<code>value</code>为<code>undefined</code></li>
+<li><code>yield</code>语句后的表达式，调用时才会执行（惰性求值Lazy Evaluation）</li>
+</ul>
+</li>
+<li><code>yield</code>与<code>return</code><ul>
+<li>都返回之后表达式的值</li>
+<li>一个函数只能有一个<code>return</code>，可以多个<code>yield</code></li>
+<li><code>yield</code>不能在普通函数中使用</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/01/执行环境/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-01T18:56:59+08:00" content="2016-11-01">
+              2016-11-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境中都有一个<code>变量对象</code>，环境中定义的所有变量和函数都保存在这个对象中。（编写代码时无法访问）                                                                                                                                                                                                                                                                                                                                                                                       </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/31/Vue Sublime 常用插件/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-31T17:07:01+08:00" content="2016-10-31">
+              2016-10-31
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Vue-Sublime-常用插件"><a href="#Vue-Sublime-常用插件" class="headerlink" title="Vue Sublime 常用插件"></a>Vue Sublime 常用插件</h1><ul>
+<li><h2 id="Vue-Syntax-Highlight"><a href="#Vue-Syntax-Highlight" class="headerlink" title="Vue Syntax Highlight"></a>Vue Syntax Highlight</h2><p>使用Package Control 搜索<code>Vue Syntax Highlight</code></p>
+<p>​</p>
+</li>
+<li><p>## </p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/28/--gulp中如何使用webpack/" itemprop="url">
                   gulp中如何使用webpack
                 </a>
@@ -543,11 +1187,12 @@
 </ul>
 </li>
 <li>Layer 2 devlces 2层设备</li>
-<li>Switches 交换机</li>
+<li>Switches 交换机   </li>
 <li>Bridges</li>
 </ul>
 </li>
 <li>Network Layer (如何将封包送到目的地主机)<ul>
+<li>IP to IP</li>
 <li>How to transmit frames to a host via the Internet?</li>
 <li>Handle <code>routing</code> among nodes within a packet-switched network</li>
 <li>Data exchanged between</li>
@@ -850,7 +1495,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
