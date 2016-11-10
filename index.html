@@ -237,7 +237,7 @@
               
                 
                 <a class="post-title-link" href="/2016/11/09/gitignore配置文件/" itemprop="url">
-                  未命名
+                  gitignore配置规则
                 </a>
               
             
@@ -300,6 +300,112 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git add -f filename</div></pre></td></tr></table></figure>
 <p>或者想修改<code>.gitignore</code>规则，可以使用<code>git check-ignore</code>命令检查当前文件是被<code>.gitingore</code>哪里的配置忽略掉的</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git check-ignore -v filename</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/09/Redux/" itemprop="url">
+                  redux基础学习笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-09T12:01:00+08:00" content="2016-11-09">
+              2016-11-09
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h1><p>Redux可预测的JavaScript应用程序的状态容器</p>
+<p>帮助你写的应用行为一致，在不同的环境（client, server,native），更容易测试，提供更好的开发体验。</p>
+<h2 id="Start—React-Redux"><a href="#Start—React-Redux" class="headerlink" title="Start—React-Redux"></a>Start—React-Redux</h2><p>安装依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install --save redux react-redux</div><div class="line">npm install --save-dev redux-devtools</div></pre></td></tr></table></figure>
+<h2 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h2><ul>
+<li>应用程序的整个状态存储在单个存储中的对象树中。（Redux状态容器中）</li>
+<li>改变状态树的唯一方法是发出一个动作<code>action</code>，一个描述发生了什么的对象。</li>
+<li>要指定动作<code>action</code>如何操作了状态树，需要自己编写<code>reducer</code></li>
+</ul>
+<h2 id="redux"><a href="#redux" class="headerlink" title="redux"></a>redux</h2><p><code>reducer</code>一个纯函数用于<code>(state, action) =&gt; state</code></p>
+<p>描述了一个<code>action</code>如何将<code>state</code>转换为下一个<code>state</code></p>
+<p>状态的类型（形式）取决与你自己：它可以是基本类型，一个数组，一个对象，一个<code>Immutable.js</code>数据结构。</p>
+<p>重要的一点是，你不应该改变状态对象（修改state），如何<code>state</code>改变了，将会返回一个新的对象。</p>
 
           
         
@@ -562,7 +668,7 @@
               
                 
                 <a class="post-title-link" href="/2016/11/07/Generator/" itemprop="url">
-                  未命名
+                  Generator学习
                 </a>
               
             
@@ -1235,6 +1341,15 @@
 </li>
 </ul>
 <p>Host有7层，Router只有传输层以下三层，交换机只有物理层和链路层</p>
+<p>实际上使用中并不严格按照7层来，可以跳过中间的层。</p>
+<h2 id="网络性能Network-Performance"><a href="#网络性能Network-Performance" class="headerlink" title="网络性能Network Performance"></a>网络性能Network Performance</h2><ul>
+<li>频宽 Bandwidth<ul>
+<li>`Number of bits per second</li>
+</ul>
+</li>
+<li>1Mbps: 1 * 10^6 bits/second</li>
+<li>速度越快，bit宽度越窄</li>
+</ul>
 
           
         
@@ -1382,117 +1497,13 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/26/JS读书笔记——函数/" itemprop="url">
-                  JS学习笔记——函数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-26T18:48:26+08:00" content="2016-10-26">
-              2016-10-26
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="JavaScript学习笔记——函数"><a href="#JavaScript学习笔记——函数" class="headerlink" title="JavaScript学习笔记——函数"></a>JavaScript学习笔记——函数</h1><h2 id="函数的概念"><a href="#函数的概念" class="headerlink" title="函数的概念"></a>函数的概念</h2><p>通过函数可以封装任意多条语句，而且可以在任何地方，任何时候调用执行。</p>
-<h2 id="函数对象"><a href="#函数对象" class="headerlink" title="函数对象"></a>函数对象</h2><p>JavaScript中的函数就是对象。函数对象连接到<code>Function.prototype</code>该原型对象本身连接到<code>Object.prototpye</code>）。</p>
-<p>每个函数在创建时会附加两个隐藏属性：函数的上下文和实现函数行为的代码（当JavaScript创建一个函数对象的时候，会给该对象设置一个”调用“属性。详见ECMAScript规范的”13.2 Creating Function Objects“）</p>
-<h2 id="函数的定义"><a href="#函数的定义" class="headerlink" title="函数的定义"></a>函数的定义</h2><h3 id="函数声明语句"><a href="#函数声明语句" class="headerlink" title="函数声明语句"></a>函数声明语句</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Hi!'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="函数定义表达式"><a href="#函数定义表达式" class="headerlink" title="函数定义表达式"></a>函数定义表达式</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> sayYes = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'Yse!'</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> sayHello = <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'Hello!'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="两种定义方式的区别"><a href="#两种定义方式的区别" class="headerlink" title="两种定义方式的区别"></a>两种定义方式的区别</h3><ul>
-<li>函数名：以声明式方式定义的函数，实际上声明了一个变量并把函数对象赋值给它。 而以表达式方式定义的函数，函数名是可选的。如果一个函数定义表达式包含名称，函数的名称将成为函数内部的一个局部变量。</li>
-<li>声明提前：以声明式方式定义的函数，函数声明语句”被提前“到外部脚本或者外部函数作用域的顶部，所以可以被在它定义之前的代码调用。而函数定义表达式，会先声明一个变量，被声明的变量也会提前。但是在代码未执行完将函数赋值个这个变量的操作之前。这个函数是无法被调用的。</li>
-</ul>
-<h2 id="函数的参数"><a href="#函数的参数" class="headerlink" title="函数的参数"></a>函数的参数</h2><p>JavasScript中函数定义并不需要指定函数形参的类型，函数调用也不会对实参进行任何类型检查，甚至实参和形参个数不同也不会出现问题。原因是ECMAScript中的参数在内部是使用一个类数组的<code>arguments</code>对象来表示的。</p>
-<h3 id="形参"><a href="#形参" class="headerlink" title="形参"></a>形参</h3><p>当调用函数时传入的实参比函数声明时指定的形参个数要少的时候，剩下的形参都会被设置为<code>undefined</code>。</p>
-<p>可以通过判断<code>if</code>语句或者<code>||</code>运算符来实现参数的可选。</p>
-<h3 id="实参、实参对象"><a href="#实参、实参对象" class="headerlink" title="实参、实参对象"></a>实参、实参对象</h3><p>当调用函数时传入实参个数超过形参，没有办法直接获得未命名值的引用。而使用实参对象<code>arguments</code>可以解决这个问题。在函数体内<code>arguments</code>是指向实参对象的引用</p>
-<p><code>arguments</code>是一个类数组对象，可以通过数字下标获得传入函数的实参值。</p>
-<p>在严格模式下和ECMAScript 5标准中，<code>arguments</code>是只读的。</p>
-<h2 id="函数的返回值"><a href="#函数的返回值" class="headerlink" title="函数的返回值"></a>函数的返回值</h2><h2 id="函数的4种调用模式"><a href="#函数的4种调用模式" class="headerlink" title="函数的4种调用模式"></a>函数的4种调用模式</h2>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1531,7 +1542,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1541,7 +1552,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
