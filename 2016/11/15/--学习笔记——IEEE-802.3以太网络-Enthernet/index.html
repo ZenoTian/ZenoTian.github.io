@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="学习笔记," />
 
 
 
@@ -84,25 +84,37 @@
 
 
 
-<meta name="description" content="babel-plugin-transform-runtimeTechnical detailsThe runtime transformer plugin does three things:
+<meta name="description" content="Enthernet Introduction介绍历史
+1970开发
+1978年定义标准
 
-Automatically requires babel-runtime/regenerator when you use generators/async functions.
-Automaticall">
+特性
+Connectionless 通讯不需要两个主机建立连接 
+Unreliable 不可靠（干扰，讯号冲撞，损毁，网络拥挤）
+Ethernet’s MAC protocol: Carrier Sense Multiple Acess with Collision Detection(CSMA/CD)协调所">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Zeno Tian">
-<meta property="og:url" content="http://yoursite.com/2016/11/07/babel-plugin-transform-runtime/index.html">
+<meta property="og:title" content="学习笔记——IEEE 802.3以太网络 Enthernet">
+<meta property="og:url" content="http://yoursite.com/2016/11/15/--学习笔记——IEEE-802.3以太网络-Enthernet/index.html">
 <meta property="og:site_name" content="Zeno Tian">
-<meta property="og:description" content="babel-plugin-transform-runtimeTechnical detailsThe runtime transformer plugin does three things:
+<meta property="og:description" content="Enthernet Introduction介绍历史
+1970开发
+1978年定义标准
 
-Automatically requires babel-runtime/regenerator when you use generators/async functions.
-Automaticall">
-<meta property="og:updated_time" content="2016-11-07T11:27:34.000Z">
+特性
+Connectionless 通讯不需要两个主机建立连接 
+Unreliable 不可靠（干扰，讯号冲撞，损毁，网络拥挤）
+Ethernet’s MAC protocol: Carrier Sense Multiple Acess with Collision Detection(CSMA/CD)协调所">
+<meta property="og:updated_time" content="2016-11-16T02:02:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zeno Tian">
-<meta name="twitter:description" content="babel-plugin-transform-runtimeTechnical detailsThe runtime transformer plugin does three things:
+<meta name="twitter:title" content="学习笔记——IEEE 802.3以太网络 Enthernet">
+<meta name="twitter:description" content="Enthernet Introduction介绍历史
+1970开发
+1978年定义标准
 
-Automatically requires babel-runtime/regenerator when you use generators/async functions.
-Automaticall">
+特性
+Connectionless 通讯不需要两个主机建立连接 
+Unreliable 不可靠（干扰，讯号冲撞，损毁，网络拥挤）
+Ethernet’s MAC protocol: Carrier Sense Multiple Acess with Collision Detection(CSMA/CD)协调所">
 
 
 
@@ -123,10 +135,10 @@ Automaticall">
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/07/babel-plugin-transform-runtime/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/15/--学习笔记——IEEE-802.3以太网络-Enthernet/"/>
 
 
-  <title>  | Zeno Tian </title>
+  <title> 学习笔记——IEEE 802.3以太网络 Enthernet | Zeno Tian </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -246,7 +258,7 @@ Automaticall">
             
             
               
-                
+                学习笔记——IEEE 802.3以太网络 Enthernet
               
             
           </h1>
@@ -258,8 +270,8 @@ Automaticall">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-07T19:27:34+08:00" content="2016-11-07">
-              2016-11-07
+            <time itemprop="dateCreated" datetime="2016-11-15T22:01:12+08:00" content="2016-11-15">
+              2016-11-15
             </time>
           </span>
 
@@ -286,26 +298,39 @@ Automaticall">
       
 
       
-        <h1 id="babel-plugin-transform-runtime"><a href="#babel-plugin-transform-runtime" class="headerlink" title="babel-plugin-transform-runtime"></a>babel-plugin-transform-runtime</h1><h2 id="Technical-details"><a href="#Technical-details" class="headerlink" title="Technical details"></a>Technical details</h2><p>The <code>runtime</code> transformer plugin does three things:</p>
-<ul>
-<li>Automatically requires <code>babel-runtime/regenerator</code> when you use generators/async functions.</li>
-<li>Automatically requires <code>babel-runtime/core-js</code> and maps ES6 static methods (<code>Object.assign</code>) and built-ins (<code>Promise</code>).</li>
-<li>Removes the inline babel helpers and uses the module <code>babel-runtime/helpers</code> instead.</li>
+        <h1 id="Enthernet-Introduction介绍"><a href="#Enthernet-Introduction介绍" class="headerlink" title="Enthernet Introduction介绍"></a>Enthernet Introduction介绍</h1><h2 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h2><ul>
+<li>1970开发</li>
+<li>1978年定义标准</li>
 </ul>
-<p>What does this actually mean though? Basically, you can use built-ins such as <code>Promise</code>, <code>Set</code>, <code>Symbol</code> etc as well use all the Babel features that require a polyfill seamlessly, without global pollution, making it extremely suitable for libraries.</p>
-<p>Make sure you include <code>babel-runtime</code> as a dependency.</p>
-<p><code>runtime</code>转换插件会做3件事情</p>
-<ul>
-<li><p>自动加载<code>babel-runtime/regenrator</code>当使用generators/async方法的时候。</p>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
+<li>Connectionless 通讯不需要两个主机建立连接 </li>
+<li>Unreliable 不可靠（干扰，讯号冲撞，损毁，网络拥挤）</li>
+<li>Ethernet’s MAC protocol: <code>Carrier Sense Multiple Acess with Collision Detection(CSMA/CD)</code>协调所有连接上的主机工作</li>
+</ul>
+<h1 id="Enthernet-Topologies拓扑"><a href="#Enthernet-Topologies拓扑" class="headerlink" title="Enthernet Topologies拓扑"></a>Enthernet Topologies拓扑</h1><ul>
+<li><h3 id="BUS-topology"><a href="#BUS-topology" class="headerlink" title="BUS topology"></a>BUS topology</h3><ul>
+<li><p>双向传输 </p>
 </li>
-<li><p>自动加载<code>babel-runtime/core-js</code>和一些ES6的静态方法<code>Object.assign</code>和内置的<code>promise</code>。</p>
+<li><p>两端有终端器(防止信号反弹回来)</p>
 </li>
-<li><p>移除babel helpers 使用<code>babel-runtime/helpers</code>模块代替。</p>
-<p>这是什么意思？基本上，您可以使用内置函数，如Promise，Set，Symbol等，以及使用所有需要polyfill无缝的所有Babel功能，没有全局污染，使其非常适合图书馆。</p>
-<p>​</p>
+<li><p>有长度限制 （网段最长500公尺）</p>
+</li>
+<li><p>transceiver 可以传输可以接收</p>
+</li>
+<li><p>transceiver连接至网卡</p>
+</li>
+<li><p>每个网段最多100哥收发器</p>
+</li>
+<li><p>收发器电缆最长50公尺</p>
+</li>
+<li><h4 id="Manchester-Encoding"><a href="#Manchester-Encoding" class="headerlink" title="Manchester Encoding"></a>Manchester Encoding</h4><ul>
+<li>#### </li>
+</ul>
 </li>
 </ul>
-
+</li>
+</ul>
+<h1 id="Enthernet-Frame-Format-传输格式"><a href="#Enthernet-Frame-Format-传输格式" class="headerlink" title="Enthernet Frame Format 传输格式"></a>Enthernet Frame Format 传输格式</h1><h1 id="Ethernet-MAC-Protocol-—-CSMA-CD-协议"><a href="#Ethernet-MAC-Protocol-—-CSMA-CD-协议" class="headerlink" title="Ethernet MAC Protocol — CSMA/CD 协议"></a>Ethernet MAC Protocol — CSMA/CD 协议</h1><h1 id="802-3-Ethernet-Standards-标准"><a href="#802-3-Ethernet-Standards-标准" class="headerlink" title="802.3 Ethernet Standards 标准"></a>802.3 Ethernet Standards 标准</h1>
       
     </div>
 
@@ -325,22 +350,24 @@ Automaticall">
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/学习笔记/" rel="tag">#学习笔记</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/07/Generator/" rel="next" title="Generator学习">
-                <i class="fa fa-chevron-left"></i> Generator学习
+              <a href="/2016/11/15/高效学习的建议/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/07/babel-loader/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -458,7 +485,7 @@ Automaticall">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#babel-plugin-transform-runtime"><span class="nav-number">1.</span> <span class="nav-text">babel-plugin-transform-runtime</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Technical-details"><span class="nav-number">1.1.</span> <span class="nav-text">Technical details</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Enthernet-Introduction介绍"><span class="nav-number">1.</span> <span class="nav-text">Enthernet Introduction介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#历史"><span class="nav-number">1.1.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特性"><span class="nav-number">1.2.</span> <span class="nav-text">特性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Enthernet-Topologies拓扑"><span class="nav-number">2.</span> <span class="nav-text">Enthernet Topologies拓扑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BUS-topology"><span class="nav-number">2.0.1.</span> <span class="nav-text">BUS topology</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Manchester-Encoding"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">Manchester Encoding</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Enthernet-Frame-Format-传输格式"><span class="nav-number">3.</span> <span class="nav-text">Enthernet Frame Format 传输格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ethernet-MAC-Protocol-—-CSMA-CD-协议"><span class="nav-number">4.</span> <span class="nav-text">Ethernet MAC Protocol — CSMA/CD 协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#802-3-Ethernet-Standards-标准"><span class="nav-number">5.</span> <span class="nav-text">802.3 Ethernet Standards 标准</span></a></li></ol></div>
             
           </div>
         </section>
