@@ -236,6 +236,99 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/19/React-Redux 分离表示和容器组件/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-19T15:27:52+08:00" content="2016-12-19">
+              2016-12-19
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="React-Redux-分离表示和容器组件"><a href="#React-Redux-分离表示和容器组件" class="headerlink" title="React-Redux 分离表示和容器组件"></a>React-Redux 分离表示和容器组件</h1>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/15/--学习笔记——IEEE-802.3以太网络-Enthernet/" itemprop="url">
                   学习笔记——IEEE 802.3以太网络 Enthernet
                 </a>
@@ -803,6 +896,72 @@
 <p>描述了一个<code>action</code>如何将<code>state</code>转换为下一个<code>state</code></p>
 <p>状态的类型（形式）取决与你自己：它可以是基本类型，一个数组，一个对象，一个<code>Immutable.js</code>数据结构。</p>
 <p>重要的一点是，你不应该改变状态对象（修改state），如何<code>state</code>改变了，将会返回一个新的对象。</p>
+<h2 id="三原则"><a href="#三原则" class="headerlink" title="三原则"></a>三原则</h2><ul>
+<li><h3 id="单一来源"><a href="#单一来源" class="headerlink" title="单一来源"></a>单一来源</h3></li>
+</ul>
+<p>整个应用程序的状态存储在单个存储中的对象树中。</p>
+<ul>
+<li><h3 id="state只读"><a href="#state只读" class="headerlink" title="state只读"></a><code>state</code>只读</h3></li>
+</ul>
+<p>改变状态的唯一方法是发出一个<code>action</code>，一个描述发生了什么的对象</p>
+<ul>
+<li><h3 id="使用纯函数进行更改"><a href="#使用纯函数进行更改" class="headerlink" title="使用纯函数进行更改"></a>使用纯函数进行更改</h3></li>
+</ul>
+<p>要指定如何通过操作转换状态树，可以编写纯reducer。</p>
+<p>编写纯函数<code>reducer</code></p>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="Actions"><a href="#Actions" class="headerlink" title="Actions"></a>Actions</h3><h4 id="Actions-1"><a href="#Actions-1" class="headerlink" title="Actions"></a>Actions</h4><p><code>Actions</code>是将数据从应用程序发送到<code>store</code>的行为。他们是<code>store</code>的唯一信息来源。您可以使用store.dispatch（）将它们发送到<code>store</code>。</p>
+<p><code>action</code>是纯JavaScript对象。<code>action</code>必须具有指示要执行的操作类型的type属性。类型通常应定义为字符串常量。一旦应用程序足够大，可以将它们移动到一个单独的模块。</p>
+<p>每个<code>action</code>尽量减少数据 </p>
+<h4 id="Action-Creators"><a href="#Action-Creators" class="headerlink" title="Action Creators"></a>Action Creators</h4><p><code>Action Creators</code>创建<code>actiuon</code>的函数，返回<code>action</code>。更容易测试</p>
+<p>传统<code>fulx</code>中，<code>dispatch</code>通常在<code>action Creators</code>函数调用时触发。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function addTodoWithDispatch(text) &#123;</div><div class="line">  const action = &#123;</div><div class="line">    type: ADD_TODO,</div><div class="line">    text</div><div class="line">  &#125;</div><div class="line">  dispatch(action)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在<code>Redux</code>中，进行分发，需要将<code>Action Creators</code>函数返回的结果传入<code>dispatch()</code>中</p>
+<p>例如<code>dispath(actionCreators(arg))</code></p>
+<h3 id="Reducers"><a href="#Reducers" class="headerlink" title="Reducers"></a>Reducers</h3><h4 id="Reducers-1"><a href="#Reducers-1" class="headerlink" title="Reducers"></a>Reducers</h4><p>操作描述了事情发生的事实，但不指定应用程序的状态如何变化。</p>
+<h4 id="Designing-the-State-Shape-设计state"><a href="#Designing-the-State-Shape-设计state" class="headerlink" title="Designing the State Shape/设计state"></a>Designing the State Shape/设计state</h4><p>应用的状态全部存储在单一的对象中，那么响应UI的状态如何做到最小？</p>
+<p>state的状态应该使用ID进行存储，区分。更方便使用。</p>
+<h4 id="处理-Actions"><a href="#处理-Actions" class="headerlink" title="处理 Actions"></a>处理 Actions</h4><p><code>reduce</code>接收<code>action</code>和先前的<code>state</code>和动作，并返回下一个状态。</p>
+<h4 id="Reduce中不能进行的操作"><a href="#Reduce中不能进行的操作" class="headerlink" title="Reduce中不能进行的操作"></a>Reduce中不能进行的操作</h4><ul>
+<li>修改参数</li>
+<li>执行次要操作，例如：API调用，路由转换</li>
+<li>调用非纯函数：<code>Date.now()</code>或<code>Math.random()</code></li>
+</ul>
+<p><code>reduce</code>应该是一个纯函数，输入相同返回应该相同</p>
+<h6 id="NOTE-不要修改旧的state"><a href="#NOTE-不要修改旧的state" class="headerlink" title="NOTE 不要修改旧的state,"></a>NOTE 不要修改旧的state,</h6><h4 id="Splitting-Reducers-分割Reducers"><a href="#Splitting-Reducers-分割Reducers" class="headerlink" title="Splitting Reducers 分割Reducers"></a>Splitting Reducers 分割Reducers</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">todoApp</span>(<span class="params">state = initialState, action</span>) </span>&#123;</div><div class="line">  <span class="keyword">switch</span> (action.type) &#123;</div><div class="line">    <span class="keyword">case</span> SET_VISIBILITY_FILTER:</div><div class="line">      <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, state, &#123;</div><div class="line">        <span class="attr">visibilityFilter</span>: action.filter</div><div class="line">      &#125;)</div><div class="line">    <span class="keyword">case</span> ADD_TODO:</div><div class="line">      <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, state, &#123;</div><div class="line">        <span class="attr">todos</span>: [</div><div class="line">          ...state.todos,</div><div class="line">          &#123;</div><div class="line">            <span class="attr">text</span>: action.text,</div><div class="line">            <span class="attr">completed</span>: <span class="literal">false</span></div><div class="line">          &#125;</div><div class="line">        ]</div><div class="line">      &#125;)</div><div class="line">    <span class="keyword">case</span> TOGGLE_TODO:</div><div class="line">      <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, state, &#123;</div><div class="line">        <span class="attr">todos</span>: state.todos.map(<span class="function">(<span class="params">todo, index</span>) =&gt;</span> &#123;</div><div class="line">          <span class="keyword">if</span>(index === action.index) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, todo, &#123;</div><div class="line">              <span class="attr">completed</span>: !todo.completed</div><div class="line">            &#125;)</div><div class="line">          &#125;</div><div class="line">          <span class="keyword">return</span> todo</div><div class="line">        &#125;)</div><div class="line">      &#125;)</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">      <span class="keyword">return</span> state</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">todos</span>(<span class="params">state = [], action</span>) </span>&#123;</div><div class="line">  <span class="keyword">switch</span> (action.type) &#123;</div><div class="line">    <span class="keyword">case</span> ADD_TODO:</div><div class="line">      <span class="keyword">return</span> [</div><div class="line">        ...state,</div><div class="line">        &#123;</div><div class="line">          <span class="attr">text</span>: action.text,</div><div class="line">          <span class="attr">completed</span>: <span class="literal">false</span></div><div class="line">        &#125;</div><div class="line">      ]</div><div class="line">    <span class="keyword">case</span> TOGGLE_TODO:</div><div class="line">      <span class="keyword">return</span> state.map(<span class="function">(<span class="params">todo, index</span>) =&gt;</span> &#123;</div><div class="line">        <span class="keyword">if</span> (index === action.index) &#123;</div><div class="line">          <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, todo, &#123;</div><div class="line">            <span class="attr">complate</span>: !todo.complate</div><div class="line">          &#125;)</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> todo</div><div class="line">      &#125;)</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">      <span class="keyword">return</span> state</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">visibilityFilyer</span> (<span class="params">state = SHOW_ALL, action</span>) </span>&#123;</div><div class="line">  <span class="keyword">switch</span> (action.type) &#123;</div><div class="line">    <span class="keyword">case</span> SET_VISIBILITY_FILTER:</div><div class="line">      <span class="keyword">return</span> action.filter</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">      <span class="keyword">return</span> state</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">todoApp</span> (<span class="params">state = initialState, action</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">visibilityFilter</span>: visibilityFilter(state.visibilityFilter, action),</div><div class="line">    <span class="attr">todos</span>: todos(state.todos, action)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>将<code>state</code>切片化。reduce组合是构建Redux应用程序的基本模式。</p>
+<p>每个<code>reduce</code>只管理<code>state</code>的一部分。</p>
+<p><code>Redux</code>提供<code>combineReducers（）</code>方法，可以拆分<code>Reducer</code></p>
+<h3 id="Store"><a href="#Store" class="headerlink" title="Store"></a>Store</h3><h4 id="Store的职责"><a href="#Store的职责" class="headerlink" title="Store的职责"></a><code>Store</code>的职责</h4><ul>
+<li>管理 app state</li>
+<li>通过 <code>getstate()</code> 访问state</li>
+<li>通过 <code>dispath(action)</code> 更新state</li>
+<li>注册监听器 <code>subscrive(listener)</code></li>
+<li>通过subscribe（listener）返回的函数处理监听器的注销。</li>
+</ul>
+<p>一个app只能有一个<code>store</code></p>
+<h2 id="Date-Flow-数据流"><a href="#Date-Flow-数据流" class="headerlink" title="Date Flow 数据流"></a>Date Flow 数据流</h2><p>Redux应用程序中的数据生命周期都遵循以下4个步骤</p>
+<ul>
+<li><strong>调用</strong> <a href="http://redux.js.org/docs/api/Store.html#dispatch" target="_blank" rel="external"><code>store.dispatch(action)</code></a>.</li>
+</ul>
+<p>动作是描述发生了什么的简单对象，可以在任何地方调用</p>
+<ul>
+<li><code>Store</code>调用传入的<code>reduce</code></li>
+<li>根<code>reduce</code>可以将多个<code>reduce</code>组合成一个状态树</li>
+<li><p><code>store</code>将根<code>reduce</code>返回的对象作为状态存储</p>
+<p><code>subscribe</code>订阅取消订阅问题？？</p>
+</li>
+</ul>
+<ul>
+<li>创建store：<code>let store = createStore(todoApp)</code> 传入<code>reduce</code></li>
+<li>执行订阅：返回值为取消订阅函数，执行reduce后触发回调？</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> unsubscribe = store.subscribe(<span class="function"><span class="params">()</span> =&gt;</span></div><div class="line">  <span class="built_in">console</span>.log(store.getState())</div><div class="line">)</div></pre></td></tr></table></figure>
+<ul>
+<li>触发<code>dispatch</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">store.dispatch(addTodo(<span class="string">'Learn about actions'</span>))</div></pre></td></tr></table></figure>
+<p>接收<code>action</code></p>
 
           
         
@@ -1262,106 +1421,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/31/Vue Sublime 常用插件/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-31T17:07:01+08:00" content="2016-10-31">
-              2016-10-31
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Vue-Sublime-常用插件"><a href="#Vue-Sublime-常用插件" class="headerlink" title="Vue Sublime 常用插件"></a>Vue Sublime 常用插件</h1><ul>
-<li><h2 id="Vue-Syntax-Highlight"><a href="#Vue-Syntax-Highlight" class="headerlink" title="Vue Syntax Highlight"></a>Vue Syntax Highlight</h2><p>使用Package Control 搜索<code>Vue Syntax Highlight</code></p>
-<p>​</p>
-</li>
-<li><p>## </p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1407,7 +1466,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
