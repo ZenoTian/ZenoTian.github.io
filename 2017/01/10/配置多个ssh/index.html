@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="配置 工具," />
 
 
 
@@ -84,19 +84,31 @@
 
 
 
-<meta name="description" content="babel-loaderOptions
-cacheDirectory: Default false. When set, the given directory will be used to cache the results of the loader. Future webpack builds will attempt to read from the cache to avoid nee">
+<meta name="description" content="刚到公司是没有再重新配置ssh，导致了自己的github和公司gitlab提交的混乱。
+这种情况我们可以分情况配置ssh
+
+分别生成gitlab和github的ssh-key
+1$ ssh-keygen -t rsa -C &amp;quot;youremail@yourcompany.com&amp;quot; -f ~/.ssh/gitlab-rsa
+在~/.ssh/目录会生成gitlab-rsa私钥和git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Zeno Tian">
-<meta property="og:url" content="http://yoursite.com/2016/11/07/babel-loader/index.html">
+<meta property="og:title" content="配置多个ssh">
+<meta property="og:url" content="http://yoursite.com/2017/01/10/配置多个ssh/index.html">
 <meta property="og:site_name" content="Zeno Tian">
-<meta property="og:description" content="babel-loaderOptions
-cacheDirectory: Default false. When set, the given directory will be used to cache the results of the loader. Future webpack builds will attempt to read from the cache to avoid nee">
-<meta property="og:updated_time" content="2017-01-10T14:37:24.000Z">
+<meta property="og:description" content="刚到公司是没有再重新配置ssh，导致了自己的github和公司gitlab提交的混乱。
+这种情况我们可以分情况配置ssh
+
+分别生成gitlab和github的ssh-key
+1$ ssh-keygen -t rsa -C &amp;quot;youremail@yourcompany.com&amp;quot; -f ~/.ssh/gitlab-rsa
+在~/.ssh/目录会生成gitlab-rsa私钥和git">
+<meta property="og:updated_time" content="2017-01-10T14:36:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zeno Tian">
-<meta name="twitter:description" content="babel-loaderOptions
-cacheDirectory: Default false. When set, the given directory will be used to cache the results of the loader. Future webpack builds will attempt to read from the cache to avoid nee">
+<meta name="twitter:title" content="配置多个ssh">
+<meta name="twitter:description" content="刚到公司是没有再重新配置ssh，导致了自己的github和公司gitlab提交的混乱。
+这种情况我们可以分情况配置ssh
+
+分别生成gitlab和github的ssh-key
+1$ ssh-keygen -t rsa -C &amp;quot;youremail@yourcompany.com&amp;quot; -f ~/.ssh/gitlab-rsa
+在~/.ssh/目录会生成gitlab-rsa私钥和git">
 
 
 
@@ -117,10 +129,10 @@ cacheDirectory: Default false. When set, the given directory will be used to cac
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/07/babel-loader/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/01/10/配置多个ssh/"/>
 
 
-  <title>  | Zeno Tian </title>
+  <title> 配置多个ssh | Zeno Tian </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +252,7 @@ cacheDirectory: Default false. When set, the given directory will be used to cac
             
             
               
-                
+                配置多个ssh
               
             
           </h1>
@@ -252,8 +264,8 @@ cacheDirectory: Default false. When set, the given directory will be used to cac
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-07T19:32:25+08:00" content="2016-11-07">
-              2016-11-07
+            <time itemprop="dateCreated" datetime="2017-01-10T21:55:52+08:00" content="2017-01-10">
+              2017-01-10
             </time>
           </span>
 
@@ -280,13 +292,37 @@ cacheDirectory: Default false. When set, the given directory will be used to cac
       
 
       
-        <h1 id="babel-loader"><a href="#babel-loader" class="headerlink" title="babel-loader"></a>babel-loader</h1><h2 id="Options"><a href="#Options" class="headerlink" title="Options"></a>Options</h2><ul>
-<li><p>cacheDirectory: Default <code>false</code>. When set, the given directory will be used to cache the results of the loader. Future webpack builds will attempt to read from the cache to avoid needing to run the potentially expensive Babel recompilation process on each run. If the value is blank (<code>loader: &#39;babel-loader?cacheDirectory&#39;</code>) the loader will use the default cache directory in <code>node_modules/.cache/babel-loader</code>.</p>
-<p>默认false。设置时，给定的目录将用于缓存加载器的结果。将来webpack构建将尝试从缓存中读取，以避免在每次运行时运行可能昂贵的Babel重新编译过程。如果值为空（loader：’babel-loader？cacheDirectory’），加载器将使用node_modules / .cache / babel-loader中的默认缓存目录。</p>
+        <p>刚到公司是没有再重新配置ssh，导致了自己的github和公司gitlab提交的混乱。</p>
+<p>这种情况我们可以分情况配置ssh</p>
+<ol>
+<li><p>分别生成gitlab和github的ssh-key</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;youremail@yourcompany.com&quot; -f ~/.ssh/gitlab-rsa</div></pre></td></tr></table></figure>
+<p>在~/.ssh/目录会生成gitlab-rsa私钥和gitlab-rsa.pub公钥。 我们将id-rsa.pub中的内容粘帖到公司gitlab服务器的SSH-key的配置中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;youremail@your.com&quot; -f ~/.ssh/github-rsa</div></pre></td></tr></table></figure>
+<p>在~/.ssh/目录会生成github-rsa私钥和github-rsa.pub公钥。 我们将github-rsa.pub中的内容粘帖到github服务器的SSH-key的配置中。</p>
+<p>​</p>
+<p>在创建ssh-key的时候会有提示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Enter passphrase (empty for no passphrase):</div><div class="line">//输入密语，可以为空</div><div class="line">Enter same passphrase again:</div><div class="line">//再次输入确认</div></pre></td></tr></table></figure>
 </li>
-<li><p>​</p>
+<li><p>将密钥加入到ssh-agent</p>
+<p>ssh-agent是用于管理密钥，通过ssh-add命令将两个将密钥加入到ssh-agent中，SSH可以和ssh-agent通信获取密钥，这样就不需要手工输入密码了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ssh-add ~/.ssh/gitlab-rsa</div><div class="line">$ ssh-add ~/.ssh/github-rsa</div></pre></td></tr></table></figure>
+<p>如果运行<code>ssh-add</code>命令，遇到“Could not open a connection to your authentication agent.”提示。</p>
+<p>需要ssh-agent启动bash，运行以下命令，然后再重新执行<code>ssh-add</code>命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-agent bash</div></pre></td></tr></table></figure>
 </li>
-</ul>
+<li><p>创建并编辑config文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd ~/.ssh/</div><div class="line">$ touch config</div></pre></td></tr></table></figure>
+<p>在config中写入，并保存</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"># gitlab</div><div class="line">Host gitlab.com</div><div class="line">    HostName gitlab.com</div><div class="line">    PreferredAuthentications publickey</div><div class="line">    IdentityFile ~/.ssh/gitlab-rsa</div><div class="line"># github</div><div class="line">Host github.com</div><div class="line">    HostName github.com</div><div class="line">    PreferredAuthentications publickey</div><div class="line">    IdentityFile ~/.ssh/github-rsa</div><div class="line"></div><div class="line"># 配置文件参数</div><div class="line"># Host : Host可以看作是一个你要识别的模式，对识别的模式，进行配置对应的的主机名和ssh文件</div><div class="line"># HostName : 要登录主机的主机名</div><div class="line"># IdentityFile : 指明对应的identityFile路径</div></pre></td></tr></table></figure>
+</li>
+<li><p>测试是否生效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh git@github.com</div></pre></td></tr></table></figure>
+<p>出现以下提示即为成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">The authenticity of host &apos;github.com (192.30.253.112)&apos; can&apos;t be established.</div><div class="line">RSA key fingerprint is SHA256:xxxxxxxxxxxxxxxxxxxxx.</div><div class="line">Are you sure you want to continue connecting (yes/no)? </div><div class="line">//输入yes，按回车</div><div class="line">Warning: Permanently added &apos;github.com,192.30.253.112&apos; (RSA) to the list of known hosts.</div><div class="line">Permission denied (publickey).</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ol>
 
       
     </div>
@@ -307,22 +343,24 @@ cacheDirectory: Default false. When set, the given directory will be used to cac
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/配置-工具/" rel="tag">#配置 工具</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/07/babel-plugin-transform-runtime/" rel="next" title="">
+              <a href="/2016/12/19/React-Redux 分离表示和容器组件/" rel="next" title="">
                 <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/09/Redux/" rel="prev" title="redux基础学习笔记">
-                redux基础学习笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -440,7 +478,7 @@ cacheDirectory: Default false. When set, the given directory will be used to cac
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#babel-loader"><span class="nav-number">1.</span> <span class="nav-text">babel-loader</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Options"><span class="nav-number">1.1.</span> <span class="nav-text">Options</span></a></li></ol></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>

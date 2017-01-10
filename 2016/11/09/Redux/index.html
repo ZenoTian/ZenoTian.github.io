@@ -100,7 +100,7 @@ Start—React-Redux安装依赖
 12npm install --save redux react-reduxnpm install --save-dev redux-devtools
 要点
 应用程序的整">
-<meta property="og:updated_time" content="2016-12-19T08:24:50.000Z">
+<meta property="og:updated_time" content="2016-12-22T02:18:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redux基础学习笔记">
 <meta name="twitter:description" content="ReduxRedux可预测的JavaScript应用程序的状态容器
@@ -371,7 +371,21 @@ Start—React-Redux安装依赖
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">store.dispatch(addTodo(<span class="string">'Learn about actions'</span>))</div></pre></td></tr></table></figure>
 <p>接收<code>action</code></p>
-
+<h2 id="异步操作"><a href="#异步操作" class="headerlink" title="异步操作"></a>异步操作</h2><h3 id="Actions-2"><a href="#Actions-2" class="headerlink" title="Actions"></a>Actions</h3><p>异步最重要的两个时间点：发送异步请求和接受到响应</p>
+<p>两个时间点都需要改变应用状态，调用reducer。通常需要三种不同的操作</p>
+<ul>
+<li><strong>An action informing the reducers that the request began</strong>通知<code>reducers</code>异步操作开始</li>
+</ul>
+<p><code>reducers</code>修改状态为<code>isFetching</code>，UI显示微调框</p>
+<ul>
+<li><strong>An action informing the reducers that the request finished successfully.</strong>通知<code>reducers</code>请求完成</li>
+</ul>
+<p><code>reducers</code>可以通过将新数据合并到它们管理的状态并重置isFetching来处理此操作。 UI将隐藏微调框，并显示提取的数据。</p>
+<ul>
+<li><strong>An action informing the reducers that the request failed.</strong>通知<code>reducers</code>请求失败。</li>
+</ul>
+<p>reducer可以通过重置isFetching来处理此操作。此外，一些reducer可能希望存储错误消息，以便UI可以显示它。</p>
+<h3 id="创建同步Action-Synchronous-Action-Creators"><a href="#创建同步Action-Synchronous-Action-Creators" class="headerlink" title="创建同步Action Synchronous Action Creators"></a>创建同步Action Synchronous Action Creators</h3>
       
     </div>
 
@@ -480,7 +494,7 @@ Start—React-Redux安装依赖
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -490,7 +504,7 @@ Start—React-Redux安装依赖
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -530,7 +544,7 @@ Start—React-Redux安装依赖
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redux"><span class="nav-number">1.</span> <span class="nav-text">Redux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Start—React-Redux"><span class="nav-number">1.1.</span> <span class="nav-text">Start—React-Redux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#要点"><span class="nav-number">1.2.</span> <span class="nav-text">要点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redux"><span class="nav-number">1.3.</span> <span class="nav-text">redux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三原则"><span class="nav-number">1.4.</span> <span class="nav-text">三原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单一来源"><span class="nav-number">1.4.1.</span> <span class="nav-text">单一来源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#state只读"><span class="nav-number">1.4.2.</span> <span class="nav-text">state只读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用纯函数进行更改"><span class="nav-number">1.4.3.</span> <span class="nav-text">使用纯函数进行更改</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础"><span class="nav-number">1.5.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Actions"><span class="nav-number">1.5.1.</span> <span class="nav-text">Actions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Actions-1"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">Actions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Action-Creators"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">Action Creators</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reducers"><span class="nav-number">1.5.2.</span> <span class="nav-text">Reducers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Reducers-1"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">Reducers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Designing-the-State-Shape-设计state"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">Designing the State Shape/设计state</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理-Actions"><span class="nav-number">1.5.2.3.</span> <span class="nav-text">处理 Actions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reduce中不能进行的操作"><span class="nav-number">1.5.2.4.</span> <span class="nav-text">Reduce中不能进行的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#NOTE-不要修改旧的state"><span class="nav-number">1.5.2.4.0.1.</span> <span class="nav-text">NOTE 不要修改旧的state,</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Splitting-Reducers-分割Reducers"><span class="nav-number">1.5.2.5.</span> <span class="nav-text">Splitting Reducers 分割Reducers</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Store"><span class="nav-number">1.5.3.</span> <span class="nav-text">Store</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Store的职责"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">Store的职责</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Date-Flow-数据流"><span class="nav-number">1.6.</span> <span class="nav-text">Date Flow 数据流</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redux"><span class="nav-number">1.</span> <span class="nav-text">Redux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Start—React-Redux"><span class="nav-number">1.1.</span> <span class="nav-text">Start—React-Redux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#要点"><span class="nav-number">1.2.</span> <span class="nav-text">要点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redux"><span class="nav-number">1.3.</span> <span class="nav-text">redux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三原则"><span class="nav-number">1.4.</span> <span class="nav-text">三原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单一来源"><span class="nav-number">1.4.1.</span> <span class="nav-text">单一来源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#state只读"><span class="nav-number">1.4.2.</span> <span class="nav-text">state只读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用纯函数进行更改"><span class="nav-number">1.4.3.</span> <span class="nav-text">使用纯函数进行更改</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础"><span class="nav-number">1.5.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Actions"><span class="nav-number">1.5.1.</span> <span class="nav-text">Actions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Actions-1"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">Actions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Action-Creators"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">Action Creators</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reducers"><span class="nav-number">1.5.2.</span> <span class="nav-text">Reducers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Reducers-1"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">Reducers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Designing-the-State-Shape-设计state"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">Designing the State Shape/设计state</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理-Actions"><span class="nav-number">1.5.2.3.</span> <span class="nav-text">处理 Actions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reduce中不能进行的操作"><span class="nav-number">1.5.2.4.</span> <span class="nav-text">Reduce中不能进行的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#NOTE-不要修改旧的state"><span class="nav-number">1.5.2.4.0.1.</span> <span class="nav-text">NOTE 不要修改旧的state,</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Splitting-Reducers-分割Reducers"><span class="nav-number">1.5.2.5.</span> <span class="nav-text">Splitting Reducers 分割Reducers</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Store"><span class="nav-number">1.5.3.</span> <span class="nav-text">Store</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Store的职责"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">Store的职责</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Date-Flow-数据流"><span class="nav-number">1.6.</span> <span class="nav-text">Date Flow 数据流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步操作"><span class="nav-number">1.7.</span> <span class="nav-text">异步操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Actions-2"><span class="nav-number">1.7.1.</span> <span class="nav-text">Actions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建同步Action-Synchronous-Action-Creators"><span class="nav-number">1.7.2.</span> <span class="nav-text">创建同步Action Synchronous Action Creators</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -549,7 +563,7 @@ Start—React-Redux安装依赖
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

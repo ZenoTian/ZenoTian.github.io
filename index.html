@@ -236,6 +236,130 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/10/配置多个ssh/" itemprop="url">
+                  配置多个ssh
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-10T21:55:52+08:00" content="2017-01-10">
+              2017-01-10
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>刚到公司是没有再重新配置ssh，导致了自己的github和公司gitlab提交的混乱。</p>
+<p>这种情况我们可以分情况配置ssh</p>
+<ol>
+<li><p>分别生成gitlab和github的ssh-key</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;youremail@yourcompany.com&quot; -f ~/.ssh/gitlab-rsa</div></pre></td></tr></table></figure>
+<p>在~/.ssh/目录会生成gitlab-rsa私钥和gitlab-rsa.pub公钥。 我们将id-rsa.pub中的内容粘帖到公司gitlab服务器的SSH-key的配置中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;youremail@your.com&quot; -f ~/.ssh/github-rsa</div></pre></td></tr></table></figure>
+<p>在~/.ssh/目录会生成github-rsa私钥和github-rsa.pub公钥。 我们将github-rsa.pub中的内容粘帖到github服务器的SSH-key的配置中。</p>
+<p>​</p>
+<p>在创建ssh-key的时候会有提示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Enter passphrase (empty for no passphrase):</div><div class="line">//输入密语，可以为空</div><div class="line">Enter same passphrase again:</div><div class="line">//再次输入确认</div></pre></td></tr></table></figure>
+</li>
+<li><p>将密钥加入到ssh-agent</p>
+<p>ssh-agent是用于管理密钥，通过ssh-add命令将两个将密钥加入到ssh-agent中，SSH可以和ssh-agent通信获取密钥，这样就不需要手工输入密码了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ssh-add ~/.ssh/gitlab-rsa</div><div class="line">$ ssh-add ~/.ssh/github-rsa</div></pre></td></tr></table></figure>
+<p>如果运行<code>ssh-add</code>命令，遇到“Could not open a connection to your authentication agent.”提示。</p>
+<p>需要ssh-agent启动bash，运行以下命令，然后再重新执行<code>ssh-add</code>命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-agent bash</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建并编辑config文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd ~/.ssh/</div><div class="line">$ touch config</div></pre></td></tr></table></figure>
+<p>在config中写入，并保存</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"># gitlab</div><div class="line">Host gitlab.com</div><div class="line">    HostName gitlab.com</div><div class="line">    PreferredAuthentications publickey</div><div class="line">    IdentityFile ~/.ssh/gitlab-rsa</div><div class="line"># github</div><div class="line">Host github.com</div><div class="line">    HostName github.com</div><div class="line">    PreferredAuthentications publickey</div><div class="line">    IdentityFile ~/.ssh/github-rsa</div><div class="line"></div><div class="line"># 配置文件参数</div><div class="line"># Host : Host可以看作是一个你要识别的模式，对识别的模式，进行配置对应的的主机名和ssh文件</div><div class="line"># HostName : 要登录主机的主机名</div><div class="line"># IdentityFile : 指明对应的identityFile路径</div></pre></td></tr></table></figure>
+</li>
+<li><p>测试是否生效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh git@github.com</div></pre></td></tr></table></figure>
+<p>出现以下提示即为成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">The authenticity of host &apos;github.com (192.30.253.112)&apos; can&apos;t be established.</div><div class="line">RSA key fingerprint is SHA256:xxxxxxxxxxxxxxxxxxxxx.</div><div class="line">Are you sure you want to continue connecting (yes/no)? </div><div class="line">//输入yes，按回车</div><div class="line">Warning: Permanently added &apos;github.com,192.30.253.112&apos; (RSA) to the list of known hosts.</div><div class="line">Permission denied (publickey).</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/19/React-Redux 分离表示和容器组件/" itemprop="url">
                   未命名
                 </a>
@@ -962,7 +1086,21 @@
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">store.dispatch(addTodo(<span class="string">'Learn about actions'</span>))</div></pre></td></tr></table></figure>
 <p>接收<code>action</code></p>
-
+<h2 id="异步操作"><a href="#异步操作" class="headerlink" title="异步操作"></a>异步操作</h2><h3 id="Actions-2"><a href="#Actions-2" class="headerlink" title="Actions"></a>Actions</h3><p>异步最重要的两个时间点：发送异步请求和接受到响应</p>
+<p>两个时间点都需要改变应用状态，调用reducer。通常需要三种不同的操作</p>
+<ul>
+<li><strong>An action informing the reducers that the request began</strong>通知<code>reducers</code>异步操作开始</li>
+</ul>
+<p><code>reducers</code>修改状态为<code>isFetching</code>，UI显示微调框</p>
+<ul>
+<li><strong>An action informing the reducers that the request finished successfully.</strong>通知<code>reducers</code>请求完成</li>
+</ul>
+<p><code>reducers</code>可以通过将新数据合并到它们管理的状态并重置isFetching来处理此操作。 UI将隐藏微调框，并显示提取的数据。</p>
+<ul>
+<li><strong>An action informing the reducers that the request failed.</strong>通知<code>reducers</code>请求失败。</li>
+</ul>
+<p>reducer可以通过重置isFetching来处理此操作。此外，一些reducer可能希望存储错误消息，以便UI可以显示它。</p>
+<h3 id="创建同步Action-Synchronous-Action-Creators"><a href="#创建同步Action-Synchronous-Action-Creators" class="headerlink" title="创建同步Action Synchronous Action Creators"></a>创建同步Action Synchronous Action Creators</h3>
           
         
       
@@ -1327,100 +1465,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/01/执行环境/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-01T18:56:59+08:00" content="2016-11-01">
-              2016-11-01
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境中都有一个<code>变量对象</code>，环境中定义的所有变量和函数都保存在这个对象中。（编写代码时无法访问）                                                                                                                                                                                                                                                                                                                                                                                       </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1466,7 +1510,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1476,7 +1520,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1524,7 +1568,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
