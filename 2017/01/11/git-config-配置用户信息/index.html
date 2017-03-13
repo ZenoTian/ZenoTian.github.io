@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="学习笔记 JavaScript ES6," />
+  <meta name="keywords" content="git 配置 工具," />
 
 
 
@@ -84,46 +84,34 @@
 
 
 
-<meta name="description" content="Generator基本概念
-Generator可以理解为一个状态机，封装了多个内部状态
+<meta name="description" content="git config基本
+git config是对git的一些配置，而配置项一般保存在配置文件中。
+git 配置在实际使用中存在三个地方
 
-执行Genertaor函数会返回一个遍历器对象。
-
-特征
-
-function关键字和函数名之间有一个*
-函数内部使用yield语句，用来定义不同状态。
-
-123456789101112131415161718function* helloWorldGenerator() &amp;#123;  yield &apos;hell">
+系统
+全局
+本地">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Generator学习">
-<meta property="og:url" content="http://yoursite.com/2016/11/07/Generator/index.html">
+<meta property="og:title" content="git config 配置用户信息">
+<meta property="og:url" content="http://yoursite.com/2017/01/11/git-config-配置用户信息/index.html">
 <meta property="og:site_name" content="Zeno Tian">
-<meta property="og:description" content="Generator基本概念
-Generator可以理解为一个状态机，封装了多个内部状态
+<meta property="og:description" content="git config基本
+git config是对git的一些配置，而配置项一般保存在配置文件中。
+git 配置在实际使用中存在三个地方
 
-执行Genertaor函数会返回一个遍历器对象。
-
-特征
-
-function关键字和函数名之间有一个*
-函数内部使用yield语句，用来定义不同状态。
-
-123456789101112131415161718function* helloWorldGenerator() &amp;#123;  yield &apos;hell">
-<meta property="og:updated_time" content="2016-11-10T10:51:29.000Z">
+系统
+全局
+本地">
+<meta property="og:updated_time" content="2017-01-11T01:35:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Generator学习">
-<meta name="twitter:description" content="Generator基本概念
-Generator可以理解为一个状态机，封装了多个内部状态
+<meta name="twitter:title" content="git config 配置用户信息">
+<meta name="twitter:description" content="git config基本
+git config是对git的一些配置，而配置项一般保存在配置文件中。
+git 配置在实际使用中存在三个地方
 
-执行Genertaor函数会返回一个遍历器对象。
-
-特征
-
-function关键字和函数名之间有一个*
-函数内部使用yield语句，用来定义不同状态。
-
-123456789101112131415161718function* helloWorldGenerator() &amp;#123;  yield &apos;hell">
+系统
+全局
+本地">
 
 
 
@@ -144,10 +132,10 @@ function关键字和函数名之间有一个*
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/07/Generator/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/01/11/git-config-配置用户信息/"/>
 
 
-  <title> Generator学习 | Zeno Tian </title>
+  <title> git config 配置用户信息 | Zeno Tian </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -267,7 +255,7 @@ function关键字和函数名之间有一个*
             
             
               
-                Generator学习
+                git config 配置用户信息
               
             
           </h1>
@@ -279,8 +267,8 @@ function关键字和函数名之间有一个*
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-07T15:13:34+08:00" content="2016-11-07">
-              2016-11-07
+            <time itemprop="dateCreated" datetime="2017-01-11T09:35:04+08:00" content="2017-01-11">
+              2017-01-11
             </time>
           </span>
 
@@ -307,38 +295,14 @@ function关键字和函数名之间有一个*
       
 
       
-        <h1 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
-<li><p>Generator可以理解为一个状态机，封装了多个内部状态</p>
-</li>
-<li><p>执行Genertaor函数会返回一个遍历器对象。</p>
-</li>
-<li><p>特征</p>
-<ul>
-<li><code>function</code>关键字和函数名之间有一个*</li>
-<li>函数内部使用<code>yield</code>语句，用来定义不同状态。</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">helloWorldGenerator</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">yield</span> <span class="string">'hello'</span>;</div><div class="line">  <span class="keyword">yield</span> <span class="string">'world'</span>;</div><div class="line">  <span class="keyword">return</span> <span class="string">'ending'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> hw = helloWorldGenerator();</div><div class="line">hw.next()</div><div class="line"><span class="comment">// &#123; value: 'hello', done: false &#125;</span></div><div class="line"></div><div class="line">hw.next()</div><div class="line"><span class="comment">// &#123; value: 'world', done: false &#125;</span></div><div class="line"></div><div class="line">hw.next()</div><div class="line"><span class="comment">// &#123; value: 'ending', done: true &#125;</span></div><div class="line"></div><div class="line">hw.next()</div><div class="line"><span class="comment">// &#123; value: undefined, done: true &#125;</span></div></pre></td></tr></table></figure>
-<p><code>Generator</code>函数调用不会执行，返回的是指向内部状态的指针对象。</p>
-<p>调用遍历器对象的<code>next</code>方法，使指针移向下移状态。</p>
-<p>每次调用<code>next</code>内部指针（执行流）从函数头部或者上次停止地方开始执行，直到下一个<code>yield</code>语句（或<code>return</code>）。</p>
-</li>
-</ul>
-<h2 id="yield语句"><a href="#yield语句" class="headerlink" title="yield语句"></a>yield语句</h2><ul>
-<li><code>next</code>调用时<ul>
-<li>执行到<code>yield</code>语句，暂停执行后面操作<code>yield</code>后表达之，作为返回的对象和的<code>value</code></li>
-<li>再次调用<code>yield</code>继续向下执行，直到下一个<code>yield</code>语句</li>
-<li>执行到<code>return</code>语句，将<code>return</code>语句后表达式的值，作为返回对象的<code>value</code></li>
-<li>函数没有<code>return</code>，返回<code>value</code>为<code>undefined</code></li>
-<li><code>yield</code>语句后的表达式，调用时才会执行（惰性求值Lazy Evaluation）</li>
-</ul>
-</li>
-<li><code>yield</code>与<code>return</code><ul>
-<li>都返回之后表达式的值</li>
-<li>一个函数只能有一个<code>return</code>，可以多个<code>yield</code></li>
-<li><code>yield</code>不能在普通函数中使用</li>
-</ul>
-</li>
-</ul>
+        <p>git config基本</p>
+<p>git config是对git的一些配置，而配置项一般保存在配置文件中。</p>
+<p>git 配置在实际使用中存在三个地方</p>
+<ol>
+<li>系统</li>
+<li>全局</li>
+<li>本地</li>
+</ol>
 
       
     </div>
@@ -361,7 +325,7 @@ function关键字和函数名之间有一个*
       
         <div class="post-tags">
           
-            <a href="/tags/学习笔记-JavaScript-ES6/" rel="tag">#学习笔记 JavaScript ES6</a>
+            <a href="/tags/git-配置-工具/" rel="tag">#git 配置 工具</a>
           
         </div>
       
@@ -370,15 +334,15 @@ function关键字和函数名之间有一个*
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/28/计算机网络概论/" rel="next" title="学习笔记——网络架构与七层参考模式">
-                <i class="fa fa-chevron-left"></i> 学习笔记——网络架构与七层参考模式
+              <a href="/2017/01/10/配置多个ssh/" rel="next" title="配置多个ssh">
+                <i class="fa fa-chevron-left"></i> 配置多个ssh
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/11/07/babel-plugin-transform-runtime/" rel="prev" title="">
+              <a href="/2017/02/03/组件的生命周期/" rel="prev" title="">
                  <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -498,7 +462,7 @@ function关键字和函数名之间有一个*
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Generator"><span class="nav-number">1.</span> <span class="nav-text">Generator</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yield语句"><span class="nav-number">1.2.</span> <span class="nav-text">yield语句</span></a></li></ol></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>

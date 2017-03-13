@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="学习笔记 JavaScript ES6," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,46 +84,58 @@
 
 
 
-<meta name="description" content="Generator基本概念
-Generator可以理解为一个状态机，封装了多个内部状态
+<meta name="description" content="生命周期
+整理生命周期的几个函数的触发时间，作用以及使用情景
 
-执行Genertaor函数会返回一个遍历器对象。
+调用时间（触发时间）
+作用
+经常用来进行的操作
+执行完成后的结果
 
-特征
+组件的生命周期一个组件的生命周期主要分为三种状态，对于初学者，可以试着将组件的生命周期想象为一场舞台剧。
 
-function关键字和函数名之间有一个*
-函数内部使用yield语句，用来定义不同状态。
+安装/Mounting（登台）
+这个时期主要是组件的初始化，直到组件被插入到真实的DOM结构中去。（登场以及登场前的准备）
 
-123456789101112131415161718function* helloWorldGenerator() &amp;#123;  yield &apos;hell">
+更新/Updating（演出）
+当">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Generator学习">
-<meta property="og:url" content="http://yoursite.com/2016/11/07/Generator/index.html">
+<meta property="og:title" content="Zeno Tian">
+<meta property="og:url" content="http://yoursite.com/2017/02/03/组件的生命周期/index.html">
 <meta property="og:site_name" content="Zeno Tian">
-<meta property="og:description" content="Generator基本概念
-Generator可以理解为一个状态机，封装了多个内部状态
+<meta property="og:description" content="生命周期
+整理生命周期的几个函数的触发时间，作用以及使用情景
 
-执行Genertaor函数会返回一个遍历器对象。
+调用时间（触发时间）
+作用
+经常用来进行的操作
+执行完成后的结果
 
-特征
+组件的生命周期一个组件的生命周期主要分为三种状态，对于初学者，可以试着将组件的生命周期想象为一场舞台剧。
 
-function关键字和函数名之间有一个*
-函数内部使用yield语句，用来定义不同状态。
+安装/Mounting（登台）
+这个时期主要是组件的初始化，直到组件被插入到真实的DOM结构中去。（登场以及登场前的准备）
 
-123456789101112131415161718function* helloWorldGenerator() &amp;#123;  yield &apos;hell">
-<meta property="og:updated_time" content="2016-11-10T10:51:29.000Z">
+更新/Updating（演出）
+当">
+<meta property="og:updated_time" content="2017-02-03T02:26:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Generator学习">
-<meta name="twitter:description" content="Generator基本概念
-Generator可以理解为一个状态机，封装了多个内部状态
+<meta name="twitter:title" content="Zeno Tian">
+<meta name="twitter:description" content="生命周期
+整理生命周期的几个函数的触发时间，作用以及使用情景
 
-执行Genertaor函数会返回一个遍历器对象。
+调用时间（触发时间）
+作用
+经常用来进行的操作
+执行完成后的结果
 
-特征
+组件的生命周期一个组件的生命周期主要分为三种状态，对于初学者，可以试着将组件的生命周期想象为一场舞台剧。
 
-function关键字和函数名之间有一个*
-函数内部使用yield语句，用来定义不同状态。
+安装/Mounting（登台）
+这个时期主要是组件的初始化，直到组件被插入到真实的DOM结构中去。（登场以及登场前的准备）
 
-123456789101112131415161718function* helloWorldGenerator() &amp;#123;  yield &apos;hell">
+更新/Updating（演出）
+当">
 
 
 
@@ -144,10 +156,10 @@ function关键字和函数名之间有一个*
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/07/Generator/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/03/组件的生命周期/"/>
 
 
-  <title> Generator学习 | Zeno Tian </title>
+  <title>  | Zeno Tian </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -267,7 +279,7 @@ function关键字和函数名之间有一个*
             
             
               
-                Generator学习
+                
               
             
           </h1>
@@ -279,8 +291,8 @@ function关键字和函数名之间有一个*
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-07T15:13:34+08:00" content="2016-11-07">
-              2016-11-07
+            <time itemprop="dateCreated" datetime="2017-02-03T10:26:13+08:00" content="2017-02-03">
+              2017-02-03
             </time>
           </span>
 
@@ -307,39 +319,33 @@ function关键字和函数名之间有一个*
       
 
       
-        <h1 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
-<li><p>Generator可以理解为一个状态机，封装了多个内部状态</p>
-</li>
-<li><p>执行Genertaor函数会返回一个遍历器对象。</p>
-</li>
-<li><p>特征</p>
+        <p>生命周期</p>
+<p>整理生命周期的几个函数的触发时间，作用以及使用情景</p>
 <ul>
-<li><code>function</code>关键字和函数名之间有一个*</li>
-<li>函数内部使用<code>yield</code>语句，用来定义不同状态。</li>
+<li>调用时间（触发时间）</li>
+<li>作用</li>
+<li>经常用来进行的操作</li>
+<li>执行完成后的结果</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">helloWorldGenerator</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">yield</span> <span class="string">'hello'</span>;</div><div class="line">  <span class="keyword">yield</span> <span class="string">'world'</span>;</div><div class="line">  <span class="keyword">return</span> <span class="string">'ending'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> hw = helloWorldGenerator();</div><div class="line">hw.next()</div><div class="line"><span class="comment">// &#123; value: 'hello', done: false &#125;</span></div><div class="line"></div><div class="line">hw.next()</div><div class="line"><span class="comment">// &#123; value: 'world', done: false &#125;</span></div><div class="line"></div><div class="line">hw.next()</div><div class="line"><span class="comment">// &#123; value: 'ending', done: true &#125;</span></div><div class="line"></div><div class="line">hw.next()</div><div class="line"><span class="comment">// &#123; value: undefined, done: true &#125;</span></div></pre></td></tr></table></figure>
-<p><code>Generator</code>函数调用不会执行，返回的是指向内部状态的指针对象。</p>
-<p>调用遍历器对象的<code>next</code>方法，使指针移向下移状态。</p>
-<p>每次调用<code>next</code>内部指针（执行流）从函数头部或者上次停止地方开始执行，直到下一个<code>yield</code>语句（或<code>return</code>）。</p>
+<h1 id="组件的生命周期"><a href="#组件的生命周期" class="headerlink" title="组件的生命周期"></a>组件的生命周期</h1><p>一个组件的生命周期主要分为三种状态，对于初学者，可以试着将组件的生命周期想象为一场舞台剧。</p>
+<ul>
+<li><p>安装/Mounting（登台）</p>
+<p>这个时期主要是组件的初始化，直到组件被插入到真实的DOM结构中去。（登场以及登场前的准备）</p>
+</li>
+<li><p>更新/Updating（演出）</p>
+<p>当组件被插入到真实的DOM结构后，根据<code>state</code>和<code>props</code>的改变，组件将重新进行<code>render</code>。(随着剧情推动，舞台呈现的场景不断的变换)</p>
+</li>
+<li><p>卸载/Unmounting（谢幕）</p>
+<p>组件从真实DOM中移除</p>
+<p>​</p>
 </li>
 </ul>
-<h2 id="yield语句"><a href="#yield语句" class="headerlink" title="yield语句"></a>yield语句</h2><ul>
-<li><code>next</code>调用时<ul>
-<li>执行到<code>yield</code>语句，暂停执行后面操作<code>yield</code>后表达之，作为返回的对象和的<code>value</code></li>
-<li>再次调用<code>yield</code>继续向下执行，直到下一个<code>yield</code>语句</li>
-<li>执行到<code>return</code>语句，将<code>return</code>语句后表达式的值，作为返回对象的<code>value</code></li>
-<li>函数没有<code>return</code>，返回<code>value</code>为<code>undefined</code></li>
-<li><code>yield</code>语句后的表达式，调用时才会执行（惰性求值Lazy Evaluation）</li>
+<h3 id="Mounting"><a href="#Mounting" class="headerlink" title="Mounting"></a><strong>Mounting</strong></h3><h3 id="componentWillMount"><a href="#componentWillMount" class="headerlink" title="componentWillMount()"></a><a href="https://facebook.github.io/react/docs/react-component.html#componentwillmount" target="_blank" rel="external"><code>componentWillMount()</code></a></h3><ul>
+<li>触发时间：在组件</li>
 </ul>
-</li>
-<li><code>yield</code>与<code>return</code><ul>
-<li>都返回之后表达式的值</li>
-<li>一个函数只能有一个<code>return</code>，可以多个<code>yield</code></li>
-<li><code>yield</code>不能在普通函数中使用</li>
-</ul>
-</li>
-</ul>
-
+<p>componentWillMount（）在安装发生之前立即被调用。它在render（）之前调用，因此在此方法中的设置状态不会触发重新呈现。避免在此方法中引入任何副作用或订阅。 这是在服务器渲染上调用的唯一的生命周期钩子。一般来说，我们建议使用constructor（）。</p>
+<p>这个方法在组件已经即将创建但是还没有创建的时候调用，在这里可以用setState修改state。但是react建议是在组件mouted以后调用setState函数，否则容易报警告。这点在介绍state的时候在详细分析。</p>
+<h3 id="componentDidMount"><a href="#componentDidMount" class="headerlink" title="componentDidMount()"></a><a href="https://facebook.github.io/react/docs/react-component.html#componentdidmount" target="_blank" rel="external"><code>componentDidMount()</code></a></h3><h3 id="Updating"><a href="#Updating" class="headerlink" title="Updating"></a><strong>Updating</strong></h3><h3 id="componentWillReceiveProps"><a href="#componentWillReceiveProps" class="headerlink" title="componentWillReceiveProps()"></a><a href="https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops" target="_blank" rel="external"><code>componentWillReceiveProps()</code></a></h3><h3 id="shouldComponentUpdate"><a href="#shouldComponentUpdate" class="headerlink" title="shouldComponentUpdate()"></a><a href="https://facebook.github.io/react/docs/react-component.html#shouldcomponentupdate" target="_blank" rel="external"><code>shouldComponentUpdate()</code></a></h3><h3 id="componentWillUpdate"><a href="#componentWillUpdate" class="headerlink" title="componentWillUpdate()"></a><a href="https://facebook.github.io/react/docs/react-component.html#componentwillupdate" target="_blank" rel="external"><code>componentWillUpdate()</code></a></h3><h3 id="componentDidUpdate"><a href="#componentDidUpdate" class="headerlink" title="componentDidUpdate()"></a><a href="https://facebook.github.io/react/docs/react-component.html#componentdidupdate" target="_blank" rel="external"><code>componentDidUpdate()</code></a></h3><h3 id="Unmounting"><a href="#Unmounting" class="headerlink" title="Unmounting"></a>Unmounting</h3><h3 id="componentWillUnmount"><a href="#componentWillUnmount" class="headerlink" title="componentWillUnmount()"></a><a href="https://facebook.github.io/react/docs/react-component.html#componentwillunmount" target="_blank" rel="external"><code>componentWillUnmount()</code></a></h3>
       
     </div>
 
@@ -359,26 +365,20 @@ function关键字和函数名之间有一个*
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/学习笔记-JavaScript-ES6/" rel="tag">#学习笔记 JavaScript ES6</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/28/计算机网络概论/" rel="next" title="学习笔记——网络架构与七层参考模式">
-                <i class="fa fa-chevron-left"></i> 学习笔记——网络架构与七层参考模式
+              <a href="/2017/01/11/git-config-配置用户信息/" rel="next" title="git config 配置用户信息">
+                <i class="fa fa-chevron-left"></i> git config 配置用户信息
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/11/07/babel-plugin-transform-runtime/" rel="prev" title="">
+              <a href="/2017/02/03/生命周期三种状态/" rel="prev" title="">
                  <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -498,7 +498,7 @@ function关键字和函数名之间有一个*
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Generator"><span class="nav-number">1.</span> <span class="nav-text">Generator</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yield语句"><span class="nav-number">1.2.</span> <span class="nav-text">yield语句</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#组件的生命周期"><span class="nav-number">1.</span> <span class="nav-text">组件的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mounting"><span class="nav-number">1.0.1.</span> <span class="nav-text">Mounting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#componentWillMount"><span class="nav-number">1.0.2.</span> <span class="nav-text">componentWillMount()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#componentDidMount"><span class="nav-number">1.0.3.</span> <span class="nav-text">componentDidMount()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Updating"><span class="nav-number">1.0.4.</span> <span class="nav-text">Updating</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#componentWillReceiveProps"><span class="nav-number">1.0.5.</span> <span class="nav-text">componentWillReceiveProps()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shouldComponentUpdate"><span class="nav-number">1.0.6.</span> <span class="nav-text">shouldComponentUpdate()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#componentWillUpdate"><span class="nav-number">1.0.7.</span> <span class="nav-text">componentWillUpdate()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#componentDidUpdate"><span class="nav-number">1.0.8.</span> <span class="nav-text">componentDidUpdate()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Unmounting"><span class="nav-number">1.0.9.</span> <span class="nav-text">Unmounting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#componentWillUnmount"><span class="nav-number">1.0.10.</span> <span class="nav-text">componentWillUnmount()</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
