@@ -236,6 +236,494 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/22/你不知道的js-this/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-22T15:35:30+08:00" content="2017-03-22">
+              2017-03-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-1-为什么要用this"><a href="#1-1-为什么要用this" class="headerlink" title="1.1 为什么要用this"></a>1.1 为什么要用this</h3><p>显示传递上下文对象会使得代码变得混乱<br>通过this可以让API更简洁并且易于复用</p>
+<h3 id="1-2-误解"><a href="#1-2-误解" class="headerlink" title="1.2 误解"></a>1.2 误解</h3><h4 id="1-2-1-指向自身"><a href="#1-2-1-指向自身" class="headerlink" title="1.2.1 指向自身"></a>1.2.1 指向自身</h4><p>认为this指向函数自身</p>
+<h4 id="1-2-2-它的作用域"><a href="#1-2-2-它的作用域" class="headerlink" title="1.2.2 它的作用域"></a>1.2.2 它的作用域</h4><p>认为this指向函数作用域<br>this在任何情况下都不指向函数的词法作用域<br>this与词法作用域的查找混合使用容易被迷惑<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> a = <span class="number">2</span></div><div class="line">  <span class="keyword">this</span>.bar()</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</div><div class="line">&#125;</div><div class="line">foo()<span class="comment">//ReferenceError: a is not defined</span></div></pre></td></tr></table></figure></p>
+<h3 id="1-3-this是什么"><a href="#1-3-this是什么" class="headerlink" title="1.3 this是什么"></a>1.3 this是什么</h3><p>this实在运行时进行绑定的，它的上下文取决于函数调用时的条件。this的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式</p>
+<p>当函数被调用，会创建一个执行上下文（活动记录）。包含函数在哪里被调用（调用栈），函数的调用方法，传入的参数信息，<br>this被用来记录在哪里被调用</p>
+<p>##第二章 this全面解析</p>
+<h3 id="2-1调用位置"><a href="#2-1调用位置" class="headerlink" title="2.1调用位置"></a>2.1调用位置</h3><p>分析调用栈：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">//当前调用栈是: baz</span></div><div class="line">  <span class="comment">//当前调用位置是全局作用域</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'baz'</span>)</div><div class="line">  bar()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">//当前调用栈是: baz =&gt; bar</span></div><div class="line">  <span class="comment">//当前调用位置是baz</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'bar'</span>)</div><div class="line">  foo()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">//当前调用栈是: baz =&gt; bar =&gt; foo</span></div><div class="line">  <span class="comment">//当前调用位置是bar</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'bar'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">baz()</div></pre></td></tr></table></figure></p>
+<h3 id="2-2-绑定规则"><a href="#2-2-绑定规则" class="headerlink" title="2.2 绑定规则"></a>2.2 绑定规则</h3><h4 id="2-2-1-默认绑定"><a href="#2-2-1-默认绑定" class="headerlink" title="2.2.1 默认绑定"></a>2.2.1 默认绑定</h4><p>独立函数调用绑定到全局对象<br>严格模式：全局对象无法使用默认绑定，this会绑定到undefined<br>函数体是否处于严格模式</p>
+<h4 id="2-2-2-隐式绑定"><a href="#2-2-2-隐式绑定" class="headerlink" title="2.2.2 隐式绑定"></a>2.2.2 隐式绑定</h4><p>作为对象属性调用<br>当函数引用有上下文对象时，隐式绑定将this绑定到上下文对象</p>
+<p>隐式丢失<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  <span class="attr">a</span>:<span class="number">2</span>,</div><div class="line">  <span class="attr">foo</span>: foo</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = obj.foo</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="string">'oops, global'</span></div><div class="line"></div><div class="line">bar()<span class="comment">//其实调用的是函数本身</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">doFoo</span>(<span class="params">fn</span>) </span>&#123;</div><div class="line">  fn()<span class="comment">//问题在这里，函数传参是隐式赋值</span></div><div class="line">  <span class="comment">//所以单纯函数调用，没有上下文对象</span></div><div class="line">  <span class="comment">//将函数传入语言内置的函数也是一样，如setTimeout...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  <span class="attr">a</span>: <span class="number">2</span>,</div><div class="line">  <span class="attr">foo</span>: foo</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="string">'oops,global'</span></div><div class="line">doFoo(obj.foo)</div></pre></td></tr></table></figure>
+<h4 id="2-2-3-显示绑定"><a href="#2-2-3-显示绑定" class="headerlink" title="2.2.3 显示绑定"></a>2.2.3 显示绑定</h4><p>通过call(),apply()显示进行绑定</p>
+<p>显示绑定无法解决丢失绑定问题</p>
+<ol>
+<li>硬绑定<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  <span class="attr">a</span>: <span class="number">2</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = funcyion() &#123;</div><div class="line">  foo.call(obj)</div><div class="line">&#125;</div><div class="line">bar() <span class="comment">//2</span></div><div class="line">setTimeout(bar, <span class="number">100</span>)<span class="comment">//2</span></div><div class="line">bar.call(<span class="built_in">window</span>)<span class="comment">//2</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>硬绑定是常用的模式，所以ES5提供bind方法</p>
+<p>硬绑定的两种应用场景</p>
+<ol>
+<li><p>创建包裹函数，传入所有参数并返回接受到的所有值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">something</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a, something)</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.a + something</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  <span class="attr">a</span>: <span class="number">2</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> foo.apply(obj, <span class="built_in">arguments</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = bar(<span class="number">3</span>)<span class="comment">//2 3</span></div><div class="line"><span class="built_in">console</span>.log(b)<span class="comment">//5</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>创建一个i可以重复使用的辅助函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">something</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a, something)</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.a + something</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bind</span>(<span class="params">fn, obj</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> fn.apply(obj, <span class="built_in">arguments</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  <span class="attr">a</span>:<span class="number">2</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = bind(foo, obj)</div><div class="line"><span class="keyword">var</span> b = bar(<span class="number">3</span>)<span class="comment">//2 3</span></div><div class="line"><span class="built_in">console</span>.log(b)<span class="comment">//5</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="2-2-4-new绑定"><a href="#2-2-4-new绑定" class="headerlink" title="2.2.4 new绑定"></a>2.2.4 new绑定</h4><p>使用new调用构造函数</p>
+<ol>
+<li>创建一个新的对象</li>
+<li>新的对象会被执行[[原型]]连接</li>
+<li>新对象会绑定到函数的调用的this上</li>
+<li>如果函数没有返回其他对象，new表达式的函数调用自动返回新的对象<br>构造一个新的对象并绑定到构造函数中调用中的this上</li>
+</ol>
+<h3 id="2-3-优先级"><a href="#2-3-优先级" class="headerlink" title="2.3 优先级"></a>2.3 优先级</h3><p>在new 中使用硬绑定，可以预先设置函数的一些参数，在new进行初始化时就可以只传入其余参数</p>
+<p>new,显示绑定,隐式绑定,默认绑定</p>
+<h3 id="2-4-绑定例外"><a href="#2-4-绑定例外" class="headerlink" title="2.4 绑定例外"></a>2.4 绑定例外</h3><h4 id="2-4-1-被忽略的this"><a href="#2-4-1-被忽略的this" class="headerlink" title="2.4.1 被忽略的this"></a>2.4.1 被忽略的this</h4><p>将null或者Undefined作为this绑定对象传入call,apply,bind在调用时会被忽略，实际上是默认绑定规则</p>
+<p>传入Null的场景</p>
+<ol>
+<li>数组展开成参数</li>
+<li>bind进行柯里化（预设参数）</li>
+</ol>
+<p>但是在一些看库中可能产生难以调试的bug</p>
+<p>更安全的做法：传入不影响程序的特殊对象，ø空集合符号<br>Object.create(null),不会创建Object.prototype,</p>
+<h4 id="2-4-2-间接引用"><a href="#2-4-2-间接引用" class="headerlink" title="2.4.2 间接引用"></a>2.4.2 间接引用</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> a = <span class="number">2</span></div><div class="line"><span class="keyword">var</span> o = &#123;<span class="attr">a</span>:<span class="number">3</span>,<span class="attr">foo</span>:foo&#125;</div><div class="line"><span class="keyword">var</span> p = &#123;<span class="attr">a</span>:<span class="number">4</span>&#125;</div><div class="line"></div><div class="line">o.foo();<span class="comment">//3 不带分号后边式子会被当做iife执行</span></div><div class="line">(p.foo = o.foo)() <span class="comment">//2</span></div><div class="line">p.foo() <span class="comment">//4</span></div></pre></td></tr></table></figure>
+<h4 id="2-4-3-软绑定"><a href="#2-4-3-软绑定" class="headerlink" title="2.4.3 软绑定"></a>2.4.3 软绑定</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (!<span class="built_in">Function</span>.prototype.softBind) &#123;</div><div class="line">  <span class="built_in">Function</span>.prototype.softBind = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'this'</span>, <span class="keyword">this</span>)</div><div class="line">    <span class="keyword">var</span> fn = <span class="keyword">this</span> <span class="comment">//当前this</span></div><div class="line">    <span class="keyword">var</span> curried = [].slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>) <span class="comment">//取第一参数</span></div><div class="line">    <span class="keyword">var</span> bound = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> fn.apply(</div><div class="line">      (!<span class="keyword">this</span> || <span class="keyword">this</span> === (<span class="built_in">window</span> || global))?obj:<span class="keyword">this</span>,</div><div class="line">      curried.concat.apply(curried, <span class="built_in">arguments</span>)</div><div class="line">      )</div><div class="line">    &#125;</div><div class="line">    bound.prototype = <span class="built_in">Object</span>.create(fn.prototype)</div><div class="line">    <span class="keyword">return</span> bound</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="2-5-词法"><a href="#2-5-词法" class="headerlink" title="2.5 词法"></a>2.5 词法</h3><p>箭头函数不使用this的四种标准规则，而是根据外层作用域决定this<br>箭头函数的this绑定无法修改，包括new</p>
+<p>代码风格：</p>
+<ol>
+<li>只是用词法作用域，抛弃this风格</li>
+<li>完全this风格，必要时是用bind，避免self = this 和箭头函数</li>
+</ol>
+<h2 id="第三章-对象"><a href="#第三章-对象" class="headerlink" title="第三章 对象"></a>第三章 对象</h2><h3 id="3-1-语法"><a href="#3-1-语法" class="headerlink" title="3.1 语法"></a>3.1 语法</h3><p>两种形式定义：声明，构造</p>
+<h3 id="3-2-类型"><a href="#3-2-类型" class="headerlink" title="3.2 类型"></a>3.2 类型</h3><ul>
+<li>string</li>
+<li>number</li>
+<li>boolean</li>
+<li>null</li>
+<li>undefined</li>
+<li>object</li>
+</ul>
+<p>js中二进制前三位都为0会判断为object类型，Null二进制全是0，所以type of 返回 object</p>
+<p>内置对象</p>
+<ul>
+<li>String</li>
+<li>Number</li>
+<li>Boolean</li>
+<li>Object</li>
+<li>Function</li>
+<li>Array</li>
+</ul>
+<h4 id="3-3-4-复制对象"><a href="#3-3-4-复制对象" class="headerlink" title="3.3.4 复制对象"></a>3.3.4 复制对象</h4><p>需要保证JSON是安全的<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> newObj = <span class="built_in">JSON</span>.parse( <span class="built_in">JSON</span>.stringify( someObj ) )</div></pre></td></tr></table></figure></p>
+<p>浅复制<br>Object.assign()<br>遍历源对象的所有可枚举的自有键，复制到目标对象（使用=操作符赋值，所以源对象属性的特征不会被复制到目标）</p>
+<h4 id="3-3-5-属性描述符"><a href="#3-3-5-属性描述符" class="headerlink" title="3.3.5 属性描述符"></a>3.3.5 属性描述符</h4><p>获取属性<code>Object.getOwnPropertyDescriptor(obj,key)</code>返回属性描述对象</p>
+<p>属性的两种状态</p>
+<ul>
+<li>属性描述符<ul>
+<li>访问描述符</li>
+</ul>
+</li>
+</ul>
+<p>属性描述符</p>
+<ul>
+<li><code>value</code><ul>
+<li><code>writable</code> 可写</li>
+<li><code>enumerable</code> 可枚举</li>
+<li><code>configurable</code> 可配置</li>
+</ul>
+</li>
+</ul>
+<p>访问描述符</p>
+<ul>
+<li><code>getter</code><ul>
+<li><code>setter</code> 可写</li>
+<li><code>enumerable</code> 可枚举</li>
+<li><code>configurable</code> 可配置</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-3-6-不变性"><a href="#3-3-6-不变性" class="headerlink" title="3.3.6 不变性"></a>3.3.6 不变性</h4><ol>
+<li>对象常量<br><code>writable:false</code>,<code>configurable:false</code> 创建常量属性</li>
+<li>禁止扩展<br>添加新属性会报错<br><code>Object.preventExtensions()</code></li>
+<li>密封<br><code>Object.seal()</code>密封对象<br>实际上是对现有对象调用<code>Object.preventExtensions()</code><br>并将所有现有属性标记为<code>configurable:false</code></li>
+<li>冻结<br><code>Object.freeze()</code>创建冻结对象<br>事实上是在现有对象上调用<code>Object.seal()</code>并将所有数据属性标记为<code>writable:false</code></li>
+</ol>
+<h4 id="3-3-7-Get"><a href="#3-3-7-Get" class="headerlink" title="3.3.7 [[Get]]"></a>3.3.7 [[Get]]</h4><p>语言规范中：[[Get]]操作像是函数调用，现在对象中查找是否有名称相同的属性，找到就返回，没有找到按照[[Get]]算法，在原型链中查找</p>
+<h4 id="3-3-8-Put"><a href="#3-3-8-Put" class="headerlink" title="3.3.8 [[Put]]"></a>3.3.8 [[Put]]</h4><p>[[Put]]并不等于赋值操作<br>具体行为取决于多种因素</p>
+<ol>
+<li>属性是否是访问描述符，是并且存在setter调用setter</li>
+<li>属性的数据描述符中writable是否是false,是则失败，严格报typeError</li>
+<li>不是，将值设置为属性值</li>
+</ol>
+<p>不存在这个属性，将会更复杂。</p>
+<h4 id="3-3-9-Getter和Setter"><a href="#3-3-9-Getter和Setter" class="headerlink" title="3.3.9 Getter和Setter"></a>3.3.9 Getter和Setter</h4><p>对象默认的[[Set]],[[Put]]操作分别可控制属性值的设置与获取</p>
+<p>用过<code>getter</code>,<code>setter</code>改写默认操作，只能应用在单个属性上<br>给属性设置<code>getter``setter</code>，当前属性被定义为<code>访问描述符</code><br><code>访问描述符</code>js会忽略value,和writable特性，替换为 get,set特性</p>
+<p>改写默认取值赋值，根据<code>setter</code>,<code>getter</code>函数返回决定实际值</p>
+<h4 id="3-3-10-存在性"><a href="#3-3-10-存在性" class="headerlink" title="3.3.10 存在性"></a>3.3.10 存在性</h4><p>判断对象中是否存在这个属性<br><code>in</code>操作符，会检查对象以及其原型链,不关心是否可枚举<br><code>obj.hasOwnProperty()</code>只会检查自身</p>
+<p>Note:通过Object.create(null)创建的对象没有<code>hasOwnProperty</code>方法</p>
+<ol>
+<li>枚举</li>
+</ol>
+<p>propertyIsEnumerable(..) 会检查给定的属性名是否直接存在于对象中(而不是在原型链 上)并且满足 enumerable:true。</p>
+<p>Object.keys(..) 会返回一个数组，包含所有可枚举属性，Object.getOwnPropertyNames(..) 会返回一个数组，包含所有属性，无论它们是否可枚举。</p>
+<h3 id="3-4-遍历"><a href="#3-4-遍历" class="headerlink" title="3.4 遍历"></a>3.4 遍历</h3><h2 id="第四章-混合对象“类”"><a href="#第四章-混合对象“类”" class="headerlink" title="第四章 混合对象“类”"></a>第四章 混合对象“类”</h2><p>面向类的设计模式</p>
+<ul>
+<li>实例化instantiation</li>
+<li>集成inheritance</li>
+<li>多态polymorphism 父类的通用行为可以被子类重写</li>
+</ul>
+<h3 id="4-1-类理论"><a href="#4-1-类理论" class="headerlink" title="4.1 类理论"></a>4.1 类理论</h3><p>描述了一种代码的组织结构<br>强调的是：数据和操作数据的行为本质上是相互关联的<br>类理论建议父类和子类使用相同的方法名来表示特定的行为，从而让子类重写父类。在 JavaScript代码中这样做会降低代码的可读性和健壮性。</p>
+<h4 id="4-1-1-“类”设计模式"><a href="#4-1-1-“类”设计模式" class="headerlink" title="4.1.1 “类”设计模式"></a>4.1.1 “类”设计模式</h4><p>面向对象设计模式: 迭代器模式、观察者模式、工厂模式、单例模式</p>
+<h4 id="4-1-2-js中的“类”"><a href="#4-1-2-js中的“类”" class="headerlink" title="4.1.2 js中的“类”"></a>4.1.2 js中的“类”</h4><p>js实际上没有类，有近似类的语法</p>
+<h3 id="4-2-类的机制"><a href="#4-2-类的机制" class="headerlink" title="4.2 类的机制"></a>4.2 类的机制</h3><h4 id="4-2-1-建造"><a href="#4-2-1-建造" class="headerlink" title="4.2.1 建造"></a>4.2.1 建造</h4><p>“类”“实例”的概念来源于房屋建造</p>
+<h4 id="4-2-2-构造函数"><a href="#4-2-2-构造函数" class="headerlink" title="4.2.2 构造函数"></a>4.2.2 构造函数</h4><p>类实例是有特殊的类方法构造的<br>这个方法通常和类名相同，被称为构造函数</p>
+<h3 id="4-3-类的继承"><a href="#4-3-类的继承" class="headerlink" title="4.3 类的继承"></a>4.3 类的继承</h3><p>父类与子类并不是实例，子类继承，子类包含父类行为的原始副本</p>
+<h4 id="4-3-1-多态"><a href="#4-3-1-多态" class="headerlink" title="4.3.1 多态"></a>4.3.1 多态</h4><p>继承父类方法，重写，或者使用继承来的方法。<br>这种既是被称为<code>多态</code>或<code>虚拟多态</code>,<code>相对多态</code></p>
+<p>super：’超类’，当前类的父类/祖先类</p>
+<p>多态：</p>
+<ul>
+<li>相对：任何方法都可以易用继承层次中高层的方法，因此相对的意思是查找上一层（不定义访问的绝对继承层次）</li>
+<li>不同层次一个方法可以被多次定义</li>
+</ul>
+<p>在子类中可以相对引用它继承的父类，这种相对引用被称为super</p>
+<p>子类得到的是父类行为的副本，对继承的方法进行重写，不会影响父类中的方法</p>
+<p>继承。实际上就是复制</p>
+<h4 id="4-3-2-多重继承"><a href="#4-3-2-多重继承" class="headerlink" title="4.3.2 多重继承"></a>4.3.2 多重继承</h4><p>多重继承：所有父类定义都会被复制到子类<br>出现问题，父类相同方法，引用哪个</p>
+<p>js不提供多重继承功能</p>
+<h3 id="4-4-混入"><a href="#4-4-混入" class="headerlink" title="4.4 混入"></a>4.4 混入</h3><p>JS继承或实例化不会复制<br>js中只有对象，并不存在可以被实例化的类。对象不会被复制，只会被关联</p>
+<p>js模拟类的复制行为，这个方法叫做<code>混入</code>。<br>显式和隐式</p>
+<h5 id="4-4-1-显示混入"><a href="#4-4-1-显示混入" class="headerlink" title="4.4.1 显示混入"></a>4.4.1 显示混入</h5><p>在很多库和框架中称为<code>extend()</code>,<code>mixin()</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mixin</span>(<span class="params">sourceObj, targetObj</span>) </span>&#123;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> sourceObj) &#123;</div><div class="line">    <span class="keyword">if</span> (!key <span class="keyword">in</span> targetObj) &#123;</div><div class="line">      <span class="comment">//只在不存在情况复制</span></div><div class="line">      targetObj[key] = sourceObj][key]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> targetObj</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> Vehicle = &#123;</div><div class="line">  <span class="attr">engines</span>: <span class="number">1</span>,</div><div class="line">  <span class="attr">ignition</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log( <span class="string">"Turning on my engine."</span> );</div><div class="line">&#125;,</div><div class="line">  <span class="attr">drive</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.ignition();</div><div class="line">    <span class="built_in">console</span>.log( <span class="string">"Steering and moving forward!"</span> );</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> Car = mixin(Vehicle, &#123;</div><div class="line">  <span class="attr">wheels</span>: <span class="number">4</span>,</div><div class="line">  <span class="attr">drive</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    Vehicle.drive.call( <span class="keyword">this</span> ) <span class="comment">//显示伪多态：js中没有相对多态机制，指明调用对象，必须使用绝对引用</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Rolling on all "</span> + <span class="keyword">this</span>.wheels + <span class="string">" wheels!"</span>)</div><div class="line">  &#125;</div><div class="line"> &#125;</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<ol>
+<li><p>多态<br>js中没有相对多态机制，指明调用对象，必须使用绝对引用<br>尽量避免显式伪多态<code>(OtherObj.methodName.call(this, ...))</code></p>
+</li>
+<li><p>混合复制<br>问题:函数对象复制的是引用<br>混入多个对象就实现了多重继承</p>
+</li>
+<li><p>寄生继承</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//“传统的 JavaScript 类”Vehicle</span></div><div class="line"><span class="comment">//父类</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Vehicle</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.engines = <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line">Vehicle.prototype.ignition = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log( <span class="string">"Turning on my engine."</span> )</div><div class="line">&#125;</div><div class="line">Vehicle.prototype.drive = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.ignition()</div><div class="line">  <span class="built_in">console</span>.log( <span class="string">"Steering and moving forward!"</span> );</div><div class="line">&#125;</div><div class="line"><span class="comment">//“寄生类”Car</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params"></span>) </span>&#123;</div><div class="line"><span class="comment">//子类</span></div><div class="line"><span class="comment">// 首先，car 是一个Vehicle</span></div><div class="line">  <span class="keyword">var</span> car = <span class="keyword">new</span> Vehicle();</div><div class="line"><span class="comment">// 接着我们对 car 进行定制</span></div><div class="line">  car.wheels = <span class="number">4</span>;</div><div class="line"><span class="comment">// 保存到 Vehicle::drive() 的特殊引用</span></div><div class="line">  <span class="keyword">var</span> vehDrive = car.drive;</div><div class="line"><span class="comment">// 重写 Vehicle::drive()</span></div><div class="line">  car.drive = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    vehDrive.call( <span class="keyword">this</span> );</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">"Rolling on all "</span> + <span class="keyword">this</span>.wheels + <span class="string">" wheels!"</span>);</div><div class="line">      <span class="keyword">return</span> car</div><div class="line">    &#125;</div><div class="line">  <span class="keyword">var</span> myCar = <span class="keyword">new</span> Car();<span class="comment">//子类实例</span></div><div class="line">  myCar.drive(); <span class="comment">// 发动引擎。 // 手握方向盘! // 全速前进!</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>隐式混入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//隐式混入</span></div><div class="line"><span class="keyword">var</span> Something = &#123;</div><div class="line">  <span class="attr">cool</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.greeting = <span class="string">"Hello World"</span>;</div><div class="line">    <span class="keyword">this</span>.count = <span class="keyword">this</span>.count ? <span class="keyword">this</span>.count + <span class="number">1</span> : <span class="number">1</span>; &#125;</div><div class="line">  &#125;</div><div class="line">  Something.cool();</div><div class="line">  Something.greeting; <span class="comment">// "Hello World"</span></div><div class="line">  Something.count; <span class="comment">// 1</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> Another = &#123;</div><div class="line">  <span class="attr">cool</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// 隐式把 Something 混入 Another</span></div><div class="line">  <span class="comment">// 借用</span></div><div class="line">  Something.cool.call( <span class="keyword">this</span> ); &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Another.cool();</div><div class="line">Another.greeting; <span class="comment">// "Hello World" Another.count; // 1(count 不是共享状态)</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>尽量避免，保证代码的整洁和可维护性</p>
+<h2 id="第五章原型"><a href="#第五章原型" class="headerlink" title="第五章原型"></a>第五章原型</h2><h3 id="5-1-Prototype"><a href="#5-1-Prototype" class="headerlink" title="5.1 [[Prototype]]"></a>5.1 [[Prototype]]</h3><p>对象的内置属性[[Prototype]]</p>
+<h4 id="5-1-2-属性设置和屏蔽"><a href="#5-1-2-属性设置和屏蔽" class="headerlink" title="5.1.2 属性设置和屏蔽"></a>5.1.2 属性设置和屏蔽</h4><p>下层会屏蔽原型链上层的同名属性</p>
+<p>复杂情况</p>
+<ol>
+<li>原型链上层存在foo，普通数据访问属性，并且不是只读，会直接在myObject上添加一个新的属性，是<code>屏蔽属性</code></li>
+<li>如果原型链上层存在foo,标记为只读，将无法修改已有属性或者在myObject上创建属性。严格模式下会抛出错误，否则忽略</li>
+<li>原型链上层存在并且为<code>setter</code>会调用<code>setter</code></li>
+</ol>
+<p>可以通过<code>Object.defineProperty()</code>添加属性<br>尽量避免使用屏蔽</p>
+<p>隐式屏蔽<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> anotherObject = &#123; <span class="attr">a</span>:<span class="number">2</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> myObject = <span class="built_in">Object</span>.create( anotherObject );</div><div class="line">  anotherObject.a; <span class="comment">// 2</span></div><div class="line">  myObject.a; <span class="comment">// 2</span></div><div class="line">  anotherObject.hasOwnProperty( <span class="string">"a"</span> ); <span class="comment">// true</span></div><div class="line">  myObject.hasOwnProperty( <span class="string">"a"</span> ); <span class="comment">// false</span></div><div class="line">  myObject.a++; <span class="comment">// 隐式屏蔽! anotherObject.a; // 2</span></div><div class="line">  myObject.a; <span class="comment">// 3</span></div><div class="line">  myObject.hasOwnProperty( <span class="string">"a"</span> ); <span class="comment">// true</span></div></pre></td></tr></table></figure></p>
+<h3 id="5-2-‘类’"><a href="#5-2-‘类’" class="headerlink" title="5.2 ‘类’"></a>5.2 ‘类’</h3><p>Js中没有类，只有对象</p>
+<h4 id="5-2-1-‘类’函数"><a href="#5-2-1-‘类’函数" class="headerlink" title="5.2.1 ‘类’函数"></a>5.2.1 ‘类’函数</h4><p>利用函数的特殊特性，函数默认会拥有一个prototype共有不可枚举属性，指向一个对象</p>
+<p>函数的<code>prototype</code>是函数的原型属性，当函数作为构造函数时，实例化出来的对象会将函数的原型属性，当做自己的原型对象[[Prototype]]</p>
+<p>名称<br>[[Prototype]]机制，被称为<code>原型继承</code><br>在面向类的世界中，<code>继承</code>意味着复制，但js中并没有进行复制</p>
+<p><code>委托</code>: js在两个对象间创建关联，这样对象通过<code>委托</code>原型对象访问它的属性和函数</p>
+<p><code>差异继承</code>: ？？？</p>
+<h4 id="5-2-2-‘构造函数’"><a href="#5-2-2-‘构造函数’" class="headerlink" title="5.2.2 ‘构造函数’"></a>5.2.2 ‘构造函数’</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line"><span class="comment">// ...</span></div><div class="line">&#125;</div><div class="line">Foo.prototype.constructor === Foo; <span class="comment">// true</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</div><div class="line">a.constructor === Foo; <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>构造函数原型上有<code>constructor</code>指向构造函数，通过这个构造函数实例化的对象，通过原型对象也可以访问这个构造函数</p>
+<ol>
+<li>构造函数还是调用<br>事实上，new会劫持所有普通函数使用构造对象的形式调用</li>
+</ol>
+<h4 id="5-2-3-技术"><a href="#5-2-3-技术" class="headerlink" title="5.2.3 技术"></a>5.2.3 技术</h4><p>constructor 与 实例化的对象没有关联关系，当实例化对象的构造函数的原型被替换，在替换之前实例化的对象的原型对象并不会变</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123; <span class="comment">/* .. */</span> &#125;</div><div class="line">Foo.prototype = &#123; <span class="comment">/* .. */</span> &#125;; <span class="comment">// 创建一个新原型对象</span></div><div class="line"><span class="keyword">var</span> a1 = <span class="keyword">new</span> Foo();</div><div class="line">a1.constructor === Foo; <span class="comment">// false! a1.constructor === Object; // true!</span></div></pre></td></tr></table></figure>
+<p>手动给构造函数原型的添加<code>constructor</code>构造器，需要手动添加符合正常行为的不可枚举属性</p>
+<p><code>constructor</code>仅仅是不可枚举的</p>
+<p>尽量避免这些引用</p>
+<h3 id="5-3-（原型）继承"><a href="#5-3-（原型）继承" class="headerlink" title="5.3 （原型）继承"></a>5.3 （原型）继承</h3><p>类与实例之间的关系</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//ES6之前修改原型：</span></div><div class="line">Bar.ptototype = <span class="built_in">Object</span>.create( Foo.prototype )</div><div class="line"></div><div class="line"><span class="comment">//ES6：</span></div><div class="line"><span class="built_in">Object</span>.setPrototypeOf( Bar.prototype, Foo.prototype )</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/13/你不知道的js-作用域/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-13T17:46:34+08:00" content="2017-03-13">
+              2017-03-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><h3 id="1-1编译原理"><a href="#1-1编译原理" class="headerlink" title="1.1编译原理"></a>1.1编译原理</h3><ul>
+<li>分词/词法分析（Tokenizing/Lexing）<br>将字符串分解成代码块（词法单元）<br>分词和词法分析的差异在于词法单元的识别是通过<code>有状态</code>还是<code>无状态的</code></li>
+<li>解析/语法分析（Parsing）<br>将词法单元流（数组）转换为由元素逐级嵌套组成的代表程序语法结构的树（抽象语法树AST）</li>
+<li>代码生成<br>将AST转换为可执行代码</li>
+</ul>
+<h3 id="1-2作用域"><a href="#1-2作用域" class="headerlink" title="1.2作用域"></a>1.2作用域</h3><h4 id="JS运行"><a href="#JS运行" class="headerlink" title="JS运行"></a>JS运行</h4><ul>
+<li>引擎：负责JS编译与执行</li>
+<li>编译器：负责语法分析以及代码生成</li>
+<li>作用域：收集并维护所有声明的变量（标识符），根据规则确保执行代码对变量的访问权限</li>
+</ul>
+<h4 id="声明解析"><a href="#声明解析" class="headerlink" title="声明解析"></a>声明解析</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var a = 2</div></pre></td></tr></table></figure>
+<ol>
+<li><code>var a</code>编译器查询作用域是否存在变量<code>a</code>，有则忽略继续编译，无则要求作用域在当前作用域集合中声明一个为<code>a</code>的变量</li>
+<li>编译器生成运行代码给引擎，处理<code>a = 2</code>赋值操作。引擎询问作用域，当前作用域是否存在<code>a</code>，存在就使用，否则继续查找。<br>最终没有查找到将会报错。</li>
+</ol>
+<h4 id="LHS-RHS"><a href="#LHS-RHS" class="headerlink" title="LHS/RHS"></a>LHS/RHS</h4><p>变量出现在赋值操作左侧进行LHS，非左侧进行RHS</p>
+<p>LHS:只查找<br>BHS:查找并取到值（）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function foo(a) &#123;</div><div class="line">  console.log(a)</div><div class="line">  //RHS，获得a的值传入console.log方法</div><div class="line">  //RHS，获得console对象，并得到log方法</div><div class="line">&#125;</div><div class="line">foo(2)</div><div class="line">//函数调用RHS，查找foo并获得foo的值</div><div class="line">//LHS查询，将2赋值给参数a</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function foo(a) &#123;</div><div class="line">  var b = a</div><div class="line">  //LHS,b=</div><div class="line">  //RHS,=a</div><div class="line">  return a + b</div><div class="line">  //RHS, a</div><div class="line">  //RHS, b</div><div class="line">&#125;</div><div class="line">var c = foo(2)</div><div class="line">//LHS,c=</div><div class="line">//RHS,foo(2)</div><div class="line">//LHS,(2)</div><div class="line">//LHS,foo</div></pre></td></tr></table></figure>
+<h3 id="1-3作用域嵌套"><a href="#1-3作用域嵌套" class="headerlink" title="1.3作用域嵌套"></a>1.3作用域嵌套</h3><p>作用域嵌套，在当前作用域无法找到变量时，引擎会在外层作用域中继续查找</p>
+<h3 id="1-4异常"><a href="#1-4异常" class="headerlink" title="1.4异常"></a>1.4异常</h3><p>RHS查询找不到会抛出异常<br>非严格LHS找不到会创建一个<br>严格模式LHS找不到也会抛出异常<br>RHS进行不合理操作会抛出TypeError</p>
+<h2 id="第二章：词法作用域"><a href="#第二章：词法作用域" class="headerlink" title="第二章：词法作用域"></a>第二章：词法作用域</h2><p>两种工作模型</p>
+<ol>
+<li>词法作用域</li>
+<li>动态作用域<h3 id="2-1词法阶段"><a href="#2-1词法阶段" class="headerlink" title="2.1词法阶段"></a>2.1词法阶段</h3>定义在词法阶段的作用域。（写代码是将变量和块作用域写在哪里决定的）</li>
+</ol>
+<h4 id="查找："><a href="#查找：" class="headerlink" title="查找："></a>查找：</h4><p>遮蔽效应：内部标识符”遮蔽”外部标识符</p>
+<h3 id="2-2欺骗词法"><a href="#2-2欺骗词法" class="headerlink" title="2.2欺骗词法"></a>2.2欺骗词法</h3><p>欺骗词法作用域会导致性能下降</p>
+<h4 id="2-2-1-eval"><a href="#2-2-1-eval" class="headerlink" title="2.2.1 eval"></a>2.2.1 eval</h4><p>eval中包含一个或多个声明会对作用域进行修改<br>严格模式下，eval有自己的词法作用域</p>
+<p>setTimeout(),setInterval()第一个参数是字符串的时候，字符串可以被解释为动态生成的函数代码</p>
+<p>new Function()接受代码字符串，转换为动态生成的函数</p>
+<p>避免使用以上方式</p>
+<h4 id="2-2-2-with"><a href="#2-2-2-with" class="headerlink" title="2.2.2 with"></a>2.2.2 with</h4><p>严格模式下被禁止</p>
+<h4 id="2-2-3-性能"><a href="#2-2-3-性能" class="headerlink" title="2.2.3 性能"></a>2.2.3 性能</h4><p>在编译阶段进行的性能优化，有些依赖于能够根据代码词法进行静态分析，预先确定所有变量和函数的定义位置，才能执行时快速找到标识符。</p>
+<h2 id="第三章，函数作用域和块作作用域"><a href="#第三章，函数作用域和块作作用域" class="headerlink" title="第三章，函数作用域和块作作用域"></a>第三章，函数作用域和块作作用域</h2><h3 id="3-1-函数中的作用域"><a href="#3-1-函数中的作用域" class="headerlink" title="3.1 函数中的作用域"></a>3.1 函数中的作用域</h3><p>Js基于函数的作用域<br>含义：属于这个函数的全部变量都可以在整个函数范围内使用以及复用</p>
+<h3 id="3-2-隐藏内部实现"><a href="#3-2-隐藏内部实现" class="headerlink" title="3.2 隐藏内部实现"></a>3.2 隐藏内部实现</h3><p>最小授权，最小暴露原则：最小限度的暴露必要内容</p>
+<p>规避冲突：避免同名标识符之间的冲突</p>
+<ol>
+<li>全局命名空间<br>通过全局作用域生命对象，将功能通过对象暴露给外界</li>
+<li>模块管理</li>
+</ol>
+<h3 id="3-3-函数作用域"><a href="#3-3-函数作用域" class="headerlink" title="3.3 函数作用域"></a>3.3 函数作用域</h3><p> 让函数名不污染所在作用域，并能够自动运行<br> 函数表达式写法<br> 如果function 是声明的第一个词，就是函数声明，否则是函数表达式<br> 函数声明和函数表达式的区别：名称标识符绑定在何处<br> 函数声明会绑定在所在作用域中<br> 函数表达式会绑定在函数表达式自身的函数中</p>
+<h4 id="3-3-1-匿名和具名"><a href="#3-3-1-匿名和具名" class="headerlink" title="3.3.1 匿名和具名"></a>3.3.1 匿名和具名</h4><p> 匿名函数的缺点：</p>
+<ol>
+<li>调试困难</li>
+<li>引用自身需要<code>arguments.callee</code></li>
+<li>可读性差<br>行内函数表达式可以指定函数名，所以给函数表达式命名是最佳实践</li>
+</ol>
+<h4 id="3-3-2-立即执行函数表达式IIFE"><a href="#3-3-2-立即执行函数表达式IIFE" class="headerlink" title="3.3.2 立即执行函数表达式IIFE"></a>3.3.2 立即执行函数表达式IIFE</h4><p>IIFE的两种写法</p>
+<ol>
+<li>(function(){})()</li>
+<li>(function(){}())</li>
+</ol>
+<p>IIFE的用途</p>
+<ol>
+<li>函数调用传参<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(function(global)&#123;&#125;)(window)</div><div class="line">(function(undefined)&#123;&#125;)()</div><div class="line">可以确保undefined是undefined</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>2.倒置代码运行顺序<br>将需要运行的函数放在第二位，在IIFE执行之后当参数传递进去<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">(function IIFE (def)&#123;</div><div class="line">  def(window)</div><div class="line">&#125;(function def(global) &#123;</div><div class="line">  var a =3</div><div class="line">  console.log(3)//3</div><div class="line">  console.log(global.a)//a</div><div class="line">&#125;))</div></pre></td></tr></table></figure></p>
+<h3 id="3-4-块作用域"><a href="#3-4-块作用域" class="headerlink" title="3.4 块作用域"></a>3.4 块作用域</h3><p>块作用域是对最小授权原则进行扩展的工具</p>
+<h4 id="3-4-1-with"><a href="#3-4-1-with" class="headerlink" title="3.4.1 with"></a>3.4.1 with</h4><p>用with从对象中创建出的作用域仅在with声明中有效</p>
+<h4 id="3-4-2-try-catch"><a href="#3-4-2-try-catch" class="headerlink" title="3.4.2 try/catch"></a>3.4.2 try/catch</h4><p>catch会创建一个块级作用域，其中声明的变量仅在catch内部有效</p>
+<h4 id="3-4-3-let"><a href="#3-4-3-let" class="headerlink" title="3.4.3 let"></a>3.4.3 let</h4><p>let 可以将变量绑定到所在的任意作用域中（{内部}）<br>推荐显式的使用块级作用域，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if (foo) &#123;</div><div class="line">  &#123;</div><div class="line">    let bar</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>垃圾收集<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function process (data) &#123;&#125;</div><div class="line"></div><div class="line">var someReallyBigData = &#123;&#125;</div><div class="line"></div><div class="line">process(someReallyBigData)</div><div class="line"></div><div class="line">var btn = document.getElementById(&apos;my_button&apos;)</div><div class="line"></div><div class="line">btn.addEventListener(&apos;click&apos;, function click(evt) &#123;</div><div class="line">//形成了闭包, 保留了整个外层作用域</div><div class="line">  console.log(&apos;button clicked&apos;)</div><div class="line">&#125;, false)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>通过块级作用域，将变量进行本地绑定<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function process (data) &#123;&#125;</div><div class="line"></div><div class="line">&#123;</div><div class="line">  let someReallyBigData = &#123;&#125;</div><div class="line"></div><div class="line">  process(someReallyBigData)</div><div class="line">&#125;</div><div class="line"></div><div class="line">var btn = document.getElementById(&apos;my_button&apos;)</div><div class="line"></div><div class="line">btn.addEventListener(&apos;click&apos;, function click(evt) &#123;</div><div class="line">//形成了闭包, 保留了整个外层作用域</div><div class="line">  console.log(&apos;button clicked&apos;)</div><div class="line">&#125;, false)</div></pre></td></tr></table></figure></p>
+<ol>
+<li>let循环<br>将i重新绑定到了循环的每一个迭代中<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//代码说明</div><div class="line">&#123;</div><div class="line">  let j</div><div class="line">  for (j=0; j&lt;10; j++) &#123;</div><div class="line">    let i = j</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>let声明属于一个新的作用域而不是当前函数作用域也不是全局作用域</p>
+<h4 id="3-4-4"><a href="#3-4-4" class="headerlink" title="3.4.4"></a>3.4.4</h4><p>const固定常量不可修改</p>
+<h2 id="4-提升"><a href="#4-提升" class="headerlink" title="4 提升"></a>4 提升</h2><h3 id="4-2-编译器与提升"><a href="#4-2-编译器与提升" class="headerlink" title="4.2 编译器与提升"></a>4.2 编译器与提升</h3><p>包含变量和函数在内的所有声明都会在任何代码被执行前首先被处理<br>定义声明在编译阶段进行，只有声明本身会被提升</p>
+<h3 id="4-3-函数优先"><a href="#4-3-函数优先" class="headerlink" title="4.3 函数优先"></a>4.3 函数优先</h3><p>函数与变量声明都会提升，函数优先</p>
+<h2 id="5-作用域闭包"><a href="#5-作用域闭包" class="headerlink" title="5 作用域闭包"></a>5 作用域闭包</h2><h3 id="5-2-闭包实质"><a href="#5-2-闭包实质" class="headerlink" title="5.2 闭包实质"></a>5.2 闭包实质</h3><p>定义:函数可以记住并访问所在的词法作用域时，就产生了闭包。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">  var a = 2</div><div class="line">  function bar() &#123;</div><div class="line">    console.log(a)</div><div class="line">  &#125;</div><div class="line">  return bar</div><div class="line">&#125;</div><div class="line">var baz = foo()</div><div class="line">baz()</div></pre></td></tr></table></figure></p>
+<p>在自己定义的词法作用域之外执行，foo内存无法回收，导致foo内部作用域依然存在。<br>bar()依然持有对该作用域的引用，这个引用叫闭包</p>
+<h3 id="5-3-闭包深入"><a href="#5-3-闭包深入" class="headerlink" title="5.3 闭包深入"></a>5.3 闭包深入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function wait (message) &#123;</div><div class="line">  setTimeout(function timer()&#123;</div><div class="line">    console.log(message)</div><div class="line">  &#125;, 1000)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function setupBot (name, selector) &#123;</div><div class="line">  $(selector).click(function activator()&#123;</div><div class="line">    console.log(&apos;Activating:&apos; + name)</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line">setupBot(&apos;Closure Bot1&apos;, &apos;#bot_1&apos;)</div></pre></td></tr></table></figure>
+<p>只要使用回调函数，实际上就是在使用闭包。</p>
+<h3 id="5-4-循环和闭包"><a href="#5-4-循环和闭包" class="headerlink" title="5.4 循环和闭包"></a>5.4 循环和闭包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">for (var i=1; i&lt;=5; i++) &#123;</div><div class="line">  setTimeout(function timer()&#123;</div><div class="line">    console.log(i)</div><div class="line">  &#125;, 0)</div><div class="line">&#125;</div><div class="line">//66666</div></pre></td></tr></table></figure>
+<p>定时器的回调函数在循环结束时才执行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">for (var i=1; i&lt;=5; i++) &#123;</div><div class="line">  (function(j) &#123;</div><div class="line">    setTimeout(function timer()&#123;</div><div class="line">      console.log(j)</div><div class="line">    &#125;, 0)</div><div class="line">  &#125;)(i)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>迭代内使用IIFE为每个迭代都生成一个新的作用域<br>延迟函数的回调在新的作用域封闭在每个迭代内部</p>
+<p>块级作用域<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for (let i=1; i&lt;=5; i++) &#123;</div><div class="line">  setTimeout(function timer()&#123;</div><div class="line">    console.log(i)</div><div class="line">  &#125;, 0)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>let为每一次迭代生成块级作用域</p>
+<h3 id="5-5-模块"><a href="#5-5-模块" class="headerlink" title="5.5 模块"></a>5.5 模块</h3><p>函数通过return，将内部函数暴露在外部，内部函数依旧保持函数的作用域。形成模块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">function CoolModule() &#123;</div><div class="line">  var something = &apos;coll&apos;</div><div class="line">  var another = [1, 2, 3]</div><div class="line">  function doSomething() &#123;</div><div class="line">    console.log(something)</div><div class="line">  &#125;</div><div class="line">  function doAnother() &#123;</div><div class="line">    console.log(anoyher.join(&apos;!&apos;))</div><div class="line">  &#125;</div><div class="line">  return &#123;</div><div class="line">    doSomething: doSomething,</div><div class="line">    doAnother: doAnother</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">var foo = CoolModule()</div><div class="line">foo.donSomething()//coll</div><div class="line">foo.doAnother()//1!2!3</div><div class="line">//每次调用都会创建新的模块实例</div></pre></td></tr></table></figure>
+<p>模块模式的两个条件</p>
+<ol>
+<li>必须有外部的封闭函数，至少被调用一次（创建模块实例）</li>
+<li>封闭函数必须返回一个内部函数，内部函数才能在私有作用域中形成闭包</li>
+</ol>
+<p>一个从函数调用所返回的，只有数据属性而没有闭包函数的对象并不是真正的模块</p>
+<p>单例模式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var foo = （ function CoolModule() &#123;</div><div class="line">  var something = &apos;coll&apos;</div><div class="line">  var another = [1, 2, 3]</div><div class="line">  function doSomething() &#123;</div><div class="line">    console.log(something)</div><div class="line">  &#125;</div><div class="line">  function doAnother() &#123;</div><div class="line">    console.log(anoyher.join(&apos;!&apos;))</div><div class="line">  &#125;</div><div class="line">  return &#123;</div><div class="line">    doSomething: doSomething,</div><div class="line">    doAnother: doAnother</div><div class="line">  &#125;</div><div class="line">&#125;)()</div><div class="line"></div><div class="line">foo.donSomething()//coll</div><div class="line">foo.doAnother()//1!2!3</div><div class="line">//转换为IIFE，只生成了一个实例</div></pre></td></tr></table></figure></p>
+<p>命名将要作为公共API返回的对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var  foo = (function CollModule(id)&#123;</div><div class="line">  function change()&#123;</div><div class="line">    publicAPI.identify = identify2</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h4 id="5-5-1-模块机制"><a href="#5-5-1-模块机制" class="headerlink" title="5.5.1 模块机制"></a>5.5.1 模块机制</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">var MyModules = (function Manager()&#123;</div><div class="line">  var modules = &#123;&#125;</div><div class="line"></div><div class="line">  function define(name, deps, impl) &#123;</div><div class="line">    for (var i=0; i&lt;deps.length; i++) &#123;</div><div class="line">      deps[i] = modules[deps[i]]</div><div class="line">      //依赖注入</div><div class="line">    &#125;</div><div class="line">    modules[name] = impl.apply(impl, deps)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  function get(name) &#123;</div><div class="line">    return modules[name]</div><div class="line">  &#125;</div><div class="line">  return &#123;</div><div class="line">    define: define,</div><div class="line">    get: get</div><div class="line">  &#125;</div><div class="line">&#125;)()</div><div class="line"></div><div class="line">//定义模块</div><div class="line">MyModules.define(&apos;bar&apos;, [], function () &#123;</div><div class="line">  function hello(who) &#123;</div><div class="line">    return &apos;let me introduce:&apos; + who</div><div class="line">  &#125;</div><div class="line">  return &#123;</div><div class="line">    hello: hello</div><div class="line">  &#125;</div><div class="line">  //闭包，保持内部函数hello引用</div><div class="line">&#125;)</div><div class="line"></div><div class="line">MyModules.define(&apos;foo&apos;, [&apos;bar&apos;], function (bar) &#123;</div><div class="line">  var hungry = &apos;hippo&apos;</div><div class="line"></div><div class="line">  function awesome() &#123;</div><div class="line">    console.log(bar.hello(hungry).toUpperCase())</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  return &#123;</div><div class="line">    awesome: awesome</div><div class="line">  &#125;</div><div class="line">  //闭包，保持内部函数awesome引用</div><div class="line">&#125;)</div><div class="line"></div><div class="line">var bar = MyModules.get(&apos;bar&apos;)</div><div class="line">var foo = MyModules.get(&apos;foo&apos;)</div><div class="line"></div><div class="line">console.log(bar.hello(&apos;hippo&apos;))</div><div class="line"></div><div class="line">foo.awesome()//</div></pre></td></tr></table></figure>
+<h4 id="5-5-2-未来模块机制"><a href="#5-5-2-未来模块机制" class="headerlink" title="5.5.2 未来模块机制"></a>5.5.2 未来模块机制</h4><p>ES6的模块语法支持,将单个文件当做独立模块处理</p>
+<p>基于函数的模块不稳定（不能被编译器识别/动态）<br>es6模块可以再编译器检查导入模块的API和成员是否真实存在（可以进行静态检查）</p>
+<h3 id="5-6-小结"><a href="#5-6-小结" class="headerlink" title="5.6 小结"></a>5.6 小结</h3><p>当函数可以记住并访问所在的词法作用域，既是函数是在当前词法作用域之外执行，这时产生了闭包</p>
+<p>模块的两个主要特征：</p>
+<ol>
+<li>为创建内部作用域而调用包装函数</li>
+<li>包装函数的返回值至少包括一个队内部函数的引用，这样才能创建涵盖整个包装函数内部作用域的闭包</li>
+</ol>
+<h2 id="动态作用域"><a href="#动态作用域" class="headerlink" title="动态作用域"></a>动态作用域</h2><p>词法作用域特征：定义在代码书写阶段<br>动态作用域：作用域链是基于调用栈的，而不是作用域嵌套<br>js并不具有动态作用域，但是this机制某种程度上像动态作用域<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">  console.log(a)//如果是动态作用域，理论上输出3</div><div class="line">  //实际上Js没有动态作用域，所以结果为2</div><div class="line">&#125;</div><div class="line"></div><div class="line">function bar() &#123;</div><div class="line">  var a = 3</div><div class="line">  foo()</div><div class="line">&#125;</div><div class="line">var a = 2</div><div class="line">bar()</div></pre></td></tr></table></figure></p>
+<h2 id="this词法"><a href="#this词法" class="headerlink" title="this词法"></a>this词法</h2><p>箭头函数将当前的词法作用域覆盖this本来的值</p>
+<p>缺点：</p>
+<ol>
+<li>容易混淆this绑定规则和词法作用域规则</li>
+<li>匿名而非具名的</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/11/自控力/" itemprop="url">
                   未命名
                 </a>
@@ -1261,278 +1749,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/15/高效学习的建议/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-15T21:43:12+08:00" content="2016-11-15">
-              2016-11-15
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>首先定义学习的目标</li>
-</ul>
-<h2 id="高效学习的建议"><a href="#高效学习的建议" class="headerlink" title="高效学习的建议"></a>高效学习的建议</h2><ul>
-<li>Anki 帮助记忆</li>
-</ul>
-<p>建议：</p>
-<ul>
-<li>快速获得反馈 <ul>
-<li>反反复复练习，每次都获得反馈可以很快的提升</li>
-</ul>
-</li>
-<li>创造深的理解<ul>
-<li>列出要学习的知识点：试图以讲给学生的方式讲出来</li>
-</ul>
-</li>
-<li>高强度学习<ul>
-<li>刻意练习</li>
-<li>广泛练习</li>
-</ul>
-</li>
-<li>习惯的养成<ul>
-<li>只有一个重要的坚持下去</li>
-</ul>
-</li>
-<li>学习的动机</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/11/ES6-Class/" itemprop="url">
-                  Class
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-11T11:07:35+08:00" content="2016-11-11">
-              2016-11-11
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>阅读阮一峰老师的ES6入门的学习笔记。</p>
-<h1 id="Class-基本语法"><a href="#Class-基本语法" class="headerlink" title="Class 基本语法"></a>Class 基本语法</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><code>class</code>关键字，可以看做语法糖。大部分功能ES5通过构造函数生成新对象都可以完成。<code>class</code>写法让对象原型的写法更清晰。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x, y</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.x = x;</div><div class="line">  <span class="keyword">this</span>.y = y;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Point.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="string">'('</span> + <span class="keyword">this</span>.x + <span class="string">', '</span> + <span class="keyword">this</span>.y + <span class="string">')'</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">2</span>);</div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//定义类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(x, y) &#123;</div><div class="line">    <span class="keyword">this</span>.x = x;</div><div class="line">    <span class="keyword">this</span>.y = y;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  toString() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'('</span> + <span class="keyword">this</span>.x + <span class="string">', '</span> + <span class="keyword">this</span>.y + <span class="string">')'</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="与ES5构造函数比较"><a href="#与ES5构造函数比较" class="headerlink" title="与ES5构造函数比较"></a>与ES5构造函数比较</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
-<li><p><code>class Point</code>等价于<code>function Point</code></p>
-</li>
-<li><p><code>constructor</code>是构造方法，等价于ES5中构造函数内定义的内容</p>
-</li>
-<li><p><code>this</code>与ES5一样，代表实例对象</p>
-</li>
-<li><p>定义“类”的方法不需要加上<code>function</code>关键字，直接写函数名以及函数体。与ES5在构造函数的 <strong>原型对象</strong> 上(<code>Point.prototype</code>)上定义方法</p>
-</li>
-<li><p>“类”的方法之间不需要逗号分隔</p>
-</li>
-<li><p>可以使用<code>Object.assign</code>方法，一次向类添加多个方法</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>()&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">Object</span>.assign(Point.prototype, &#123;</div><div class="line">  toString()&#123;&#125;,</div><div class="line">  toValue()&#123;&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-</ul>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
-<li><p>与ES5构造函数一样，通过<code>new</code>命令创造实例对象</p>
-</li>
-<li><p>与ES5 <strong>不同</strong> 类内部定义的方法是不可枚举的 （non-enumerable）</p>
-</li>
-<li><p>类的构造函数，不使用<code>new</code>无法调用。ES5中构造函数可以不通过<code>new</code>调用</p>
-</li>
-<li><p>ES6 不存在变量提升所以需要先声明父类再使用</p>
-</li>
-<li><p>“类”的属性名，可以采用表达式</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> methodName = <span class="string">"getArea"</span>;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span></span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(length) &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  [methodName]() &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><ul>
-<li>与构造函数相同<code>typeof</code>为<code>function</code></li>
-<li><code>Point.prototype.constructor</code>也为自身</li>
-</ul>
-<h2 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h2><ul>
-<li>类的默认方法，通过<code>new</code>生成对象实例时自动调用。</li>
-<li>没有定义时，会默认添加空的<code>constructor</code>方法</li>
-<li>默认返回对象实例（<code>this</code>）也可以返回别的对象</li>
-<li>类的构造函数，不使用<code>new</code>无法调用。</li>
-</ul>
-<h2 id="类的实例对象"><a href="#类的实例对象" class="headerlink" title="类的实例对象"></a>类的实例对象</h2><ul>
-<li>与ES5相同，实例的属性除非显示的定义在<code>this</code>上，否则都是定义在原型上<code>class</code>上</li>
-<li>与ES5相同，类的所有实例共享同一个原型对象</li>
-</ul>
-<h2 id="Class表达式"><a href="#Class表达式" class="headerlink" title="Class表达式"></a>Class表达式</h2><ul>
-<li><p>和函数一样可以使用表达式形式定义</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> MyClass = <span class="class"><span class="keyword">class</span> <span class="title">Me</span> </span>&#123;</div><div class="line">  getClassName() &#123;</div><div class="line">    <span class="keyword">return</span> Me.name;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>类的名字是<code>MyClass</code></li>
-<li><code>Me</code>只能在Class内部可用</li>
-<li><code>Me</code>和函数名一样，可以省略</li>
-</ul>
-</li>
-<li><p>​</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1578,7 +1794,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
