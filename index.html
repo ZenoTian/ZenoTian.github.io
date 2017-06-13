@@ -236,292 +236,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/22/你不知道的js-this/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-22T15:35:30+08:00" content="2017-03-22">
-              2017-03-22
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-1-为什么要用this"><a href="#1-1-为什么要用this" class="headerlink" title="1.1 为什么要用this"></a>1.1 为什么要用this</h3><p>显示传递上下文对象会使得代码变得混乱<br>通过this可以让API更简洁并且易于复用</p>
-<h3 id="1-2-误解"><a href="#1-2-误解" class="headerlink" title="1.2 误解"></a>1.2 误解</h3><h4 id="1-2-1-指向自身"><a href="#1-2-1-指向自身" class="headerlink" title="1.2.1 指向自身"></a>1.2.1 指向自身</h4><p>认为this指向函数自身</p>
-<h4 id="1-2-2-它的作用域"><a href="#1-2-2-它的作用域" class="headerlink" title="1.2.2 它的作用域"></a>1.2.2 它的作用域</h4><p>认为this指向函数作用域<br>this在任何情况下都不指向函数的词法作用域<br>this与词法作用域的查找混合使用容易被迷惑<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> a = <span class="number">2</span></div><div class="line">  <span class="keyword">this</span>.bar()</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</div><div class="line">&#125;</div><div class="line">foo()<span class="comment">//ReferenceError: a is not defined</span></div></pre></td></tr></table></figure></p>
-<h3 id="1-3-this是什么"><a href="#1-3-this是什么" class="headerlink" title="1.3 this是什么"></a>1.3 this是什么</h3><p>this实在运行时进行绑定的，它的上下文取决于函数调用时的条件。this的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式</p>
-<p>当函数被调用，会创建一个执行上下文（活动记录）。包含函数在哪里被调用（调用栈），函数的调用方法，传入的参数信息，<br>this被用来记录在哪里被调用</p>
-<p>##第二章 this全面解析</p>
-<h3 id="2-1调用位置"><a href="#2-1调用位置" class="headerlink" title="2.1调用位置"></a>2.1调用位置</h3><p>分析调用栈：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">//当前调用栈是: baz</span></div><div class="line">  <span class="comment">//当前调用位置是全局作用域</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'baz'</span>)</div><div class="line">  bar()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">//当前调用栈是: baz =&gt; bar</span></div><div class="line">  <span class="comment">//当前调用位置是baz</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'bar'</span>)</div><div class="line">  foo()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">//当前调用栈是: baz =&gt; bar =&gt; foo</span></div><div class="line">  <span class="comment">//当前调用位置是bar</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'bar'</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">baz()</div></pre></td></tr></table></figure></p>
-<h3 id="2-2-绑定规则"><a href="#2-2-绑定规则" class="headerlink" title="2.2 绑定规则"></a>2.2 绑定规则</h3><h4 id="2-2-1-默认绑定"><a href="#2-2-1-默认绑定" class="headerlink" title="2.2.1 默认绑定"></a>2.2.1 默认绑定</h4><p>独立函数调用绑定到全局对象<br>严格模式：全局对象无法使用默认绑定，this会绑定到undefined<br>函数体是否处于严格模式</p>
-<h4 id="2-2-2-隐式绑定"><a href="#2-2-2-隐式绑定" class="headerlink" title="2.2.2 隐式绑定"></a>2.2.2 隐式绑定</h4><p>作为对象属性调用<br>当函数引用有上下文对象时，隐式绑定将this绑定到上下文对象</p>
-<p>隐式丢失<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  <span class="attr">a</span>:<span class="number">2</span>,</div><div class="line">  <span class="attr">foo</span>: foo</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = obj.foo</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="string">'oops, global'</span></div><div class="line"></div><div class="line">bar()<span class="comment">//其实调用的是函数本身</span></div></pre></td></tr></table></figure></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">doFoo</span>(<span class="params">fn</span>) </span>&#123;</div><div class="line">  fn()<span class="comment">//问题在这里，函数传参是隐式赋值</span></div><div class="line">  <span class="comment">//所以单纯函数调用，没有上下文对象</span></div><div class="line">  <span class="comment">//将函数传入语言内置的函数也是一样，如setTimeout...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  <span class="attr">a</span>: <span class="number">2</span>,</div><div class="line">  <span class="attr">foo</span>: foo</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="string">'oops,global'</span></div><div class="line">doFoo(obj.foo)</div></pre></td></tr></table></figure>
-<h4 id="2-2-3-显示绑定"><a href="#2-2-3-显示绑定" class="headerlink" title="2.2.3 显示绑定"></a>2.2.3 显示绑定</h4><p>通过call(),apply()显示进行绑定</p>
-<p>显示绑定无法解决丢失绑定问题</p>
-<ol>
-<li>硬绑定<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  <span class="attr">a</span>: <span class="number">2</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = funcyion() &#123;</div><div class="line">  foo.call(obj)</div><div class="line">&#125;</div><div class="line">bar() <span class="comment">//2</span></div><div class="line">setTimeout(bar, <span class="number">100</span>)<span class="comment">//2</span></div><div class="line">bar.call(<span class="built_in">window</span>)<span class="comment">//2</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>硬绑定是常用的模式，所以ES5提供bind方法</p>
-<p>硬绑定的两种应用场景</p>
-<ol>
-<li><p>创建包裹函数，传入所有参数并返回接受到的所有值</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">something</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a, something)</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.a + something</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  <span class="attr">a</span>: <span class="number">2</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> foo.apply(obj, <span class="built_in">arguments</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = bar(<span class="number">3</span>)<span class="comment">//2 3</span></div><div class="line"><span class="built_in">console</span>.log(b)<span class="comment">//5</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>创建一个i可以重复使用的辅助函数</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">something</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a, something)</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.a + something</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bind</span>(<span class="params">fn, obj</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> fn.apply(obj, <span class="built_in">arguments</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  <span class="attr">a</span>:<span class="number">2</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> bar = bind(foo, obj)</div><div class="line"><span class="keyword">var</span> b = bar(<span class="number">3</span>)<span class="comment">//2 3</span></div><div class="line"><span class="built_in">console</span>.log(b)<span class="comment">//5</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h4 id="2-2-4-new绑定"><a href="#2-2-4-new绑定" class="headerlink" title="2.2.4 new绑定"></a>2.2.4 new绑定</h4><p>使用new调用构造函数</p>
-<ol>
-<li>创建一个新的对象</li>
-<li>新的对象会被执行[[原型]]连接</li>
-<li>新对象会绑定到函数的调用的this上</li>
-<li>如果函数没有返回其他对象，new表达式的函数调用自动返回新的对象<br>构造一个新的对象并绑定到构造函数中调用中的this上</li>
-</ol>
-<h3 id="2-3-优先级"><a href="#2-3-优先级" class="headerlink" title="2.3 优先级"></a>2.3 优先级</h3><p>在new 中使用硬绑定，可以预先设置函数的一些参数，在new进行初始化时就可以只传入其余参数</p>
-<p>new,显示绑定,隐式绑定,默认绑定</p>
-<h3 id="2-4-绑定例外"><a href="#2-4-绑定例外" class="headerlink" title="2.4 绑定例外"></a>2.4 绑定例外</h3><h4 id="2-4-1-被忽略的this"><a href="#2-4-1-被忽略的this" class="headerlink" title="2.4.1 被忽略的this"></a>2.4.1 被忽略的this</h4><p>将null或者Undefined作为this绑定对象传入call,apply,bind在调用时会被忽略，实际上是默认绑定规则</p>
-<p>传入Null的场景</p>
-<ol>
-<li>数组展开成参数</li>
-<li>bind进行柯里化（预设参数）</li>
-</ol>
-<p>但是在一些看库中可能产生难以调试的bug</p>
-<p>更安全的做法：传入不影响程序的特殊对象，ø空集合符号<br>Object.create(null),不会创建Object.prototype,</p>
-<h4 id="2-4-2-间接引用"><a href="#2-4-2-间接引用" class="headerlink" title="2.4.2 间接引用"></a>2.4.2 间接引用</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> a = <span class="number">2</span></div><div class="line"><span class="keyword">var</span> o = &#123;<span class="attr">a</span>:<span class="number">3</span>,<span class="attr">foo</span>:foo&#125;</div><div class="line"><span class="keyword">var</span> p = &#123;<span class="attr">a</span>:<span class="number">4</span>&#125;</div><div class="line"></div><div class="line">o.foo();<span class="comment">//3 不带分号后边式子会被当做iife执行</span></div><div class="line">(p.foo = o.foo)() <span class="comment">//2</span></div><div class="line">p.foo() <span class="comment">//4</span></div></pre></td></tr></table></figure>
-<h4 id="2-4-3-软绑定"><a href="#2-4-3-软绑定" class="headerlink" title="2.4.3 软绑定"></a>2.4.3 软绑定</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (!<span class="built_in">Function</span>.prototype.softBind) &#123;</div><div class="line">  <span class="built_in">Function</span>.prototype.softBind = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'this'</span>, <span class="keyword">this</span>)</div><div class="line">    <span class="keyword">var</span> fn = <span class="keyword">this</span> <span class="comment">//当前this</span></div><div class="line">    <span class="keyword">var</span> curried = [].slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>) <span class="comment">//取第一参数</span></div><div class="line">    <span class="keyword">var</span> bound = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> fn.apply(</div><div class="line">      (!<span class="keyword">this</span> || <span class="keyword">this</span> === (<span class="built_in">window</span> || global))?obj:<span class="keyword">this</span>,</div><div class="line">      curried.concat.apply(curried, <span class="built_in">arguments</span>)</div><div class="line">      )</div><div class="line">    &#125;</div><div class="line">    bound.prototype = <span class="built_in">Object</span>.create(fn.prototype)</div><div class="line">    <span class="keyword">return</span> bound</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="2-5-词法"><a href="#2-5-词法" class="headerlink" title="2.5 词法"></a>2.5 词法</h3><p>箭头函数不使用this的四种标准规则，而是根据外层作用域决定this<br>箭头函数的this绑定无法修改，包括new</p>
-<p>代码风格：</p>
-<ol>
-<li>只是用词法作用域，抛弃this风格</li>
-<li>完全this风格，必要时是用bind，避免self = this 和箭头函数</li>
-</ol>
-<h2 id="第三章-对象"><a href="#第三章-对象" class="headerlink" title="第三章 对象"></a>第三章 对象</h2><h3 id="3-1-语法"><a href="#3-1-语法" class="headerlink" title="3.1 语法"></a>3.1 语法</h3><p>两种形式定义：声明，构造</p>
-<h3 id="3-2-类型"><a href="#3-2-类型" class="headerlink" title="3.2 类型"></a>3.2 类型</h3><ul>
-<li>string</li>
-<li>number</li>
-<li>boolean</li>
-<li>null</li>
-<li>undefined</li>
-<li>object</li>
-</ul>
-<p>js中二进制前三位都为0会判断为object类型，Null二进制全是0，所以type of 返回 object</p>
-<p>内置对象</p>
-<ul>
-<li>String</li>
-<li>Number</li>
-<li>Boolean</li>
-<li>Object</li>
-<li>Function</li>
-<li>Array</li>
-</ul>
-<h4 id="3-3-4-复制对象"><a href="#3-3-4-复制对象" class="headerlink" title="3.3.4 复制对象"></a>3.3.4 复制对象</h4><p>需要保证JSON是安全的<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> newObj = <span class="built_in">JSON</span>.parse( <span class="built_in">JSON</span>.stringify( someObj ) )</div></pre></td></tr></table></figure></p>
-<p>浅复制<br>Object.assign()<br>遍历源对象的所有可枚举的自有键，复制到目标对象（使用=操作符赋值，所以源对象属性的特征不会被复制到目标）</p>
-<h4 id="3-3-5-属性描述符"><a href="#3-3-5-属性描述符" class="headerlink" title="3.3.5 属性描述符"></a>3.3.5 属性描述符</h4><p>获取属性<code>Object.getOwnPropertyDescriptor(obj,key)</code>返回属性描述对象</p>
-<p>属性的两种状态</p>
-<ul>
-<li>属性描述符<ul>
-<li>访问描述符</li>
-</ul>
-</li>
-</ul>
-<p>属性描述符</p>
-<ul>
-<li><code>value</code><ul>
-<li><code>writable</code> 可写</li>
-<li><code>enumerable</code> 可枚举</li>
-<li><code>configurable</code> 可配置</li>
-</ul>
-</li>
-</ul>
-<p>访问描述符</p>
-<ul>
-<li><code>getter</code><ul>
-<li><code>setter</code> 可写</li>
-<li><code>enumerable</code> 可枚举</li>
-<li><code>configurable</code> 可配置</li>
-</ul>
-</li>
-</ul>
-<h4 id="3-3-6-不变性"><a href="#3-3-6-不变性" class="headerlink" title="3.3.6 不变性"></a>3.3.6 不变性</h4><ol>
-<li>对象常量<br><code>writable:false</code>,<code>configurable:false</code> 创建常量属性</li>
-<li>禁止扩展<br>添加新属性会报错<br><code>Object.preventExtensions()</code></li>
-<li>密封<br><code>Object.seal()</code>密封对象<br>实际上是对现有对象调用<code>Object.preventExtensions()</code><br>并将所有现有属性标记为<code>configurable:false</code></li>
-<li>冻结<br><code>Object.freeze()</code>创建冻结对象<br>事实上是在现有对象上调用<code>Object.seal()</code>并将所有数据属性标记为<code>writable:false</code></li>
-</ol>
-<h4 id="3-3-7-Get"><a href="#3-3-7-Get" class="headerlink" title="3.3.7 [[Get]]"></a>3.3.7 [[Get]]</h4><p>语言规范中：[[Get]]操作像是函数调用，现在对象中查找是否有名称相同的属性，找到就返回，没有找到按照[[Get]]算法，在原型链中查找</p>
-<h4 id="3-3-8-Put"><a href="#3-3-8-Put" class="headerlink" title="3.3.8 [[Put]]"></a>3.3.8 [[Put]]</h4><p>[[Put]]并不等于赋值操作<br>具体行为取决于多种因素</p>
-<ol>
-<li>属性是否是访问描述符，是并且存在setter调用setter</li>
-<li>属性的数据描述符中writable是否是false,是则失败，严格报typeError</li>
-<li>不是，将值设置为属性值</li>
-</ol>
-<p>不存在这个属性，将会更复杂。</p>
-<h4 id="3-3-9-Getter和Setter"><a href="#3-3-9-Getter和Setter" class="headerlink" title="3.3.9 Getter和Setter"></a>3.3.9 Getter和Setter</h4><p>对象默认的[[Set]],[[Put]]操作分别可控制属性值的设置与获取</p>
-<p>用过<code>getter</code>,<code>setter</code>改写默认操作，只能应用在单个属性上<br>给属性设置<code>getter``setter</code>，当前属性被定义为<code>访问描述符</code><br><code>访问描述符</code>js会忽略value,和writable特性，替换为 get,set特性</p>
-<p>改写默认取值赋值，根据<code>setter</code>,<code>getter</code>函数返回决定实际值</p>
-<h4 id="3-3-10-存在性"><a href="#3-3-10-存在性" class="headerlink" title="3.3.10 存在性"></a>3.3.10 存在性</h4><p>判断对象中是否存在这个属性<br><code>in</code>操作符，会检查对象以及其原型链,不关心是否可枚举<br><code>obj.hasOwnProperty()</code>只会检查自身</p>
-<p>Note:通过Object.create(null)创建的对象没有<code>hasOwnProperty</code>方法</p>
-<ol>
-<li>枚举</li>
-</ol>
-<p>propertyIsEnumerable(..) 会检查给定的属性名是否直接存在于对象中(而不是在原型链 上)并且满足 enumerable:true。</p>
-<p>Object.keys(..) 会返回一个数组，包含所有可枚举属性，Object.getOwnPropertyNames(..) 会返回一个数组，包含所有属性，无论它们是否可枚举。</p>
-<h3 id="3-4-遍历"><a href="#3-4-遍历" class="headerlink" title="3.4 遍历"></a>3.4 遍历</h3><h2 id="第四章-混合对象“类”"><a href="#第四章-混合对象“类”" class="headerlink" title="第四章 混合对象“类”"></a>第四章 混合对象“类”</h2><p>面向类的设计模式</p>
-<ul>
-<li>实例化instantiation</li>
-<li>集成inheritance</li>
-<li>多态polymorphism 父类的通用行为可以被子类重写</li>
-</ul>
-<h3 id="4-1-类理论"><a href="#4-1-类理论" class="headerlink" title="4.1 类理论"></a>4.1 类理论</h3><p>描述了一种代码的组织结构<br>强调的是：数据和操作数据的行为本质上是相互关联的<br>类理论建议父类和子类使用相同的方法名来表示特定的行为，从而让子类重写父类。在 JavaScript代码中这样做会降低代码的可读性和健壮性。</p>
-<h4 id="4-1-1-“类”设计模式"><a href="#4-1-1-“类”设计模式" class="headerlink" title="4.1.1 “类”设计模式"></a>4.1.1 “类”设计模式</h4><p>面向对象设计模式: 迭代器模式、观察者模式、工厂模式、单例模式</p>
-<h4 id="4-1-2-js中的“类”"><a href="#4-1-2-js中的“类”" class="headerlink" title="4.1.2 js中的“类”"></a>4.1.2 js中的“类”</h4><p>js实际上没有类，有近似类的语法</p>
-<h3 id="4-2-类的机制"><a href="#4-2-类的机制" class="headerlink" title="4.2 类的机制"></a>4.2 类的机制</h3><h4 id="4-2-1-建造"><a href="#4-2-1-建造" class="headerlink" title="4.2.1 建造"></a>4.2.1 建造</h4><p>“类”“实例”的概念来源于房屋建造</p>
-<h4 id="4-2-2-构造函数"><a href="#4-2-2-构造函数" class="headerlink" title="4.2.2 构造函数"></a>4.2.2 构造函数</h4><p>类实例是有特殊的类方法构造的<br>这个方法通常和类名相同，被称为构造函数</p>
-<h3 id="4-3-类的继承"><a href="#4-3-类的继承" class="headerlink" title="4.3 类的继承"></a>4.3 类的继承</h3><p>父类与子类并不是实例，子类继承，子类包含父类行为的原始副本</p>
-<h4 id="4-3-1-多态"><a href="#4-3-1-多态" class="headerlink" title="4.3.1 多态"></a>4.3.1 多态</h4><p>继承父类方法，重写，或者使用继承来的方法。<br>这种既是被称为<code>多态</code>或<code>虚拟多态</code>,<code>相对多态</code></p>
-<p>super：’超类’，当前类的父类/祖先类</p>
-<p>多态：</p>
-<ul>
-<li>相对：任何方法都可以易用继承层次中高层的方法，因此相对的意思是查找上一层（不定义访问的绝对继承层次）</li>
-<li>不同层次一个方法可以被多次定义</li>
-</ul>
-<p>在子类中可以相对引用它继承的父类，这种相对引用被称为super</p>
-<p>子类得到的是父类行为的副本，对继承的方法进行重写，不会影响父类中的方法</p>
-<p>继承。实际上就是复制</p>
-<h4 id="4-3-2-多重继承"><a href="#4-3-2-多重继承" class="headerlink" title="4.3.2 多重继承"></a>4.3.2 多重继承</h4><p>多重继承：所有父类定义都会被复制到子类<br>出现问题，父类相同方法，引用哪个</p>
-<p>js不提供多重继承功能</p>
-<h3 id="4-4-混入"><a href="#4-4-混入" class="headerlink" title="4.4 混入"></a>4.4 混入</h3><p>JS继承或实例化不会复制<br>js中只有对象，并不存在可以被实例化的类。对象不会被复制，只会被关联</p>
-<p>js模拟类的复制行为，这个方法叫做<code>混入</code>。<br>显式和隐式</p>
-<h5 id="4-4-1-显示混入"><a href="#4-4-1-显示混入" class="headerlink" title="4.4.1 显示混入"></a>4.4.1 显示混入</h5><p>在很多库和框架中称为<code>extend()</code>,<code>mixin()</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mixin</span>(<span class="params">sourceObj, targetObj</span>) </span>&#123;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> sourceObj) &#123;</div><div class="line">    <span class="keyword">if</span> (!key <span class="keyword">in</span> targetObj) &#123;</div><div class="line">      <span class="comment">//只在不存在情况复制</span></div><div class="line">      targetObj[key] = sourceObj][key]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> targetObj</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> Vehicle = &#123;</div><div class="line">  <span class="attr">engines</span>: <span class="number">1</span>,</div><div class="line">  <span class="attr">ignition</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log( <span class="string">"Turning on my engine."</span> );</div><div class="line">&#125;,</div><div class="line">  <span class="attr">drive</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.ignition();</div><div class="line">    <span class="built_in">console</span>.log( <span class="string">"Steering and moving forward!"</span> );</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> Car = mixin(Vehicle, &#123;</div><div class="line">  <span class="attr">wheels</span>: <span class="number">4</span>,</div><div class="line">  <span class="attr">drive</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    Vehicle.drive.call( <span class="keyword">this</span> ) <span class="comment">//显示伪多态：js中没有相对多态机制，指明调用对象，必须使用绝对引用</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Rolling on all "</span> + <span class="keyword">this</span>.wheels + <span class="string">" wheels!"</span>)</div><div class="line">  &#125;</div><div class="line"> &#125;</div><div class="line">)</div></pre></td></tr></table></figure></p>
-<ol>
-<li><p>多态<br>js中没有相对多态机制，指明调用对象，必须使用绝对引用<br>尽量避免显式伪多态<code>(OtherObj.methodName.call(this, ...))</code></p>
-</li>
-<li><p>混合复制<br>问题:函数对象复制的是引用<br>混入多个对象就实现了多重继承</p>
-</li>
-<li><p>寄生继承</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//“传统的 JavaScript 类”Vehicle</span></div><div class="line"><span class="comment">//父类</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Vehicle</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.engines = <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line">Vehicle.prototype.ignition = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log( <span class="string">"Turning on my engine."</span> )</div><div class="line">&#125;</div><div class="line">Vehicle.prototype.drive = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.ignition()</div><div class="line">  <span class="built_in">console</span>.log( <span class="string">"Steering and moving forward!"</span> );</div><div class="line">&#125;</div><div class="line"><span class="comment">//“寄生类”Car</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params"></span>) </span>&#123;</div><div class="line"><span class="comment">//子类</span></div><div class="line"><span class="comment">// 首先，car 是一个Vehicle</span></div><div class="line">  <span class="keyword">var</span> car = <span class="keyword">new</span> Vehicle();</div><div class="line"><span class="comment">// 接着我们对 car 进行定制</span></div><div class="line">  car.wheels = <span class="number">4</span>;</div><div class="line"><span class="comment">// 保存到 Vehicle::drive() 的特殊引用</span></div><div class="line">  <span class="keyword">var</span> vehDrive = car.drive;</div><div class="line"><span class="comment">// 重写 Vehicle::drive()</span></div><div class="line">  car.drive = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    vehDrive.call( <span class="keyword">this</span> );</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">"Rolling on all "</span> + <span class="keyword">this</span>.wheels + <span class="string">" wheels!"</span>);</div><div class="line">      <span class="keyword">return</span> car</div><div class="line">    &#125;</div><div class="line">  <span class="keyword">var</span> myCar = <span class="keyword">new</span> Car();<span class="comment">//子类实例</span></div><div class="line">  myCar.drive(); <span class="comment">// 发动引擎。 // 手握方向盘! // 全速前进!</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>隐式混入</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//隐式混入</span></div><div class="line"><span class="keyword">var</span> Something = &#123;</div><div class="line">  <span class="attr">cool</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.greeting = <span class="string">"Hello World"</span>;</div><div class="line">    <span class="keyword">this</span>.count = <span class="keyword">this</span>.count ? <span class="keyword">this</span>.count + <span class="number">1</span> : <span class="number">1</span>; &#125;</div><div class="line">  &#125;</div><div class="line">  Something.cool();</div><div class="line">  Something.greeting; <span class="comment">// "Hello World"</span></div><div class="line">  Something.count; <span class="comment">// 1</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> Another = &#123;</div><div class="line">  <span class="attr">cool</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// 隐式把 Something 混入 Another</span></div><div class="line">  <span class="comment">// 借用</span></div><div class="line">  Something.cool.call( <span class="keyword">this</span> ); &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Another.cool();</div><div class="line">Another.greeting; <span class="comment">// "Hello World" Another.count; // 1(count 不是共享状态)</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>尽量避免，保证代码的整洁和可维护性</p>
-<h2 id="第五章原型"><a href="#第五章原型" class="headerlink" title="第五章原型"></a>第五章原型</h2><h3 id="5-1-Prototype"><a href="#5-1-Prototype" class="headerlink" title="5.1 [[Prototype]]"></a>5.1 [[Prototype]]</h3><p>对象的内置属性[[Prototype]]</p>
-<h4 id="5-1-2-属性设置和屏蔽"><a href="#5-1-2-属性设置和屏蔽" class="headerlink" title="5.1.2 属性设置和屏蔽"></a>5.1.2 属性设置和屏蔽</h4><p>下层会屏蔽原型链上层的同名属性</p>
-<p>复杂情况</p>
-<ol>
-<li>原型链上层存在foo，普通数据访问属性，并且不是只读，会直接在myObject上添加一个新的属性，是<code>屏蔽属性</code></li>
-<li>如果原型链上层存在foo,标记为只读，将无法修改已有属性或者在myObject上创建属性。严格模式下会抛出错误，否则忽略</li>
-<li>原型链上层存在并且为<code>setter</code>会调用<code>setter</code></li>
-</ol>
-<p>可以通过<code>Object.defineProperty()</code>添加属性<br>尽量避免使用屏蔽</p>
-<p>隐式屏蔽<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> anotherObject = &#123; <span class="attr">a</span>:<span class="number">2</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> myObject = <span class="built_in">Object</span>.create( anotherObject );</div><div class="line">  anotherObject.a; <span class="comment">// 2</span></div><div class="line">  myObject.a; <span class="comment">// 2</span></div><div class="line">  anotherObject.hasOwnProperty( <span class="string">"a"</span> ); <span class="comment">// true</span></div><div class="line">  myObject.hasOwnProperty( <span class="string">"a"</span> ); <span class="comment">// false</span></div><div class="line">  myObject.a++; <span class="comment">// 隐式屏蔽! anotherObject.a; // 2</span></div><div class="line">  myObject.a; <span class="comment">// 3</span></div><div class="line">  myObject.hasOwnProperty( <span class="string">"a"</span> ); <span class="comment">// true</span></div></pre></td></tr></table></figure></p>
-<h3 id="5-2-‘类’"><a href="#5-2-‘类’" class="headerlink" title="5.2 ‘类’"></a>5.2 ‘类’</h3><p>Js中没有类，只有对象</p>
-<h4 id="5-2-1-‘类’函数"><a href="#5-2-1-‘类’函数" class="headerlink" title="5.2.1 ‘类’函数"></a>5.2.1 ‘类’函数</h4><p>利用函数的特殊特性，函数默认会拥有一个prototype共有不可枚举属性，指向一个对象</p>
-<p>函数的<code>prototype</code>是函数的原型属性，当函数作为构造函数时，实例化出来的对象会将函数的原型属性，当做自己的原型对象[[Prototype]]</p>
-<p>名称<br>[[Prototype]]机制，被称为<code>原型继承</code><br>在面向类的世界中，<code>继承</code>意味着复制，但js中并没有进行复制</p>
-<p><code>委托</code>: js在两个对象间创建关联，这样对象通过<code>委托</code>原型对象访问它的属性和函数</p>
-<p><code>差异继承</code>: ？？？</p>
-<h4 id="5-2-2-‘构造函数’"><a href="#5-2-2-‘构造函数’" class="headerlink" title="5.2.2 ‘构造函数’"></a>5.2.2 ‘构造函数’</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line"><span class="comment">// ...</span></div><div class="line">&#125;</div><div class="line">Foo.prototype.constructor === Foo; <span class="comment">// true</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</div><div class="line">a.constructor === Foo; <span class="comment">// true</span></div></pre></td></tr></table></figure>
-<p>构造函数原型上有<code>constructor</code>指向构造函数，通过这个构造函数实例化的对象，通过原型对象也可以访问这个构造函数</p>
-<ol>
-<li>构造函数还是调用<br>事实上，new会劫持所有普通函数使用构造对象的形式调用</li>
-</ol>
-<h4 id="5-2-3-技术"><a href="#5-2-3-技术" class="headerlink" title="5.2.3 技术"></a>5.2.3 技术</h4><p>constructor 与 实例化的对象没有关联关系，当实例化对象的构造函数的原型被替换，在替换之前实例化的对象的原型对象并不会变</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123; <span class="comment">/* .. */</span> &#125;</div><div class="line">Foo.prototype = &#123; <span class="comment">/* .. */</span> &#125;; <span class="comment">// 创建一个新原型对象</span></div><div class="line"><span class="keyword">var</span> a1 = <span class="keyword">new</span> Foo();</div><div class="line">a1.constructor === Foo; <span class="comment">// false! a1.constructor === Object; // true!</span></div></pre></td></tr></table></figure>
-<p>手动给构造函数原型的添加<code>constructor</code>构造器，需要手动添加符合正常行为的不可枚举属性</p>
-<p><code>constructor</code>仅仅是不可枚举的</p>
-<p>尽量避免这些引用</p>
-<h3 id="5-3-（原型）继承"><a href="#5-3-（原型）继承" class="headerlink" title="5.3 （原型）继承"></a>5.3 （原型）继承</h3><p>类与实例之间的关系</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//ES6之前修改原型：</span></div><div class="line">Bar.ptototype = <span class="built_in">Object</span>.create( Foo.prototype )</div><div class="line"></div><div class="line"><span class="comment">//ES6：</span></div><div class="line"><span class="built_in">Object</span>.setPrototypeOf( Bar.prototype, Foo.prototype )</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2017/03/13/你不知道的js-作用域/" itemprop="url">
-                  未命名
+                  你不知道的JS-作用域
                 </a>
               
             
@@ -725,7 +441,7 @@
               
                 
                 <a class="post-title-link" href="/2017/03/11/自控力/" itemprop="url">
-                  未命名
+                  自控力
                 </a>
               
             
@@ -933,7 +649,7 @@
               
                 
                 <a class="post-title-link" href="/2017/02/14/注意点： flex布局下的，子元素的float,clear,vertical-align将会失效/" itemprop="url">
-                  未命名
+                  flex布局
                 </a>
               
             
@@ -1082,7 +798,7 @@
               
                 
                 <a class="post-title-link" href="/2017/02/03/生命周期三种状态/" itemprop="url">
-                  未命名
+                  生命周期三种状态
                 </a>
               
             
@@ -1552,99 +1268,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/19/React-Redux 分离表示和容器组件/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-19T15:27:52+08:00" content="2016-12-19">
-              2016-12-19
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="React-Redux-分离表示和容器组件"><a href="#React-Redux-分离表示和容器组件" class="headerlink" title="React-Redux 分离表示和容器组件"></a>React-Redux 分离表示和容器组件</h1>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/11/15/--学习笔记——IEEE-802.3以太网络-Enthernet/" itemprop="url">
                   学习笔记——IEEE 802.3以太网络 Enthernet
                 </a>
@@ -1749,6 +1372,278 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/15/高效学习的建议/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-15T21:43:12+08:00" content="2016-11-15">
+              2016-11-15
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>首先定义学习的目标</li>
+</ul>
+<h2 id="高效学习的建议"><a href="#高效学习的建议" class="headerlink" title="高效学习的建议"></a>高效学习的建议</h2><ul>
+<li>Anki 帮助记忆</li>
+</ul>
+<p>建议：</p>
+<ul>
+<li>快速获得反馈 <ul>
+<li>反反复复练习，每次都获得反馈可以很快的提升</li>
+</ul>
+</li>
+<li>创造深的理解<ul>
+<li>列出要学习的知识点：试图以讲给学生的方式讲出来</li>
+</ul>
+</li>
+<li>高强度学习<ul>
+<li>刻意练习</li>
+<li>广泛练习</li>
+</ul>
+</li>
+<li>习惯的养成<ul>
+<li>只有一个重要的坚持下去</li>
+</ul>
+</li>
+<li>学习的动机</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/11/ES6-Class/" itemprop="url">
+                  Class
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-11T11:07:35+08:00" content="2016-11-11">
+              2016-11-11
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>阅读阮一峰老师的ES6入门的学习笔记。</p>
+<h1 id="Class-基本语法"><a href="#Class-基本语法" class="headerlink" title="Class 基本语法"></a>Class 基本语法</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><code>class</code>关键字，可以看做语法糖。大部分功能ES5通过构造函数生成新对象都可以完成。<code>class</code>写法让对象原型的写法更清晰。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x, y</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.x = x;</div><div class="line">  <span class="keyword">this</span>.y = y;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Point.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="string">'('</span> + <span class="keyword">this</span>.x + <span class="string">', '</span> + <span class="keyword">this</span>.y + <span class="string">')'</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">2</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//定义类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(x, y) &#123;</div><div class="line">    <span class="keyword">this</span>.x = x;</div><div class="line">    <span class="keyword">this</span>.y = y;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  toString() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'('</span> + <span class="keyword">this</span>.x + <span class="string">', '</span> + <span class="keyword">this</span>.y + <span class="string">')'</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="与ES5构造函数比较"><a href="#与ES5构造函数比较" class="headerlink" title="与ES5构造函数比较"></a>与ES5构造函数比较</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
+<li><p><code>class Point</code>等价于<code>function Point</code></p>
+</li>
+<li><p><code>constructor</code>是构造方法，等价于ES5中构造函数内定义的内容</p>
+</li>
+<li><p><code>this</code>与ES5一样，代表实例对象</p>
+</li>
+<li><p>定义“类”的方法不需要加上<code>function</code>关键字，直接写函数名以及函数体。与ES5在构造函数的 <strong>原型对象</strong> 上(<code>Point.prototype</code>)上定义方法</p>
+</li>
+<li><p>“类”的方法之间不需要逗号分隔</p>
+</li>
+<li><p>可以使用<code>Object.assign</code>方法，一次向类添加多个方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>()&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">Object</span>.assign(Point.prototype, &#123;</div><div class="line">  toString()&#123;&#125;,</div><div class="line">  toValue()&#123;&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
+<li><p>与ES5构造函数一样，通过<code>new</code>命令创造实例对象</p>
+</li>
+<li><p>与ES5 <strong>不同</strong> 类内部定义的方法是不可枚举的 （non-enumerable）</p>
+</li>
+<li><p>类的构造函数，不使用<code>new</code>无法调用。ES5中构造函数可以不通过<code>new</code>调用</p>
+</li>
+<li><p>ES6 不存在变量提升所以需要先声明父类再使用</p>
+</li>
+<li><p>“类”的属性名，可以采用表达式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> methodName = <span class="string">"getArea"</span>;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span></span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(length) &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  [methodName]() &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><ul>
+<li>与构造函数相同<code>typeof</code>为<code>function</code></li>
+<li><code>Point.prototype.constructor</code>也为自身</li>
+</ul>
+<h2 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h2><ul>
+<li>类的默认方法，通过<code>new</code>生成对象实例时自动调用。</li>
+<li>没有定义时，会默认添加空的<code>constructor</code>方法</li>
+<li>默认返回对象实例（<code>this</code>）也可以返回别的对象</li>
+<li>类的构造函数，不使用<code>new</code>无法调用。</li>
+</ul>
+<h2 id="类的实例对象"><a href="#类的实例对象" class="headerlink" title="类的实例对象"></a>类的实例对象</h2><ul>
+<li>与ES5相同，实例的属性除非显示的定义在<code>this</code>上，否则都是定义在原型上<code>class</code>上</li>
+<li>与ES5相同，类的所有实例共享同一个原型对象</li>
+</ul>
+<h2 id="Class表达式"><a href="#Class表达式" class="headerlink" title="Class表达式"></a>Class表达式</h2><ul>
+<li><p>和函数一样可以使用表达式形式定义</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> MyClass = <span class="class"><span class="keyword">class</span> <span class="title">Me</span> </span>&#123;</div><div class="line">  getClassName() &#123;</div><div class="line">    <span class="keyword">return</span> Me.name;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>类的名字是<code>MyClass</code></li>
+<li><code>Me</code>只能在Class内部可用</li>
+<li><code>Me</code>和函数名一样，可以省略</li>
+</ul>
+</li>
+<li><p>​</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1794,7 +1689,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1804,7 +1699,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
