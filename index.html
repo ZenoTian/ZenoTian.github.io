@@ -236,6 +236,241 @@
             
               
                 
+                <a class="post-title-link" href="/2017/09/07/Docker中的数据管理/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-07T19:57:31+08:00" content="2017-09-07">
+              2017-09-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Docker中的数据管理"><a href="#Docker中的数据管理" class="headerlink" title="Docker中的数据管理"></a>Docker中的数据管理</h2><h3 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h3><h4 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h4><ul>
+<li>数据卷可以在容器之间共享和重用</li>
+<li>对数据卷的修改会立马生效</li>
+<li>对数据卷的更新，不会影响镜像</li>
+<li>数据卷默认会一直存在，即使容器被删除</li>
+</ul>
+<h4 id="作用：持久化数据"><a href="#作用：持久化数据" class="headerlink" title="作用：持久化数据"></a>作用：持久化数据</h4><h4 id="创建与挂载："><a href="#创建与挂载：" class="headerlink" title="创建与挂载："></a>创建与挂载：</h4><p>通过<code>docker run</code>的<code>-v</code>参数</p>
+<p>示例：</p>
+<h5 id="创建一个数据卷"><a href="#创建一个数据卷" class="headerlink" title="创建一个数据卷"></a>创建一个数据卷</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -P --name web -v /webapp</div></pre></td></tr></table></figure>
+<p>加载一个数据卷到容器的 /webapp 目录</p>
+<h5 id="挂载主机目录作为数据卷"><a href="#挂载主机目录作为数据卷" class="headerlink" title="挂载主机目录作为数据卷"></a>挂载主机目录作为数据卷</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker run -d -P --name web -v /src/webapp:/opt/webapp</div><div class="line">#挂载主机目录作为数据卷</div></pre></td></tr></table></figure>
+<p>加载主机的<code>src/webapp</code>目录到容器的<code>opt/webapp</code></p>
+<h6 id="Note：Dockerfile中不支持这种写法，因为不同系统路径格式不一样"><a href="#Note：Dockerfile中不支持这种写法，因为不同系统路径格式不一样" class="headerlink" title="Note：Dockerfile中不支持这种写法，因为不同系统路径格式不一样"></a>Note：Dockerfile中不支持这种写法，因为不同系统路径格式不一样</h6><h5 id="挂载本地文件作为数据卷"><a href="#挂载本地文件作为数据卷" class="headerlink" title="挂载本地文件作为数据卷"></a>挂载本地文件作为数据卷</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo docker run --rm -it -v ~/.bash_history:/.bash_history ubuntu /bin/bash</div></pre></td></tr></table></figure>
+<h4 id="删除数据卷"><a href="#删除数据卷" class="headerlink" title="删除数据卷"></a>删除数据卷</h4><p>删除容器的时候使用 <code>docker rm -v</code></p>
+<h4 id="查看数据卷具体信息"><a href="#查看数据卷具体信息" class="headerlink" title="查看数据卷具体信息"></a>查看数据卷具体信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker inspect [name]</div></pre></td></tr></table></figure>
+<p>默认数据卷创建在<code>/var/lib/docker/volumes/</code>下面</p>
+<h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><h4 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h4><p>持续更新的数据在容器之间共享</p>
+<p>本质上就是一个容器，专门用来提供数据卷供其他容器挂载</p>
+<p>​    </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/07/mongoDB用户管理/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-07T17:45:02+08:00" content="2017-09-07">
+              2017-09-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>当你的MongoDB数据库在本地使用时不需要账号密码没问题，但是当部署到服务器时是不能没有身份验证的。今天学习MongoDB用户配置，在此稍作记录。</p>
+<h4 id="MongoDB中的用户类型-user"><a href="#MongoDB中的用户类型-user" class="headerlink" title="MongoDB中的用户类型/user"></a>MongoDB中的用户类型/user</h4><p>常用MongDB的用户类型</p>
+<ul>
+<li>超级管理员：拥有最高权限，可以对任何数据库进行任意操作</li>
+</ul>
+<ul>
+<li>管理员用户：拥有当前数据库最高权限，可以对当前库进行任意操作</li>
+<li>数据库用户：只拥有对当前数据库数据的读写权利</li>
+</ul>
+<h4 id="MongoDB中的角色-权限-role"><a href="#MongoDB中的角色-权限-role" class="headerlink" title="MongoDB中的角色/权限/role"></a>MongoDB中的角色/权限/role</h4><p> 创建用户的时候需要指定用户的对于某个数据库是什么角色</p>
+<p>可以理解为对某个数据库的权限设置</p>
+<p>Read：允许用户读取指定数据库</p>
+<p>readWrite：允许用户读写指定数据库</p>
+<p>dbAdmin：允许用户在指定数据库中执行管理函数，如索引创建、删除，查看统计或访问system.profile</p>
+<p>userAdmin：允许用户向system.users集合写入，可以找指定数据库里创建、删除和管理用户</p>
+<p>clusterAdmin：只在admin数据库中可用，赋予用户所有分片和复制集相关函数的管理权限。</p>
+<p>readAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的读权限</p>
+<p>readWriteAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的读写权限</p>
+<p>userAdminAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的userAdmin权限</p>
+<p>dbAdminAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的dbAdmin权限。</p>
+<p>root：只在admin数据库中可用。超级账号，超级权限</p>
+<h4 id="用户相关的方法"><a href="#用户相关的方法" class="headerlink" title="用户相关的方法"></a>用户相关的方法</h4><p><a href="https://docs.mongodb.com/manual/core/security-users/" target="_blank" rel="external">https://docs.mongodb.com/manual/core/security-users/</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">#添加用户：</div><div class="line">db.createUser(&#123; </div><div class="line">  user: &quot;&lt;name&gt;&quot;, //用户名</div><div class="line">  pwd: &quot;&lt;cleartext password&gt;&quot;,</div><div class="line">  customData: &#123; &lt;any information&gt; &#125;, //可选的，备注信息。</div><div class="line">  roles: [</div><div class="line">    &#123; role: &quot;&lt;role&gt;&quot;, db: &quot;&lt;database&gt;&quot; &#125; | &quot;&lt;role&gt;&quot;, //指定角色</div><div class="line">    ...</div><div class="line">  ]&#125;,</div><div class="line">  writeConcern: &#123; &lt;write concern&gt; &#125;</div><div class="line"> )</div><div class="line">#更改用户信息：将会覆盖掉原先的用户信息</div><div class="line">root(</div><div class="line">   &quot;&lt;username&gt;&quot;,</div><div class="line">   &#123;</div><div class="line">     customData : &#123; &lt;any information&gt; &#125;,</div><div class="line">     roles : [</div><div class="line">               &#123; role: &quot;&lt;role&gt;&quot;, db: &quot;&lt;database&gt;&quot; &#125; | &quot;&lt;role&gt;&quot;,</div><div class="line">               ...</div><div class="line">             ],</div><div class="line">     pwd: &quot;&lt;cleartext password&gt;&quot;</div><div class="line">    &#125;,</div><div class="line">    writeConcern: &#123; &lt;write concern&gt; &#125;</div><div class="line">)</div></pre></td></tr></table></figure>
+<h4 id="用户验证登陆的两种方式"><a href="#用户验证登陆的两种方式" class="headerlink" title="用户验证登陆的两种方式"></a>用户验证登陆的两种方式</h4><h5 id="注意点：验证的用户的时候，必须在该用户创建的数据库验证"><a href="#注意点：验证的用户的时候，必须在该用户创建的数据库验证" class="headerlink" title="注意点：验证的用户的时候，必须在该用户创建的数据库验证"></a>注意点：验证的用户的时候，必须在该用户创建的数据库验证</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mongod --auth</div><div class="line">#开启验证</div></pre></td></tr></table></figure>
+<h5 id="1-连接数据库时验证"><a href="#1-连接数据库时验证" class="headerlink" title="1.连接数据库时验证"></a>1.连接数据库时验证</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongo -u &quot;admin&quot; -p &quot;adminPass&quot; --authenticationDatabase &quot;admin&quot;</div></pre></td></tr></table></figure>
+<h5 id="2-连接之后再进行验证"><a href="#2-连接之后再进行验证" class="headerlink" title="2.连接之后再进行验证"></a>2.连接之后再进行验证</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mongo --port 27017</div><div class="line"></div><div class="line">use admin</div><div class="line">db.auth(&quot;admin&quot;, &quot;adminPass&quot;)</div></pre></td></tr></table></figure>
+<h4 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h4><p>1.创建超级管理员用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo mongod --logpath=./log/log.log # 启动mongoDB</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">mongo</div><div class="line">#进入mongo shell</div><div class="line">use admin  </div><div class="line">#切换到admin数据库</div><div class="line">db.system.users.find()</div><div class="line"> #可以查看下admin下用户，默认应该是没有数据的</div><div class="line">db.createUser(&#123;				</div><div class="line">  user:&apos;admin&apos;,</div><div class="line">  pwd:&apos;adminPass&apos;,</div><div class="line">  roles:[&apos;root&apos;]</div><div class="line">&#125;)</div><div class="line">Successfully added user: &#123; &quot;user&quot; : &quot;admin&quot;, &quot;roles&quot; : [ &quot;root&quot; ] &#125;</div></pre></td></tr></table></figure>
+<p>### </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/09/06/docker基本用法/" itemprop="url">
                   未命名
                 </a>
@@ -1009,7 +1244,7 @@
             
               
                 
-                <a class="post-title-link" href="/2017/08/21/mongoDB/" itemprop="url">
+                <a class="post-title-link" href="/2017/08/21/mongoDB基本指令/" itemprop="url">
                   未命名
                 </a>
               
@@ -1065,10 +1300,10 @@
 <h2 id="运行-MongoDB"><a href="#运行-MongoDB" class="headerlink" title="运行 MongoDB"></a>运行 MongoDB</h2><p>1、首先我们创建一个数据库存储目录 /data/db：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo mkdir -p /data/db</div></pre></td></tr></table></figure>
 <p>启动 mongodb，默认数据库目录即为 /data/db：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo mongo #启动mongo</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo mongod #启动mongo</div><div class="line">#参数</div><div class="line">--dbpath [数据存放path]  #指定数据库path</div><div class="line">-auth #开启授权启动</div><div class="line">--logpath [数据存放path]  #指定日志路径</div></pre></td></tr></table></figure>
 <p> 开启一个新的终端进入MongoDB shell</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongo</div></pre></td></tr></table></figure>
-<h3 id="通过Studio-3T连接"><a href="#通过Studio-3T连接" class="headerlink" title="通过Studio 3T连接"></a>通过Studio 3T连接</h3><h3 id="MongoDB配置"><a href="#MongoDB配置" class="headerlink" title="MongoDB配置"></a>MongoDB配置</h3><ul>
+<h3 id="MongoDB配置"><a href="#MongoDB配置" class="headerlink" title="MongoDB配置"></a>MongoDB配置</h3><ul>
 <li>端口<ul>
 <li>默认端口 27017</li>
 <li>Mongo shell 获取端口 <code>db.getMongo()</code></li>
@@ -1081,7 +1316,10 @@
 <h5 id="查看所有数据库"><a href="#查看所有数据库" class="headerlink" title="查看所有数据库"></a>查看所有数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show dbs</div></pre></td></tr></table></figure>
 <h5 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.dropDatabase()</div></pre></td></tr></table></figure>
 <p>##### </p>
-<h3 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h3><h5 id="Create-插入数据"><a href="#Create-插入数据" class="headerlink" title="Create 插入数据"></a>Create 插入数据</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">db.collection.insert()  	    # 插入数据</div><div class="line">db.collection.save()        	# 不传Id会插入一条新的数据，传id此操作变为更新数据</div><div class="line">db.collection.insertOne()   	# 向指定集合中插入一条文档数据 </div><div class="line">db.collection.insertMany() 		# 向指定集合中插入多条文档数据,传入数组</div></pre></td></tr></table></figure>
+<blockquote>
+<p>db.dropDatabase()  #删除当前使用数据库<br>db.cloneDatabase(“127.0.0.1”)   #将指定机器上的数据库的数据克隆到当前数据库<br>db.copyDatabase(“mydb”, “temp”, “127.0.0.1”)  #将本机的mydb的数据复制到temp数据库中<br>db.repairDatabase()  #修复当前数据库<br>db.getName()  #查看当前使用的数据库，也可以直接用db<br>db.stats()  #显示当前db状态<br>db.version()  #当前db版本<br>db.getMongo()  ＃查看当前db的链接机器地址<br>db.serverStatus()  #查看数据库服务器的状态CRUD</p>
+</blockquote>
+<h5 id="Create-插入数据"><a href="#Create-插入数据" class="headerlink" title="Create 插入数据"></a>Create 插入数据</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">db.collection.insert()  	    # 插入数据</div><div class="line">db.collection.save()        	# 不传Id会插入一条新的数据，传id此操作变为更新数据</div><div class="line">db.collection.insertOne()   	# 向指定集合中插入一条文档数据 </div><div class="line">db.collection.insertMany() 		# 向指定集合中插入多条文档数据,传入数组</div></pre></td></tr></table></figure>
 <h5 id="Retrieve读取数据"><a href="#Retrieve读取数据" class="headerlink" title="Retrieve读取数据"></a>Retrieve读取数据</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">db.collection.find(query, projection)</div><div class="line">db.col.find().pretty() # pretty</div></pre></td></tr></table></figure>
 <h5 id="Update更新数据"><a href="#Update更新数据" class="headerlink" title="Update更新数据"></a>Update更新数据</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">db.collection.update(             # 更新已存在的文档</div><div class="line">   &lt;query&gt;,  					# update的查询条件</div><div class="line">   &lt;update&gt;,					# update的对象和一些更新的操作符（如$,$inc...）等</div><div class="line">   &#123;</div><div class="line">     upsert: &lt;boolean&gt;,			 # 可选，如果不存在update的记录，是否插入一条新的,默认是false，不插入。</div><div class="line">     multi: &lt;boolean&gt;,			 # 可选，默认是false,只更新找到的第一条记录，否则更新全部</div><div class="line">     writeConcern: &lt;document&gt;	  # 可选，抛出异常的级别。</div><div class="line">   &#125;</div><div class="line">)</div><div class="line"></div><div class="line">db.collection.save(				# 通过传入的文档来替换已有文档</div><div class="line">   &lt;document&gt;,</div><div class="line">   &#123;</div><div class="line">     writeConcern: &lt;document&gt;</div><div class="line">   &#125;</div><div class="line">)</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># 只更新第一条记录：</div><div class="line">db.col.update( &#123; &quot;count&quot; : &#123; $gt : 1 &#125; &#125; , &#123; $set : &#123; &quot;test2&quot; : &quot;OK&quot;&#125; &#125; );</div><div class="line"># 全部更新：</div><div class="line">db.col.update( &#123; &quot;count&quot; : &#123; $gt : 3 &#125; &#125; , &#123; $set : &#123; &quot;test2&quot; : &quot;OK&quot;&#125; &#125;,false,true );</div><div class="line"># 只添加第一条：</div><div class="line">db.col.update( &#123; &quot;count&quot; : &#123; $gt : 4 &#125; &#125; , &#123; $set : &#123; &quot;test5&quot; : &quot;OK&quot;&#125; &#125;,true,false );</div><div class="line"># 全部添加加进去:</div><div class="line">db.col.update( &#123; &quot;count&quot; : &#123; $gt : 5 &#125; &#125; , &#123; $set : &#123; &quot;test5&quot; : &quot;OK&quot;&#125; &#125;,true,true );</div><div class="line"># 全部更新：</div><div class="line">db.col.update( &#123; &quot;count&quot; : &#123; $gt : 15 &#125; &#125; , &#123; $inc : &#123; &quot;count&quot; : 1&#125; &#125;,false,true );</div><div class="line"># 只更新第一条记录：</div><div class="line">db.col.update( &#123; &quot;count&quot; : &#123; $gt : 10 &#125; &#125; , &#123; $inc : &#123; &quot;count&quot; : 1&#125; &#125;,false,false );</div></pre></td></tr></table></figure>
@@ -1488,416 +1726,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/13/你不知道的js-作用域/" itemprop="url">
-                  你不知道的JS-作用域
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-13T17:46:34+08:00" content="2017-03-13">
-              2017-03-13
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><h3 id="1-1编译原理"><a href="#1-1编译原理" class="headerlink" title="1.1编译原理"></a>1.1编译原理</h3><ul>
-<li>分词/词法分析（Tokenizing/Lexing）<br>将字符串分解成代码块（词法单元）<br>分词和词法分析的差异在于词法单元的识别是通过<code>有状态</code>还是<code>无状态的</code></li>
-<li>解析/语法分析（Parsing）<br>将词法单元流（数组）转换为由元素逐级嵌套组成的代表程序语法结构的树（抽象语法树AST）</li>
-<li>代码生成<br>将AST转换为可执行代码</li>
-</ul>
-<h3 id="1-2作用域"><a href="#1-2作用域" class="headerlink" title="1.2作用域"></a>1.2作用域</h3><h4 id="JS运行"><a href="#JS运行" class="headerlink" title="JS运行"></a>JS运行</h4><ul>
-<li>引擎：负责JS编译与执行</li>
-<li>编译器：负责语法分析以及代码生成</li>
-<li>作用域：收集并维护所有声明的变量（标识符），根据规则确保执行代码对变量的访问权限</li>
-</ul>
-<h4 id="声明解析"><a href="#声明解析" class="headerlink" title="声明解析"></a>声明解析</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var a = 2</div></pre></td></tr></table></figure>
-<pre><code>1. `var a`编译器查询作用域是否存在变量`a`，有则忽略继续编译，无则要求作用域在当前作用域集合中声明一个为`a`的变量
-2. 编译器生成运行代码给引擎，处理`a = 2`赋值操作。引擎询问作用域，当前作用域是否存在`a`，存在就使用，否则继续查找。
-   最终没有查找到将会报错。
-</code></pre><h4 id="LHS-RHS"><a href="#LHS-RHS" class="headerlink" title="LHS/RHS"></a>LHS/RHS</h4><p>变量出现在赋值操作左侧进行LHS，非左侧进行RHS</p>
-<p>LHS:只查找<br>BHS:查找并取到值（）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function foo(a) &#123;</div><div class="line">  console.log(a)</div><div class="line">  //RHS，获得a的值传入console.log方法</div><div class="line">  //RHS，获得console对象，并得到log方法</div><div class="line">&#125;</div><div class="line">foo(2)</div><div class="line">//函数调用RHS，查找foo并获得foo的值</div><div class="line">//LHS查询，将2赋值给参数a</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function foo(a) &#123;</div><div class="line">  var b = a</div><div class="line">  //LHS,b=</div><div class="line">  //RHS,=a</div><div class="line">  return a + b</div><div class="line">  //RHS, a</div><div class="line">  //RHS, b</div><div class="line">&#125;</div><div class="line">var c = foo(2)</div><div class="line">//LHS,c=</div><div class="line">//RHS,foo(2)</div><div class="line">//LHS,(2)</div><div class="line">//LHS,foo</div></pre></td></tr></table></figure>
-<h3 id="1-3作用域嵌套"><a href="#1-3作用域嵌套" class="headerlink" title="1.3作用域嵌套"></a>1.3作用域嵌套</h3><p>作用域嵌套，在当前作用域无法找到变量时，引擎会在外层作用域中继续查找</p>
-<h3 id="1-4异常"><a href="#1-4异常" class="headerlink" title="1.4异常"></a>1.4异常</h3><p>RHS查询找不到会抛出异常<br>非严格LHS找不到会创建一个<br>严格模式LHS找不到也会抛出异常<br>RHS进行不合理操作会抛出TypeError</p>
-<h2 id="第二章：词法作用域"><a href="#第二章：词法作用域" class="headerlink" title="第二章：词法作用域"></a>第二章：词法作用域</h2><p>两种工作模型</p>
-<ol>
-<li>词法作用域</li>
-<li>动态作用域<h3 id="2-1词法阶段"><a href="#2-1词法阶段" class="headerlink" title="2.1词法阶段"></a>2.1词法阶段</h3>定义在词法阶段的作用域。（写代码是将变量和块作用域写在哪里决定的）</li>
-</ol>
-<h4 id="查找："><a href="#查找：" class="headerlink" title="查找："></a>查找：</h4><p>遮蔽效应：内部标识符”遮蔽”外部标识符</p>
-<h3 id="2-2欺骗词法"><a href="#2-2欺骗词法" class="headerlink" title="2.2欺骗词法"></a>2.2欺骗词法</h3><p>欺骗词法作用域会导致性能下降</p>
-<h4 id="2-2-1-eval"><a href="#2-2-1-eval" class="headerlink" title="2.2.1 eval"></a>2.2.1 eval</h4><p>eval中包含一个或多个声明会对作用域进行修改<br>严格模式下，eval有自己的词法作用域</p>
-<p>setTimeout(),setInterval()第一个参数是字符串的时候，字符串可以被解释为动态生成的函数代码</p>
-<p>new Function()接受代码字符串，转换为动态生成的函数</p>
-<p>避免使用以上方式</p>
-<h4 id="2-2-2-with"><a href="#2-2-2-with" class="headerlink" title="2.2.2 with"></a>2.2.2 with</h4><p>严格模式下被禁止</p>
-<h4 id="2-2-3-性能"><a href="#2-2-3-性能" class="headerlink" title="2.2.3 性能"></a>2.2.3 性能</h4><p>在编译阶段进行的性能优化，有些依赖于能够根据代码词法进行静态分析，预先确定所有变量和函数的定义位置，才能执行时快速找到标识符。</p>
-<h2 id="第三章，函数作用域和块作作用域"><a href="#第三章，函数作用域和块作作用域" class="headerlink" title="第三章，函数作用域和块作作用域"></a>第三章，函数作用域和块作作用域</h2><h3 id="3-1-函数中的作用域"><a href="#3-1-函数中的作用域" class="headerlink" title="3.1 函数中的作用域"></a>3.1 函数中的作用域</h3><p>Js基于函数的作用域<br>含义：属于这个函数的全部变量都可以在整个函数范围内使用以及复用</p>
-<h3 id="3-2-隐藏内部实现"><a href="#3-2-隐藏内部实现" class="headerlink" title="3.2 隐藏内部实现"></a>3.2 隐藏内部实现</h3><p>最小授权，最小暴露原则：最小限度的暴露必要内容</p>
-<p>规避冲突：避免同名标识符之间的冲突</p>
-<ol>
-<li>全局命名空间<br>通过全局作用域生命对象，将功能通过对象暴露给外界</li>
-<li>模块管理</li>
-</ol>
-<h3 id="3-3-函数作用域"><a href="#3-3-函数作用域" class="headerlink" title="3.3 函数作用域"></a>3.3 函数作用域</h3><p> 让函数名不污染所在作用域，并能够自动运行<br> 函数表达式写法<br> 如果function 是声明的第一个词，就是函数声明，否则是函数表达式<br> 函数声明和函数表达式的区别：名称标识符绑定在何处<br> 函数声明会绑定在所在作用域中<br> 函数表达式会绑定在函数表达式自身的函数中</p>
-<h4 id="3-3-1-匿名和具名"><a href="#3-3-1-匿名和具名" class="headerlink" title="3.3.1 匿名和具名"></a>3.3.1 匿名和具名</h4><p> 匿名函数的缺点：</p>
-<pre><code>1. 调试困难
-2. 引用自身需要`arguments.callee`
-3. 可读性差
-行内函数表达式可以指定函数名，所以给函数表达式命名是最佳实践
-</code></pre><h4 id="3-3-2-立即执行函数表达式IIFE"><a href="#3-3-2-立即执行函数表达式IIFE" class="headerlink" title="3.3.2 立即执行函数表达式IIFE"></a>3.3.2 立即执行函数表达式IIFE</h4><p>IIFE的两种写法</p>
-<ol>
-<li>(function(){})()</li>
-<li>(function(){}())</li>
-</ol>
-<p>IIFE的用途</p>
-<ol>
-<li>函数调用传参<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(function(global)&#123;&#125;)(window)</div><div class="line">(function(undefined)&#123;&#125;)()</div><div class="line">可以确保undefined是undefined</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>2.倒置代码运行顺序<br>将需要运行的函数放在第二位，在IIFE执行之后当参数传递进去<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">(function IIFE (def)&#123;</div><div class="line">  def(window)</div><div class="line">&#125;(function def(global) &#123;</div><div class="line">  var a =3</div><div class="line">  console.log(3)//3</div><div class="line">  console.log(global.a)//a</div><div class="line">&#125;))</div></pre></td></tr></table></figure></p>
-<h3 id="3-4-块作用域"><a href="#3-4-块作用域" class="headerlink" title="3.4 块作用域"></a>3.4 块作用域</h3><p>块作用域是对最小授权原则进行扩展的工具</p>
-<h4 id="3-4-1-with"><a href="#3-4-1-with" class="headerlink" title="3.4.1 with"></a>3.4.1 with</h4><p>用with从对象中创建出的作用域仅在with声明中有效</p>
-<h4 id="3-4-2-try-catch"><a href="#3-4-2-try-catch" class="headerlink" title="3.4.2 try/catch"></a>3.4.2 try/catch</h4><p>catch会创建一个块级作用域，其中声明的变量仅在catch内部有效</p>
-<h4 id="3-4-3-let"><a href="#3-4-3-let" class="headerlink" title="3.4.3 let"></a>3.4.3 let</h4><p>let 可以将变量绑定到所在的任意作用域中（{内部}）<br>推荐显式的使用块级作用域，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if (foo) &#123;</div><div class="line">  &#123;</div><div class="line">    let bar</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<ol>
-<li>垃圾收集<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function process (data) &#123;&#125;</div><div class="line"></div><div class="line">var someReallyBigData = &#123;&#125;</div><div class="line"></div><div class="line">process(someReallyBigData)</div><div class="line"></div><div class="line">var btn = document.getElementById(&apos;my_button&apos;)</div><div class="line"></div><div class="line">btn.addEventListener(&apos;click&apos;, function click(evt) &#123;</div><div class="line">//形成了闭包, 保留了整个外层作用域</div><div class="line">  console.log(&apos;button clicked&apos;)</div><div class="line">&#125;, false)</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>通过块级作用域，将变量进行本地绑定<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function process (data) &#123;&#125;</div><div class="line"></div><div class="line">&#123;</div><div class="line">  let someReallyBigData = &#123;&#125;</div><div class="line"></div><div class="line">  process(someReallyBigData)</div><div class="line">&#125;</div><div class="line"></div><div class="line">var btn = document.getElementById(&apos;my_button&apos;)</div><div class="line"></div><div class="line">btn.addEventListener(&apos;click&apos;, function click(evt) &#123;</div><div class="line">//形成了闭包, 保留了整个外层作用域</div><div class="line">  console.log(&apos;button clicked&apos;)</div><div class="line">&#125;, false)</div></pre></td></tr></table></figure></p>
-<ol>
-<li>let循环<br>将i重新绑定到了循环的每一个迭代中<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//代码说明</div><div class="line">&#123;</div><div class="line">  let j</div><div class="line">  for (j=0; j&lt;10; j++) &#123;</div><div class="line">    let i = j</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>let声明属于一个新的作用域而不是当前函数作用域也不是全局作用域</p>
-<h4 id="3-4-4"><a href="#3-4-4" class="headerlink" title="3.4.4"></a>3.4.4</h4><p>const固定常量不可修改</p>
-<h2 id="4-提升"><a href="#4-提升" class="headerlink" title="4 提升"></a>4 提升</h2><h3 id="4-2-编译器与提升"><a href="#4-2-编译器与提升" class="headerlink" title="4.2 编译器与提升"></a>4.2 编译器与提升</h3><p>包含变量和函数在内的所有声明都会在任何代码被执行前首先被处理<br>定义声明在编译阶段进行，只有声明本身会被提升</p>
-<h3 id="4-3-函数优先"><a href="#4-3-函数优先" class="headerlink" title="4.3 函数优先"></a>4.3 函数优先</h3><p>函数与变量声明都会提升，函数优先</p>
-<h2 id="5-作用域闭包"><a href="#5-作用域闭包" class="headerlink" title="5 作用域闭包"></a>5 作用域闭包</h2><h3 id="5-2-闭包实质"><a href="#5-2-闭包实质" class="headerlink" title="5.2 闭包实质"></a>5.2 闭包实质</h3><p>定义:函数可以记住并访问所在的词法作用域时，就产生了闭包。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">  var a = 2</div><div class="line">  function bar() &#123;</div><div class="line">    console.log(a)</div><div class="line">  &#125;</div><div class="line">  return bar</div><div class="line">&#125;</div><div class="line">var baz = foo()</div><div class="line">baz()</div></pre></td></tr></table></figure></p>
-<p>在自己定义的词法作用域之外执行，foo内存无法回收，导致foo内部作用域依然存在。<br>bar()依然持有对该作用域的引用，这个引用叫闭包</p>
-<h3 id="5-3-闭包深入"><a href="#5-3-闭包深入" class="headerlink" title="5.3 闭包深入"></a>5.3 闭包深入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function wait (message) &#123;</div><div class="line">  setTimeout(function timer()&#123;</div><div class="line">    console.log(message)</div><div class="line">  &#125;, 1000)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function setupBot (name, selector) &#123;</div><div class="line">  $(selector).click(function activator()&#123;</div><div class="line">    console.log(&apos;Activating:&apos; + name)</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line">setupBot(&apos;Closure Bot1&apos;, &apos;#bot_1&apos;)</div></pre></td></tr></table></figure>
-<p>只要使用回调函数，实际上就是在使用闭包。</p>
-<h3 id="5-4-循环和闭包"><a href="#5-4-循环和闭包" class="headerlink" title="5.4 循环和闭包"></a>5.4 循环和闭包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">for (var i=1; i&lt;=5; i++) &#123;</div><div class="line">  setTimeout(function timer()&#123;</div><div class="line">    console.log(i)</div><div class="line">  &#125;, 0)</div><div class="line">&#125;</div><div class="line">//66666</div></pre></td></tr></table></figure>
-<p>定时器的回调函数在循环结束时才执行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">for (var i=1; i&lt;=5; i++) &#123;</div><div class="line">  (function(j) &#123;</div><div class="line">    setTimeout(function timer()&#123;</div><div class="line">      console.log(j)</div><div class="line">    &#125;, 0)</div><div class="line">  &#125;)(i)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>迭代内使用IIFE为每个迭代都生成一个新的作用域<br>延迟函数的回调在新的作用域封闭在每个迭代内部</p>
-<p>块级作用域<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for (let i=1; i&lt;=5; i++) &#123;</div><div class="line">  setTimeout(function timer()&#123;</div><div class="line">    console.log(i)</div><div class="line">  &#125;, 0)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>let为每一次迭代生成块级作用域</p>
-<h3 id="5-5-模块"><a href="#5-5-模块" class="headerlink" title="5.5 模块"></a>5.5 模块</h3><p>函数通过return，将内部函数暴露在外部，内部函数依旧保持函数的作用域。形成模块</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">function CoolModule() &#123;</div><div class="line">  var something = &apos;coll&apos;</div><div class="line">  var another = [1, 2, 3]</div><div class="line">  function doSomething() &#123;</div><div class="line">    console.log(something)</div><div class="line">  &#125;</div><div class="line">  function doAnother() &#123;</div><div class="line">    console.log(anoyher.join(&apos;!&apos;))</div><div class="line">  &#125;</div><div class="line">  return &#123;</div><div class="line">    doSomething: doSomething,</div><div class="line">    doAnother: doAnother</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">var foo = CoolModule()</div><div class="line">foo.donSomething()//coll</div><div class="line">foo.doAnother()//1!2!3</div><div class="line">//每次调用都会创建新的模块实例</div></pre></td></tr></table></figure>
-<p>模块模式的两个条件</p>
-<ol>
-<li>必须有外部的封闭函数，至少被调用一次（创建模块实例）</li>
-<li>封闭函数必须返回一个内部函数，内部函数才能在私有作用域中形成闭包</li>
-</ol>
-<p>一个从函数调用所返回的，只有数据属性而没有闭包函数的对象并不是真正的模块</p>
-<p>单例模式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var foo = （ function CoolModule() &#123;</div><div class="line">  var something = &apos;coll&apos;</div><div class="line">  var another = [1, 2, 3]</div><div class="line">  function doSomething() &#123;</div><div class="line">    console.log(something)</div><div class="line">  &#125;</div><div class="line">  function doAnother() &#123;</div><div class="line">    console.log(anoyher.join(&apos;!&apos;))</div><div class="line">  &#125;</div><div class="line">  return &#123;</div><div class="line">    doSomething: doSomething,</div><div class="line">    doAnother: doAnother</div><div class="line">  &#125;</div><div class="line">&#125;)()</div><div class="line"></div><div class="line">foo.donSomething()//coll</div><div class="line">foo.doAnother()//1!2!3</div><div class="line">//转换为IIFE，只生成了一个实例</div></pre></td></tr></table></figure></p>
-<p>命名将要作为公共API返回的对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var  foo = (function CollModule(id)&#123;</div><div class="line">  function change()&#123;</div><div class="line">    publicAPI.identify = identify2</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<h4 id="5-5-1-模块机制"><a href="#5-5-1-模块机制" class="headerlink" title="5.5.1 模块机制"></a>5.5.1 模块机制</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">var MyModules = (function Manager()&#123;</div><div class="line">  var modules = &#123;&#125;</div><div class="line"></div><div class="line">  function define(name, deps, impl) &#123;</div><div class="line">    for (var i=0; i&lt;deps.length; i++) &#123;</div><div class="line">      deps[i] = modules[deps[i]]</div><div class="line">      //依赖注入</div><div class="line">    &#125;</div><div class="line">    modules[name] = impl.apply(impl, deps)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  function get(name) &#123;</div><div class="line">    return modules[name]</div><div class="line">  &#125;</div><div class="line">  return &#123;</div><div class="line">    define: define,</div><div class="line">    get: get</div><div class="line">  &#125;</div><div class="line">&#125;)()</div><div class="line"></div><div class="line">//定义模块</div><div class="line">MyModules.define(&apos;bar&apos;, [], function () &#123;</div><div class="line">  function hello(who) &#123;</div><div class="line">    return &apos;let me introduce:&apos; + who</div><div class="line">  &#125;</div><div class="line">  return &#123;</div><div class="line">    hello: hello</div><div class="line">  &#125;</div><div class="line">  //闭包，保持内部函数hello引用</div><div class="line">&#125;)</div><div class="line"></div><div class="line">MyModules.define(&apos;foo&apos;, [&apos;bar&apos;], function (bar) &#123;</div><div class="line">  var hungry = &apos;hippo&apos;</div><div class="line"></div><div class="line">  function awesome() &#123;</div><div class="line">    console.log(bar.hello(hungry).toUpperCase())</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  return &#123;</div><div class="line">    awesome: awesome</div><div class="line">  &#125;</div><div class="line">  //闭包，保持内部函数awesome引用</div><div class="line">&#125;)</div><div class="line"></div><div class="line">var bar = MyModules.get(&apos;bar&apos;)</div><div class="line">var foo = MyModules.get(&apos;foo&apos;)</div><div class="line"></div><div class="line">console.log(bar.hello(&apos;hippo&apos;))</div><div class="line"></div><div class="line">foo.awesome()//</div></pre></td></tr></table></figure>
-<h4 id="5-5-2-未来模块机制"><a href="#5-5-2-未来模块机制" class="headerlink" title="5.5.2 未来模块机制"></a>5.5.2 未来模块机制</h4><p>ES6的模块语法支持,将单个文件当做独立模块处理</p>
-<p>基于函数的模块不稳定（不能被编译器识别/动态）<br>es6模块可以再编译器检查导入模块的API和成员是否真实存在（可以进行静态检查）</p>
-<h3 id="5-6-小结"><a href="#5-6-小结" class="headerlink" title="5.6 小结"></a>5.6 小结</h3><p>当函数可以记住并访问所在的词法作用域，既是函数是在当前词法作用域之外执行，这时产生了闭包</p>
-<p>模块的两个主要特征：</p>
-<ol>
-<li>为创建内部作用域而调用包装函数</li>
-<li>包装函数的返回值至少包括一个队内部函数的引用，这样才能创建涵盖整个包装函数内部作用域的闭包</li>
-</ol>
-<h2 id="动态作用域"><a href="#动态作用域" class="headerlink" title="动态作用域"></a>动态作用域</h2><p>词法作用域特征：定义在代码书写阶段<br>动态作用域：作用域链是基于调用栈的，而不是作用域嵌套<br>js并不具有动态作用域，但是this机制某种程度上像动态作用域<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">  console.log(a)//如果是动态作用域，理论上输出3</div><div class="line">  //实际上Js没有动态作用域，所以结果为2</div><div class="line">&#125;</div><div class="line"></div><div class="line">function bar() &#123;</div><div class="line">  var a = 3</div><div class="line">  foo()</div><div class="line">&#125;</div><div class="line">var a = 2</div><div class="line">bar()</div></pre></td></tr></table></figure></p>
-<h2 id="this词法"><a href="#this词法" class="headerlink" title="this词法"></a>this词法</h2><p>箭头函数将当前的词法作用域覆盖this本来的值</p>
-<p>缺点：</p>
-<ol>
-<li>容易混淆this绑定规则和词法作用域规则</li>
-<li>匿名而非具名的</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/11/自控力/" itemprop="url">
-                  自控力
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-11T13:52:52+08:00" content="2017-03-11">
-              2017-03-11
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="自控力"><a href="#自控力" class="headerlink" title="自控力"></a>自控力</h1><h2 id="1-什么是自控力"><a href="#1-什么是自控力" class="headerlink" title="1. 什么是自控力"></a>1. 什么是自控力</h2><ul>
-<li>为什么会有意志力？<br>意志力的根本是在面临问题时做出正确的选择。<br>意志力是抑制冲动的能力。</li>
-<li>意志力的神经学原理<br>前额皮质的作用控制人体运动，控制关注什么想什么。</li>
-<li>两个自我导致的问题<br>人类虽然进化出自控系统，但是原始的本能也依然存在。<br>人的大脑中一般都会有两个想法，向着相反的方向，不论选择哪一个都没有做错。只是两个想法觉得重要的东西不同。<br>剖析：自身面临的意志力的挑战。在面临挑战的时候，需要自己意识的两种想法的存在。可以通过标签化（起名字）的方式，具象两个想法<br>原始冲动虽然会带来麻烦，但是对我们也是有利的。没有欲望，容易沮丧，没有恐惧，无法保护自我。<br>学会利用原始本能</li>
-<li>认识自己（自我意识）<br>做一件事的时候，一定要意识到自己在做什么？我们为什么这样做？做这件事情之前我们需要做什么？<br>没有自我意识的时候，大脑会默认选择最简单的事情。<br>现代社会充斥的诱惑和刺激，不断冲击着人们的自控力。注意力分散的人更容易向诱惑屈服。<br>想要更强的自控力需要有更多的自我意识。<br>实验：选择与一天将所做的决定都记下来。回想分析，哪些有利于实现目标，哪些在消磨意志？</li>
-<li>训练大脑，增强意志力<br>大脑可以像肌肉一样锻炼<br>五分钟冥想训练:<ol>
-<li>原地不动安静做好</li>
-<li>注意呼吸，吸气与呼气在脑海中默念‘呼’，‘吸’。</li>
-<li>感受呼吸，任何事情不要想，专注于呼吸。如果走神，通过默念‘呼’和‘吸’将注意力重新集中</li>
-<li>每天训练也比将训练拖到明天好。<h2 id="2-意志力的本能"><a href="#2-意志力的本能" class="headerlink" title="2. 意志力的本能"></a>2. 意志力的本能</h2></li>
-</ol>
-</li>
-<li>两种威胁<ol>
-<li>面临真正为危险的时候，原始本能会启动应激反应。应激反应会自动让身体做出调整。应激反应是一种管理能量的本能，决定了如何利用有限的体力和脑力</li>
-<li>现实生活很少有真正的威胁，不会对自己造成直接的伤害，一般是由神经刺激造成的欲望，欲望无法消灭只能克制。此时不会触发应激反应，所以需要别的办法来克制。<br>剖析：什么是威胁？我们总觉得诱惑和麻烦来自外部，但问题出现在自己身上。想要解决问题也只能在自己身上。思考自身受到诱惑的时候，自己的内心世界。</li>
-</ol>
-</li>
-<li>意志力本能：三思而后行<br>三思而后行与应激反应的区别：前者起因是认识到了内在冲突，而不是外在威胁。本能（欲望）会促使你做出潜在的错误决定。想要保护自己必须需要自控力。最有效的办法是放慢速度。</li>
-<li><p>大脑和身体<br>三思而后行：大脑让身体意识到你的目标，同时克制冲动。前额皮质要传递自控要求，降低控制心率、血压、呼吸的大脑区域运转速度。</p>
-<p>但是在事实中，三思而后行不行像本能。按照欲望从事更像是本能。</p>
-</li>
-<li><p>心率变异度<br>反应压力状态和平静状态下不同的身体状态。<br>感受到压力，交感神经系统控制身体，心率升高，心率变异度降低。伴随着应激反应产生焦虑或愤怒，心率被迫保持在较高水平。<br>自控时：副交感神经系统发挥主要作用，缓解压力，控制冲动，心率降低，心率变异度升高。可以更好的集中注意力并保持平静。</p>
-<p>心率变异度反映意志力的程度。心理学家将心率变异度称为身体的意志力储备。</p>
-<p>任何给身心带来压力的东西都会影响自控力的生理基础。焦虑、愤怒、抑郁和孤独都与低的心率变异度和自控力有关。慢性疼痛和慢性疾病也会消耗意志力储备。</p>
-<p>减轻压力，保持健康的方法：锻炼，保证良好睡眠，保证健康饮食。都可以增强身体和意志力储备</p>
-</li>
-<li><p>实验：通过呼吸实现自控<br>练习将呼吸降低至每分钟4-6次。每天可进行20分钟练习。<br>或者当面临意志力挑战的时候，尝试放慢呼吸。</p>
-</li>
-<li><p>训练身心<br>两种增长方法增强自控力的生理基础</p>
-<ol>
-<li>体育锻炼：提高心率变异度的基准线，从而改善自控力的生理基础。<br>5分钟锻炼放松即可。</li>
-<li>睡眠：长期睡眠不足容易感到压力，萌生欲望，难控制情绪，注意力下降。</li>
-</ol>
-</li>
-<li><p>问题：当睡眠成为意志力挑战<br>明知道需要睡觉，却没办法早睡。就不要想睡觉这件事。思考到底对什么事情说了’我想要’。</p>
-</li>
-<li><p>自控力太强的代价<br>科学家认为：长时间自控像是慢性压力。适当的自控是必须的，试图控制所有的思想、情绪、行为会带来过重的生理负担。</p>
-</li>
-<li><p>实验：放松恢复意志力<br>生理学放松：心率和呼吸放缓，血压降低，肌肉放松，大脑不去规划未来，也不分析过去。<br>躺着，枕头垫着膝盖，腿稍稍抬起，闭上眼睛，几次深呼吸。如果觉的身体有地方紧张。有意识的挤压或收缩肌肉，然后不再管它。</p>
-</li>
-<li><p>压力：意志力的死敌<br>压力和自控的生理学基础是相互排斥的。<br>想要更好的应对意志力挑战，需要更有效地管理压力，照顾自己。</p>
-</li>
-<li><p>剖析：压力和自控<br>担忧和过度工作如何影响自己的选择？负面情绪度意志力的消耗？</p>
-</li>
-</ul>
-<h2 id="3-自控力的极限"><a href="#3-自控力的极限" class="headerlink" title="3. 自控力的极限"></a>3. 自控力的极限</h2><p>  人们早上的意志力最强，随后跟随时间推移逐渐减弱。</p>
-<ul>
-<li>自控力的肌肉模式<br>与肌肉锻炼类似，一旦时间过长注意力训练不仅会分散注意力，还会消耗身体的能量。自控力如同肌肉，使用之后会渐渐疲惫。<br>很多认为不需要意志力的事情，会消耗有限的能量。每次试图对抗冲动的时候，都会使用有限的意志力。</li>
-<li><p>剖析：意志力波动<br>观察自身什么时候意志力最强？<br>通过了解自己更明智的规划日程。</p>
-</li>
-<li><p>为什么自控力存在局限？<br>大脑能量耗尽导致了意志力的枯竭？适时补充糖分？<br>大脑可能将血糖含量作为资源稀缺或资源充足的标准。只有在能量充足的情况下，大脑才会将资源分配给自控系统使用。</p>
-</li>
-<li><p>实验：意志力饮食方案<br>突然增加的糖分，可以在短期内面对紧急情况时有更强的意志力。但是过度依赖糖分并不是自控的好办法。<br>推荐低血糖饮食：瘦肉蛋白，坚果和豆类，粗纤维谷物类和麦片，水果和蔬菜。</p>
-</li>
-<li><p>训练‘意志力肌肉’<br>控制自己以前不会去控制的小事。在一些小事上持续自控也可以提高整体的意志力。</p>
-</li>
-<li><p>实验：锻炼意志力<br>我不要：不随便发誓，坐下不抖腿，不二郎腿，用不常用的手进行日常活动<br>我要：每天做一件事，不再找接口，冥想五分钟，或者每天给家人电话。<br>自我监控：认真记录平时不关注的事。支出，饮食，或者时间</p>
-</li>
-<li><p>自控力的极限<br>感受到疲惫，不是身体反应，而是一种感觉，一种情绪。<br>大脑中的过度保护性的监督机制发生作用，产生虚假疲惫。<br>事实上的意志力储备比感觉上的要多，犹如长跑中的虚假疲惫，挺过去就好。</p>
-</li>
-<li><p>剖析：疲惫感是真的吗？</p>
-</li>
-<li>实验：你想要什么？<br>意志力告急，挖掘自己’我想要’的力量。<ol>
-<li>挑战成功，会收获什么？</li>
-<li>还有谁会获益？</li>
-<li>想象成功后的样子</li>
-</ol>
-</li>
-</ul>
-<h2 id="4-为什么会容忍"><a href="#4-为什么会容忍" class="headerlink" title="4. 为什么会容忍"></a>4. 为什么会容忍</h2><ul>
-<li><p>‘道德许可效应’，对补偿的渴望常常使我们堕落。我们很容易认为纵容自己是对美德的奖励，从而忘记目标，向诱惑屈服。<br>仅仅是思考做一些好事，就可以让人产生（向欲望屈服）的冲动。</p>
-<p>我们通常相信本能，只有当需要解释自己的判断的时候，我们才会寻求逻辑。</p>
-<p>“道德许可”最糟糕的不是它可疑的逻辑而是诱使我们做出背离自己最大利益的事情。<br>不要将事情定义为正确的事情，而是将事情定义为你能够达到某个目标的事。从道德的角度思考自己面临的意志力挑战时，我们就失去了自我判断能力。</p>
-</li>
-<li><p>剖析：善与恶<br>当意志力挑战成功的时候，你会不会告诉自己，你已经很“好”了？<br>当屈服于拖延或者诱惑的时候，你会不会告诉自己你太“坏”了？<br>你会不会已自己的善行为借口允许自己去做些违背你目标的事情？</p>
-</li>
-<li><p>不要把支持目标实现的行为误以为是目标本身!!!</p>
-</li>
-<li><p>错误的满足感<br>前进一小步可能导致你后退两大步。<br>人们习惯于将需要做的事情当成了自己已经付出的努力，会给我们带来错误的满足感。<br>关注进步，让我们离目标越来越远。进步是完成目标的证据。应该清楚自己做了什么，盯紧自己的目标，为了实现目标，你要愿意付出更多。</p>
-</li>
-<li><p>实现：取消许可，牢记理由<br>记住自己为什么会拒绝诱惑？再次面临，回想当初为什么能拒绝诱惑？</p>
-</li>
-<li><p>向明天赊账<br>乐观精神总是让我们在当下放松自己，尤其是确信自己下次不会做出同样的选择。</p>
-</li>
-<li><p>剖析：你是在向明天赊账吗？<br>做决定时，注意是否有’未来再好好表现’的承诺。</p>
-</li>
-<li><p>明天总会有时间做？<br>如果我们预料到自己无法完成设定的目标，还不如在开始之前就认输。<br>如果表现糟糕，却用对未来的乐观期待掩饰它，还不如一开始就不要设定这个目标。</p>
-</li>
-<li><p>实验：明天和今天毫无区别<br>当要改变某种行为，试着减少行为的变化性而不是减少行为本身。</p>
-</li>
-<li><p>当罪恶看起来像美德<br>许可陷阱：和最深切的欲望有关，我们都希望说服自己。我们想要的东西并没有那么坏，给诱惑我们的对象加以道德标准，好让我们放纵自己的时候毫无负罪感。<br>光环效应：只要使你放纵的东西和使你觉得品德高尚的东西同时出现，就会产生光环效应。</p>
-</li>
-<li><p>剖析：你正在被光环笼罩吗？<br>会不会关注一个事物最有益的品质，而允许自己沉溺于它？</p>
-<p>当光环效应影响到意志力挑战时，需要找到最具体的衡量标准，来选择是否和最初的目标相同。</p>
-<p>我们之所以会奖励自己的良好行为，是因为我们内心深处觉得真正的自己想做坏事。这样看来每次自控都是惩罚，只有放纵自我才是奖励。<br>要摆脱“道德许可”陷阱，那个变好的自己才是真正的自己，想按核心价值观生活的自己。</p>
-</li>
-<li><p>剖析：你觉得自己是谁？<br>面临考验的时候,想清楚哪一个是真实的你？</p>
-<p>不要将意志力挑战放在道德标准的框架中。如果只按照“正确”和“错误”来判断做过的事，而不是牢记真正想要的东西，会带来与目标想抵触的冲动。想做到始终如一，需要认同目标本身，而不是做善事时的光环。</p>
-<h2 id="5-欲望与幸福的混淆"><a href="#5-欲望与幸福的混淆" class="headerlink" title="5. 欲望与幸福的混淆"></a>5. 欲望与幸福的混淆</h2></li>
-<li><p>奖励的承诺<br>受刺激的大脑区域奖励的不是快感，而是对快感的承诺。</p>
-</li>
-<li><p>“我想要”的神经生物学原理<br>奖励系统：大脑发现获得奖励的机会 =&gt; 释放多巴胺 =&gt; 通知大脑其他部分<br>大量的多巴胺并不能产生快乐的感觉，是一种激励，仿佛我们发现了如何得到快乐。<br>多巴胺控制的是行动，而不是快乐。<br>任何我们觉得会让自己高兴的东西都会刺激奖励系统。<br>多巴胺劫持了注意力，大脑只会想着如何获得或者重复触发它。</p>
-</li>
-<li><p>神经营销学<br>当奖励的承诺释放多巴胺的时候，人更容易受到其他形式的诱惑。<br>味觉，视觉，听觉的刺激下，分泌多巴胺，更容易让人们受到诱惑，而产生消费的行为。</p>
-</li>
-<li><p>让多巴胺发挥作用<br>试着将不喜欢的东西“多巴胺化”。</p>
-</li>
-<li><p>实验：为了你的“我愿意”挑战分泌多巴胺<br>什么事让你觉得不愉快，总是拖延着不做，能否将它和多巴胺联系在一起，从而促使自己去做？</p>
-</li>
-<li><p>多巴胺的阴暗面<br>带来的压力和快乐不分上下。因为多巴胺首要功能是让我们追求快乐，而不是让我们快乐。<br>通常我们渴望的东西，既是快乐的源泉，也是压力的源泉。</p>
-</li>
-<li><p>剖析：欲望和压力<br>大部分人更关注对快乐的承诺，而不关注多巴胺刺激欲望时产生的不快乐。</p>
-<p>我们误把渴望的感觉当做了快乐的保证。<br>奖励的承诺有很大的力量，他会让我们继续追求那些不会带给我们快乐的东西，会让我们消费那些不会带来满足感只会带来更多痛苦的东西。<br>当我们注意到奖励的承诺不过是假象的时，魔咒就解开了。当我们把自己从错误的奖励承诺中解放出来时，我们常常发现，我们误以为的快乐源泉其实正是痛苦的根源开了。</p>
-<h2 id="6-情绪低落对自控力的作用"><a href="#6-情绪低落对自控力的作用" class="headerlink" title="6. 情绪低落对自控力的作用"></a>6. 情绪低落对自控力的作用</h2><h2 id="7-及时享乐"><a href="#7-及时享乐" class="headerlink" title="7. 及时享乐"></a>7. 及时享乐</h2><h2 id="8-意志力的传染性"><a href="#8-意志力的传染性" class="headerlink" title="8. 意志力的传染性"></a>8. 意志力的传染性</h2><h2 id="9-“我不要”的局限性"><a href="#9-“我不要”的局限性" class="headerlink" title="9. “我不要”的局限性"></a>9. “我不要”的局限性</h2></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1943,7 +1771,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

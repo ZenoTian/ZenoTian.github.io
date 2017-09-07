@@ -84,88 +84,46 @@
 
 
 
-<meta name="description" content="首先定义学习的目标
+<meta name="description" content="Docker中的数据管理数据卷特性：
+数据卷可以在容器之间共享和重用
+对数据卷的修改会立马生效
+对数据卷的更新，不会影响镜像
+数据卷默认会一直存在，即使容器被删除
 
-高效学习的建议
-Anki 帮助记忆
-
-建议：
-
-快速获得反馈 
-反反复复练习，每次都获得反馈可以很快的提升
-
-
-创造深的理解
-列出要学习的知识点：试图以讲给学生的方式讲出来
-
-
-高强度学习
-刻意练习
-广泛练习
-
-
-习惯的养成
-只有一个重要的坚持下去
-
-
-学习的动机">
+作用：持久化数据创建与挂载：通过docker run的-v参数
+示例：
+创建一个数据卷1docker run -d -P --name web -v /webapp
+加载一个数据卷到容器的 /webapp 目录
+挂载主机目录作为数据卷">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Zeno Tian">
-<meta property="og:url" content="http://yoursite.com/2016/11/15/高效学习的建议/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/09/07/Docker中的数据管理/index.html">
 <meta property="og:site_name" content="Zeno Tian">
-<meta property="og:description" content="首先定义学习的目标
+<meta property="og:description" content="Docker中的数据管理数据卷特性：
+数据卷可以在容器之间共享和重用
+对数据卷的修改会立马生效
+对数据卷的更新，不会影响镜像
+数据卷默认会一直存在，即使容器被删除
 
-高效学习的建议
-Anki 帮助记忆
-
-建议：
-
-快速获得反馈 
-反反复复练习，每次都获得反馈可以很快的提升
-
-
-创造深的理解
-列出要学习的知识点：试图以讲给学生的方式讲出来
-
-
-高强度学习
-刻意练习
-广泛练习
-
-
-习惯的养成
-只有一个重要的坚持下去
-
-
-学习的动机">
-<meta property="og:updated_time" content="2016-11-15T13:43:12.000Z">
+作用：持久化数据创建与挂载：通过docker run的-v参数
+示例：
+创建一个数据卷1docker run -d -P --name web -v /webapp
+加载一个数据卷到容器的 /webapp 目录
+挂载主机目录作为数据卷">
+<meta property="og:updated_time" content="2017-09-07T11:57:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zeno Tian">
-<meta name="twitter:description" content="首先定义学习的目标
+<meta name="twitter:description" content="Docker中的数据管理数据卷特性：
+数据卷可以在容器之间共享和重用
+对数据卷的修改会立马生效
+对数据卷的更新，不会影响镜像
+数据卷默认会一直存在，即使容器被删除
 
-高效学习的建议
-Anki 帮助记忆
-
-建议：
-
-快速获得反馈 
-反反复复练习，每次都获得反馈可以很快的提升
-
-
-创造深的理解
-列出要学习的知识点：试图以讲给学生的方式讲出来
-
-
-高强度学习
-刻意练习
-广泛练习
-
-
-习惯的养成
-只有一个重要的坚持下去
-
-
-学习的动机">
+作用：持久化数据创建与挂载：通过docker run的-v参数
+示例：
+创建一个数据卷1docker run -d -P --name web -v /webapp
+加载一个数据卷到容器的 /webapp 目录
+挂载主机目录作为数据卷">
 
 
 
@@ -186,7 +144,7 @@ Anki 帮助记忆
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/15/高效学习的建议/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/07/Docker中的数据管理/"/>
 
 
   <title>  | Zeno Tian </title>
@@ -321,8 +279,8 @@ Anki 帮助记忆
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-15T21:43:12+08:00" content="2016-11-15">
-              2016-11-15
+            <time itemprop="dateCreated" datetime="2017-09-07T19:57:31+08:00" content="2017-09-07">
+              2017-09-07
             </time>
           </span>
 
@@ -349,33 +307,25 @@ Anki 帮助记忆
       
 
       
-        <ul>
-<li>首先定义学习的目标</li>
+        <h2 id="Docker中的数据管理"><a href="#Docker中的数据管理" class="headerlink" title="Docker中的数据管理"></a>Docker中的数据管理</h2><h3 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h3><h4 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h4><ul>
+<li>数据卷可以在容器之间共享和重用</li>
+<li>对数据卷的修改会立马生效</li>
+<li>对数据卷的更新，不会影响镜像</li>
+<li>数据卷默认会一直存在，即使容器被删除</li>
 </ul>
-<h2 id="高效学习的建议"><a href="#高效学习的建议" class="headerlink" title="高效学习的建议"></a>高效学习的建议</h2><ul>
-<li>Anki 帮助记忆</li>
-</ul>
-<p>建议：</p>
-<ul>
-<li>快速获得反馈 <ul>
-<li>反反复复练习，每次都获得反馈可以很快的提升</li>
-</ul>
-</li>
-<li>创造深的理解<ul>
-<li>列出要学习的知识点：试图以讲给学生的方式讲出来</li>
-</ul>
-</li>
-<li>高强度学习<ul>
-<li>刻意练习</li>
-<li>广泛练习</li>
-</ul>
-</li>
-<li>习惯的养成<ul>
-<li>只有一个重要的坚持下去</li>
-</ul>
-</li>
-<li>学习的动机</li>
-</ul>
+<h4 id="作用：持久化数据"><a href="#作用：持久化数据" class="headerlink" title="作用：持久化数据"></a>作用：持久化数据</h4><h4 id="创建与挂载："><a href="#创建与挂载：" class="headerlink" title="创建与挂载："></a>创建与挂载：</h4><p>通过<code>docker run</code>的<code>-v</code>参数</p>
+<p>示例：</p>
+<h5 id="创建一个数据卷"><a href="#创建一个数据卷" class="headerlink" title="创建一个数据卷"></a>创建一个数据卷</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -P --name web -v /webapp</div></pre></td></tr></table></figure>
+<p>加载一个数据卷到容器的 /webapp 目录</p>
+<h5 id="挂载主机目录作为数据卷"><a href="#挂载主机目录作为数据卷" class="headerlink" title="挂载主机目录作为数据卷"></a>挂载主机目录作为数据卷</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker run -d -P --name web -v /src/webapp:/opt/webapp</div><div class="line">#挂载主机目录作为数据卷</div></pre></td></tr></table></figure>
+<p>加载主机的<code>src/webapp</code>目录到容器的<code>opt/webapp</code></p>
+<h6 id="Note：Dockerfile中不支持这种写法，因为不同系统路径格式不一样"><a href="#Note：Dockerfile中不支持这种写法，因为不同系统路径格式不一样" class="headerlink" title="Note：Dockerfile中不支持这种写法，因为不同系统路径格式不一样"></a>Note：Dockerfile中不支持这种写法，因为不同系统路径格式不一样</h6><h5 id="挂载本地文件作为数据卷"><a href="#挂载本地文件作为数据卷" class="headerlink" title="挂载本地文件作为数据卷"></a>挂载本地文件作为数据卷</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo docker run --rm -it -v ~/.bash_history:/.bash_history ubuntu /bin/bash</div></pre></td></tr></table></figure>
+<h4 id="删除数据卷"><a href="#删除数据卷" class="headerlink" title="删除数据卷"></a>删除数据卷</h4><p>删除容器的时候使用 <code>docker rm -v</code></p>
+<h4 id="查看数据卷具体信息"><a href="#查看数据卷具体信息" class="headerlink" title="查看数据卷具体信息"></a>查看数据卷具体信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker inspect [name]</div></pre></td></tr></table></figure>
+<p>默认数据卷创建在<code>/var/lib/docker/volumes/</code>下面</p>
+<h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><h4 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h4><p>持续更新的数据在容器之间共享</p>
+<p>本质上就是一个容器，专门用来提供数据卷供其他容器挂载</p>
+<p>​    </p>
 
       
     </div>
@@ -401,17 +351,13 @@ Anki 帮助记忆
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/11/ES6-Class/" rel="next" title="Class">
-                <i class="fa fa-chevron-left"></i> Class
+              <a href="/2017/09/07/mongoDB用户管理/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/15/--学习笔记——IEEE-802.3以太网络-Enthernet/" rel="prev" title="学习笔记——IEEE 802.3以太网络 Enthernet">
-                学习笔记——IEEE 802.3以太网络 Enthernet <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -529,7 +475,7 @@ Anki 帮助记忆
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#高效学习的建议"><span class="nav-number">1.</span> <span class="nav-text">高效学习的建议</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker中的数据管理"><span class="nav-number">1.</span> <span class="nav-text">Docker中的数据管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据卷"><span class="nav-number">1.1.</span> <span class="nav-text">数据卷</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特性："><span class="nav-number">1.1.1.</span> <span class="nav-text">特性：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作用：持久化数据"><span class="nav-number">1.1.2.</span> <span class="nav-text">作用：持久化数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建与挂载："><span class="nav-number">1.1.3.</span> <span class="nav-text">创建与挂载：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建一个数据卷"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">创建一个数据卷</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#挂载主机目录作为数据卷"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">挂载主机目录作为数据卷</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Note：Dockerfile中不支持这种写法，因为不同系统路径格式不一样"><span class="nav-number">1.1.3.2.1.</span> <span class="nav-text">Note：Dockerfile中不支持这种写法，因为不同系统路径格式不一样</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#挂载本地文件作为数据卷"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">挂载本地文件作为数据卷</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除数据卷"><span class="nav-number">1.1.4.</span> <span class="nav-text">删除数据卷</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看数据卷具体信息"><span class="nav-number">1.1.5.</span> <span class="nav-text">查看数据卷具体信息</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据卷容器"><span class="nav-number">1.2.</span> <span class="nav-text">数据卷容器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#作用："><span class="nav-number">1.2.1.</span> <span class="nav-text">作用：</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
