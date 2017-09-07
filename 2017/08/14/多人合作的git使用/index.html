@@ -1,0 +1,598 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/zeno.png?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="多人合作的git使用git merge 的 —no-ff  参数git merge 默认是”快进式合并”(fast-farward merge)。这样合并操作会直接将Master 指向 develop 分支
+
+上图有多分支合并的结果图，可以看到 使用—no-ff的提交流程更清晰
+分支管理git flow 只存在两个长期分支master 和 develop 
+其他分支命名必须遵照规则，在合并之后立即">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zeno Tian">
+<meta property="og:url" content="http://yoursite.com/2017/08/14/多人合作的git使用/index.html">
+<meta property="og:site_name" content="Zeno Tian">
+<meta property="og:description" content="多人合作的git使用git merge 的 —no-ff  参数git merge 默认是”快进式合并”(fast-farward merge)。这样合并操作会直接将Master 指向 develop 分支
+
+上图有多分支合并的结果图，可以看到 使用—no-ff的提交流程更清晰
+分支管理git flow 只存在两个长期分支master 和 develop 
+其他分支命名必须遵照规则，在合并之后立即">
+<meta property="og:image" content="http://yoursite.com/Users/ZenoTian/Documents/WechatIMG580.jpeg">
+<meta property="og:image" content="http://common.cnblogs.com/images/copycode.gif">
+<meta property="og:updated_time" content="2017-08-18T06:24:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zeno Tian">
+<meta name="twitter:description" content="多人合作的git使用git merge 的 —no-ff  参数git merge 默认是”快进式合并”(fast-farward merge)。这样合并操作会直接将Master 指向 develop 分支
+
+上图有多分支合并的结果图，可以看到 使用—no-ff的提交流程更清晰
+分支管理git flow 只存在两个长期分支master 和 develop 
+其他分支命名必须遵照规则，在合并之后立即">
+<meta name="twitter:image" content="http://yoursite.com/Users/ZenoTian/Documents/WechatIMG580.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/14/多人合作的git使用/"/>
+
+
+  <title>  | Zeno Tian </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Zeno Tian</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-14T14:17:07+08:00" content="2017-08-14">
+              2017-08-14
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="多人合作的git使用"><a href="#多人合作的git使用" class="headerlink" title="多人合作的git使用"></a>多人合作的git使用</h2><h4 id="git-merge-的-—no-ff-参数"><a href="#git-merge-的-—no-ff-参数" class="headerlink" title="git merge 的 —no-ff  参数"></a>git merge 的 —no-ff  参数</h4><p>git merge 默认是”快进式合并”(fast-farward merge)。这样合并操作会直接将Master 指向 develop 分支</p>
+<p><img src="/Users/ZenoTian/Documents/WechatIMG580.jpeg" alt="WechatIMG580"></p>
+<p>上图有多分支合并的结果图，可以看到 使用—no-ff的提交流程更清晰</p>
+<h4 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h4><p>git flow 只存在两个长期分支master 和 develop </p>
+<p>其他分支命名必须遵照规则，在合并之后立即删除。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">　　* 功能（feature）分支</div><div class="line">　　* 预发布（release）分支</div><div class="line">　　* 修补bug（fixbug）分支</div></pre></td></tr></table></figure>
+<p>master 分支代码是不可更改的。</p>
+<p>正常流程中将准备发布的dev上的代码合并入master中再进行部署</p>
+<p>需要修复bug，则新建fixbug分支，完成后分别合并入dev与master</p>
+<h4 id="主分支保持同步"><a href="#主分支保持同步" class="headerlink" title="主分支保持同步"></a>主分支保持同步</h4><p>请勿在多人工作分支上进行变基操作</p>
+<p>fetch更新本地仓库两种方式：</p>
+<p><a href="javascript:void(0" target="_blank" rel="external"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a>;)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">//方法一</div><div class="line">$ git fetch origin master //从远程的origin仓库的master分支下载代码到本地的origin master</div><div class="line"></div><div class="line">$ git log -p master.. origin/master//比较本地的仓库和远程参考的区别</div><div class="line"></div><div class="line">$ git merge origin/master//把远程下载下来的代码合并到本地仓库，远程的和本地的合并</div><div class="line"></div><div class="line">//方法二</div><div class="line">$ git fetch origin master:temp //从远程的origin仓库的master分支下载到本地并新建一个分支temp</div><div class="line"></div><div class="line">$ git diff temp//比较master分支和temp分支的不同</div><div class="line"></div><div class="line">$ git merge temp//合并temp分支到master分支</div><div class="line"></div><div class="line">$ git branch -d temp//删除temp</div></pre></td></tr></table></figure>
+<h4 id="合并多次commit"><a href="#合并多次commit" class="headerlink" title="合并多次commit"></a>合并多次commit</h4><p>开发的时候我们通常会在开发分支多次commit，但是对于多人合作来说，很多commit是无用的信息。如果将所有commit信息全部合并进git的baseline中，会导致commit信息过多并且混乱</p>
+<h5 id="git-merge-–squash-abc"><a href="#git-merge-–squash-abc" class="headerlink" title="git merge –squash abc"></a>git merge –squash abc</h5><h6 id="–squash选项的含义是：不保留待合并分支上的历史信息，也不提交、不移动HEAD，因此需要一条额外的commit命令。"><a href="#–squash选项的含义是：不保留待合并分支上的历史信息，也不提交、不移动HEAD，因此需要一条额外的commit命令。" class="headerlink" title="–squash选项的含义是：不保留待合并分支上的历史信息，也不提交、不移动HEAD，因此需要一条额外的commit命令。"></a>–squash选项的含义是：不保留待合并分支上的历史信息，也不提交、不移动HEAD，因此需要一条额外的commit命令。</h6><h6 id="其效果相当于将another分支上的多个commit合并成一个，放在当前分支上，原来的commit历史则没有拿过来。"><a href="#其效果相当于将another分支上的多个commit合并成一个，放在当前分支上，原来的commit历史则没有拿过来。" class="headerlink" title="其效果相当于将another分支上的多个commit合并成一个，放在当前分支上，原来的commit历史则没有拿过来。"></a>其效果相当于将another分支上的多个commit合并成一个，放在当前分支上，原来的commit历史则没有拿过来。</h6><p> 判断是否使用–squash选项最根本的标准是，待合并分支上的历史是否有意义。</p>
+<p>合并的时候—squash 参数可以将分支上所有的变动改为一次commit，使用merge命令后需要在合并后的分支上将变动添加，commit一次，这样在分支上的多次commit在git的baseline上就只会有一次commit。</p>
+<p>但是—squash 和 —no-ff参数不可一并使用。</p>
+<h4 id="—squash-和-—no-ff-是不同的提交风格"><a href="#—squash-和-—no-ff-是不同的提交风格" class="headerlink" title="—squash 和 —no-ff 是不同的提交风格"></a>—squash 和 —no-ff 是不同的提交风格</h4><p>fast-farward式的merge通过—squash 可以形成单一的整洁的提交历史记录</p>
+<p>—no-ff 式的merge 形成的提交历史记录可以显示详细的提交历史</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/07/docker命令/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/21/mongoDB/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Zeno Tian" />
+          <p class="site-author-name" itemprop="name">Zeno Tian</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zenotian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多人合作的git使用"><span class="nav-number">1.</span> <span class="nav-text">多人合作的git使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#git-merge-的-—no-ff-参数"><span class="nav-number">1.0.1.</span> <span class="nav-text">git merge 的 —no-ff  参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分支管理"><span class="nav-number">1.0.2.</span> <span class="nav-text">分支管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主分支保持同步"><span class="nav-number">1.0.3.</span> <span class="nav-text">主分支保持同步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合并多次commit"><span class="nav-number">1.0.4.</span> <span class="nav-text">合并多次commit</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#git-merge-–squash-abc"><span class="nav-number">1.0.4.1.</span> <span class="nav-text">git merge –squash abc</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#–squash选项的含义是：不保留待合并分支上的历史信息，也不提交、不移动HEAD，因此需要一条额外的commit命令。"><span class="nav-number">1.0.4.1.1.</span> <span class="nav-text">–squash选项的含义是：不保留待合并分支上的历史信息，也不提交、不移动HEAD，因此需要一条额外的commit命令。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#其效果相当于将another分支上的多个commit合并成一个，放在当前分支上，原来的commit历史则没有拿过来。"><span class="nav-number">1.0.4.1.2.</span> <span class="nav-text">其效果相当于将another分支上的多个commit合并成一个，放在当前分支上，原来的commit历史则没有拿过来。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#—squash-和-—no-ff-是不同的提交风格"><span class="nav-number">1.0.5.</span> <span class="nav-text">—squash 和 —no-ff 是不同的提交风格</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zeno Tian</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

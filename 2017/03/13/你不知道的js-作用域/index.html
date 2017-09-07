@@ -104,7 +104,7 @@
 1.2作用域JS运行
 引擎：负责JS编译与执行
 编译器：负责语法分析以及代">
-<meta property="og:updated_time" content="2017-06-13T09:40:52.000Z">
+<meta property="og:updated_time" content="2017-08-31T05:18:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="你不知道的JS-作用域">
 <meta name="twitter:description" content="作用域1.1编译原理
@@ -309,11 +309,10 @@
 <li>作用域：收集并维护所有声明的变量（标识符），根据规则确保执行代码对变量的访问权限</li>
 </ul>
 <h4 id="声明解析"><a href="#声明解析" class="headerlink" title="声明解析"></a>声明解析</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var a = 2</div></pre></td></tr></table></figure>
-<ol>
-<li><code>var a</code>编译器查询作用域是否存在变量<code>a</code>，有则忽略继续编译，无则要求作用域在当前作用域集合中声明一个为<code>a</code>的变量</li>
-<li>编译器生成运行代码给引擎，处理<code>a = 2</code>赋值操作。引擎询问作用域，当前作用域是否存在<code>a</code>，存在就使用，否则继续查找。<br>最终没有查找到将会报错。</li>
-</ol>
-<h4 id="LHS-RHS"><a href="#LHS-RHS" class="headerlink" title="LHS/RHS"></a>LHS/RHS</h4><p>变量出现在赋值操作左侧进行LHS，非左侧进行RHS</p>
+<pre><code>1. `var a`编译器查询作用域是否存在变量`a`，有则忽略继续编译，无则要求作用域在当前作用域集合中声明一个为`a`的变量
+2. 编译器生成运行代码给引擎，处理`a = 2`赋值操作。引擎询问作用域，当前作用域是否存在`a`，存在就使用，否则继续查找。
+   最终没有查找到将会报错。
+</code></pre><h4 id="LHS-RHS"><a href="#LHS-RHS" class="headerlink" title="LHS/RHS"></a>LHS/RHS</h4><p>变量出现在赋值操作左侧进行LHS，非左侧进行RHS</p>
 <p>LHS:只查找<br>BHS:查找并取到值（）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function foo(a) &#123;</div><div class="line">  console.log(a)</div><div class="line">  //RHS，获得a的值传入console.log方法</div><div class="line">  //RHS，获得console对象，并得到log方法</div><div class="line">&#125;</div><div class="line">foo(2)</div><div class="line">//函数调用RHS，查找foo并获得foo的值</div><div class="line">//LHS查询，将2赋值给参数a</div></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function foo(a) &#123;</div><div class="line">  var b = a</div><div class="line">  //LHS,b=</div><div class="line">  //RHS,=a</div><div class="line">  return a + b</div><div class="line">  //RHS, a</div><div class="line">  //RHS, b</div><div class="line">&#125;</div><div class="line">var c = foo(2)</div><div class="line">//LHS,c=</div><div class="line">//RHS,foo(2)</div><div class="line">//LHS,(2)</div><div class="line">//LHS,foo</div></pre></td></tr></table></figure>
 <h3 id="1-3作用域嵌套"><a href="#1-3作用域嵌套" class="headerlink" title="1.3作用域嵌套"></a>1.3作用域嵌套</h3><p>作用域嵌套，在当前作用域无法找到变量时，引擎会在外层作用域中继续查找</p>
@@ -340,12 +339,11 @@
 </ol>
 <h3 id="3-3-函数作用域"><a href="#3-3-函数作用域" class="headerlink" title="3.3 函数作用域"></a>3.3 函数作用域</h3><p> 让函数名不污染所在作用域，并能够自动运行<br> 函数表达式写法<br> 如果function 是声明的第一个词，就是函数声明，否则是函数表达式<br> 函数声明和函数表达式的区别：名称标识符绑定在何处<br> 函数声明会绑定在所在作用域中<br> 函数表达式会绑定在函数表达式自身的函数中</p>
 <h4 id="3-3-1-匿名和具名"><a href="#3-3-1-匿名和具名" class="headerlink" title="3.3.1 匿名和具名"></a>3.3.1 匿名和具名</h4><p> 匿名函数的缺点：</p>
-<ol>
-<li>调试困难</li>
-<li>引用自身需要<code>arguments.callee</code></li>
-<li>可读性差<br>行内函数表达式可以指定函数名，所以给函数表达式命名是最佳实践</li>
-</ol>
-<h4 id="3-3-2-立即执行函数表达式IIFE"><a href="#3-3-2-立即执行函数表达式IIFE" class="headerlink" title="3.3.2 立即执行函数表达式IIFE"></a>3.3.2 立即执行函数表达式IIFE</h4><p>IIFE的两种写法</p>
+<pre><code>1. 调试困难
+2. 引用自身需要`arguments.callee`
+3. 可读性差
+行内函数表达式可以指定函数名，所以给函数表达式命名是最佳实践
+</code></pre><h4 id="3-3-2-立即执行函数表达式IIFE"><a href="#3-3-2-立即执行函数表达式IIFE" class="headerlink" title="3.3.2 立即执行函数表达式IIFE"></a>3.3.2 立即执行函数表达式IIFE</h4><p>IIFE的两种写法</p>
 <ol>
 <li>(function(){})()</li>
 <li>(function(){}())</li>
@@ -448,6 +446,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/04/13/React官方文档笔记/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -514,7 +516,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -1,0 +1,912 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/zeno.png?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="Koa-router 7
+
+Express-style routing using app.get, app.put, app.post, etc.
+Named URL parameters.
+Named routes with URL generation.
+Responds to OPTIONS requests with allowed methods.
+Support for 405 Me">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zeno Tian">
+<meta property="og:url" content="http://yoursite.com/2017/08/31/koa-router/index.html">
+<meta property="og:site_name" content="Zeno Tian">
+<meta property="og:description" content="Koa-router 7
+
+Express-style routing using app.get, app.put, app.post, etc.
+Named URL parameters.
+Named routes with URL generation.
+Responds to OPTIONS requests with allowed methods.
+Support for 405 Me">
+<meta property="og:updated_time" content="2017-09-04T08:36:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zeno Tian">
+<meta name="twitter:description" content="Koa-router 7
+
+Express-style routing using app.get, app.put, app.post, etc.
+Named URL parameters.
+Named routes with URL generation.
+Responds to OPTIONS requests with allowed methods.
+Support for 405 Me">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/31/koa-router/"/>
+
+
+  <title>  | Zeno Tian </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Zeno Tian</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-31T13:14:10+08:00" content="2017-08-31">
+              2017-08-31
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Koa-router 7</p>
+<ul>
+<li>Express-style routing using <code>app.get</code>, <code>app.put</code>, <code>app.post</code>, etc.</li>
+<li>Named URL parameters.</li>
+<li>Named routes with URL generation.</li>
+<li>Responds to <code>OPTIONS</code> requests with allowed methods.</li>
+<li>Support for <code>405 Method Not Allowed</code> and <code>501 Not Implemented</code>.</li>
+<li>Multiple route middleware.</li>
+<li>Multiple routers.</li>
+<li>Nestable routers.</li>
+<li>ES7 async/await support.</li>
+</ul>
+<ul>
+<li>Express风格的路由 <code>app.get</code>, <code>app.put</code>, <code>app.post</code>, 等等</li>
+<li>命名URL参数</li>
+<li>命名路由由URL生成</li>
+<li>Responds to <code>OPTIONS</code> requests with allowed methods.</li>
+<li>支持  <code>405 Method Not Allowed</code> 和 <code>501 Not Implemented</code>.</li>
+<li>多路由中间件</li>
+<li>多路由</li>
+<li>嵌套路由</li>
+<li>ES7 async/await 支持</li>
+</ul>
+<h2 id="API-Reference"><a href="#API-Reference" class="headerlink" title="API Reference"></a>API Reference</h2><ul>
+<li><p>koa-router</p>
+<ul>
+<li><p>Router</p>
+<p>⏏</p>
+<ul>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#new_module_koa-router--Router_new" target="_blank" rel="external">new Router([opts])</a></li>
+<li>instance<ul>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+get%7Cput%7Cpost%7Cpatch%7Cdelete%7Cdel" target="_blank" rel="external">.get|put|post|patch|delete|del</a> ⇒ <code>Router</code></li>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+routes" target="_blank" rel="external">.routes</a> ⇒ <code>function</code></li>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+use" target="_blank" rel="external">.use([path], middleware)</a> ⇒ <code>Router</code></li>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+prefix" target="_blank" rel="external">.prefix(prefix)</a> ⇒ <code>Router</code></li>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+allowedMethods" target="_blank" rel="external">.allowedMethods([options])</a> ⇒ <code>function</code></li>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+redirect" target="_blank" rel="external">.redirect(source, destination, code)</a> ⇒ <code>Router</code></li>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+route" target="_blank" rel="external">.route(name)</a> ⇒ <code>Layer</code> | <code>false</code></li>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+url" target="_blank" rel="external">.url(name, params)</a> ⇒ <code>String</code> | <code>Error</code></li>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+param" target="_blank" rel="external">.param(param, middleware)</a> ⇒ <code>Router</code></li>
+</ul>
+</li>
+<li>static<ul>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router.url" target="_blank" rel="external">.url(path, params)</a> ⇒ <code>String</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Router-⏏"><a href="#Router-⏏" class="headerlink" title="Router ⏏"></a>Router ⏏</h3><p>类型: 导出类</p>
+<h4 id="new-Router-opts"><a href="#new-Router-opts" class="headerlink" title="new Router([opts])"></a>new Router([opts])</h4><p>创建一个新的路由</p>
+<table>
+<thead>
+<tr>
+<th>Param参数</th>
+<th>Type类型</th>
+<th>Description描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[opts]</td>
+<td><code>Object</code></td>
+<td></td>
+</tr>
+<tr>
+<td>[opts.prefix]</td>
+<td><code>String</code></td>
+<td>prefix router paths 路由前缀路径</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong><br>Basic usage:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</div><div class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</div><div class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router();</div><div class="line"></div><div class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line">  <span class="comment">// ctx.router available</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">app</div><div class="line">  .use(router.routes())</div><div class="line">  .use(router.allowedMethods())</div></pre></td></tr></table></figure>
+<h4 id="router-get-put-post-patch-delete-del-⇒-Router"><a href="#router-get-put-post-patch-delete-del-⇒-Router" class="headerlink" title="router.get|put|post|patch|delete|del ⇒ Router"></a>router.get|put|post|patch|delete|del ⇒ <code>Router</code></h4><p>verb:动词</p>
+<p>创建 <code>router.verb()</code> 方法, 其中动词是诸如<code>router.get()</code> or <code>router.post()</code>之类的HTTP动词之一。</p>
+<p>使用<code>router.verb()</code>将URL与回调函数或控制器进行匹配，其中动词是诸如router.get（）或router.post（）之类的HTTP动词之一。</p>
+<p>另外, <code>router.all()</code> 可以匹配所有路由</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">router</div><div class="line">  .get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line">    ctx.body = <span class="string">'Hello World!'</span>;</div><div class="line">  &#125;)</div><div class="line">  .post(<span class="string">'/users'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;)</div><div class="line">  .put(<span class="string">'/users/:id'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;)</div><div class="line">  .del(<span class="string">'/users/:id'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;)</div><div class="line">  .all(<span class="string">'/users/:id'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<p>当一个路由匹配时，其路径在<code>ctx._matchedRoute</code>可用，如果命名，则名称可在<code>ctx._matchedRouteName</code></p>
+<p>路由路径将使用 <a href="https://github.com/pillarjs/path-to-regexp" target="_blank" rel="external">path-to-regexp</a>.转换为正则表达式</p>
+<p>匹配请求时不会考虑查询字符串</p>
+<h4 id="Named-routes-命名路由"><a href="#Named-routes-命名路由" class="headerlink" title="Named routes 命名路由"></a>Named routes 命名路由</h4><p>路由可以配置名称。这样可以在开发过程中轻松生成URL或重命名URL。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'user'</span>, <span class="string">'/users/:id'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line"> <span class="comment">// ...</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">router.url(<span class="string">'user'</span>, <span class="number">3</span>);</div><div class="line"><span class="comment">// =&gt; "/users/3"</span></div></pre></td></tr></table></figure>
+<h4 id="Multiple-middleware-多中间件"><a href="#Multiple-middleware-多中间件" class="headerlink" title="Multiple middleware 多中间件"></a>Multiple middleware 多中间件</h4><p>一个路由可以给多个中间件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">router.get(</div><div class="line">  <span class="string">'/users/:id'</span>,</div><div class="line">  <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> User.findOne(ctx.params.id).then(<span class="function"><span class="keyword">function</span>(<span class="params">user</span>) </span>&#123;</div><div class="line">      ctx.user = user;</div><div class="line">      next();</div><div class="line">    &#125;);</div><div class="line">  &#125;,</div><div class="line">  <span class="function"><span class="keyword">function</span> (<span class="params">ctx</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(ctx.user);</div><div class="line">    <span class="comment">// =&gt; &#123; id: 17, name: "Alex" &#125;</span></div><div class="line">  &#125;</div><div class="line">);</div></pre></td></tr></table></figure>
+<h3 id="Nested-routers"><a href="#Nested-routers" class="headerlink" title="Nested routers"></a>Nested routers</h3><p>支持嵌套路由</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> forums = <span class="keyword">new</span> Router();</div><div class="line"><span class="keyword">const</span> posts = <span class="keyword">new</span> Router();</div><div class="line"></div><div class="line">posts.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;...&#125;);</div><div class="line">posts.get(<span class="string">'/:pid'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;...&#125;);</div><div class="line">forums.use(<span class="string">'/forums/:fid/posts'</span>, posts.routes(), posts.allowedMethods());</div><div class="line"></div><div class="line"><span class="comment">// responds to "/forums/123/posts" and "/forums/123/posts/123"</span></div><div class="line">app.use(forums.routes());</div></pre></td></tr></table></figure>
+<h4 id="Router-prefixes"><a href="#Router-prefixes" class="headerlink" title="Router prefixes"></a>Router prefixes</h4><p>路由路径可以在路由器级别设置前缀：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> Router(&#123;</div><div class="line">  <span class="attr">prefix</span>: <span class="string">'/users'</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">router.get(<span class="string">'/'</span>, ...); <span class="comment">// responds to "/users"</span></div><div class="line">router.get(<span class="string">'/:id'</span>, ...); <span class="comment">// responds to "/users/:id"</span></div></pre></td></tr></table></figure>
+<h4 id="URL-parameters"><a href="#URL-parameters" class="headerlink" title="URL parameters"></a>URL parameters</h4><p>路由参数被捕获并添加到<code>ctx.params</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/:category/:title'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(ctx.params);</div><div class="line">  <span class="comment">// =&gt; &#123; category: 'programming', title: 'how-to-node' &#125;</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>The <a href="https://github.com/pillarjs/path-to-regexp" target="_blank" rel="external">path-to-regexp</a> module is used to convert paths to regular expressions.</p>
+<p><strong>Kind</strong>:  <code>Router</code>的实例属性</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>path</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td>[middleware]</td>
+<td><code>function</code></td>
+<td>route middleware(s)</td>
+</tr>
+<tr>
+<td>callback</td>
+<td><code>function</code></td>
+<td>route callback</td>
+</tr>
+</tbody>
+</table>
+<h4 id="router-routes-⇒-function"><a href="#router-routes-⇒-function" class="headerlink" title="router.routes ⇒ function"></a>router.routes ⇒ <code>function</code></h4><p>返回匹配到的路由所调用的中间件</p>
+<p><strong>Kind</strong>:  <code>Router</code>的实例属性</p>
+<h4 id="router-use-path-middleware-⇒-Router"><a href="#router-use-path-middleware-⇒-Router" class="headerlink" title="router.use([path], middleware) ⇒ Router"></a>router.use([path], middleware) ⇒ <code>Router</code></h4><p>Use given middleware.</p>
+<p>使用指定的中间件</p>
+<p>中间件按照由<code>.use()</code>定义的顺序运行。它们被按顺序调用，第一个中间件开始，以中间件堆栈的方式依次向下执行。</p>
+<p><strong>Kind</strong>:  <code>Router</code>的实例方法</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[path]</td>
+<td><code>String</code></td>
+</tr>
+<tr>
+<td>middleware</td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td>[…]</td>
+<td><code>function</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// session middleware will run before authorize</span></div><div class="line">router</div><div class="line">  .use(session())</div><div class="line">  .use(authorize());</div><div class="line"></div><div class="line"><span class="comment">// use middleware only with given path</span></div><div class="line">router.use(<span class="string">'/users'</span>, userAuth());</div><div class="line"></div><div class="line"><span class="comment">// or with an array of paths</span></div><div class="line">router.use([<span class="string">'/users'</span>, <span class="string">'/admin'</span>], userAuth());</div><div class="line"></div><div class="line">app.use(router.routes());</div></pre></td></tr></table></figure>
+<h4 id="router-prefix-prefix-⇒-Router"><a href="#router-prefix-prefix-⇒-Router" class="headerlink" title="router.prefix(prefix) ⇒ Router"></a>router.prefix(prefix) ⇒ <code>Router</code></h4><p>设置已经初始化的路由器实例的路径前缀。</p>
+<p><strong>Kind</strong>:  <code>Router</code>的实例方法</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prefix</td>
+<td><code>String</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">router.prefix(<span class="string">'/things/:thing_id'</span>)</div></pre></td></tr></table></figure>
+<h4 id="router-allowedMethods-options-⇒-function"><a href="#router-allowedMethods-options-⇒-function" class="headerlink" title="router.allowedMethods([options]) ⇒ function"></a>router.allowedMethods([options]) ⇒ <code>function</code></h4><p>Returns separate middleware for responding to <code>OPTIONS</code> requests with an <code>Allow</code> header containing the allowed methods, as well as responding with <code>405 Method Not Allowed</code> and <code>501 Not Implemented</code> as appropriate.</p>
+<p><strong>Kind</strong>: instance method of <code>Router</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[options]</td>
+<td><code>Object</code></td>
+<td></td>
+</tr>
+<tr>
+<td>[options.throw]</td>
+<td><code>Boolean</code></td>
+<td>throw error instead of setting status and header 抛出错误而不是设置status和header</td>
+</tr>
+<tr>
+<td>[options.notImplemented]</td>
+<td><code>function</code></td>
+<td>throw the returned value in place of the default NotImplemented error 抛出返回值代替默认NotImplemented error</td>
+</tr>
+<tr>
+<td>[options.methodNotAllowed]</td>
+<td><code>function</code></td>
+<td>throw the returned value in place of the default MethodNotAllowed error 抛出返回值代替默认NotImplemented error</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</div><div class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</div><div class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router();</div><div class="line"></div><div class="line">app.use(router.routes());</div><div class="line">app.use(router.allowedMethods());</div></pre></td></tr></table></figure>
+<p><strong>Example with Boom</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">const Koa = require(&apos;koa&apos;);</div><div class="line">const Router = require(&apos;koa-router&apos;);</div><div class="line">const Boom = require(&apos;boom&apos;);</div><div class="line"></div><div class="line">const app = new Koa();</div><div class="line">const router = new Router();</div><div class="line"></div><div class="line">app.use(router.routes());</div><div class="line">app.use(router.allowedMethods(&#123;</div><div class="line">  throw: true,</div><div class="line">  notImplemented: () =&gt; new Boom.notImplemented(),</div><div class="line">  methodNotAllowed: () =&gt; new Boom.methodNotAllowed()</div><div class="line">&#125;));</div></pre></td></tr></table></figure>
+<h4 id="router-redirect-source-destination-code-⇒-Router"><a href="#router-redirect-source-destination-code-⇒-Router" class="headerlink" title="router.redirect(source, destination, code) ⇒ Router"></a>router.redirect(source, destination, code) ⇒ <code>Router</code></h4><p>Redirect <code>source</code> to <code>destination</code> URL with optional 30x status <code>code</code>.</p>
+<p>Both <code>source</code> and <code>destination</code> can be route names.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">router.redirect(&apos;/login&apos;, &apos;sign-in&apos;);</div></pre></td></tr></table></figure>
+<p>This is equivalent to:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">router.all(&apos;/login&apos;, function (ctx) &#123;</div><div class="line">  ctx.redirect(&apos;/sign-in&apos;);</div><div class="line">  ctx.status = 301;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><strong>Kind</strong>: instance method of <code>Router</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>source</td>
+<td><code>String</code></td>
+<td>URL or route name.</td>
+</tr>
+<tr>
+<td>destination</td>
+<td><code>String</code></td>
+<td>URL or route name.</td>
+</tr>
+<tr>
+<td>code</td>
+<td><code>Number</code></td>
+<td>HTTP status code (default: 301).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="router-route-name-⇒-Layer-false"><a href="#router-route-name-⇒-Layer-false" class="headerlink" title="router.route(name) ⇒ Layer | false"></a>router.route(name) ⇒ <code>Layer</code> | <code>false</code></h4><p>Lookup route with given <code>name</code>.</p>
+<p><strong>Kind</strong>: instance method of <code>Router</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><code>String</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="router-url-name-params-⇒-String-Error"><a href="#router-url-name-params-⇒-String-Error" class="headerlink" title="router.url(name, params) ⇒ String | Error"></a>router.url(name, params) ⇒ <code>String</code> | <code>Error</code></h4><p>Generate URL for route. Takes a route name and map of named <code>params</code>.</p>
+<p><strong>Kind</strong>: instance method of <code>Router</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><code>String</code></td>
+<td>route name</td>
+</tr>
+<tr>
+<td>params</td>
+<td><code>Object</code></td>
+<td>url parameters</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">router.get(&apos;user&apos;, &apos;/users/:id&apos;, function (ctx, next) &#123;</div><div class="line">  // ...</div><div class="line">&#125;);</div><div class="line"></div><div class="line">router.url(&apos;user&apos;, 3);</div><div class="line">// =&gt; &quot;/users/3&quot;</div><div class="line"></div><div class="line">router.url(&apos;user&apos;, &#123; id: 3 &#125;);</div><div class="line">// =&gt; &quot;/users/3&quot;</div><div class="line"></div><div class="line">router.use(function (ctx, next) &#123;</div><div class="line">  // redirect to named route</div><div class="line">  ctx.redirect(ctx.router.url(&apos;sign-in&apos;));</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h4 id="router-param-param-middleware-⇒-Router"><a href="#router-param-param-middleware-⇒-Router" class="headerlink" title="router.param(param, middleware) ⇒ Router"></a>router.param(param, middleware) ⇒ <code>Router</code></h4><p>Run middleware for named route parameters. Useful for auto-loading or validation.</p>
+<p><strong>Kind</strong>: instance method of <code>Router</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>param</td>
+<td><code>String</code></td>
+</tr>
+<tr>
+<td>middleware</td>
+<td><code>function</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">router</div><div class="line">  .param(&apos;user&apos;, function (id, ctx, next) &#123;</div><div class="line">    ctx.user = users[id];</div><div class="line">    if (!ctx.user) return ctx.status = 404;</div><div class="line">    return next();</div><div class="line">  &#125;)</div><div class="line">  .get(&apos;/users/:user&apos;, function (ctx) &#123;</div><div class="line">    ctx.body = ctx.user;</div><div class="line">  &#125;)</div><div class="line">  .get(&apos;/users/:user/friends&apos;, function (ctx) &#123;</div><div class="line">    return ctx.user.getFriends().then(function(friends) &#123;</div><div class="line">      ctx.body = friends;</div><div class="line">    &#125;);</div><div class="line">  &#125;)</div><div class="line">  // /users/3 =&gt; &#123;&quot;id&quot;: 3, &quot;name&quot;: &quot;Alex&quot;&#125;</div><div class="line">  // /users/3/friends =&gt; [&#123;&quot;id&quot;: 4, &quot;name&quot;: &quot;TJ&quot;&#125;]</div></pre></td></tr></table></figure>
+<h4 id="Router-url-path-params-⇒-String"><a href="#Router-url-path-params-⇒-String" class="headerlink" title="Router.url(path, params) ⇒ String"></a>Router.url(path, params) ⇒ <code>String</code></h4><p>Generate URL from url pattern and given <code>params</code>.</p>
+<p><strong>Kind</strong>: static method of <code>Router</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>path</td>
+<td><code>String</code></td>
+<td>url pattern</td>
+</tr>
+<tr>
+<td>params</td>
+<td><code>Object</code></td>
+<td>url parameters</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">const url = Router.url(&apos;/users/:id&apos;, &#123;id: 1&#125;);</div><div class="line">// =&gt; &quot;/users/1&quot;</div></pre></td></tr></table></figure>
+<h2 id="Contributing"><a href="#Contributing" class="headerlink" title="Contributing"></a>Contributing</h2><p>Please submit all issues and pull requests to the <a href="http://github.com/alexmingoia/koa-router" target="_blank" rel="external">alexmingoia/koa-router</a> repository!</p>
+<h2 id="Tests"><a href="#Tests" class="headerlink" title="Tests"></a>Tests</h2><p>Run tests using <code>npm test</code>.</p>
+<h2 id="Support"><a href="#Support" class="headerlink" title="Support"></a>Support</h2><p>If you have any problem or suggestion please open an issue <a href="https://github.com/alexmingoia/koa-router/issues" target="_blank" rel="external">here</a>.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/23/require和import的区别/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/06/ssh连接阿里云/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Zeno Tian" />
+          <p class="site-author-name" itemprop="name">Zeno Tian</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zenotian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#API-Reference"><span class="nav-number">1.</span> <span class="nav-text">API Reference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Router-⏏"><span class="nav-number">1.1.</span> <span class="nav-text">Router ⏏</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#new-Router-opts"><span class="nav-number">1.1.1.</span> <span class="nav-text">new Router([opts])</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#router-get-put-post-patch-delete-del-⇒-Router"><span class="nav-number">1.1.2.</span> <span class="nav-text">router.get|put|post|patch|delete|del ⇒ Router</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Named-routes-命名路由"><span class="nav-number">1.1.3.</span> <span class="nav-text">Named routes 命名路由</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Multiple-middleware-多中间件"><span class="nav-number">1.1.4.</span> <span class="nav-text">Multiple middleware 多中间件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nested-routers"><span class="nav-number">1.2.</span> <span class="nav-text">Nested routers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Router-prefixes"><span class="nav-number">1.2.1.</span> <span class="nav-text">Router prefixes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URL-parameters"><span class="nav-number">1.2.2.</span> <span class="nav-text">URL parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#router-routes-⇒-function"><span class="nav-number">1.2.3.</span> <span class="nav-text">router.routes ⇒ function</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#router-use-path-middleware-⇒-Router"><span class="nav-number">1.2.4.</span> <span class="nav-text">router.use([path], middleware) ⇒ Router</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#router-prefix-prefix-⇒-Router"><span class="nav-number">1.2.5.</span> <span class="nav-text">router.prefix(prefix) ⇒ Router</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#router-allowedMethods-options-⇒-function"><span class="nav-number">1.2.6.</span> <span class="nav-text">router.allowedMethods([options]) ⇒ function</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#router-redirect-source-destination-code-⇒-Router"><span class="nav-number">1.2.7.</span> <span class="nav-text">router.redirect(source, destination, code) ⇒ Router</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#router-route-name-⇒-Layer-false"><span class="nav-number">1.2.8.</span> <span class="nav-text">router.route(name) ⇒ Layer | false</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#router-url-name-params-⇒-String-Error"><span class="nav-number">1.2.9.</span> <span class="nav-text">router.url(name, params) ⇒ String | Error</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#router-param-param-middleware-⇒-Router"><span class="nav-number">1.2.10.</span> <span class="nav-text">router.param(param, middleware) ⇒ Router</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Router-url-path-params-⇒-String"><span class="nav-number">1.2.11.</span> <span class="nav-text">Router.url(path, params) ⇒ String</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Contributing"><span class="nav-number">2.</span> <span class="nav-text">Contributing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tests"><span class="nav-number">3.</span> <span class="nav-text">Tests</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Support"><span class="nav-number">4.</span> <span class="nav-text">Support</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zeno Tian</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
