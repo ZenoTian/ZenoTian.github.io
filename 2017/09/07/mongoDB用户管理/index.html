@@ -108,7 +108,7 @@ MongoDB中的用户类型/user常用MongDB的用户类型
 数据库用户：只拥有对当前数据库数据的读写权利
 
 MongoDB">
-<meta property="og:updated_time" content="2017-09-07T09:45:02.000Z">
+<meta property="og:updated_time" content="2017-09-11T09:10:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zeno Tian">
 <meta name="twitter:description" content="当你的MongoDB数据库在本地使用时不需要账号密码没问题，但是当部署到服务器时是不能没有身份验证的。今天学习MongoDB用户配置，在此稍作记录。
@@ -328,7 +328,8 @@ MongoDB">
 <h4 id="用户相关的方法"><a href="#用户相关的方法" class="headerlink" title="用户相关的方法"></a>用户相关的方法</h4><p><a href="https://docs.mongodb.com/manual/core/security-users/" target="_blank" rel="external">https://docs.mongodb.com/manual/core/security-users/</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">#添加用户：</div><div class="line">db.createUser(&#123; </div><div class="line">  user: &quot;&lt;name&gt;&quot;, //用户名</div><div class="line">  pwd: &quot;&lt;cleartext password&gt;&quot;,</div><div class="line">  customData: &#123; &lt;any information&gt; &#125;, //可选的，备注信息。</div><div class="line">  roles: [</div><div class="line">    &#123; role: &quot;&lt;role&gt;&quot;, db: &quot;&lt;database&gt;&quot; &#125; | &quot;&lt;role&gt;&quot;, //指定角色</div><div class="line">    ...</div><div class="line">  ]&#125;,</div><div class="line">  writeConcern: &#123; &lt;write concern&gt; &#125;</div><div class="line"> )</div><div class="line">#更改用户信息：将会覆盖掉原先的用户信息</div><div class="line">root(</div><div class="line">   &quot;&lt;username&gt;&quot;,</div><div class="line">   &#123;</div><div class="line">     customData : &#123; &lt;any information&gt; &#125;,</div><div class="line">     roles : [</div><div class="line">               &#123; role: &quot;&lt;role&gt;&quot;, db: &quot;&lt;database&gt;&quot; &#125; | &quot;&lt;role&gt;&quot;,</div><div class="line">               ...</div><div class="line">             ],</div><div class="line">     pwd: &quot;&lt;cleartext password&gt;&quot;</div><div class="line">    &#125;,</div><div class="line">    writeConcern: &#123; &lt;write concern&gt; &#125;</div><div class="line">)</div></pre></td></tr></table></figure>
 <h4 id="用户验证登陆的两种方式"><a href="#用户验证登陆的两种方式" class="headerlink" title="用户验证登陆的两种方式"></a>用户验证登陆的两种方式</h4><h5 id="注意点：验证的用户的时候，必须在该用户创建的数据库验证"><a href="#注意点：验证的用户的时候，必须在该用户创建的数据库验证" class="headerlink" title="注意点：验证的用户的时候，必须在该用户创建的数据库验证"></a>注意点：验证的用户的时候，必须在该用户创建的数据库验证</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mongod --auth</div><div class="line">#开启验证</div></pre></td></tr></table></figure>
-<h5 id="1-连接数据库时验证"><a href="#1-连接数据库时验证" class="headerlink" title="1.连接数据库时验证"></a>1.连接数据库时验证</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongo -u &quot;admin&quot; -p &quot;adminPass&quot; --authenticationDatabase &quot;admin&quot;</div></pre></td></tr></table></figure>
+<h5 id="1-连接数据库时验证"><a href="#1-连接数据库时验证" class="headerlink" title="1.连接数据库时验证"></a>1.连接数据库时验证</h5><p>权限验证一定要在建立该账户的数据库上进行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongo  xx.xx.xx.xx:xxx/test -u &quot;admin&quot; -p &quot;adminPass&quot;</div></pre></td></tr></table></figure>
 <h5 id="2-连接之后再进行验证"><a href="#2-连接之后再进行验证" class="headerlink" title="2.连接之后再进行验证"></a>2.连接之后再进行验证</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mongo --port 27017</div><div class="line"></div><div class="line">use admin</div><div class="line">db.auth(&quot;admin&quot;, &quot;adminPass&quot;)</div></pre></td></tr></table></figure>
 <h4 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h4><p>1.创建超级管理员用户</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo mongod --logpath=./log/log.log # 启动mongoDB</div></pre></td></tr></table></figure>
@@ -437,7 +438,7 @@ MongoDB">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

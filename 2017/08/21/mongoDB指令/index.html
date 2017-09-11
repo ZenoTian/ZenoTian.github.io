@@ -1,0 +1,613 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/zeno.png?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="启动mongoDB
+运行 MongoDB1、首先我们创建一个数据库存储目录 /data/db：
+1sudo mkdir -p /data/db
+启动 mongodb，默认数据库目录即为 /data/db：
+123456sudo mongod #启动mongo#参数--dbpath [数据存放path]  #指定数据库path-auth #开启授权启动--logpath [数据存放path]  #">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zeno Tian">
+<meta property="og:url" content="http://yoursite.com/2017/08/21/mongoDB指令/index.html">
+<meta property="og:site_name" content="Zeno Tian">
+<meta property="og:description" content="启动mongoDB
+运行 MongoDB1、首先我们创建一个数据库存储目录 /data/db：
+1sudo mkdir -p /data/db
+启动 mongodb，默认数据库目录即为 /data/db：
+123456sudo mongod #启动mongo#参数--dbpath [数据存放path]  #指定数据库path-auth #开启授权启动--logpath [数据存放path]  #">
+<meta property="og:updated_time" content="2017-09-11T08:21:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zeno Tian">
+<meta name="twitter:description" content="启动mongoDB
+运行 MongoDB1、首先我们创建一个数据库存储目录 /data/db：
+1sudo mkdir -p /data/db
+启动 mongodb，默认数据库目录即为 /data/db：
+123456sudo mongod #启动mongo#参数--dbpath [数据存放path]  #指定数据库path-auth #开启授权启动--logpath [数据存放path]  #">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/21/mongoDB指令/"/>
+
+
+  <title>  | Zeno Tian </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Zeno Tian</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-21T18:07:34+08:00" content="2017-08-21">
+              2017-08-21
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p> 启动mongoDB</p>
+<h2 id="运行-MongoDB"><a href="#运行-MongoDB" class="headerlink" title="运行 MongoDB"></a>运行 MongoDB</h2><p>1、首先我们创建一个数据库存储目录 /data/db：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo mkdir -p /data/db</div></pre></td></tr></table></figure>
+<p>启动 mongodb，默认数据库目录即为 /data/db：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sudo mongod #启动mongo</div><div class="line">#参数</div><div class="line">--dbpath [数据存放path]  #指定数据库path</div><div class="line">-auth #开启授权启动</div><div class="line">--logpath [数据存放path]  #指定日志路径</div><div class="line">--port [端口号]</div></pre></td></tr></table></figure>
+<p> 开启一个新的终端进入MongoDB shell</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongo</div></pre></td></tr></table></figure>
+<h3 id="MongoDB配置"><a href="#MongoDB配置" class="headerlink" title="MongoDB配置"></a>MongoDB配置</h3><ul>
+<li><p>端口</p>
+<ul>
+<li><p>默认端口 27017</p>
+</li>
+<li><p>Mongo shell 获取端口 <code>db.getMongo()</code></p>
+<p>​</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h3><h5 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">use DATABASE_NAME</div></pre></td></tr></table></figure>
+<p>如果数据库不存在，则创建数据库，否则切换到指定数据库。</p>
+<h5 id="查看当前数据库"><a href="#查看当前数据库" class="headerlink" title="查看当前数据库"></a>查看当前数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">db</div><div class="line">db.getName()</div></pre></td></tr></table></figure>
+<h5 id="查看所有数据库"><a href="#查看所有数据库" class="headerlink" title="查看所有数据库"></a>查看所有数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show dbs</div></pre></td></tr></table></figure>
+<h5 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.dropDatabase()</div></pre></td></tr></table></figure>
+<h5 id="拷贝数据库"><a href="#拷贝数据库" class="headerlink" title="拷贝数据库"></a>拷贝数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">db.cloneDatabase(&quot;127.0.0.1&quot;)   #将指定机器上的数据库的数据克隆到当前数据库</div><div class="line"></div><div class="line">db.copyDatabase(&quot;mydb&quot;, &quot;temp&quot;, &quot;127.0.0.1&quot;)  #将本机的mydb的数据复制到temp数据库中</div></pre></td></tr></table></figure>
+<h5 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongo://[host:port/database] -u [user] -p [password] 192.168.1.200:27017/test -u user -p password</div></pre></td></tr></table></figure>
+<blockquote>
+<p>db.dropDatabase()  #删除当前使用数据库<br>db.cloneDatabase(“127.0.0.1”)   #将指定机器上的数据库的数据克隆到当前数据库<br>db.copyDatabase(“mydb”, “temp”, “127.0.0.1”)  #将本机的mydb的数据复制到temp数据库中<br>db.repairDatabase()  #修复当前数据库<br>db.getName()  #查看当前使用的数据库，也可以直接用db<br>db.stats()  #显示当前db状态<br>db.version()  #当前db版本<br>db.getMongo()  ＃查看当前db的链接机器地址<br>db.serverStatus()  #查看数据库服务器的状态CRUD</p>
+</blockquote>
+<h4 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h4><h5 id="查看用户"><a href="#查看用户" class="headerlink" title="查看用户"></a>查看用户</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.system.find()</div></pre></td></tr></table></figure>
+<h5 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#添加用户：</div><div class="line">db.createUser(&#123; </div><div class="line">  user: &quot;&lt;name&gt;&quot;, //用户名</div><div class="line">  pwd: &quot;&lt;cleartext password&gt;&quot;,</div><div class="line">  customData: &#123; &lt;any information&gt; &#125;, //可选的，备注信息。</div><div class="line">  roles: [</div><div class="line">    &#123; role: &quot;&lt;role&gt;&quot;, db: &quot;&lt;database&gt;&quot; &#125; | &quot;&lt;role&gt;&quot;, //指定角色</div><div class="line">    ...</div><div class="line">  ]&#125;,</div><div class="line">  writeConcern: &#123; &lt;write concern&gt; &#125;</div><div class="line"> )</div></pre></td></tr></table></figure>
+<h5 id="更新用户"><a href="#更新用户" class="headerlink" title="更新用户"></a>更新用户</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#更改用户信息：将会覆盖掉原先的用户信息</div><div class="line">root(</div><div class="line">   &quot;&lt;username&gt;&quot;,</div><div class="line">   &#123;</div><div class="line">     customData : &#123; &lt;any information&gt; &#125;,</div><div class="line">     roles : [</div><div class="line">               &#123; role: &quot;&lt;role&gt;&quot;, db: &quot;&lt;database&gt;&quot; &#125; | &quot;&lt;role&gt;&quot;,</div><div class="line">               ...</div><div class="line">             ],</div><div class="line">     pwd: &quot;&lt;cleartext password&gt;&quot;</div><div class="line">    &#125;,</div><div class="line">    writeConcern: &#123; &lt;write concern&gt; &#125;</div><div class="line">)</div></pre></td></tr></table></figure>
+<h5 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h5><h4 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h4><h5 id="Create-插入数据"><a href="#Create-插入数据" class="headerlink" title="Create 插入数据"></a>Create 插入数据</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">db.collection.insert()  	    # 插入数据</div><div class="line">db.collection.save()        	# 不传Id会插入一条新的数据，传id此操作变为更新数据</div><div class="line">db.collection.insertOne()   	# 向指定集合中插入一条文档数据 </div><div class="line">db.collection.insertMany() 		# 向指定集合中插入多条文档数据,传入数组</div></pre></td></tr></table></figure>
+<h5 id="Retrieve读取数据"><a href="#Retrieve读取数据" class="headerlink" title="Retrieve读取数据"></a>Retrieve读取数据</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">db.collection.find(query, projection)</div><div class="line">db.col.find().pretty() # pretty</div></pre></td></tr></table></figure>
+<h5 id="Update更新数据"><a href="#Update更新数据" class="headerlink" title="Update更新数据"></a>Update更新数据</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">db.collection.update(             # 更新已存在的文档</div><div class="line">   &lt;query&gt;,  					# update的查询条件</div><div class="line">   &lt;update&gt;,					# update的对象和一些更新的操作符（如$,$inc...）等</div><div class="line">   &#123;</div><div class="line">     upsert: &lt;boolean&gt;,			 # 可选，如果不存在update的记录，是否插入一条新的,默认是false，不插入。</div><div class="line">     multi: &lt;boolean&gt;,			 # 可选，默认是false,只更新找到的第一条记录，否则更新全部</div><div class="line">     writeConcern: &lt;document&gt;	  # 可选，抛出异常的级别。</div><div class="line">   &#125;</div><div class="line">)</div><div class="line"></div><div class="line">db.collection.save(				# 通过传入的文档来替换已有文档</div><div class="line">   &lt;document&gt;,</div><div class="line">   &#123;</div><div class="line">     writeConcern: &lt;document&gt;</div><div class="line">   &#125;</div><div class="line">)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># 只更新第一条记录：</div><div class="line">db.col.update( &#123; &quot;count&quot; : &#123; $gt : 1 &#125; &#125; , &#123; $set : &#123; &quot;test2&quot; : &quot;OK&quot;&#125; &#125; );</div><div class="line"># 全部更新：</div><div class="line">db.col.update( &#123; &quot;count&quot; : &#123; $gt : 3 &#125; &#125; , &#123; $set : &#123; &quot;test2&quot; : &quot;OK&quot;&#125; &#125;,false,true );</div><div class="line"># 只添加第一条：</div><div class="line">db.col.update( &#123; &quot;count&quot; : &#123; $gt : 4 &#125; &#125; , &#123; $set : &#123; &quot;test5&quot; : &quot;OK&quot;&#125; &#125;,true,false );</div><div class="line"># 全部添加加进去:</div><div class="line">db.col.update( &#123; &quot;count&quot; : &#123; $gt : 5 &#125; &#125; , &#123; $set : &#123; &quot;test5&quot; : &quot;OK&quot;&#125; &#125;,true,true );</div><div class="line"># 全部更新：</div><div class="line">db.col.update( &#123; &quot;count&quot; : &#123; $gt : 15 &#125; &#125; , &#123; $inc : &#123; &quot;count&quot; : 1&#125; &#125;,false,true );</div><div class="line"># 只更新第一条记录：</div><div class="line">db.col.update( &#123; &quot;count&quot; : &#123; $gt : 10 &#125; &#125; , &#123; $inc : &#123; &quot;count&quot; : 1&#125; &#125;,false,false );</div></pre></td></tr></table></figure>
+<h5 id="Delete删除数据"><a href="#Delete删除数据" class="headerlink" title="Delete删除数据"></a>Delete删除数据</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">db.collection.remove(		# 移除集合中的数据。</div><div class="line">   &lt;query&gt;,</div><div class="line">   &#123;</div><div class="line">     justOne: &lt;boolean&gt;,</div><div class="line">     writeConcern: &lt;document&gt;</div><div class="line">   &#125;</div><div class="line">)</div></pre></td></tr></table></figure>
+<p><a href="http://www.cnblogs.com/ontheroad_lee/p/3684280.html" target="_blank" rel="external">http://www.cnblogs.com/ontheroad_lee/p/3684280.html</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/14/多人合作的git使用/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/23/require和import的区别/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Zeno Tian" />
+          <p class="site-author-name" itemprop="name">Zeno Tian</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zenotian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行-MongoDB"><span class="nav-number">1.</span> <span class="nav-text">运行 MongoDB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoDB配置"><span class="nav-number">1.1.</span> <span class="nav-text">MongoDB配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库操作"><span class="nav-number">1.2.</span> <span class="nav-text">数据库操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建数据库"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">创建数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查看当前数据库"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">查看当前数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查看所有数据库"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">查看所有数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除数据库"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">删除数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#拷贝数据库"><span class="nav-number">1.2.0.5.</span> <span class="nav-text">拷贝数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#连接数据库"><span class="nav-number">1.2.0.6.</span> <span class="nav-text">连接数据库</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户管理"><span class="nav-number">1.2.1.</span> <span class="nav-text">用户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#查看用户"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">查看用户</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#添加用户"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">添加用户</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#更新用户"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">更新用户</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除用户"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">删除用户</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CRUD"><span class="nav-number">1.2.2.</span> <span class="nav-text">CRUD</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Create-插入数据"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">Create 插入数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Retrieve读取数据"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">Retrieve读取数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Update更新数据"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">Update更新数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Delete删除数据"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">Delete删除数据</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zeno Tian</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

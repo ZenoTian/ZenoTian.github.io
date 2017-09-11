@@ -236,6 +236,158 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/11/ES6-Class/" itemprop="url">
+                  Class
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-11T11:07:35+08:00" content="2016-11-11">
+              2016-11-11
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>阅读阮一峰老师的ES6入门的学习笔记。</p>
+<h1 id="Class-基本语法"><a href="#Class-基本语法" class="headerlink" title="Class 基本语法"></a>Class 基本语法</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><code>class</code>关键字，可以看做语法糖。大部分功能ES5通过构造函数生成新对象都可以完成。<code>class</code>写法让对象原型的写法更清晰。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x, y</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.x = x;</div><div class="line">  <span class="keyword">this</span>.y = y;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Point.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="string">'('</span> + <span class="keyword">this</span>.x + <span class="string">', '</span> + <span class="keyword">this</span>.y + <span class="string">')'</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">2</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//定义类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(x, y) &#123;</div><div class="line">    <span class="keyword">this</span>.x = x;</div><div class="line">    <span class="keyword">this</span>.y = y;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  toString() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'('</span> + <span class="keyword">this</span>.x + <span class="string">', '</span> + <span class="keyword">this</span>.y + <span class="string">')'</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="与ES5构造函数比较"><a href="#与ES5构造函数比较" class="headerlink" title="与ES5构造函数比较"></a>与ES5构造函数比较</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
+<li><p><code>class Point</code>等价于<code>function Point</code></p>
+</li>
+<li><p><code>constructor</code>是构造方法，等价于ES5中构造函数内定义的内容</p>
+</li>
+<li><p><code>this</code>与ES5一样，代表实例对象</p>
+</li>
+<li><p>定义“类”的方法不需要加上<code>function</code>关键字，直接写函数名以及函数体。与ES5在构造函数的 <strong>原型对象</strong> 上(<code>Point.prototype</code>)上定义方法</p>
+</li>
+<li><p>“类”的方法之间不需要逗号分隔</p>
+</li>
+<li><p>可以使用<code>Object.assign</code>方法，一次向类添加多个方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>()&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">Object</span>.assign(Point.prototype, &#123;</div><div class="line">  toString()&#123;&#125;,</div><div class="line">  toValue()&#123;&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
+<li><p>与ES5构造函数一样，通过<code>new</code>命令创造实例对象</p>
+</li>
+<li><p>与ES5 <strong>不同</strong> 类内部定义的方法是不可枚举的 （non-enumerable）</p>
+</li>
+<li><p>类的构造函数，不使用<code>new</code>无法调用。ES5中构造函数可以不通过<code>new</code>调用</p>
+</li>
+<li><p>ES6 不存在变量提升所以需要先声明父类再使用</p>
+</li>
+<li><p>“类”的属性名，可以采用表达式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> methodName = <span class="string">"getArea"</span>;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span></span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(length) &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  [methodName]() &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><ul>
+<li>与构造函数相同<code>typeof</code>为<code>function</code></li>
+<li><code>Point.prototype.constructor</code>也为自身</li>
+</ul>
+<h2 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h2><ul>
+<li>类的默认方法，通过<code>new</code>生成对象实例时自动调用。</li>
+<li>没有定义时，会默认添加空的<code>constructor</code>方法</li>
+<li>默认返回对象实例（<code>this</code>）也可以返回别的对象</li>
+<li>类的构造函数，不使用<code>new</code>无法调用。</li>
+</ul>
+<h2 id="类的实例对象"><a href="#类的实例对象" class="headerlink" title="类的实例对象"></a>类的实例对象</h2><ul>
+<li>与ES5相同，实例的属性除非显示的定义在<code>this</code>上，否则都是定义在原型上<code>class</code>上</li>
+<li>与ES5相同，类的所有实例共享同一个原型对象</li>
+</ul>
+<h2 id="Class表达式"><a href="#Class表达式" class="headerlink" title="Class表达式"></a>Class表达式</h2><ul>
+<li><p>和函数一样可以使用表达式形式定义</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> MyClass = <span class="class"><span class="keyword">class</span> <span class="title">Me</span> </span>&#123;</div><div class="line">  getClassName() &#123;</div><div class="line">    <span class="keyword">return</span> Me.name;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>类的名字是<code>MyClass</code></li>
+<li><code>Me</code>只能在Class内部可用</li>
+<li><code>Me</code>和函数名一样，可以省略</li>
+</ul>
+</li>
+<li><p>​</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/09/gitignore配置文件/" itemprop="url">
                   gitignore配置规则
                 </a>
@@ -1388,7 +1540,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

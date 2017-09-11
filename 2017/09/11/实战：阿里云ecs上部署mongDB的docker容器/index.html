@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="学习笔记," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,58 +84,28 @@
 
 
 
-<meta name="description" content="生命周期三种状态
-安装
-当创建组件的实例并将其插入DOM时，将调用这些方法:
+<meta name="description" content="在docker中使用MongoDB
+通过Docker运行Mongo1docker run --name [name] -p 27017:27017 -v /data/db:/data/db -d mongo
 
-constructor()
-componentWillMount()
-render()
-componentDidMount()
-
-更新
-更新可以由props或state的更改引起。在重新渲染组件时调用这些方法：
-
-componentWillReceiveProps()
-shouldComponentUpdate()
-c">
+-v/data/db:/data/db 将主机的/data/db文件夹挂载在容器内的/data/db
+在docker容器中运行MongoDB所产生的数据会保存在容器内部，容器停止后数据也将随">
 <meta property="og:type" content="article">
-<meta property="og:title" content="生命周期三种状态">
-<meta property="og:url" content="http://yoursite.com/2017/02/03/生命周期三种状态/index.html">
+<meta property="og:title" content="Zeno Tian">
+<meta property="og:url" content="http://yoursite.com/2017/09/11/实战：阿里云ecs上部署mongDB的docker容器/index.html">
 <meta property="og:site_name" content="Zeno Tian">
-<meta property="og:description" content="生命周期三种状态
-安装
-当创建组件的实例并将其插入DOM时，将调用这些方法:
+<meta property="og:description" content="在docker中使用MongoDB
+通过Docker运行Mongo1docker run --name [name] -p 27017:27017 -v /data/db:/data/db -d mongo
 
-constructor()
-componentWillMount()
-render()
-componentDidMount()
-
-更新
-更新可以由props或state的更改引起。在重新渲染组件时调用这些方法：
-
-componentWillReceiveProps()
-shouldComponentUpdate()
-c">
-<meta property="og:updated_time" content="2017-06-13T09:41:14.000Z">
+-v/data/db:/data/db 将主机的/data/db文件夹挂载在容器内的/data/db
+在docker容器中运行MongoDB所产生的数据会保存在容器内部，容器停止后数据也将随">
+<meta property="og:updated_time" content="2017-09-11T09:16:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="生命周期三种状态">
-<meta name="twitter:description" content="生命周期三种状态
-安装
-当创建组件的实例并将其插入DOM时，将调用这些方法:
+<meta name="twitter:title" content="Zeno Tian">
+<meta name="twitter:description" content="在docker中使用MongoDB
+通过Docker运行Mongo1docker run --name [name] -p 27017:27017 -v /data/db:/data/db -d mongo
 
-constructor()
-componentWillMount()
-render()
-componentDidMount()
-
-更新
-更新可以由props或state的更改引起。在重新渲染组件时调用这些方法：
-
-componentWillReceiveProps()
-shouldComponentUpdate()
-c">
+-v/data/db:/data/db 将主机的/data/db文件夹挂载在容器内的/data/db
+在docker容器中运行MongoDB所产生的数据会保存在容器内部，容器停止后数据也将随">
 
 
 
@@ -156,10 +126,10 @@ c">
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/03/生命周期三种状态/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/11/实战：阿里云ecs上部署mongDB的docker容器/"/>
 
 
-  <title> 生命周期三种状态 | Zeno Tian </title>
+  <title>  | Zeno Tian </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -279,7 +249,7 @@ c">
             
             
               
-                生命周期三种状态
+                
               
             
           </h1>
@@ -291,8 +261,8 @@ c">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-03T10:26:17+08:00" content="2017-02-03">
-              2017-02-03
+            <time itemprop="dateCreated" datetime="2017-09-11T17:16:56+08:00" content="2017-09-11">
+              2017-09-11
             </time>
           </span>
 
@@ -319,40 +289,34 @@ c">
       
 
       
-        <p>生命周期三种状态</p>
-<p>安装</p>
-<p>当创建组件的实例并将其插入DOM时，将调用这些方法:</p>
+        <p>在docker中使用MongoDB</p>
+<h4 id="通过Docker运行Mongo"><a href="#通过Docker运行Mongo" class="headerlink" title="通过Docker运行Mongo"></a>通过Docker运行Mongo</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run --name [name] -p 27017:27017 -v /data/db:/data/db -d mongo</div></pre></td></tr></table></figure>
 <ul>
-<li><a href="https://facebook.github.io/react/docs/react-component.html#constructor" target="_blank" rel="external"><code>constructor()</code></a></li>
-<li><a href="https://facebook.github.io/react/docs/react-component.html#componentwillmount" target="_blank" rel="external"><code>componentWillMount()</code></a></li>
-<li><a href="https://facebook.github.io/react/docs/react-component.html#render" target="_blank" rel="external"><code>render()</code></a></li>
-<li><a href="https://facebook.github.io/react/docs/react-component.html#componentdidmount" target="_blank" rel="external"><code>componentDidMount()</code></a></li>
+<li><p><code>-v/data/db:/data/db</code> 将主机的<code>/data/db</code>文件夹挂载在容器内的<code>/data/db</code></p>
+<p>在docker容器中运行MongoDB所产生的数据会保存在容器内部，容器停止后数据也将随之消失无法得到保存。所以为了将容器中的数据持久化，需要使用docker的数据卷，将主机上的文件夹映射到容器内部。这样容器运行时所产生的数据将会保存在主机的文件中。</p>
+<h6 id="NOTE-mac-os-需要在Docker-gt-Preferences…-gt-File-Sharing中添加共享的目录"><a href="#NOTE-mac-os-需要在Docker-gt-Preferences…-gt-File-Sharing中添加共享的目录" class="headerlink" title="NOTE: mac os 需要在Docker -&gt; Preferences… -&gt; File Sharing中添加共享的目录"></a>NOTE: mac os 需要在Docker -&gt; Preferences… -&gt; File Sharing中添加共享的目录</h6></li>
+<li><p><code>-p 27017:27017</code>将容器内mongo的默认<code>27017</code>端口映射至主机的<code>27017</code>端口</p>
+</li>
+<li><p><code>-d</code>后台运行</p>
+</li>
+<li><p><code>—auth</code>开启Mongo的验证</p>
+</li>
 </ul>
-<p>更新</p>
-<p>更新可以由props或state的更改引起。在重新渲染组件时调用这些方法：</p>
-<ul>
-<li><a href="https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops" target="_blank" rel="external"><code>componentWillReceiveProps()</code></a></li>
-<li><a href="https://facebook.github.io/react/docs/react-component.html#shouldcomponentupdate" target="_blank" rel="external"><code>shouldComponentUpdate()</code></a></li>
-<li><a href="https://facebook.github.io/react/docs/react-component.html#componentwillupdate" target="_blank" rel="external"><code>componentWillUpdate()</code></a></li>
-<li><a href="https://facebook.github.io/react/docs/react-component.html#render" target="_blank" rel="external"><code>render()</code></a></li>
-<li><a href="https://facebook.github.io/react/docs/react-component.html#componentdidupdate" target="_blank" rel="external"><code>componentDidUpdate()</code></a></li>
-</ul>
-<p>卸载</p>
-<p>当从DOM中删除组件时，将调用此方法:</p>
-<ul>
-<li><a href="https://facebook.github.io/react/docs/react-component.html#componentwillunmount" target="_blank" rel="external"><code>componentWillUnmount()</code></a></li>
-</ul>
-<p>文章1：生命周期的hook的总结</p>
-<ul>
-<li>生命周期的执行时间</li>
-<li>可以执行的操作</li>
-<li>意义</li>
-</ul>
-<p>文章2：生命周期的实际应用</p>
+<h4 id="进入Mongo-shell"><a href="#进入Mongo-shell" class="headerlink" title="进入Mongo shell"></a>进入Mongo shell</h4><p>在主机上进入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker exec -it &lt;YOUR-NAME&gt; mongo</div></pre></td></tr></table></figure>
+<h4 id="设置管理员-用户"><a href="#设置管理员-用户" class="headerlink" title="设置管理员/用户"></a>设置管理员/用户</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  user:&apos;testUser</div><div class="line">  pwd:&apos;testPass&apos;,</div><div class="line">  roles:[&#123;role:&apos;readWrite&apos;,db:&apos;test&apos;&#125;]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p>通过本地mongo shell 连接远程服务器的mongoDB </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongo  xx.xx.xx.xx:xxx/test -u &quot;admin&quot; -p &quot;adminPass&quot;</div></pre></td></tr></table></figure>
+<h5 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h5><p>在阿里云上通过docker运行mongo，在本地使用mongo尝试连接，连接不上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">MongoDB shell version v3.4.0</div><div class="line">connecting to: mongodb://xx.xx.xx.xx:xxxx</div><div class="line">2017-09-08T16:16:28.584+0800 W NETWORK  [main] Failed to connect to 47.52.30.225:25714 after 5000 milliseconds, giving up.</div><div class="line">2017-09-08T16:16:28.587+0800 E QUERY    [main] Error: couldn&apos;t connect to server xx.xx.xx.xx:xxxx, connection attempt failed :</div><div class="line">connect@src/mongo/shell/mongo.js:234:13</div><div class="line">@(connect):1:6</div><div class="line">exception: connect failed</div></pre></td></tr></table></figure>
+<h5 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h5><p>在本地连接不上远程的数据库是因为我将docker端口和服务器端口映射写反了。</p>
+<p>出现类似的问题应该如何排查</p>
 <ol>
-<li>一次渲染的生命周期，</li>
-<li>改变state或者props的重新渲染的生命周期完整流程</li>
+<li>检查端口号配置</li>
+<li>检查账号密码设置</li>
+<li>检查阿里云安全组设置</li>
 </ol>
+<p>购买的云主机服务，初始的时候除了ssh外的端口，所有对外的端口都是被屏蔽的。需要去手动去阿里云的安全组中将需要用到的端口配置打开，在外网才能访问</p>
 
       
     </div>
@@ -373,28 +337,18 @@ c">
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/学习笔记/" rel="tag">#学习笔记</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/03/组件的生命周期/" rel="next" title="">
+              <a href="/2017/09/07/Docker中的数据管理/" rel="next" title="">
                 <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/14/注意点： flex布局下的，子元素的float,clear,vertical-align将会失效/" rel="prev" title="flex布局">
-                flex布局 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -512,7 +466,7 @@ c">
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#通过Docker运行Mongo"><span class="nav-number">1.</span> <span class="nav-text">通过Docker运行Mongo</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#NOTE-mac-os-需要在Docker-gt-Preferences…-gt-File-Sharing中添加共享的目录"><span class="nav-number">1.0.1.</span> <span class="nav-text">NOTE: mac os 需要在Docker -> Preferences… -> File Sharing中添加共享的目录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进入Mongo-shell"><span class="nav-number">2.</span> <span class="nav-text">进入Mongo shell</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置管理员-用户"><span class="nav-number">3.</span> <span class="nav-text">设置管理员/用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#验证"><span class="nav-number">4.</span> <span class="nav-text">验证</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#问题"><span class="nav-number">4.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解决"><span class="nav-number">4.2.</span> <span class="nav-text">解决</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
