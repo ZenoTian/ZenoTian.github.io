@@ -236,6 +236,234 @@
             
               
                 
+                <a class="post-title-link" href="/2017/09/21/小程序swiper组件的问题/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-21T15:13:21+08:00" content="2017-09-21">
+              2017-09-21
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="关于小程序swiper的问题"><a href="#关于小程序swiper的问题" class="headerlink" title="关于小程序swiper的问题"></a>关于小程序swiper的问题</h2><h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>在官方示例上给<code>swiper</code>添加了<code>current``bindchange``circular</code><br>添加了一个<code>button``bindtap</code>用于切换下一张</p>
+<p>index.wxml<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">swiper</span> <span class="attr">indicator-dots</span>=<span class="string">"&#123;&#123;indicatorDots&#125;&#125;"</span></span></div><div class="line">  <span class="attr">bindchange</span>=<span class="string">"swiperChange"</span></div><div class="line">  <span class="attr">current</span>=<span class="string">"&#123;&#123;index&#125;&#125;"</span></div><div class="line">  <span class="attr">circular</span>=<span class="string">"true"</span></div><div class="line">  <span class="attr">autoplay</span>=<span class="string">"&#123;&#123;autoplay&#125;&#125;"</span> <span class="attr">interval</span>=<span class="string">"&#123;&#123;interval&#125;&#125;"</span> <span class="attr">duration</span>=<span class="string">"&#123;&#123;duration&#125;&#125;"</span>&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;imgUrls&#125;&#125;"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">swiper-item</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">"&#123;&#123;item&#125;&#125;"</span> <span class="attr">class</span>=<span class="string">"slide-image"</span> <span class="attr">width</span>=<span class="string">"355"</span> <span class="attr">height</span>=<span class="string">"150"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">swiper-item</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">block</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">swiper</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">"changeIndicatorDots"</span>&gt;</span> indicator-dots <span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">"changeAutoplay"</span>&gt;</span> autoplay <span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">"nextSwiper"</span>&gt;</span> 下一张 <span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">slider</span> <span class="attr">bindchange</span>=<span class="string">"intervalChange"</span> <span class="attr">show-value</span> <span class="attr">min</span>=<span class="string">"500"</span> <span class="attr">max</span>=<span class="string">"2000"</span>/&gt;</span> interval</div><div class="line"><span class="tag">&lt;<span class="name">slider</span> <span class="attr">bindchange</span>=<span class="string">"durationChange"</span> <span class="attr">show-value</span> <span class="attr">min</span>=<span class="string">"1000"</span> <span class="attr">max</span>=<span class="string">"10000"</span>/&gt;</span> duration</div></pre></td></tr></table></figure></p>
+<p>index.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">	<span class="comment">/**</span></div><div class="line">	 * create by ZenoTian</div><div class="line">	 */</div><div class="line">Page(&#123;</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">imgUrls</span>: [</div><div class="line">      <span class="string">'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg'</span>,</div><div class="line">      <span class="string">'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg'</span>,</div><div class="line">      <span class="string">'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'</span></div><div class="line">    ],</div><div class="line">    <span class="attr">indicatorDots</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">autoplay</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">interval</span>: <span class="number">5000</span>,</div><div class="line">    <span class="attr">duration</span>: <span class="number">1000</span>,</div><div class="line">    <span class="attr">index</span>: <span class="number">2</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">changeIndicatorDots</span>: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.setData(&#123;</div><div class="line">      <span class="attr">indicatorDots</span>: !<span class="keyword">this</span>.data.indicatorDots</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">nextSwiper</span>: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> &#123;index&#125; = <span class="keyword">this</span>.data</div><div class="line">    index === <span class="number">2</span></div><div class="line">    ?index = <span class="number">0</span></div><div class="line">    :index++</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`下一张：<span class="subst">$&#123;index&#125;</span>`</span>)</div><div class="line">		<span class="keyword">this</span>.setData(&#123;</div><div class="line">			index</div><div class="line">		&#125;)</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">changeAutoplay</span>: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.setData(&#123;</div><div class="line">      <span class="attr">autoplay</span>: !<span class="keyword">this</span>.data.autoplay</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">intervalChange</span>: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.setData(&#123;</div><div class="line">      <span class="attr">interval</span>: e.detail.value</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">durationChange</span>: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.setData(&#123;</div><div class="line">      <span class="attr">duration</span>: e.detail.value</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">swiperChange</span>: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'bindchange事件'</span>, <span class="string">`this.data.index:<span class="subst">$&#123;<span class="keyword">this</span>.data.index&#125;</span> e.detail.current:<span class="subst">$&#123;e.detail.current&#125;</span>`</span>)</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h4 id="问题1：手动赋值current值，衔接滑动无效"><a href="#问题1：手动赋值current值，衔接滑动无效" class="headerlink" title="问题1：手动赋值current值，衔接滑动无效"></a>问题1：手动赋值current值，衔接滑动无效</h4><p>点击下一张，通过给<code>setData</code>改变<code>swiper</code>的<code>current</code>值,在从最后一张切换至第一张时，虽然设置了<code>circular</code>，但是不会有衔接滑动的效果，而是从尾部一路溜到了头。</p>
+<h4 id="问题2：绑定的current的值，滑动并不会改变"><a href="#问题2：绑定的current的值，滑动并不会改变" class="headerlink" title="问题2：绑定的current的值，滑动并不会改变"></a>问题2：绑定的current的值，滑动并不会改变</h4><p>通过给<code>swiper</code>的<code>current</code>绑定了<code>this.data.index</code><br>默认值是生效的，但是在手滑滑块的时候，并不会自动改变<code>this.data.index</code>的值。<br>通过<code>bindchange</code>的打印可以看出来。<code>this.data.index</code>的值是永远不会变的。<br>所以这时候<code>current</code>和<code>this.data.index</code>是不照应的。</p>
+<p>例如：向右滑动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">bindchange事件 this.data.index:2 e.detail.current:1</div><div class="line">bindchange事件 this.data.index:2 e.detail.current:0</div><div class="line">bindchange事件 this.data.index:2 e.detail.current:2</div><div class="line">bindchange事件 this.data.index:2 e.detail.current:1</div><div class="line">bindchange事件 this.data.index:2 e.detail.current:0</div></pre></td></tr></table></figure></p>
+<p>在官方文档中</p>
+<blockquote>
+<p>如果在 bindchange 的事件回调函数中使用 setData 改变 current 值，则有可能导致 &gt;setData 被不停地调用，因而通常情况下请不要这样使用</p>
+</blockquote>
+<p>如果想让<code>current</code>和<code>this.data.index</code>对照，还是需要在<code>bindchange</code> 的事件回调函数中使用<code>setData</code>改变<code>current</code>值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">swiperChange: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'bindchange事件'</span>,<span class="string">`this.data.index:<span class="subst">$&#123;<span class="keyword">this</span>.data.index&#125;</span> e.detail.current:<span class="subst">$&#123;e.detail.current&#125;</span>`</span>)</div><div class="line"></div><div class="line">  <span class="keyword">this</span>.setData(&#123;</div><div class="line">    <span class="attr">index</span>: e.detail.current</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="问题3：控制current的值切换，与滑动切换代码结果不一样"><a href="#问题3：控制current的值切换，与滑动切换代码结果不一样" class="headerlink" title="问题3：控制current的值切换，与滑动切换代码结果不一样"></a>问题3：控制current的值切换，与滑动切换代码结果不一样</h4><p>如果采取了在<code>bindchange</code> 的事件回调函数中使用<code>setData</code>改变<code>current</code>值。<br>点击下一张：给<code>this.data.index</code>赋值后触发的<code>bindchange</code>事件回调中的，<code>this.data.index</code>与<code>e.detail.current</code>的值相同。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">下一张：0</div><div class="line">bindchange事件 this.data.index:0 e.detail.current:0</div><div class="line">下一张：1</div><div class="line">bindchange事件 this.data.index:1 e.detail.current:1</div><div class="line">下一张：2</div><div class="line">bindchange事件 this.data.index:2 e.detail.current:2</div><div class="line">下一张：0</div><div class="line">bindchange事件 this.data.index:0 e.detail.current:0</div><div class="line">下一张：1</div><div class="line">bindchange事件 this.data.index:1 e.detail.current:1</div></pre></td></tr></table></figure></p>
+<p>手动滑动时：<code>bindchange</code>事件回调中的，<code>this.data.index</code>的值会是上一次的值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">bindchange事件 this.data.index:2 e.detail.current:1</div><div class="line">bindchange事件 this.data.index:1 e.detail.current:0</div><div class="line">bindchange事件 this.data.index:0 e.detail.current:2</div><div class="line">bindchange事件 this.data.index:2 e.detail.current:1</div><div class="line">bindchange事件 this.data.index:1 e.detail.current:0</div></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>使用手动改变<code>current</code>的值时，<code>current</code>的值先变，然后触发<code>bindchange</code>，在事件回调中无需再去设置<code>current</code>的值。这种切换方式，设置<code>swiper</code>的<code>circular=&quot;true&quot;</code>是无效的，会从最后一张跑到第一张。</p>
+<p>而通过滑动屏幕切换，在<code>bindchange</code>，绑定的<code>current</code>的值是不会改变的，而实际上<code>swiper</code>的<code>current</code>已经改变了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/16/centos部署git/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-16T21:58:35+08:00" content="2017-09-16">
+              2017-09-16
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<h2 id="title-在centOS部署自己的代码库"><a href="#title-在centOS部署自己的代码库" class="headerlink" title="title 在centOS部署自己的代码库"></a>title 在centOS部署自己的代码库</h2><p>参照网上的一些教程，总结一份较好的方案</p>
+<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y git</div></pre></td></tr></table></figure>
+<h3 id="2-添加用户-用户组"><a href="#2-添加用户-用户组" class="headerlink" title="2.添加用户/用户组"></a>2.添加用户/用户组</h3><p>创建一个git用户组，和git用户<br>因为考虑到可能会和多人共用git代码库，所以建立一个专门的分享系统用户给开发者们。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo groupadd git</div><div class="line">sudo adduser git -g git</div><div class="line">sudo passwd git</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /etc/passwd</div></pre></td></tr></table></figure>
+<p>将<br><code>git:x:1001:1001:,,,:/home/git:/bin/bash</code><br>修改为<br><code>git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell</code><br>让git用户只能使用git-shell进行git相关的操作</p>
+<h3 id="ssh登录"><a href="#ssh登录" class="headerlink" title="ssh登录"></a>ssh登录</h3><p>在参考网上的一些</p>
+<ol>
+<li>开启服务器RSA验证<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /etc/ssh/sshd_config</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>找到并去掉前面的#号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">RSAAuthentication yes</div><div class="line">PubkeyAuthentication yes</div><div class="line">RSAAuthentication yes</div><div class="line">RSAAuthentication #设置是否允许只有RSA安全验证。</div><div class="line">PasswordAuthentication</div><div class="line">PasswordAuthentication yes #PasswordAuthentication”设置是否允许口令验证。</div><div class="line">AuthorizedKeysFile  .ssh/authorized_keys</div></pre></td></tr></table></figure></p>
+<ol>
+<li>配置RSA公钥<br>如果使用的是非root用户需要切换到git用户，才有权限对/home/git下的文件进行操作</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">su - git #切换用户</div></pre></td></tr></table></figure>
+<p>创建<code>authorized_keys</code>文件，用于配置开发者的公钥<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cd /home/git/</div><div class="line">mkdir .ssh</div><div class="line">chmod 700 .ssh</div><div class="line">touch .ssh/authorized_keys</div><div class="line">chmod 600 .ssh/authorized_keys</div></pre></td></tr></table></figure></p>
+<ol>
+<li>客户端生成公钥<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C &quot;youremail@your.com&quot; -f ~/.ssh/my-rsa #生成公钥，并指定文件名</div><div class="line">cat ~/.ssh/my-rsa.pub  # 复制里面的内容，粘贴到服务器的authorized_keys中去</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><p>创建git中央仓库<br>1.进入git用户主目录</p>
+<p>cd /home/git<br>2.创建一个裸仓库 (一般以.git结尾)</p>
+<p>git init –bare test.git #以test.git为例子,当然你可以叫任意名字<br>裸仓库是没有工作区的，纯粹为了共享</p>
+<p>3.修改仓库用户属主</p>
+<p>chown -R git:git test.git</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/09/11/实战：阿里云ecs上部署mongDB的docker容器/" itemprop="url">
                   docker中运行mongoDB
                 </a>
@@ -1464,218 +1692,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/14/多人合作的git使用/" itemprop="url">
-                  git合并与提交
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-14T14:17:07+08:00" content="2017-08-14">
-              2017-08-14
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="多人合作的git使用"><a href="#多人合作的git使用" class="headerlink" title="多人合作的git使用"></a>多人合作的git使用</h2><h4 id="git-merge-的-—no-ff-参数"><a href="#git-merge-的-—no-ff-参数" class="headerlink" title="git merge 的 —no-ff  参数"></a>git merge 的 —no-ff  参数</h4><p>git merge 默认是”快进式合并”(fast-farward merge)。这样合并操作会直接将Master 指向 develop 分支</p>
-<p><img src="/Users/ZenoTian/Documents/WechatIMG580.jpeg" alt="WechatIMG580"></p>
-<p>上图有多分支合并的结果图，可以看到 使用—no-ff的提交流程更清晰</p>
-<h4 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h4><p>git flow 只存在两个长期分支master 和 develop </p>
-<p>其他分支命名必须遵照规则，在合并之后立即删除。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">　　* 功能（feature）分支</div><div class="line">　　* 预发布（release）分支</div><div class="line">　　* 修补bug（fixbug）分支</div></pre></td></tr></table></figure>
-<p>master 分支代码是不可更改的。</p>
-<p>正常流程中将准备发布的dev上的代码合并入master中再进行部署</p>
-<p>需要修复bug，则新建fixbug分支，完成后分别合并入dev与master</p>
-<h4 id="主分支保持同步"><a href="#主分支保持同步" class="headerlink" title="主分支保持同步"></a>主分支保持同步</h4><p>请勿在多人工作分支上进行变基操作</p>
-<p>fetch更新本地仓库两种方式：</p>
-<p><a href="javascript:void(0" target="_blank" rel="external"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a>;)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">//方法一</div><div class="line">$ git fetch origin master //从远程的origin仓库的master分支下载代码到本地的origin master</div><div class="line"></div><div class="line">$ git log -p master.. origin/master//比较本地的仓库和远程参考的区别</div><div class="line"></div><div class="line">$ git merge origin/master//把远程下载下来的代码合并到本地仓库，远程的和本地的合并</div><div class="line"></div><div class="line">//方法二</div><div class="line">$ git fetch origin master:temp //从远程的origin仓库的master分支下载到本地并新建一个分支temp</div><div class="line"></div><div class="line">$ git diff temp//比较master分支和temp分支的不同</div><div class="line"></div><div class="line">$ git merge temp//合并temp分支到master分支</div><div class="line"></div><div class="line">$ git branch -d temp//删除temp</div></pre></td></tr></table></figure>
-<h4 id="合并多次commit"><a href="#合并多次commit" class="headerlink" title="合并多次commit"></a>合并多次commit</h4><p>开发的时候我们通常会在开发分支多次commit，但是对于多人合作来说，很多commit是无用的信息。如果将所有commit信息全部合并进git的baseline中，会导致commit信息过多并且混乱</p>
-<h5 id="git-merge-–squash-abc"><a href="#git-merge-–squash-abc" class="headerlink" title="git merge –squash abc"></a>git merge –squash abc</h5><h6 id="–squash选项的含义是：不保留待合并分支上的历史信息，也不提交、不移动HEAD，因此需要一条额外的commit命令。"><a href="#–squash选项的含义是：不保留待合并分支上的历史信息，也不提交、不移动HEAD，因此需要一条额外的commit命令。" class="headerlink" title="–squash选项的含义是：不保留待合并分支上的历史信息，也不提交、不移动HEAD，因此需要一条额外的commit命令。"></a>–squash选项的含义是：不保留待合并分支上的历史信息，也不提交、不移动HEAD，因此需要一条额外的commit命令。</h6><h6 id="其效果相当于将another分支上的多个commit合并成一个，放在当前分支上，原来的commit历史则没有拿过来。"><a href="#其效果相当于将another分支上的多个commit合并成一个，放在当前分支上，原来的commit历史则没有拿过来。" class="headerlink" title="其效果相当于将another分支上的多个commit合并成一个，放在当前分支上，原来的commit历史则没有拿过来。"></a>其效果相当于将another分支上的多个commit合并成一个，放在当前分支上，原来的commit历史则没有拿过来。</h6><p> 判断是否使用–squash选项最根本的标准是，待合并分支上的历史是否有意义。</p>
-<p>合并的时候—squash 参数可以将分支上所有的变动改为一次commit，使用merge命令后需要在合并后的分支上将变动添加，commit一次，这样在分支上的多次commit在git的baseline上就只会有一次commit。</p>
-<p>但是—squash 和 —no-ff参数不可一并使用。</p>
-<h4 id="—squash-和-—no-ff-是不同的提交风格"><a href="#—squash-和-—no-ff-是不同的提交风格" class="headerlink" title="—squash 和 —no-ff 是不同的提交风格"></a>—squash 和 —no-ff 是不同的提交风格</h4><p>fast-farward式的merge通过—squash 可以形成单一的整洁的提交历史记录</p>
-<p>—no-ff 式的merge 形成的提交历史记录可以显示详细的提交历史</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/07/docker命令/" itemprop="url">
-                  docker命令整理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-07T10:10:16+08:00" content="2017-07-07">
-              2017-07-07
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h5 id="在Linux上启动Docker"><a href="#在Linux上启动Docker" class="headerlink" title="在Linux上启动Docker"></a>在Linux上启动Docker</h5><h6 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service docker start  #旧语法</div><div class="line">systemctl  start docker.service #新语法</div></pre></td></tr></table></figure>
-<h6 id="设置开启启动"><a href="#设置开启启动" class="headerlink" title="设置开启启动"></a>设置开启启动</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chkconfig docker on  #旧</div><div class="line">systemctl  enable docker.service #新</div></pre></td></tr></table></figure>
-<h5 id="问题整理"><a href="#问题整理" class="headerlink" title="问题整理"></a>问题整理</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ docker ps</div><div class="line">Cannot connect to the Docker daemon. Is the docker daemon running on this host?</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ ps aux | grep docker</div><div class="line">root     17210  0.0  2.4 499624 24928 ?        Ssl  Sep06   0:26 /usr/bin/dockerd-current --add-runtime docker-runc=/usr/libexec/docker/docker-runc-current --default-runtime=docker-runc --exec-opt native.cgroupdriver=systemd --userland-proxy-path=/usr/libexec/docker/docker-proxy-current --selinux-enabled --log-driver=journald --signature-verification=false</div><div class="line">root     17214  0.0  0.6 262960  6948 ?        Ssl  Sep06   0:02 /usr/bin/docker-containerd-current -l unix:///var/run/docker/libcontainerd/docker-containerd.sock --shim docker-containerd-shim --metrics-interval=0 --start-timeout 2m --state-dir /var/run/docker/libcontainerd/containerd --runtime docker-runc --runtime-args --systemd-cgroup=true</div><div class="line">zeno     21958  0.0  0.0 112648   964 pts/0    R+   14:35   0:00 grep --color=auto docker</div></pre></td></tr></table></figure>
-<p>查看进程，其实docker已经运行了。其实是权限不够，需要在加上<code>sudo</code>.还有很多类似的命令，按照理解查看应该是不要root权限的，其实不然。<code>docker info</code>,<code>docker ps</code>,<code>docker images</code>都会没有权限</p>
-<h5 id="Docker镜像命令"><a href="#Docker镜像命令" class="headerlink" title="Docker镜像命令"></a>Docker镜像命令</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">docker search    #搜索镜像</div><div class="line">docker images		# 列出镜像</div><div class="line">docker run 镜像名:标签  # 运行镜像 REPOSTITORY:TAG docker run --name web2 -d -p 81:80 nginx:v2</div><div class="line">exit	# 退出镜像 </div><div class="line">docker pull 镜像名  # 获取镜像</div><div class="line">-i # 交互式操作</div><div class="line">-t # 终端</div><div class="line">-d # 让容器在后台运行。</div><div class="line">-P [主机端口]:[容器端口] # 将容器内部使用的网络端口映射到我们使用的主机上。</div><div class="line">-v [主机目录]:[容器目录]</div><div class="line"></div><div class="line">docker commit -m=&quot;has update&quot; -a=&quot;runoob&quot; e218edb10161 runoob/ubuntu:v2</div><div class="line">-m:提交的描述信息</div><div class="line">-a:指定镜像作者</div><div class="line">e218edb10161：容器ID</div><div class="line">2runoob/ubuntu:v2:指定要创建的目标镜像名</div><div class="line"></div><div class="line">docker commit  	#慎用，黑箱操作 容易使镜像变得臃肿</div><div class="line">docker diff		#比较改动</div><div class="line">docker build [选项] &lt;上下文路径/URL/-&gt;</div></pre></td></tr></table></figure>
-<h5 id="Docker容器命令"><a href="#Docker容器命令" class="headerlink" title="Docker容器命令"></a>Docker容器命令</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">docker rm [name/id] #删除docker容器 ，容器必须是停止的否则报错</div><div class="line">docker start [name/id] #重新启动docker</div><div class="line">docker ps #查看正在运行的docker进程</div><div class="line">docker ps -a #查看所有已创建的容器</div><div class="line">docker rm $(docker ps -a -q)  #删除所有的终止容器</div><div class="line">docker port [name/id] #查看进程端口映射</div><div class="line">docker stop [name/id] #停止进程</div><div class="line">docker logs [name/id] #查看容器内的标准输出</div><div class="line">-f #实时日志</div><div class="line">docker top [name/id] #查看容器内的的进程</div><div class="line">docker inspect [name/id] #来查看Docker的底层信息。它会返回一个 JSON 文件记录着 Docker 容器的配置和状态信息。</div><div class="line">docker attach [name/id] #进入正在运行的docker进程中 NOTE: 这个链接终止后，容器会退出后台运行</div><div class="line">docker exec -it [name/id] /bin/sh  # 进入正在运行的docker进程中 常加参数 -it</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1721,7 +1737,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">30</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

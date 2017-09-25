@@ -1,0 +1,579 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/zeno.png?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="关于小程序swiper的问题代码在官方示例上给swiper添加了current``bindchange``circular添加了一个button``bindtap用于切换下一张
+index.wxml12345678910111213141516&amp;lt;swiper indicator-dots=&quot;&amp;#123;&amp;#123;indicatorDots&amp;#125;&amp;#125;&quot;  bindcha">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zeno Tian">
+<meta property="og:url" content="http://yoursite.com/2017/09/21/小程序swiper组件的问题/index.html">
+<meta property="og:site_name" content="Zeno Tian">
+<meta property="og:description" content="关于小程序swiper的问题代码在官方示例上给swiper添加了current``bindchange``circular添加了一个button``bindtap用于切换下一张
+index.wxml12345678910111213141516&amp;lt;swiper indicator-dots=&quot;&amp;#123;&amp;#123;indicatorDots&amp;#125;&amp;#125;&quot;  bindcha">
+<meta property="og:updated_time" content="2017-09-21T09:42:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zeno Tian">
+<meta name="twitter:description" content="关于小程序swiper的问题代码在官方示例上给swiper添加了current``bindchange``circular添加了一个button``bindtap用于切换下一张
+index.wxml12345678910111213141516&amp;lt;swiper indicator-dots=&quot;&amp;#123;&amp;#123;indicatorDots&amp;#125;&amp;#125;&quot;  bindcha">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/21/小程序swiper组件的问题/"/>
+
+
+  <title>  | Zeno Tian </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Zeno Tian</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-21T15:13:21+08:00" content="2017-09-21">
+              2017-09-21
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="关于小程序swiper的问题"><a href="#关于小程序swiper的问题" class="headerlink" title="关于小程序swiper的问题"></a>关于小程序swiper的问题</h2><h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>在官方示例上给<code>swiper</code>添加了<code>current``bindchange``circular</code><br>添加了一个<code>button``bindtap</code>用于切换下一张</p>
+<p>index.wxml<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">swiper</span> <span class="attr">indicator-dots</span>=<span class="string">"&#123;&#123;indicatorDots&#125;&#125;"</span></span></div><div class="line">  <span class="attr">bindchange</span>=<span class="string">"swiperChange"</span></div><div class="line">  <span class="attr">current</span>=<span class="string">"&#123;&#123;index&#125;&#125;"</span></div><div class="line">  <span class="attr">circular</span>=<span class="string">"true"</span></div><div class="line">  <span class="attr">autoplay</span>=<span class="string">"&#123;&#123;autoplay&#125;&#125;"</span> <span class="attr">interval</span>=<span class="string">"&#123;&#123;interval&#125;&#125;"</span> <span class="attr">duration</span>=<span class="string">"&#123;&#123;duration&#125;&#125;"</span>&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;imgUrls&#125;&#125;"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">swiper-item</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">"&#123;&#123;item&#125;&#125;"</span> <span class="attr">class</span>=<span class="string">"slide-image"</span> <span class="attr">width</span>=<span class="string">"355"</span> <span class="attr">height</span>=<span class="string">"150"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">swiper-item</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">block</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">swiper</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">"changeIndicatorDots"</span>&gt;</span> indicator-dots <span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">"changeAutoplay"</span>&gt;</span> autoplay <span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">"nextSwiper"</span>&gt;</span> 下一张 <span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">slider</span> <span class="attr">bindchange</span>=<span class="string">"intervalChange"</span> <span class="attr">show-value</span> <span class="attr">min</span>=<span class="string">"500"</span> <span class="attr">max</span>=<span class="string">"2000"</span>/&gt;</span> interval</div><div class="line"><span class="tag">&lt;<span class="name">slider</span> <span class="attr">bindchange</span>=<span class="string">"durationChange"</span> <span class="attr">show-value</span> <span class="attr">min</span>=<span class="string">"1000"</span> <span class="attr">max</span>=<span class="string">"10000"</span>/&gt;</span> duration</div></pre></td></tr></table></figure></p>
+<p>index.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">	<span class="comment">/**</span></div><div class="line">	 * create by ZenoTian</div><div class="line">	 */</div><div class="line">Page(&#123;</div><div class="line">  <span class="attr">data</span>: &#123;</div><div class="line">    <span class="attr">imgUrls</span>: [</div><div class="line">      <span class="string">'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg'</span>,</div><div class="line">      <span class="string">'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg'</span>,</div><div class="line">      <span class="string">'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'</span></div><div class="line">    ],</div><div class="line">    <span class="attr">indicatorDots</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">autoplay</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">interval</span>: <span class="number">5000</span>,</div><div class="line">    <span class="attr">duration</span>: <span class="number">1000</span>,</div><div class="line">    <span class="attr">index</span>: <span class="number">2</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">changeIndicatorDots</span>: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.setData(&#123;</div><div class="line">      <span class="attr">indicatorDots</span>: !<span class="keyword">this</span>.data.indicatorDots</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">nextSwiper</span>: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> &#123;index&#125; = <span class="keyword">this</span>.data</div><div class="line">    index === <span class="number">2</span></div><div class="line">    ?index = <span class="number">0</span></div><div class="line">    :index++</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`下一张：<span class="subst">$&#123;index&#125;</span>`</span>)</div><div class="line">		<span class="keyword">this</span>.setData(&#123;</div><div class="line">			index</div><div class="line">		&#125;)</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">changeAutoplay</span>: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.setData(&#123;</div><div class="line">      <span class="attr">autoplay</span>: !<span class="keyword">this</span>.data.autoplay</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">intervalChange</span>: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.setData(&#123;</div><div class="line">      <span class="attr">interval</span>: e.detail.value</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">durationChange</span>: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.setData(&#123;</div><div class="line">      <span class="attr">duration</span>: e.detail.value</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">swiperChange</span>: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'bindchange事件'</span>, <span class="string">`this.data.index:<span class="subst">$&#123;<span class="keyword">this</span>.data.index&#125;</span> e.detail.current:<span class="subst">$&#123;e.detail.current&#125;</span>`</span>)</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h4 id="问题1：手动赋值current值，衔接滑动无效"><a href="#问题1：手动赋值current值，衔接滑动无效" class="headerlink" title="问题1：手动赋值current值，衔接滑动无效"></a>问题1：手动赋值current值，衔接滑动无效</h4><p>点击下一张，通过给<code>setData</code>改变<code>swiper</code>的<code>current</code>值,在从最后一张切换至第一张时，虽然设置了<code>circular</code>，但是不会有衔接滑动的效果，而是从尾部一路溜到了头。</p>
+<h4 id="问题2：绑定的current的值，滑动并不会改变"><a href="#问题2：绑定的current的值，滑动并不会改变" class="headerlink" title="问题2：绑定的current的值，滑动并不会改变"></a>问题2：绑定的current的值，滑动并不会改变</h4><p>通过给<code>swiper</code>的<code>current</code>绑定了<code>this.data.index</code><br>默认值是生效的，但是在手滑滑块的时候，并不会自动改变<code>this.data.index</code>的值。<br>通过<code>bindchange</code>的打印可以看出来。<code>this.data.index</code>的值是永远不会变的。<br>所以这时候<code>current</code>和<code>this.data.index</code>是不照应的。</p>
+<p>例如：向右滑动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">bindchange事件 this.data.index:2 e.detail.current:1</div><div class="line">bindchange事件 this.data.index:2 e.detail.current:0</div><div class="line">bindchange事件 this.data.index:2 e.detail.current:2</div><div class="line">bindchange事件 this.data.index:2 e.detail.current:1</div><div class="line">bindchange事件 this.data.index:2 e.detail.current:0</div></pre></td></tr></table></figure></p>
+<p>在官方文档中</p>
+<blockquote>
+<p>如果在 bindchange 的事件回调函数中使用 setData 改变 current 值，则有可能导致 &gt;setData 被不停地调用，因而通常情况下请不要这样使用</p>
+</blockquote>
+<p>如果想让<code>current</code>和<code>this.data.index</code>对照，还是需要在<code>bindchange</code> 的事件回调函数中使用<code>setData</code>改变<code>current</code>值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">swiperChange: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'bindchange事件'</span>,<span class="string">`this.data.index:<span class="subst">$&#123;<span class="keyword">this</span>.data.index&#125;</span> e.detail.current:<span class="subst">$&#123;e.detail.current&#125;</span>`</span>)</div><div class="line"></div><div class="line">  <span class="keyword">this</span>.setData(&#123;</div><div class="line">    <span class="attr">index</span>: e.detail.current</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="问题3：控制current的值切换，与滑动切换代码结果不一样"><a href="#问题3：控制current的值切换，与滑动切换代码结果不一样" class="headerlink" title="问题3：控制current的值切换，与滑动切换代码结果不一样"></a>问题3：控制current的值切换，与滑动切换代码结果不一样</h4><p>如果采取了在<code>bindchange</code> 的事件回调函数中使用<code>setData</code>改变<code>current</code>值。<br>点击下一张：给<code>this.data.index</code>赋值后触发的<code>bindchange</code>事件回调中的，<code>this.data.index</code>与<code>e.detail.current</code>的值相同。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">下一张：0</div><div class="line">bindchange事件 this.data.index:0 e.detail.current:0</div><div class="line">下一张：1</div><div class="line">bindchange事件 this.data.index:1 e.detail.current:1</div><div class="line">下一张：2</div><div class="line">bindchange事件 this.data.index:2 e.detail.current:2</div><div class="line">下一张：0</div><div class="line">bindchange事件 this.data.index:0 e.detail.current:0</div><div class="line">下一张：1</div><div class="line">bindchange事件 this.data.index:1 e.detail.current:1</div></pre></td></tr></table></figure></p>
+<p>手动滑动时：<code>bindchange</code>事件回调中的，<code>this.data.index</code>的值会是上一次的值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">bindchange事件 this.data.index:2 e.detail.current:1</div><div class="line">bindchange事件 this.data.index:1 e.detail.current:0</div><div class="line">bindchange事件 this.data.index:0 e.detail.current:2</div><div class="line">bindchange事件 this.data.index:2 e.detail.current:1</div><div class="line">bindchange事件 this.data.index:1 e.detail.current:0</div></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>使用手动改变<code>current</code>的值时，<code>current</code>的值先变，然后触发<code>bindchange</code>，在事件回调中无需再去设置<code>current</code>的值。这种切换方式，设置<code>swiper</code>的<code>circular=&quot;true&quot;</code>是无效的，会从最后一张跑到第一张。</p>
+<p>而通过滑动屏幕切换，在<code>bindchange</code>，绑定的<code>current</code>的值是不会改变的，而实际上<code>swiper</code>的<code>current</code>已经改变了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/16/centos部署git/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Zeno Tian" />
+          <p class="site-author-name" itemprop="name">Zeno Tian</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zenotian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于小程序swiper的问题"><span class="nav-number">1.</span> <span class="nav-text">关于小程序swiper的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码"><span class="nav-number">1.0.1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题1：手动赋值current值，衔接滑动无效"><span class="nav-number">1.0.2.</span> <span class="nav-text">问题1：手动赋值current值，衔接滑动无效</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题2：绑定的current的值，滑动并不会改变"><span class="nav-number">1.0.3.</span> <span class="nav-text">问题2：绑定的current的值，滑动并不会改变</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题3：控制current的值切换，与滑动切换代码结果不一样"><span class="nav-number">1.0.4.</span> <span class="nav-text">问题3：控制current的值切换，与滑动切换代码结果不一样</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.1.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zeno Tian</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

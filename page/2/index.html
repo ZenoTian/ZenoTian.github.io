@@ -236,6 +236,218 @@
             
               
                 
+                <a class="post-title-link" href="/2017/08/14/多人合作的git使用/" itemprop="url">
+                  git合并与提交
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-14T14:17:07+08:00" content="2017-08-14">
+              2017-08-14
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="多人合作的git使用"><a href="#多人合作的git使用" class="headerlink" title="多人合作的git使用"></a>多人合作的git使用</h2><h4 id="git-merge-的-—no-ff-参数"><a href="#git-merge-的-—no-ff-参数" class="headerlink" title="git merge 的 —no-ff  参数"></a>git merge 的 —no-ff  参数</h4><p>git merge 默认是”快进式合并”(fast-farward merge)。这样合并操作会直接将Master 指向 develop 分支</p>
+<p><img src="/Users/ZenoTian/Documents/WechatIMG580.jpeg" alt="WechatIMG580"></p>
+<p>上图有多分支合并的结果图，可以看到 使用—no-ff的提交流程更清晰</p>
+<h4 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h4><p>git flow 只存在两个长期分支master 和 develop </p>
+<p>其他分支命名必须遵照规则，在合并之后立即删除。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">　　* 功能（feature）分支</div><div class="line">　　* 预发布（release）分支</div><div class="line">　　* 修补bug（fixbug）分支</div></pre></td></tr></table></figure>
+<p>master 分支代码是不可更改的。</p>
+<p>正常流程中将准备发布的dev上的代码合并入master中再进行部署</p>
+<p>需要修复bug，则新建fixbug分支，完成后分别合并入dev与master</p>
+<h4 id="主分支保持同步"><a href="#主分支保持同步" class="headerlink" title="主分支保持同步"></a>主分支保持同步</h4><p>请勿在多人工作分支上进行变基操作</p>
+<p>fetch更新本地仓库两种方式：</p>
+<p><a href="javascript:void(0" target="_blank" rel="external"><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码"></a>;)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">//方法一</div><div class="line">$ git fetch origin master //从远程的origin仓库的master分支下载代码到本地的origin master</div><div class="line"></div><div class="line">$ git log -p master.. origin/master//比较本地的仓库和远程参考的区别</div><div class="line"></div><div class="line">$ git merge origin/master//把远程下载下来的代码合并到本地仓库，远程的和本地的合并</div><div class="line"></div><div class="line">//方法二</div><div class="line">$ git fetch origin master:temp //从远程的origin仓库的master分支下载到本地并新建一个分支temp</div><div class="line"></div><div class="line">$ git diff temp//比较master分支和temp分支的不同</div><div class="line"></div><div class="line">$ git merge temp//合并temp分支到master分支</div><div class="line"></div><div class="line">$ git branch -d temp//删除temp</div></pre></td></tr></table></figure>
+<h4 id="合并多次commit"><a href="#合并多次commit" class="headerlink" title="合并多次commit"></a>合并多次commit</h4><p>开发的时候我们通常会在开发分支多次commit，但是对于多人合作来说，很多commit是无用的信息。如果将所有commit信息全部合并进git的baseline中，会导致commit信息过多并且混乱</p>
+<h5 id="git-merge-–squash-abc"><a href="#git-merge-–squash-abc" class="headerlink" title="git merge –squash abc"></a>git merge –squash abc</h5><h6 id="–squash选项的含义是：不保留待合并分支上的历史信息，也不提交、不移动HEAD，因此需要一条额外的commit命令。"><a href="#–squash选项的含义是：不保留待合并分支上的历史信息，也不提交、不移动HEAD，因此需要一条额外的commit命令。" class="headerlink" title="–squash选项的含义是：不保留待合并分支上的历史信息，也不提交、不移动HEAD，因此需要一条额外的commit命令。"></a>–squash选项的含义是：不保留待合并分支上的历史信息，也不提交、不移动HEAD，因此需要一条额外的commit命令。</h6><h6 id="其效果相当于将another分支上的多个commit合并成一个，放在当前分支上，原来的commit历史则没有拿过来。"><a href="#其效果相当于将another分支上的多个commit合并成一个，放在当前分支上，原来的commit历史则没有拿过来。" class="headerlink" title="其效果相当于将another分支上的多个commit合并成一个，放在当前分支上，原来的commit历史则没有拿过来。"></a>其效果相当于将another分支上的多个commit合并成一个，放在当前分支上，原来的commit历史则没有拿过来。</h6><p> 判断是否使用–squash选项最根本的标准是，待合并分支上的历史是否有意义。</p>
+<p>合并的时候—squash 参数可以将分支上所有的变动改为一次commit，使用merge命令后需要在合并后的分支上将变动添加，commit一次，这样在分支上的多次commit在git的baseline上就只会有一次commit。</p>
+<p>但是—squash 和 —no-ff参数不可一并使用。</p>
+<h4 id="—squash-和-—no-ff-是不同的提交风格"><a href="#—squash-和-—no-ff-是不同的提交风格" class="headerlink" title="—squash 和 —no-ff 是不同的提交风格"></a>—squash 和 —no-ff 是不同的提交风格</h4><p>fast-farward式的merge通过—squash 可以形成单一的整洁的提交历史记录</p>
+<p>—no-ff 式的merge 形成的提交历史记录可以显示详细的提交历史</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/07/docker命令/" itemprop="url">
+                  docker命令整理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-07T10:10:16+08:00" content="2017-07-07">
+              2017-07-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="在Linux上启动Docker"><a href="#在Linux上启动Docker" class="headerlink" title="在Linux上启动Docker"></a>在Linux上启动Docker</h5><h6 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service docker start  #旧语法</div><div class="line">systemctl  start docker.service #新语法</div></pre></td></tr></table></figure>
+<h6 id="设置开启启动"><a href="#设置开启启动" class="headerlink" title="设置开启启动"></a>设置开启启动</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chkconfig docker on  #旧</div><div class="line">systemctl  enable docker.service #新</div></pre></td></tr></table></figure>
+<h5 id="问题整理"><a href="#问题整理" class="headerlink" title="问题整理"></a>问题整理</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ docker ps</div><div class="line">Cannot connect to the Docker daemon. Is the docker daemon running on this host?</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ ps aux | grep docker</div><div class="line">root     17210  0.0  2.4 499624 24928 ?        Ssl  Sep06   0:26 /usr/bin/dockerd-current --add-runtime docker-runc=/usr/libexec/docker/docker-runc-current --default-runtime=docker-runc --exec-opt native.cgroupdriver=systemd --userland-proxy-path=/usr/libexec/docker/docker-proxy-current --selinux-enabled --log-driver=journald --signature-verification=false</div><div class="line">root     17214  0.0  0.6 262960  6948 ?        Ssl  Sep06   0:02 /usr/bin/docker-containerd-current -l unix:///var/run/docker/libcontainerd/docker-containerd.sock --shim docker-containerd-shim --metrics-interval=0 --start-timeout 2m --state-dir /var/run/docker/libcontainerd/containerd --runtime docker-runc --runtime-args --systemd-cgroup=true</div><div class="line">zeno     21958  0.0  0.0 112648   964 pts/0    R+   14:35   0:00 grep --color=auto docker</div></pre></td></tr></table></figure>
+<p>查看进程，其实docker已经运行了。其实是权限不够，需要在加上<code>sudo</code>.还有很多类似的命令，按照理解查看应该是不要root权限的，其实不然。<code>docker info</code>,<code>docker ps</code>,<code>docker images</code>都会没有权限</p>
+<h5 id="Docker镜像命令"><a href="#Docker镜像命令" class="headerlink" title="Docker镜像命令"></a>Docker镜像命令</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">docker search    #搜索镜像</div><div class="line">docker images		# 列出镜像</div><div class="line">docker run 镜像名:标签  # 运行镜像 REPOSTITORY:TAG docker run --name web2 -d -p 81:80 nginx:v2</div><div class="line">exit	# 退出镜像 </div><div class="line">docker pull 镜像名  # 获取镜像</div><div class="line">-i # 交互式操作</div><div class="line">-t # 终端</div><div class="line">-d # 让容器在后台运行。</div><div class="line">-P [主机端口]:[容器端口] # 将容器内部使用的网络端口映射到我们使用的主机上。</div><div class="line">-v [主机目录]:[容器目录]</div><div class="line"></div><div class="line">docker commit -m=&quot;has update&quot; -a=&quot;runoob&quot; e218edb10161 runoob/ubuntu:v2</div><div class="line">-m:提交的描述信息</div><div class="line">-a:指定镜像作者</div><div class="line">e218edb10161：容器ID</div><div class="line">2runoob/ubuntu:v2:指定要创建的目标镜像名</div><div class="line"></div><div class="line">docker commit  	#慎用，黑箱操作 容易使镜像变得臃肿</div><div class="line">docker diff		#比较改动</div><div class="line">docker build [选项] &lt;上下文路径/URL/-&gt;</div></pre></td></tr></table></figure>
+<h5 id="Docker容器命令"><a href="#Docker容器命令" class="headerlink" title="Docker容器命令"></a>Docker容器命令</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">docker rm [name/id] #删除docker容器 ，容器必须是停止的否则报错</div><div class="line">docker start [name/id] #重新启动docker</div><div class="line">docker ps #查看正在运行的docker进程</div><div class="line">docker ps -a #查看所有已创建的容器</div><div class="line">docker rm $(docker ps -a -q)  #删除所有的终止容器</div><div class="line">docker port [name/id] #查看进程端口映射</div><div class="line">docker stop [name/id] #停止进程</div><div class="line">docker logs [name/id] #查看容器内的标准输出</div><div class="line">-f #实时日志</div><div class="line">docker top [name/id] #查看容器内的的进程</div><div class="line">docker inspect [name/id] #来查看Docker的底层信息。它会返回一个 JSON 文件记录着 Docker 容器的配置和状态信息。</div><div class="line">docker attach [name/id] #进入正在运行的docker进程中 NOTE: 这个链接终止后，容器会退出后台运行</div><div class="line">docker exec -it [name/id] /bin/sh  # 进入正在运行的docker进程中 常加参数 -it</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/04/13/React官方文档笔记/" itemprop="url">
                   React官方文档笔记
                 </a>
@@ -1411,251 +1623,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/15/--学习笔记——IEEE-802.3以太网络-Enthernet/" itemprop="url">
-                  学习笔记——IEEE 802.3以太网络 Enthernet
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-15T22:01:12+08:00" content="2016-11-15">
-              2016-11-15
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Enthernet-Introduction介绍"><a href="#Enthernet-Introduction介绍" class="headerlink" title="Enthernet Introduction介绍"></a>Enthernet Introduction介绍</h1><h2 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h2><ul>
-<li>1970开发</li>
-<li>1978年定义标准</li>
-</ul>
-<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
-<li>Connectionless 通讯不需要两个主机建立连接 </li>
-<li>Unreliable 不可靠（干扰，讯号冲撞，损毁，网络拥挤）</li>
-<li>Ethernet’s MAC protocol: <code>Carrier Sense Multiple Acess with Collision Detection(CSMA/CD)</code>协调所有连接上的主机工作</li>
-</ul>
-<h1 id="Enthernet-Topologies拓扑"><a href="#Enthernet-Topologies拓扑" class="headerlink" title="Enthernet Topologies拓扑"></a>Enthernet Topologies拓扑</h1><ul>
-<li><h3 id="BUS-topology"><a href="#BUS-topology" class="headerlink" title="BUS topology"></a>BUS topology</h3><ul>
-<li><p>双向传输 </p>
-</li>
-<li><p>两端有终端器(防止信号反弹回来)</p>
-</li>
-<li><p>有长度限制 （网段最长500公尺）</p>
-</li>
-<li><p>transceiver 可以传输可以接收</p>
-</li>
-<li><p>transceiver连接至网卡</p>
-</li>
-<li><p>每个网段最多100哥收发器</p>
-</li>
-<li><p>收发器电缆最长50公尺</p>
-</li>
-<li><h4 id="Manchester-Encoding"><a href="#Manchester-Encoding" class="headerlink" title="Manchester Encoding"></a>Manchester Encoding</h4><ul>
-<li>#### </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="Enthernet-Frame-Format-传输格式"><a href="#Enthernet-Frame-Format-传输格式" class="headerlink" title="Enthernet Frame Format 传输格式"></a>Enthernet Frame Format 传输格式</h1><h1 id="Ethernet-MAC-Protocol-—-CSMA-CD-协议"><a href="#Ethernet-MAC-Protocol-—-CSMA-CD-协议" class="headerlink" title="Ethernet MAC Protocol — CSMA/CD 协议"></a>Ethernet MAC Protocol — CSMA/CD 协议</h1><h1 id="802-3-Ethernet-Standards-标准"><a href="#802-3-Ethernet-Standards-标准" class="headerlink" title="802.3 Ethernet Standards 标准"></a>802.3 Ethernet Standards 标准</h1>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/15/高效学习的建议/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-15T21:43:12+08:00" content="2016-11-15">
-              2016-11-15
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>首先定义学习的目标</li>
-</ul>
-<h2 id="高效学习的建议"><a href="#高效学习的建议" class="headerlink" title="高效学习的建议"></a>高效学习的建议</h2><ul>
-<li>Anki 帮助记忆</li>
-</ul>
-<p>建议：</p>
-<ul>
-<li>快速获得反馈 <ul>
-<li>反反复复练习，每次都获得反馈可以很快的提升</li>
-</ul>
-</li>
-<li>创造深的理解<ul>
-<li>列出要学习的知识点：试图以讲给学生的方式讲出来</li>
-</ul>
-</li>
-<li>高强度学习<ul>
-<li>刻意练习</li>
-<li>广泛练习</li>
-</ul>
-</li>
-<li>习惯的养成<ul>
-<li>只有一个重要的坚持下去</li>
-</ul>
-</li>
-<li>学习的动机</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1701,7 +1668,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">30</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
