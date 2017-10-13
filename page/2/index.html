@@ -236,6 +236,662 @@
             
               
                 
+                <a class="post-title-link" href="/2017/08/31/koa-router/" itemprop="url">
+                  koa-router 7中文
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-31T13:14:10+08:00" content="2017-08-31">
+              2017-08-31
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Koa-router 7</p>
+<ul>
+<li>Express风格的路由 <code>app.get</code>, <code>app.put</code>, <code>app.post</code>, 等等</li>
+<li>命名URL参数</li>
+<li>命名路由由URL生成</li>
+<li>Responds to <code>OPTIONS</code> requests with allowed methods.</li>
+<li>支持  <code>405 Method Not Allowed</code> 和 <code>501 Not Implemented</code>.</li>
+<li>多路由中间件</li>
+<li>多路由</li>
+<li>嵌套路由</li>
+<li>ES7 async/await 支持</li>
+</ul>
+<h2 id="API-Reference"><a href="#API-Reference" class="headerlink" title="API Reference"></a>API Reference</h2><ul>
+<li><p>koa-router</p>
+<ul>
+<li><p>Router</p>
+<p>⏏</p>
+<ul>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#new_module_koa-router--Router_new" target="_blank" rel="external">new Router([opts])</a></li>
+<li>instance<ul>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+get%7Cput%7Cpost%7Cpatch%7Cdelete%7Cdel" target="_blank" rel="external">.get|put|post|patch|delete|del</a> ⇒ <code>Router</code></li>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+routes" target="_blank" rel="external">.routes</a> ⇒ <code>function</code></li>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+use" target="_blank" rel="external">.use([path], middleware)</a> ⇒ <code>Router</code></li>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+prefix" target="_blank" rel="external">.prefix(prefix)</a> ⇒ <code>Router</code></li>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+allowedMethods" target="_blank" rel="external">.allowedMethods([options])</a> ⇒ <code>function</code></li>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+redirect" target="_blank" rel="external">.redirect(source, destination, code)</a> ⇒ <code>Router</code></li>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+route" target="_blank" rel="external">.route(name)</a> ⇒ <code>Layer</code> | <code>false</code></li>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+url" target="_blank" rel="external">.url(name, params)</a> ⇒ <code>String</code> | <code>Error</code></li>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router+param" target="_blank" rel="external">.param(param, middleware)</a> ⇒ <code>Router</code></li>
+</ul>
+</li>
+<li>static<ul>
+<li><a href="https://github.com/alexmingoia/koa-router/tree/master/#module_koa-router--Router.url" target="_blank" rel="external">.url(path, params)</a> ⇒ <code>String</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Router-⏏"><a href="#Router-⏏" class="headerlink" title="Router ⏏"></a>Router ⏏</h3><p>类型: 导出类</p>
+<h4 id="new-Router-opts"><a href="#new-Router-opts" class="headerlink" title="new Router([opts])"></a>new Router([opts])</h4><p>创建一个新的路由</p>
+<table>
+<thead>
+<tr>
+<th>Param参数</th>
+<th>Type类型</th>
+<th>Description描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[opts]</td>
+<td><code>Object</code></td>
+<td></td>
+</tr>
+<tr>
+<td>[opts.prefix]</td>
+<td><code>String</code></td>
+<td>prefix router paths 路由前缀路径</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong><br>Basic usage:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</div><div class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</div><div class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router();</div><div class="line"></div><div class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line">  <span class="comment">// ctx.router available</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">app</div><div class="line">  .use(router.routes())</div><div class="line">  .use(router.allowedMethods())</div></pre></td></tr></table></figure>
+<h4 id="router-get-put-post-patch-delete-del-⇒-Router"><a href="#router-get-put-post-patch-delete-del-⇒-Router" class="headerlink" title="router.get|put|post|patch|delete|del ⇒ Router"></a>router.get|put|post|patch|delete|del ⇒ <code>Router</code></h4><p>verb:动词</p>
+<p>创建 <code>router.verb()</code> 方法, 其中动词是诸如<code>router.get()</code> or <code>router.post()</code>之类的HTTP动词之一。</p>
+<p>使用<code>router.verb()</code>将URL与回调函数或控制器进行匹配，其中动词是诸如router.get（）或router.post（）之类的HTTP动词之一。</p>
+<p>另外, <code>router.all()</code> 可以匹配所有路由</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">router</div><div class="line">  .get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line">    ctx.body = <span class="string">'Hello World!'</span>;</div><div class="line">  &#125;)</div><div class="line">  .post(<span class="string">'/users'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;)</div><div class="line">  .put(<span class="string">'/users/:id'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;)</div><div class="line">  .del(<span class="string">'/users/:id'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;)</div><div class="line">  .all(<span class="string">'/users/:id'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<p>当一个路由匹配时，其路径在<code>ctx._matchedRoute</code>可用，如果命名，则名称可在<code>ctx._matchedRouteName</code></p>
+<p>路由路径将使用 <a href="https://github.com/pillarjs/path-to-regexp" target="_blank" rel="external">path-to-regexp</a>.转换为正则表达式</p>
+<p>匹配请求时不会考虑查询字符串</p>
+<h4 id="Named-routes-命名路由"><a href="#Named-routes-命名路由" class="headerlink" title="Named routes 命名路由"></a>Named routes 命名路由</h4><p>路由可以配置名称。这样可以在开发过程中轻松生成URL或重命名URL。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'user'</span>, <span class="string">'/users/:id'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line"> <span class="comment">// ...</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">router.url(<span class="string">'user'</span>, <span class="number">3</span>);</div><div class="line"><span class="comment">// =&gt; "/users/3"</span></div></pre></td></tr></table></figure>
+<h4 id="Multiple-middleware-多中间件"><a href="#Multiple-middleware-多中间件" class="headerlink" title="Multiple middleware 多中间件"></a>Multiple middleware 多中间件</h4><p>一个路由可以给多个中间件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">router.get(</div><div class="line">  <span class="string">'/users/:id'</span>,</div><div class="line">  <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> User.findOne(ctx.params.id).then(<span class="function"><span class="keyword">function</span>(<span class="params">user</span>) </span>&#123;</div><div class="line">      ctx.user = user;</div><div class="line">      next();</div><div class="line">    &#125;);</div><div class="line">  &#125;,</div><div class="line">  <span class="function"><span class="keyword">function</span> (<span class="params">ctx</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(ctx.user);</div><div class="line">    <span class="comment">// =&gt; &#123; id: 17, name: "Alex" &#125;</span></div><div class="line">  &#125;</div><div class="line">);</div></pre></td></tr></table></figure>
+<h3 id="Nested-routers"><a href="#Nested-routers" class="headerlink" title="Nested routers"></a>Nested routers</h3><p>支持嵌套路由</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> forums = <span class="keyword">new</span> Router();</div><div class="line"><span class="keyword">const</span> posts = <span class="keyword">new</span> Router();</div><div class="line"></div><div class="line">posts.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;...&#125;);</div><div class="line">posts.get(<span class="string">'/:pid'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;...&#125;);</div><div class="line">forums.use(<span class="string">'/forums/:fid/posts'</span>, posts.routes(), posts.allowedMethods());</div><div class="line"></div><div class="line"><span class="comment">// responds to "/forums/123/posts" and "/forums/123/posts/123"</span></div><div class="line">app.use(forums.routes());</div></pre></td></tr></table></figure>
+<h4 id="Router-prefixes"><a href="#Router-prefixes" class="headerlink" title="Router prefixes"></a>Router prefixes</h4><p>路由路径可以在路由器级别设置前缀：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> Router(&#123;</div><div class="line">  <span class="attr">prefix</span>: <span class="string">'/users'</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">router.get(<span class="string">'/'</span>, ...); <span class="comment">// responds to "/users"</span></div><div class="line">router.get(<span class="string">'/:id'</span>, ...); <span class="comment">// responds to "/users/:id"</span></div></pre></td></tr></table></figure>
+<h4 id="URL-parameters"><a href="#URL-parameters" class="headerlink" title="URL parameters"></a>URL parameters</h4><p>路由参数被捕获并添加到<code>ctx.params</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/:category/:title'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(ctx.params);</div><div class="line">  <span class="comment">// =&gt; &#123; category: 'programming', title: 'how-to-node' &#125;</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>The <a href="https://github.com/pillarjs/path-to-regexp" target="_blank" rel="external">path-to-regexp</a> module is used to convert paths to regular expressions.</p>
+<p><strong>Kind</strong>:  <code>Router</code>的实例属性</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>path</td>
+<td><code>String</code></td>
+<td></td>
+</tr>
+<tr>
+<td>[middleware]</td>
+<td><code>function</code></td>
+<td>route middleware(s)</td>
+</tr>
+<tr>
+<td>callback</td>
+<td><code>function</code></td>
+<td>route callback</td>
+</tr>
+</tbody>
+</table>
+<h4 id="router-routes-⇒-function"><a href="#router-routes-⇒-function" class="headerlink" title="router.routes ⇒ function"></a>router.routes ⇒ <code>function</code></h4><p>返回匹配到的路由所调用的中间件</p>
+<p><strong>Kind</strong>:  <code>Router</code>的实例属性</p>
+<h4 id="router-use-path-middleware-⇒-Router"><a href="#router-use-path-middleware-⇒-Router" class="headerlink" title="router.use([path], middleware) ⇒ Router"></a>router.use([path], middleware) ⇒ <code>Router</code></h4><p>Use given middleware.</p>
+<p>使用指定的中间件</p>
+<p>中间件按照由<code>.use()</code>定义的顺序运行。它们被按顺序调用，第一个中间件开始，以中间件堆栈的方式依次向下执行。</p>
+<p><strong>Kind</strong>:  <code>Router</code>的实例方法</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[path]</td>
+<td><code>String</code></td>
+</tr>
+<tr>
+<td>middleware</td>
+<td><code>function</code></td>
+</tr>
+<tr>
+<td>[…]</td>
+<td><code>function</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// session middleware will run before authorize</span></div><div class="line">router</div><div class="line">  .use(session())</div><div class="line">  .use(authorize());</div><div class="line"></div><div class="line"><span class="comment">// use middleware only with given path</span></div><div class="line">router.use(<span class="string">'/users'</span>, userAuth());</div><div class="line"></div><div class="line"><span class="comment">// or with an array of paths</span></div><div class="line">router.use([<span class="string">'/users'</span>, <span class="string">'/admin'</span>], userAuth());</div><div class="line"></div><div class="line">app.use(router.routes());</div></pre></td></tr></table></figure>
+<h4 id="router-prefix-prefix-⇒-Router"><a href="#router-prefix-prefix-⇒-Router" class="headerlink" title="router.prefix(prefix) ⇒ Router"></a>router.prefix(prefix) ⇒ <code>Router</code></h4><p>设置已经初始化的路由器实例的路径前缀。</p>
+<p><strong>Kind</strong>:  <code>Router</code>的实例方法</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prefix</td>
+<td><code>String</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">router.prefix(<span class="string">'/things/:thing_id'</span>)</div></pre></td></tr></table></figure>
+<h4 id="router-allowedMethods-options-⇒-function"><a href="#router-allowedMethods-options-⇒-function" class="headerlink" title="router.allowedMethods([options]) ⇒ function"></a>router.allowedMethods([options]) ⇒ <code>function</code></h4><p>Returns separate middleware for responding to <code>OPTIONS</code> requests with an <code>Allow</code> header containing the allowed methods, as well as responding with <code>405 Method Not Allowed</code> and <code>501 Not Implemented</code> as appropriate.</p>
+<p><strong>Kind</strong>: instance method of <code>Router</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[options]</td>
+<td><code>Object</code></td>
+<td></td>
+</tr>
+<tr>
+<td>[options.throw]</td>
+<td><code>Boolean</code></td>
+<td>throw error instead of setting status and header 抛出错误而不是设置status和header</td>
+</tr>
+<tr>
+<td>[options.notImplemented]</td>
+<td><code>function</code></td>
+<td>throw the returned value in place of the default NotImplemented error 抛出返回值代替默认NotImplemented error</td>
+</tr>
+<tr>
+<td>[options.methodNotAllowed]</td>
+<td><code>function</code></td>
+<td>throw the returned value in place of the default MethodNotAllowed error 抛出返回值代替默认NotImplemented error</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</div><div class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</div><div class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router();</div><div class="line"></div><div class="line">app.use(router.routes());</div><div class="line">app.use(router.allowedMethods());</div></pre></td></tr></table></figure>
+<p><strong>Example with Boom</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">const Koa = require(&apos;koa&apos;);</div><div class="line">const Router = require(&apos;koa-router&apos;);</div><div class="line">const Boom = require(&apos;boom&apos;);</div><div class="line"></div><div class="line">const app = new Koa();</div><div class="line">const router = new Router();</div><div class="line"></div><div class="line">app.use(router.routes());</div><div class="line">app.use(router.allowedMethods(&#123;</div><div class="line">  throw: true,</div><div class="line">  notImplemented: () =&gt; new Boom.notImplemented(),</div><div class="line">  methodNotAllowed: () =&gt; new Boom.methodNotAllowed()</div><div class="line">&#125;));</div></pre></td></tr></table></figure>
+<h4 id="router-redirect-source-destination-code-⇒-Router"><a href="#router-redirect-source-destination-code-⇒-Router" class="headerlink" title="router.redirect(source, destination, code) ⇒ Router"></a>router.redirect(source, destination, code) ⇒ <code>Router</code></h4><p>Redirect <code>source</code> to <code>destination</code> URL with optional 30x status <code>code</code>.</p>
+<p>Both <code>source</code> and <code>destination</code> can be route names.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">router.redirect(&apos;/login&apos;, &apos;sign-in&apos;);</div></pre></td></tr></table></figure>
+<p>This is equivalent to:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">router.all(&apos;/login&apos;, function (ctx) &#123;</div><div class="line">  ctx.redirect(&apos;/sign-in&apos;);</div><div class="line">  ctx.status = 301;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><strong>Kind</strong>: instance method of <code>Router</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>source</td>
+<td><code>String</code></td>
+<td>URL or route name.</td>
+</tr>
+<tr>
+<td>destination</td>
+<td><code>String</code></td>
+<td>URL or route name.</td>
+</tr>
+<tr>
+<td>code</td>
+<td><code>Number</code></td>
+<td>HTTP status code (default: 301).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="router-route-name-⇒-Layer-false"><a href="#router-route-name-⇒-Layer-false" class="headerlink" title="router.route(name) ⇒ Layer | false"></a>router.route(name) ⇒ <code>Layer</code> | <code>false</code></h4><p>Lookup route with given <code>name</code>.</p>
+<p><strong>Kind</strong>: instance method of <code>Router</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><code>String</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="router-url-name-params-⇒-String-Error"><a href="#router-url-name-params-⇒-String-Error" class="headerlink" title="router.url(name, params) ⇒ String | Error"></a>router.url(name, params) ⇒ <code>String</code> | <code>Error</code></h4><p>Generate URL for route. Takes a route name and map of named <code>params</code>.</p>
+<p><strong>Kind</strong>: instance method of <code>Router</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><code>String</code></td>
+<td>route name</td>
+</tr>
+<tr>
+<td>params</td>
+<td><code>Object</code></td>
+<td>url parameters</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">router.get(&apos;user&apos;, &apos;/users/:id&apos;, function (ctx, next) &#123;</div><div class="line">  // ...</div><div class="line">&#125;);</div><div class="line"></div><div class="line">router.url(&apos;user&apos;, 3);</div><div class="line">// =&gt; &quot;/users/3&quot;</div><div class="line"></div><div class="line">router.url(&apos;user&apos;, &#123; id: 3 &#125;);</div><div class="line">// =&gt; &quot;/users/3&quot;</div><div class="line"></div><div class="line">router.use(function (ctx, next) &#123;</div><div class="line">  // redirect to named route</div><div class="line">  ctx.redirect(ctx.router.url(&apos;sign-in&apos;));</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h4 id="router-param-param-middleware-⇒-Router"><a href="#router-param-param-middleware-⇒-Router" class="headerlink" title="router.param(param, middleware) ⇒ Router"></a>router.param(param, middleware) ⇒ <code>Router</code></h4><p>Run middleware for named route parameters. Useful for auto-loading or validation.</p>
+<p><strong>Kind</strong>: instance method of <code>Router</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>param</td>
+<td><code>String</code></td>
+</tr>
+<tr>
+<td>middleware</td>
+<td><code>function</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">router</div><div class="line">  .param(&apos;user&apos;, function (id, ctx, next) &#123;</div><div class="line">    ctx.user = users[id];</div><div class="line">    if (!ctx.user) return ctx.status = 404;</div><div class="line">    return next();</div><div class="line">  &#125;)</div><div class="line">  .get(&apos;/users/:user&apos;, function (ctx) &#123;</div><div class="line">    ctx.body = ctx.user;</div><div class="line">  &#125;)</div><div class="line">  .get(&apos;/users/:user/friends&apos;, function (ctx) &#123;</div><div class="line">    return ctx.user.getFriends().then(function(friends) &#123;</div><div class="line">      ctx.body = friends;</div><div class="line">    &#125;);</div><div class="line">  &#125;)</div><div class="line">  // /users/3 =&gt; &#123;&quot;id&quot;: 3, &quot;name&quot;: &quot;Alex&quot;&#125;</div><div class="line">  // /users/3/friends =&gt; [&#123;&quot;id&quot;: 4, &quot;name&quot;: &quot;TJ&quot;&#125;]</div></pre></td></tr></table></figure>
+<h4 id="Router-url-path-params-⇒-String"><a href="#Router-url-path-params-⇒-String" class="headerlink" title="Router.url(path, params) ⇒ String"></a>Router.url(path, params) ⇒ <code>String</code></h4><p>Generate URL from url pattern and given <code>params</code>.</p>
+<p><strong>Kind</strong>: static method of <code>Router</code></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>path</td>
+<td><code>String</code></td>
+<td>url pattern</td>
+</tr>
+<tr>
+<td>params</td>
+<td><code>Object</code></td>
+<td>url parameters</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">const url = Router.url(&apos;/users/:id&apos;, &#123;id: 1&#125;);</div><div class="line">// =&gt; &quot;/users/1&quot;</div></pre></td></tr></table></figure>
+<h2 id="Contributing"><a href="#Contributing" class="headerlink" title="Contributing"></a>Contributing</h2><p>Please submit all issues and pull requests to the <a href="http://github.com/alexmingoia/koa-router" target="_blank" rel="external">alexmingoia/koa-router</a> repository!</p>
+<h2 id="Tests"><a href="#Tests" class="headerlink" title="Tests"></a>Tests</h2><p>Run tests using <code>npm test</code>.</p>
+<h2 id="Support"><a href="#Support" class="headerlink" title="Support"></a>Support</h2><p>If you have any problem or suggestion please open an issue <a href="https://github.com/alexmingoia/koa-router/issues" target="_blank" rel="external">here</a>.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/23/require和import的区别/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-23T16:31:53+08:00" content="2017-08-23">
+              2017-08-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="require和import的区别"><a href="#require和import的区别" class="headerlink" title="require和import的区别"></a>require和import的区别</h3><h4 id="1-规范不同"><a href="#1-规范不同" class="headerlink" title="1.规范不同"></a>1.规范不同</h4><blockquote>
+<p><strong>模块化规范：</strong>即为 JavaScript 提供一种模块编写、模块依赖和模块运行的方案。</p>
+</blockquote>
+<ul>
+<li>require方法是JavaScript 社区中的开发者自己草拟的规则<a href="http://requirejs.org/docs/commonjs.html" target="_blank" rel="external">CommonJs</a>推出的。</li>
+<li>import/export 则是TC39 制定的新的 ECMAScript 版本，即 ES6（ES2015）中包含进来。</li>
+</ul>
+<p>CommonJS是Node.js中模块化的规范，Node.js无法直接兼容es6语法。现在在Node中使用的    import语法都是由babel编译成 require/exports 来执行的</p>
+<h4 id="2-书写方式不同"><a href="#2-书写方式不同" class="headerlink" title="2.书写方式不同"></a>2.书写方式不同</h4><p>require/exports ：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</div><div class="line">exports.fs = fs</div><div class="line"><span class="built_in">module</span>.exports = fs</div></pre></td></tr></table></figure>
+<p>import/export :</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> fs <span class="keyword">from</span> <span class="string">'fs'</span></div><div class="line"><span class="keyword">import</span> &#123;<span class="keyword">default</span> <span class="keyword">as</span> fs&#125; <span class="keyword">from</span> <span class="string">'fs'</span></div><div class="line"><span class="keyword">import</span> * <span class="keyword">as</span> fs <span class="keyword">from</span> <span class="string">'fs'</span></div><div class="line"><span class="keyword">import</span> &#123;readFile&#125; <span class="keyword">from</span> <span class="string">'fs'</span></div><div class="line"><span class="keyword">import</span> &#123;readFile <span class="keyword">as</span> read&#125; <span class="keyword">from</span> <span class="string">'fs'</span></div><div class="line"><span class="keyword">import</span> fs, &#123;readFile&#125; <span class="keyword">from</span> <span class="string">'fs'</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> fs</div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> fs</div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">readFile</span></span></div><div class="line"><span class="title">export</span> &#123;readFile, read&#125;</div><div class="line"><span class="keyword">export</span> * <span class="keyword">from</span> <span class="string">'fs'</span></div></pre></td></tr></table></figure>
+<h4 id="3-本质不同"><a href="#3-本质不同" class="headerlink" title="3.本质不同"></a>3.本质不同</h4><p>require 运行时加载</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// CommonJS模块</span></div><div class="line"><span class="keyword">let</span> &#123; stat, exists, readFile &#125; = <span class="built_in">require</span>(<span class="string">'fs'</span>)</div><div class="line"></div><div class="line"><span class="comment">// 等同于</span></div><div class="line"><span class="keyword">let</span> _fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"><span class="keyword">let</span> stat = _fs.stat;</div><div class="line"><span class="keyword">let</span> exists = _fs.exists;</div><div class="line"><span class="keyword">let</span> readfile = _fs.readfile;</div></pre></td></tr></table></figure>
+<p>上面代码的实质是整体加载<code>fs</code>模块（即加载<code>fs</code>的所有方法），生成一个对象（<code>_fs</code>），然后再从这个对象上面读取3个方法。这种加载称为“运行时加载”，因为只有运行时才能得到这个对象，导致完全没办法在编译时做“静态优化”。</p>
+<p>Import 编译时加载</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ES6模块</span></div><div class="line"><span class="keyword">import</span> &#123; stat, exists, readFile &#125; <span class="keyword">from</span> <span class="string">'fs'</span>;</div></pre></td></tr></table></figure>
+<p>上面代码的实质是从<code>fs</code>模块加载3个方法，其他方法不加载。这种加载称为“编译时加载”或者静态加载，即 ES6 可以在编译时就完成模块加载，效率要比 CommonJS 模块的加载方式高。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/21/mongoDB指令/" itemprop="url">
+                  MongoDB指令整理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-21T18:07:34+08:00" content="2017-08-21">
+              2017-08-21
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p> 启动mongoDB</p>
+<h2 id="运行-MongoDB"><a href="#运行-MongoDB" class="headerlink" title="运行 MongoDB"></a>运行 MongoDB</h2><p>1、首先我们创建一个数据库存储目录 /data/db：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo mkdir -p /data/db</div></pre></td></tr></table></figure>
+<p>启动 mongodb，默认数据库目录即为 /data/db：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sudo mongod #启动mongo</div><div class="line">#参数</div><div class="line">--dbpath [数据存放path]  #指定数据库path</div><div class="line">-auth #开启授权启动</div><div class="line">--logpath [数据存放path]  #指定日志路径</div><div class="line">--port [端口号]</div></pre></td></tr></table></figure>
+<p> 开启一个新的终端进入MongoDB shell</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongo</div></pre></td></tr></table></figure>
+<h3 id="MongoDB配置"><a href="#MongoDB配置" class="headerlink" title="MongoDB配置"></a>MongoDB配置</h3><ul>
+<li><p>端口</p>
+<ul>
+<li><p>默认端口 27017</p>
+</li>
+<li><p>Mongo shell 获取端口 <code>db.getMongo()</code></p>
+<p>​</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h3><h5 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">use DATABASE_NAME</div></pre></td></tr></table></figure>
+<p>如果数据库不存在，则创建数据库，否则切换到指定数据库。</p>
+<h5 id="查看当前数据库"><a href="#查看当前数据库" class="headerlink" title="查看当前数据库"></a>查看当前数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">db</div><div class="line">db.getName()</div></pre></td></tr></table></figure>
+<h5 id="查看所有数据库"><a href="#查看所有数据库" class="headerlink" title="查看所有数据库"></a>查看所有数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show dbs</div></pre></td></tr></table></figure>
+<h5 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.dropDatabase()</div></pre></td></tr></table></figure>
+<h5 id="拷贝数据库"><a href="#拷贝数据库" class="headerlink" title="拷贝数据库"></a>拷贝数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">db.cloneDatabase(&quot;127.0.0.1&quot;)   #将指定机器上的数据库的数据克隆到当前数据库</div><div class="line"></div><div class="line">db.copyDatabase(&quot;mydb&quot;, &quot;temp&quot;, &quot;127.0.0.1&quot;)  #将本机的mydb的数据复制到temp数据库中</div></pre></td></tr></table></figure>
+<h5 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongo://[host:port/database] -u [user] -p [password] 192.168.1.200:27017/test -u user -p password</div></pre></td></tr></table></figure>
+<blockquote>
+<p>db.dropDatabase()  #删除当前使用数据库<br>db.cloneDatabase(“127.0.0.1”)   #将指定机器上的数据库的数据克隆到当前数据库<br>db.copyDatabase(“mydb”, “temp”, “127.0.0.1”)  #将本机的mydb的数据复制到temp数据库中<br>db.repairDatabase()  #修复当前数据库<br>db.getName()  #查看当前使用的数据库，也可以直接用db<br>db.stats()  #显示当前db状态<br>db.version()  #当前db版本<br>db.getMongo()  ＃查看当前db的链接机器地址<br>db.serverStatus()  #查看数据库服务器的状态CRUD</p>
+</blockquote>
+<h3 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h3><h5 id="查看用户"><a href="#查看用户" class="headerlink" title="查看用户"></a>查看用户</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.system.find()</div></pre></td></tr></table></figure>
+<h5 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#添加用户：</div><div class="line">db.createUser(&#123; </div><div class="line">  user: &quot;&lt;name&gt;&quot;, //用户名</div><div class="line">  pwd: &quot;&lt;cleartext password&gt;&quot;,</div><div class="line">  customData: &#123; &lt;any information&gt; &#125;, //可选的，备注信息。</div><div class="line">  roles: [</div><div class="line">    &#123; role: &quot;&lt;role&gt;&quot;, db: &quot;&lt;database&gt;&quot; &#125; | &quot;&lt;role&gt;&quot;, //指定角色</div><div class="line">    ...</div><div class="line">  ]&#125;,</div><div class="line">  writeConcern: &#123; &lt;write concern&gt; &#125;</div><div class="line"> )</div></pre></td></tr></table></figure>
+<h5 id="更新用户"><a href="#更新用户" class="headerlink" title="更新用户"></a>更新用户</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#更改用户信息：将会覆盖掉原先的用户信息</div><div class="line">root(</div><div class="line">   &quot;&lt;username&gt;&quot;,</div><div class="line">   &#123;</div><div class="line">     customData : &#123; &lt;any information&gt; &#125;,</div><div class="line">     roles : [</div><div class="line">               &#123; role: &quot;&lt;role&gt;&quot;, db: &quot;&lt;database&gt;&quot; &#125; | &quot;&lt;role&gt;&quot;,</div><div class="line">               ...</div><div class="line">             ],</div><div class="line">     pwd: &quot;&lt;cleartext password&gt;&quot;</div><div class="line">    &#125;,</div><div class="line">    writeConcern: &#123; &lt;write concern&gt; &#125;</div><div class="line">)</div></pre></td></tr></table></figure>
+<h5 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.dropUser(&apos;test&apos;) #必须在该用户创建的库中删除</div></pre></td></tr></table></figure>
+<h3 id="数据操作-CRUD"><a href="#数据操作-CRUD" class="headerlink" title="数据操作/CRUD"></a>数据操作/CRUD</h3><h5 id="Create-插入数据"><a href="#Create-插入数据" class="headerlink" title="Create 插入数据"></a>Create 插入数据</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">db.collection.insert()  	    # 插入数据</div><div class="line">db.collection.save()        	# 不传Id会插入一条新的数据，传id此操作变为更新数据</div><div class="line">db.collection.insertOne()   	# 向指定集合中插入一条文档数据 </div><div class="line">db.collection.insertMany() 		# 向指定集合中插入多条文档数据,传入数组</div></pre></td></tr></table></figure>
+<h5 id="Retrieve读取数据"><a href="#Retrieve读取数据" class="headerlink" title="Retrieve读取数据"></a>Retrieve读取数据</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">db.collection.find(query, projection)</div><div class="line">db.col.find().pretty() # pretty</div></pre></td></tr></table></figure>
+<h5 id="Update更新数据"><a href="#Update更新数据" class="headerlink" title="Update更新数据"></a>Update更新数据</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">db.collection.update(             # 更新已存在的文档</div><div class="line">   &lt;query&gt;,  					# update的查询条件</div><div class="line">   &lt;update&gt;,					# update的对象和一些更新的操作符（如$,$inc...）等</div><div class="line">   &#123;</div><div class="line">     upsert: &lt;boolean&gt;,			 # 可选，如果不存在update的记录，是否插入一条新的,默认是false，不插入。</div><div class="line">     multi: &lt;boolean&gt;,			 # 可选，默认是false,只更新找到的第一条记录，否则更新全部</div><div class="line">     writeConcern: &lt;document&gt;	  # 可选，抛出异常的级别。</div><div class="line">   &#125;</div><div class="line">)</div><div class="line"></div><div class="line">db.collection.save(				# 通过传入的文档来替换已有文档</div><div class="line">   &lt;document&gt;,</div><div class="line">   &#123;</div><div class="line">     writeConcern: &lt;document&gt;</div><div class="line">   &#125;</div><div class="line">)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># 只更新第一条记录：</div><div class="line">db.col.update( &#123; &quot;count&quot; : &#123; $gt : 1 &#125; &#125; , &#123; $set : &#123; &quot;test2&quot; : &quot;OK&quot;&#125; &#125; );</div><div class="line"># 全部更新：</div><div class="line">db.col.update( &#123; &quot;count&quot; : &#123; $gt : 3 &#125; &#125; , &#123; $set : &#123; &quot;test2&quot; : &quot;OK&quot;&#125; &#125;,false,true );</div><div class="line"># 只添加第一条：</div><div class="line">db.col.update( &#123; &quot;count&quot; : &#123; $gt : 4 &#125; &#125; , &#123; $set : &#123; &quot;test5&quot; : &quot;OK&quot;&#125; &#125;,true,false );</div><div class="line"># 全部添加加进去:</div><div class="line">db.col.update( &#123; &quot;count&quot; : &#123; $gt : 5 &#125; &#125; , &#123; $set : &#123; &quot;test5&quot; : &quot;OK&quot;&#125; &#125;,true,true );</div><div class="line"># 全部更新：</div><div class="line">db.col.update( &#123; &quot;count&quot; : &#123; $gt : 15 &#125; &#125; , &#123; $inc : &#123; &quot;count&quot; : 1&#125; &#125;,false,true );</div><div class="line"># 只更新第一条记录：</div><div class="line">db.col.update( &#123; &quot;count&quot; : &#123; $gt : 10 &#125; &#125; , &#123; $inc : &#123; &quot;count&quot; : 1&#125; &#125;,false,false );</div></pre></td></tr></table></figure>
+<h5 id="Delete删除数据"><a href="#Delete删除数据" class="headerlink" title="Delete删除数据"></a>Delete删除数据</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">db.collection.remove(		# 移除集合中的数据。</div><div class="line">   &lt;query&gt;,</div><div class="line">   &#123;</div><div class="line">     justOne: &lt;boolean&gt;,</div><div class="line">     writeConcern: &lt;document&gt;</div><div class="line">   &#125;</div><div class="line">)</div></pre></td></tr></table></figure>
+<h3 id="数据表操作"><a href="#数据表操作" class="headerlink" title="数据表操作"></a>数据表操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show collections</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">db.collections.help();  user为表名</div></pre></td></tr></table></figure>
+<p><a href="http://www.cnblogs.com/ontheroad_lee/p/3684280.html" target="_blank" rel="external">http://www.cnblogs.com/ontheroad_lee/p/3684280.html</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/08/14/多人合作的git使用/" itemprop="url">
                   git合并与提交
                 </a>
@@ -397,8 +1053,9 @@
 <h5 id="问题整理"><a href="#问题整理" class="headerlink" title="问题整理"></a>问题整理</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ docker ps</div><div class="line">Cannot connect to the Docker daemon. Is the docker daemon running on this host?</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ ps aux | grep docker</div><div class="line">root     17210  0.0  2.4 499624 24928 ?        Ssl  Sep06   0:26 /usr/bin/dockerd-current --add-runtime docker-runc=/usr/libexec/docker/docker-runc-current --default-runtime=docker-runc --exec-opt native.cgroupdriver=systemd --userland-proxy-path=/usr/libexec/docker/docker-proxy-current --selinux-enabled --log-driver=journald --signature-verification=false</div><div class="line">root     17214  0.0  0.6 262960  6948 ?        Ssl  Sep06   0:02 /usr/bin/docker-containerd-current -l unix:///var/run/docker/libcontainerd/docker-containerd.sock --shim docker-containerd-shim --metrics-interval=0 --start-timeout 2m --state-dir /var/run/docker/libcontainerd/containerd --runtime docker-runc --runtime-args --systemd-cgroup=true</div><div class="line">zeno     21958  0.0  0.0 112648   964 pts/0    R+   14:35   0:00 grep --color=auto docker</div></pre></td></tr></table></figure>
 <p>查看进程，其实docker已经运行了。其实是权限不够，需要在加上<code>sudo</code>.还有很多类似的命令，按照理解查看应该是不要root权限的，其实不然。<code>docker info</code>,<code>docker ps</code>,<code>docker images</code>都会没有权限</p>
-<h5 id="Docker镜像命令"><a href="#Docker镜像命令" class="headerlink" title="Docker镜像命令"></a>Docker镜像命令</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">docker search    #搜索镜像</div><div class="line">docker images		# 列出镜像</div><div class="line">docker run 镜像名:标签  # 运行镜像 REPOSTITORY:TAG docker run --name web2 -d -p 81:80 nginx:v2</div><div class="line">exit	# 退出镜像 </div><div class="line">docker pull 镜像名  # 获取镜像</div><div class="line">-i # 交互式操作</div><div class="line">-t # 终端</div><div class="line">-d # 让容器在后台运行。</div><div class="line">-P [主机端口]:[容器端口] # 将容器内部使用的网络端口映射到我们使用的主机上。</div><div class="line">-v [主机目录]:[容器目录]</div><div class="line"></div><div class="line">docker commit -m=&quot;has update&quot; -a=&quot;runoob&quot; e218edb10161 runoob/ubuntu:v2</div><div class="line">-m:提交的描述信息</div><div class="line">-a:指定镜像作者</div><div class="line">e218edb10161：容器ID</div><div class="line">2runoob/ubuntu:v2:指定要创建的目标镜像名</div><div class="line"></div><div class="line">docker commit  	#慎用，黑箱操作 容易使镜像变得臃肿</div><div class="line">docker diff		#比较改动</div><div class="line">docker build [选项] &lt;上下文路径/URL/-&gt;</div></pre></td></tr></table></figure>
-<h5 id="Docker容器命令"><a href="#Docker容器命令" class="headerlink" title="Docker容器命令"></a>Docker容器命令</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">docker rm [name/id] #删除docker容器 ，容器必须是停止的否则报错</div><div class="line">docker start [name/id] #重新启动docker</div><div class="line">docker ps #查看正在运行的docker进程</div><div class="line">docker ps -a #查看所有已创建的容器</div><div class="line">docker rm $(docker ps -a -q)  #删除所有的终止容器</div><div class="line">docker port [name/id] #查看进程端口映射</div><div class="line">docker stop [name/id] #停止进程</div><div class="line">docker logs [name/id] #查看容器内的标准输出</div><div class="line">-f #实时日志</div><div class="line">docker top [name/id] #查看容器内的的进程</div><div class="line">docker inspect [name/id] #来查看Docker的底层信息。它会返回一个 JSON 文件记录着 Docker 容器的配置和状态信息。</div><div class="line">docker attach [name/id] #进入正在运行的docker进程中 NOTE: 这个链接终止后，容器会退出后台运行</div><div class="line">docker exec -it [name/id] /bin/sh  # 进入正在运行的docker进程中 常加参数 -it</div></pre></td></tr></table></figure>
+<h5 id="Docker镜像命令"><a href="#Docker镜像命令" class="headerlink" title="Docker镜像命令"></a>Docker镜像命令</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">docker rmi [镜像] #删除镜像</div><div class="line">docker search    #搜索镜像</div><div class="line">docker images		# 列出镜像</div><div class="line">docker run 镜像名:标签  # 运行镜像 REPOSTITORY:TAG docker run --name web2 -d -p 81:80 nginx:v2</div><div class="line">exit	# 退出镜像 </div><div class="line">docker pull 镜像名  # 获取镜像</div><div class="line">-i # 交互式操作</div><div class="line">-t # 终端</div><div class="line">-d # 让容器在后台运行。</div><div class="line">-P [主机端口]:[容器端口] # 将容器内部使用的网络端口映射到我们使用的主机上。</div><div class="line">-v [主机目录]:[容器目录]</div><div class="line"></div><div class="line">docker commit -m=&quot;has update&quot; -a=&quot;runoob&quot; e218edb10161 runoob/ubuntu:v2</div><div class="line">-m:提交的描述信息</div><div class="line">-a:指定镜像作者</div><div class="line">e218edb10161：容器ID</div><div class="line">2runoob/ubuntu:v2:指定要创建的目标镜像名</div><div class="line"></div><div class="line">docker commit  	#慎用，黑箱操作 容易使镜像变得臃肿</div><div class="line">docker diff		#比较改动</div><div class="line">docker build [选项] &lt;上下文路径/URL/-&gt;</div></pre></td></tr></table></figure>
+<h5 id="Docker容器命令"><a href="#Docker容器命令" class="headerlink" title="Docker容器命令"></a>Docker容器命令</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">docker rm [name/id] #删除docker容器 ，容器必须是停止的否则报错</div><div class="line">docker start [name/id] #重新启动docker</div><div class="line">docker ps #查看正在运行的docker进程</div><div class="line">docker ps -a #查看所有已创建的容器</div><div class="line">docker rm $(docker ps -a -q)  #删除所有的终止容器 Mac</div><div class="line">docker port [name/id] #查看进程端口映射</div><div class="line">docker stop [name/id] #停止进程</div><div class="line">docker logs [name/id] #查看容器内的标准输出</div><div class="line">-f #实时日志</div><div class="line">docker top [name/id] #查看容器内的的进程</div><div class="line">docker inspect [name/id] #来查看Docker的底层信息。它会返回一个 JSON 文件记录着 Docker 容器的配置和状态信息。</div><div class="line">docker inspect container_name | grep Mounts -A 20 #查看容器挂载目录</div><div class="line">docker attach [name/id] #进入正在运行的docker进程中 NOTE: 这个链接终止后，容器会退出后台运行</div><div class="line">docker exec -it [name/id] /bin/sh  # 进入正在运行的docker进程中 常加参数 -it</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo docker run -ti --rm --entrypoint=&quot;/bin/bash&quot; jenkins -c &quot;whoami &amp;&amp; id&quot; #查看容器拥有者</div><div class="line">docker run -ti --rm --entrypoint=&quot;/bin/bash&quot; jenkins -c &quot;ls -la /var/jenkins_home&quot; #查看容器内/var/jenkins_home拥有者</div></pre></td></tr></table></figure>
 
           
         
@@ -492,31 +1149,31 @@
       
         
           
-            <h3 id="JSX语法"><a href="#JSX语法" class="headerlink" title="JSX语法"></a>JSX语法</h3><p>1.基础<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> element = &lt;h1&gt;Hello, world!&lt;/h1&gt;</div></pre></td></tr></table></figure></p>
-<p>2.JSX中嵌入表达式<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatName</span>(<span class="params">user</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> user.firstName + <span class="string">' '</span> + user.lastName;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> user = &#123;</div><div class="line">  <span class="attr">firstName</span>: <span class="string">'Harper'</span>,</div><div class="line">  <span class="attr">lastName</span>: <span class="string">'Perez'</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> element = (</div><div class="line">  &lt;h1&gt;</div><div class="line">    Hello, &#123;formatName(user)&#125;!</div><div class="line">  &lt;/h1&gt;</div><div class="line">);</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">  element,</div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</div><div class="line">);</div></pre></td></tr></table></figure></p>
+            <h3 id="JSX语法"><a href="#JSX语法" class="headerlink" title="JSX语法"></a>JSX语法</h3><p>1.基础<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> element = <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<p>2.JSX中嵌入表达式<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatName</span>(<span class="params">user</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> user.firstName + <span class="string">' '</span> + user.lastName;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> user = &#123;</div><div class="line">  <span class="attr">firstName</span>: <span class="string">'Harper'</span>,</div><div class="line">  <span class="attr">lastName</span>: <span class="string">'Perez'</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> element = (</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span></span></div><div class="line">    Hello, &#123;formatName(user)&#125;!</div><div class="line">  <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">);</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">  element,</div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</div><div class="line">);</div></pre></td></tr></table></figure></p>
 <ol>
 <li><p>JSX做表达式</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getGreeting</span>(<span class="params">user</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (user) &#123;</div><div class="line">    <span class="keyword">return</span> &lt;h1&gt;Hello, &#123;formatName(user)&#125;!&lt;/h1&gt;;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> &lt;h1&gt;Hello, Stranger.&lt;/h1&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getGreeting</span>(<span class="params">user</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (user) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, &#123;formatName(user)&#125;!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, Stranger.<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>JSX设置属性</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> element = &lt;div tabIndex="0"&gt;&lt;/div&gt;;</div><div class="line"><span class="keyword">const</span> element = &lt;img src=&#123;user.avatarUrl&#125;&gt;&lt;/img&gt;;</div></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> element = <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">tabIndex</span>=<span class="string">"0"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line"><span class="keyword">const</span> element = <span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#123;user.avatarUrl&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">img</span>&gt;</span></span>;</div></pre></td></tr></table></figure>
 </li>
 <li><p>JSX包含子元素</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> element = &lt;img src=&#123;user.avatarUrl&#125; /&gt;; //不包含可直接关闭</div><div class="line">const element = (</div><div class="line">  &lt;div&gt;</div><div class="line">    &lt;h1&gt;Hello!&lt;/h1&gt;</div><div class="line">    &lt;h2&gt;Good to see you here.&lt;/h2&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> element = <span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#123;user.avatarUrl&#125;</span> /&gt;</span>; //不包含可直接关闭</span></div><div class="line">const element = (</div><div class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Good to see you here.<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">);</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>6.JSX会转义所有值，所以可以防止XSS</p>
 <h3 id="渲染元素"><a href="#渲染元素" class="headerlink" title="渲染元素"></a>渲染元素</h3><p>JSX产生的是真实的DOM<br>当需要更新的时候与之前进行对比，只更新变更的部分<br>TODO:HRM多入口，官网示例是否更新整个DOM</p>
 <h3 id="组件和props"><a href="#组件和props" class="headerlink" title="组件和props"></a>组件和props</h3><p>组件让您将UI拆分成独立的可重复使用的部分，并单独考虑每个部分。 在概念上，组件就像JavaScript函数。他们接受任意输入（称为“props”），并返回描述应该在屏幕上显示的React元素。</p>
-<h4 id="功能组件和类组件"><a href="#功能组件和类组件" class="headerlink" title="功能组件和类组件"></a>功能组件和类组件</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Welcome</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &lt;h1&gt;Hello, &#123;props.name&#125;&lt;/h1&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Welcome</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> &lt;h1&gt;Hello, &#123;this.props.name&#125;&lt;/h1&gt;;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="组件渲染"><a href="#组件渲染" class="headerlink" title="组件渲染"></a>组件渲染</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> element = &lt;Welcome name="Sara" /&gt;;</div></pre></td></tr></table></figure>
+<h4 id="功能组件和类组件"><a href="#功能组件和类组件" class="headerlink" title="功能组件和类组件"></a>功能组件和类组件</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Welcome</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, &#123;props.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Welcome</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, &#123;this.props.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="组件渲染"><a href="#组件渲染" class="headerlink" title="组件渲染"></a>组件渲染</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> element = <span class="xml"><span class="tag">&lt;<span class="name">Welcome</span> <span class="attr">name</span>=<span class="string">"Sara"</span> /&gt;</span>;</span></div></pre></td></tr></table></figure>
 <p>当React看到一个表示用户定义组件的元素时，它将JSX属性作为单个对象传递给该组件。我们称这个对象为“道具”。 例如，该代码在页面上显示“Hello，Sara”：</p>
 <p>组件开头字母大写</p>
 <h4 id="组件组成"><a href="#组件组成" class="headerlink" title="组件组成"></a>组件组成</h4><p>只能有一个根组件</p>
 <h4 id="组件提取"><a href="#组件提取" class="headerlink" title="组件提取"></a>组件提取</h4><p>学会拆分组件</p>
 <h4 id="Props只读"><a href="#Props只读" class="headerlink" title="Props只读"></a>Props只读</h4><p>纯函数，相同输入输出相同</p>
-<h3 id="state和生命周期"><a href="#state和生命周期" class="headerlink" title="state和生命周期"></a>state和生命周期</h3><p>ES6的class语法，创建的类组件才有自己的state和生命周期<br>继承自react<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Clock</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(props) &#123;</div><div class="line">    <span class="keyword">super</span>(props)</div><div class="line">    <span class="keyword">this</span>.state = &#123;<span class="attr">date</span>: <span class="keyword">new</span> <span class="built_in">Date</span>&#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  componentDidMount() &#123;</div><div class="line">  <span class="comment">//生命周期等函数</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div&gt;</div><div class="line">        &lt;h2&gt;现在是&#123;this.state.date.toLocaleTimeString()&#125;&lt;/h2&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="state和生命周期"><a href="#state和生命周期" class="headerlink" title="state和生命周期"></a>state和生命周期</h3><p>ES6的class语法，创建的类组件才有自己的state和生命周期<br>继承自react<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Clock</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(props) &#123;</div><div class="line">    <span class="keyword">super</span>(props)</div><div class="line">    <span class="keyword">this</span>.state = &#123;<span class="attr">date</span>: <span class="keyword">new</span> <span class="built_in">Date</span>&#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  componentDidMount() &#123;</div><div class="line">  <span class="comment">//生命周期等函数</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">h2</span>&gt;</span>现在是&#123;this.state.date.toLocaleTimeString()&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>设置state</p>
 <ol>
 <li>必须调用setState</li>
@@ -531,27 +1188,27 @@
 <li>setState是一个浅复制操作</li>
 </ol>
 <h4 id="数据单向流"><a href="#数据单向流" class="headerlink" title="数据单向流"></a>数据单向流</h4><p>state可以作为子组件的props传递下去</p>
-<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><p>驼峰式事件名<br>不能通过返回fasle阻止默认事件，必须调用<code>preventDefault</code><br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ActionLink</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">handleClick</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    e.preventDefault();</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'The link was clicked.'</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;a href="#" onClick=&#123;handleClick&#125;&gt;</div><div class="line">      Click me</div><div class="line">    &lt;/a&gt;</div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><p>驼峰式事件名<br>不能通过返回fasle阻止默认事件，必须调用<code>preventDefault</code><br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ActionLink</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">handleClick</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    e.preventDefault();</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'The link was clicked.'</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">onClick</span>=<span class="string">&#123;handleClick&#125;</span>&gt;</span></span></div><div class="line">      Click me</div><div class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>在这里，e是一个合成事件。 React根据W3C规范定义了这些合成事件，因此您不必担心跨浏览器的兼容性。请参阅SyntheticEvent参考指南了解更多信息。 当使用React时，您通常不需要调用addEventListener来在创建DOM元素之后添加监听器。而是在元素最初呈现时提供一个监听器。 当您使用ES6类定义组件时，常见的模式是将事件处理程序作为类上的方法。例如，此Toggle组件呈现一个按钮，让用户在“ON”和“OFF”状态之间切换：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Toggle</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(props) &#123;</div><div class="line">    <span class="keyword">super</span>(props);</div><div class="line">    <span class="keyword">this</span>.state = &#123;<span class="attr">isToggleOn</span>: <span class="literal">true</span>&#125;;</div><div class="line"></div><div class="line">    <span class="comment">//绑定this,确保函数在实例上呗吊桶</span></div><div class="line">    <span class="keyword">this</span>.handleClick = <span class="keyword">this</span>.handleClick.bind(<span class="keyword">this</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleClick() &#123;</div><div class="line">    <span class="keyword">this</span>.setState(<span class="function"><span class="params">prevState</span> =&gt;</span> (&#123;</div><div class="line">      <span class="attr">isToggleOn</span>: !prevState.isToggleOn</div><div class="line">    &#125;));</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;button onClick=&#123;this.handleClick&#125;&gt;</div><div class="line">        &#123;this.state.isToggleOn ? 'ON' : 'OFF'&#125;</div><div class="line">      &lt;/button&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">  &lt;Toggle /&gt;,</div><div class="line">  document.getElementById('root')</div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Toggle</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(props) &#123;</div><div class="line">    <span class="keyword">super</span>(props);</div><div class="line">    <span class="keyword">this</span>.state = &#123;<span class="attr">isToggleOn</span>: <span class="literal">true</span>&#125;;</div><div class="line"></div><div class="line">    <span class="comment">//绑定this,确保函数在实例上呗吊桶</span></div><div class="line">    <span class="keyword">this</span>.handleClick = <span class="keyword">this</span>.handleClick.bind(<span class="keyword">this</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleClick() &#123;</div><div class="line">    <span class="keyword">this</span>.setState(<span class="function"><span class="params">prevState</span> =&gt;</span> (&#123;</div><div class="line">      <span class="attr">isToggleOn</span>: !prevState.isToggleOn</div><div class="line">    &#125;));</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.handleClick&#125;</span>&gt;</span></span></div><div class="line">        &#123;this.state.isToggleOn ? 'ON' : 'OFF'&#125;</div><div class="line">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">Toggle</span> /&gt;</span>,</span></div><div class="line">  document.getElementById('root')</div><div class="line">);</div></pre></td></tr></table></figure>
 <p>函数绑定问题，因为JS的calss的机制必须在构造器中绑定一次this<br>一般来说<code>onClck={this.handleClick}</code>这样无参数的绑定事件，必须在构造器中使用绑定</p>
 <p>或者使用实验性的语法</p>
 <ol>
-<li>属性初始化语法<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoggingButton</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  handleClick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'this is:'</span>, <span class="keyword">this</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;button onClick=&#123;this.handleClick&#125;&gt;</div><div class="line">        Click me</div><div class="line">      &lt;/button&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<li>属性初始化语法<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoggingButton</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  handleClick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'this is:'</span>, <span class="keyword">this</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.handleClick&#125;</span>&gt;</span></span></div><div class="line">        Click me</div><div class="line">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>2.回调中使用箭头函数<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoggingButton</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  handleClick() &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'this is:'</span>, <span class="keyword">this</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="comment">// This syntax ensures `this` is bound within handleClick</span></div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;button onClick=&#123;(e) =&gt; this.handleClick(e)&#125;&gt;</div><div class="line">        Click me</div><div class="line">      &lt;/button&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>2.回调中使用箭头函数<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoggingButton</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  handleClick() &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'this is:'</span>, <span class="keyword">this</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="comment">// This syntax ensures `this` is bound within handleClick</span></div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;(e)</span> =&gt;</span> this.handleClick(e)&#125;&gt;</span></div><div class="line">        Click me</div><div class="line">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>这种语法的问题是每次LoggingButton渲染时都会创建一个不同的回调函数。在大多数情况下，这很好。但是，如果这个回调作为props传递给较低的组件，这些组件可能会进行额外的重新渲染。我们通常建议在构造函数中使用绑定或使用属性初始化器语法来避免这种性能问题。</p>
 <h3 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Greeting</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> isLoggedIn = props.isLoggedIn;</div><div class="line">  <span class="keyword">if</span> (isLoggedIn) &#123;</div><div class="line">    <span class="keyword">return</span> &lt;UserGreeting /&gt;;</div><div class="line">  &#125;</div><div class="line">  return &lt;GuestGreeting /&gt;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">  // Try changing to isLoggedIn=&#123;true&#125;:</div><div class="line">  &lt;Greeting isLoggedIn=&#123;false&#125; /&gt;,</div><div class="line">  document.getElementById('root')</div><div class="line">);</div></pre></td></tr></table></figure>
 <h4 id="元素变量"><a href="#元素变量" class="headerlink" title="元素变量"></a>元素变量</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">render() &#123;</div><div class="line">    <span class="keyword">const</span> isLoggedIn = <span class="keyword">this</span>.state.isLoggedIn;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> button = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">if</span> (isLoggedIn) &#123;</div><div class="line">      button = &lt;LogoutButton onClick=&#123;this.handleLogoutClick&#125; /&gt;;</div><div class="line">    &#125; else &#123;</div><div class="line">      button = &lt;LoginButton onClick=&#123;this.handleLoginClick&#125; /&gt;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return (</div><div class="line">      &lt;div&gt;</div><div class="line">        &lt;Greeting isLoggedIn=&#123;isLoggedIn&#125; /&gt;</div><div class="line">        &#123;button&#125;</div><div class="line">      &lt;/div&gt;</div><div class="line">    );</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
 <p>从组件的render方法返回null不会影响组件生命周期方法的触发。例如，componentWillUpdate和componentDidUpdate仍将被调用</p>
 <h3 id="List和Key"><a href="#List和Key" class="headerlink" title="List和Key"></a>List和Key</h3><p>遍历输出组件，必须带key，用来优化<br>键帮助React确定哪些项目已更改，添加或删除。应该给数组中的元素赋予元素一个稳定的身份：<br>实在不行用索引（但是项目重新排序容易造成性能低下）<br>key必须唯一</p>
 <h3 id="Forms"><a href="#Forms" class="headerlink" title="Forms"></a>Forms</h3><h4 id="可控表单"><a href="#可控表单" class="headerlink" title="可控表单"></a>可控表单</h4><h4 id="不可控表单"><a href="#不可控表单" class="headerlink" title="不可控表单"></a>不可控表单</h4><h2 id="高级指南"><a href="#高级指南" class="headerlink" title="高级指南"></a>高级指南</h2><h3 id="JSX深入"><a href="#JSX深入" class="headerlink" title="JSX深入"></a>JSX深入</h3><h4 id="JSX"><a href="#JSX" class="headerlink" title="JSX"></a>JSX</h4><p>JSX只是语法糖<br>使用打包器，在使用JSX的时候必须将React引入<br>使用点<code>.</code>的方式，调用模块内的组件<br>用户组件必须大写</p>
-<p>您不能使用通用表达式作为React元素类型。如果您想使用通用表达式来表示元素的类型，请先将其分配给大写的变量。当您要根据道具渲染不同的组件时，会出现这种情况<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; PhotoStory, VideoStory &#125; <span class="keyword">from</span> <span class="string">'./stories'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> components = &#123;</div><div class="line">  <span class="attr">photo</span>: PhotoStory,</div><div class="line">  <span class="attr">video</span>: VideoStory</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Story</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="comment">// Wrong! JSX type can't be an expression.</span></div><div class="line">  <span class="keyword">return</span> &lt;components[props.storyType] story=&#123;props.story&#125; /&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; PhotoStory, VideoStory &#125; <span class="keyword">from</span> <span class="string">'./stories'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> components = &#123;</div><div class="line">  <span class="attr">photo</span>: PhotoStory,</div><div class="line">  <span class="attr">video</span>: VideoStory</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Story</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="comment">// Correct! JSX type can be a capitalized variable.</span></div><div class="line">  <span class="keyword">const</span> SpecificStory = components[props.storyType];</div><div class="line">  <span class="keyword">return</span> &lt;SpecificStory story=&#123;props.story&#125; /&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="props-in-JSX"><a href="#props-in-JSX" class="headerlink" title="props in JSX"></a>props in JSX</h4><p>表达式<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">NumberDescriber</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> description;</div><div class="line">  <span class="keyword">if</span> (props.number % <span class="number">2</span> == <span class="number">0</span>) &#123;</div><div class="line">    description = &lt;strong&gt;even&lt;/strong&gt;;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    description = &lt;i&gt;odd&lt;/i&gt;;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> &lt;div&gt;&#123;props.number&#125; is an &#123;description&#125; number&lt;/div&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>您不能使用通用表达式作为React元素类型。如果您想使用通用表达式来表示元素的类型，请先将其分配给大写的变量。当您要根据道具渲染不同的组件时，会出现这种情况<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; PhotoStory, VideoStory &#125; <span class="keyword">from</span> <span class="string">'./stories'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> components = &#123;</div><div class="line">  <span class="attr">photo</span>: PhotoStory,</div><div class="line">  <span class="attr">video</span>: VideoStory</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Story</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="comment">// Wrong! JSX type can't be an expression.</span></div><div class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">components[props.storyType]</span> <span class="attr">story</span>=<span class="string">&#123;props.story&#125;</span> /&gt;</span>;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; PhotoStory, VideoStory &#125; <span class="keyword">from</span> <span class="string">'./stories'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> components = &#123;</div><div class="line">  <span class="attr">photo</span>: PhotoStory,</div><div class="line">  <span class="attr">video</span>: VideoStory</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Story</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="comment">// Correct! JSX type can be a capitalized variable.</span></div><div class="line">  <span class="keyword">const</span> SpecificStory = components[props.storyType];</div><div class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">SpecificStory</span> <span class="attr">story</span>=<span class="string">&#123;props.story&#125;</span> /&gt;</span>;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="props-in-JSX"><a href="#props-in-JSX" class="headerlink" title="props in JSX"></a>props in JSX</h4><p>表达式<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">NumberDescriber</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> description;</div><div class="line">  <span class="keyword">if</span> (props.number % <span class="number">2</span> == <span class="number">0</span>) &#123;</div><div class="line">    description = <span class="xml"><span class="tag">&lt;<span class="name">strong</span>&gt;</span>even<span class="tag">&lt;/<span class="name">strong</span>&gt;</span></span>;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    description = <span class="xml"><span class="tag">&lt;<span class="name">i</span>&gt;</span>odd<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;props.number&#125; is an &#123;description&#125; number<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>props默认为true</p>
-<p>扩展运算符<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">App2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> props = &#123;<span class="attr">firstName</span>: <span class="string">'Ben'</span>, <span class="attr">lastName</span>: <span class="string">'Hector'</span>&#125;;</div><div class="line">  <span class="keyword">return</span> &lt;Greeting &#123;...props&#125; /&gt;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>扩展运算符<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">App2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> props = &#123;<span class="attr">firstName</span>: <span class="string">'Ben'</span>, <span class="attr">lastName</span>: <span class="string">'Hector'</span>&#125;;</div><div class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Greeting</span> &#123;<span class="attr">...props</span>&#125; /&gt;</span>;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h4 id="Children-in-JSX"><a href="#Children-in-JSX" class="headerlink" title="Children in JSX"></a>Children in JSX</h4><h3 id="Refs和DOM"><a href="#Refs和DOM" class="headerlink" title="Refs和DOM"></a>Refs和DOM</h3><ul>
 <li>管理焦点，文本选择或媒体播放。</li>
 <li>触发强制性动画。</li>
@@ -561,7 +1218,7 @@
 </li>
 </ul>
 <p>当组件挂载时，React将使用DOM元素调用ref回调，并在卸载时将其调用为null。 使用ref回调只是为了在类上设置属性是访问DOM元素的常见模式。首选的方法是在ref回调中设置属性，就像上面的例子一样。甚至有一个较短的写法：<br><code>ref = {input =&gt; this.textInput = input}</code></p>
-<p>在类组件上使用Ref<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AutoFocusTextInput</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  componentDidMount() &#123;</div><div class="line">    <span class="keyword">this</span>.textInput.focus();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;CustomTextInput</div><div class="line">        ref=&#123;(input) =&gt; &#123; this.textInput = input; &#125;&#125; /&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在类组件上使用Ref<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AutoFocusTextInput</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  componentDidMount() &#123;</div><div class="line">    <span class="keyword">this</span>.textInput.focus();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">CustomTextInput</span></span></span></div><div class="line">        <span class="attr">ref</span>=<span class="string">&#123;(input)</span> =&gt; &#123; this.textInput = input; &#125;&#125; /&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>函数组件是不能使用refs的，因为没有实例，但是在原生dom元素上可以使用<br><code>this.refs.textInput</code>写法作废</p>
 <h3 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h3><p>编译设置生产环境<br>chromeTimeline工具</p>
 <h3 id="高阶组件"><a href="#高阶组件" class="headerlink" title="高阶组件"></a>高阶组件</h3><p>一种设计模式<br>具体来说，高阶分量是一个获取组件并返回新组件的函数。</p>
@@ -1279,355 +1936,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/03/组件的生命周期/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-03T10:26:13+08:00" content="2017-02-03">
-              2017-02-03
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>生命周期</p>
-<p>整理生命周期的几个函数的触发时间，作用以及使用情景</p>
-<ul>
-<li>调用时间（触发时间）</li>
-<li>作用</li>
-<li>经常用来进行的操作</li>
-<li>执行完成后的结果</li>
-</ul>
-<h1 id="组件的生命周期"><a href="#组件的生命周期" class="headerlink" title="组件的生命周期"></a>组件的生命周期</h1><p>一个组件的生命周期主要分为三种状态，对于初学者，可以试着将组件的生命周期想象为一场舞台剧。</p>
-<ul>
-<li><p>安装/Mounting（登台）</p>
-<p>这个时期主要是组件的初始化，直到组件被插入到真实的DOM结构中去。（登场以及登场前的准备）</p>
-</li>
-<li><p>更新/Updating（演出）</p>
-<p>当组件被插入到真实的DOM结构后，根据<code>state</code>和<code>props</code>的改变，组件将重新进行<code>render</code>。(随着剧情推动，舞台呈现的场景不断的变换)</p>
-</li>
-<li><p>卸载/Unmounting（谢幕）</p>
-<p>组件从真实DOM中移除</p>
-<p>​</p>
-</li>
-</ul>
-<h3 id="Mounting"><a href="#Mounting" class="headerlink" title="Mounting"></a><strong>Mounting</strong></h3><h3 id="componentWillMount"><a href="#componentWillMount" class="headerlink" title="componentWillMount()"></a><a href="https://facebook.github.io/react/docs/react-component.html#componentwillmount" target="_blank" rel="external"><code>componentWillMount()</code></a></h3><ul>
-<li>触发时间：在组件</li>
-</ul>
-<p>componentWillMount（）在安装发生之前立即被调用。它在render（）之前调用，因此在此方法中的设置状态不会触发重新呈现。避免在此方法中引入任何副作用或订阅。 这是在服务器渲染上调用的唯一的生命周期钩子。一般来说，我们建议使用constructor（）。</p>
-<p>这个方法在组件已经即将创建但是还没有创建的时候调用，在这里可以用setState修改state。但是react建议是在组件mouted以后调用setState函数，否则容易报警告。这点在介绍state的时候在详细分析。</p>
-<h3 id="componentDidMount"><a href="#componentDidMount" class="headerlink" title="componentDidMount()"></a><a href="https://facebook.github.io/react/docs/react-component.html#componentdidmount" target="_blank" rel="external"><code>componentDidMount()</code></a></h3><h3 id="Updating"><a href="#Updating" class="headerlink" title="Updating"></a><strong>Updating</strong></h3><h3 id="componentWillReceiveProps"><a href="#componentWillReceiveProps" class="headerlink" title="componentWillReceiveProps()"></a><a href="https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops" target="_blank" rel="external"><code>componentWillReceiveProps()</code></a></h3><h3 id="shouldComponentUpdate"><a href="#shouldComponentUpdate" class="headerlink" title="shouldComponentUpdate()"></a><a href="https://facebook.github.io/react/docs/react-component.html#shouldcomponentupdate" target="_blank" rel="external"><code>shouldComponentUpdate()</code></a></h3><h3 id="componentWillUpdate"><a href="#componentWillUpdate" class="headerlink" title="componentWillUpdate()"></a><a href="https://facebook.github.io/react/docs/react-component.html#componentwillupdate" target="_blank" rel="external"><code>componentWillUpdate()</code></a></h3><h3 id="componentDidUpdate"><a href="#componentDidUpdate" class="headerlink" title="componentDidUpdate()"></a><a href="https://facebook.github.io/react/docs/react-component.html#componentdidupdate" target="_blank" rel="external"><code>componentDidUpdate()</code></a></h3><h3 id="Unmounting"><a href="#Unmounting" class="headerlink" title="Unmounting"></a>Unmounting</h3><h3 id="componentWillUnmount"><a href="#componentWillUnmount" class="headerlink" title="componentWillUnmount()"></a><a href="https://facebook.github.io/react/docs/react-component.html#componentwillunmount" target="_blank" rel="external"><code>componentWillUnmount()</code></a></h3>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/11/git-config-配置用户信息/" itemprop="url">
-                  git config 配置用户信息
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-11T09:35:04+08:00" content="2017-01-11">
-              2017-01-11
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>git config基本</p>
-<p>git config是对git的一些配置，而配置项一般保存在配置文件中。</p>
-<p>git 配置在实际使用中存在三个地方</p>
-<ol>
-<li>系统</li>
-<li>全局</li>
-<li>本地</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/10/配置多个ssh/" itemprop="url">
-                  配置多个ssh
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-10T21:55:52+08:00" content="2017-01-10">
-              2017-01-10
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>刚到公司是没有再重新配置ssh，导致了自己的github和公司gitlab提交的混乱。</p>
-<p>这种情况我们可以分情况配置ssh</p>
-<ol>
-<li><p>分别生成gitlab和github的ssh-key</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;youremail@yourcompany.com&quot; -f ~/.ssh/gitlab-rsa</div></pre></td></tr></table></figure>
-<p>在~/.ssh/目录会生成gitlab-rsa私钥和gitlab-rsa.pub公钥。 我们将id-rsa.pub中的内容粘帖到公司gitlab服务器的SSH-key的配置中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;youremail@your.com&quot; -f ~/.ssh/github-rsa</div></pre></td></tr></table></figure>
-<p>在~/.ssh/目录会生成github-rsa私钥和github-rsa.pub公钥。 我们将github-rsa.pub中的内容粘帖到github服务器的SSH-key的配置中。</p>
-<p>​</p>
-<p>在创建ssh-key的时候会有提示</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Enter passphrase (empty for no passphrase):</div><div class="line">//输入密语，可以为空</div><div class="line">Enter same passphrase again:</div><div class="line">//再次输入确认</div></pre></td></tr></table></figure>
-</li>
-<li><p>将密钥加入到ssh-agent</p>
-<p>ssh-agent是用于管理密钥，通过ssh-add命令将两个将密钥加入到ssh-agent中，SSH可以和ssh-agent通信获取密钥，这样就不需要手工输入密码了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ssh-add ~/.ssh/gitlab-rsa</div><div class="line">$ ssh-add ~/.ssh/github-rsa</div></pre></td></tr></table></figure>
-<p>如果运行<code>ssh-add</code>命令，遇到“Could not open a connection to your authentication agent.”提示。</p>
-<p>需要ssh-agent启动bash，运行以下命令，然后再重新执行<code>ssh-add</code>命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-agent bash</div></pre></td></tr></table></figure>
-</li>
-<li><p>创建并编辑config文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd ~/.ssh/</div><div class="line">$ touch config</div></pre></td></tr></table></figure>
-<p>在config中写入，并保存</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"># gitlab</div><div class="line">Host gitlab.com</div><div class="line">    HostName gitlab.com</div><div class="line">    PreferredAuthentications publickey</div><div class="line">    IdentityFile ~/.ssh/gitlab-rsa</div><div class="line"># github</div><div class="line">Host github.com</div><div class="line">    HostName github.com</div><div class="line">    PreferredAuthentications publickey</div><div class="line">    IdentityFile ~/.ssh/github-rsa</div><div class="line"></div><div class="line"># 配置文件参数</div><div class="line"># Host : Host可以看作是一个你要识别的模式，对识别的模式，进行配置对应的的主机名和ssh文件</div><div class="line"># HostName : 要登录主机的主机名</div><div class="line"># IdentityFile : 指明对应的identityFile路径</div></pre></td></tr></table></figure>
-</li>
-<li><p>测试是否生效</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh git@github.com</div></pre></td></tr></table></figure>
-<p>出现以下提示即为成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">The authenticity of host &apos;github.com (192.30.253.112)&apos; can&apos;t be established.</div><div class="line">RSA key fingerprint is SHA256:xxxxxxxxxxxxxxxxxxxxx.</div><div class="line">Are you sure you want to continue connecting (yes/no)? </div><div class="line">//输入yes，按回车</div><div class="line">Warning: Permanently added &apos;github.com,192.30.253.112&apos; (RSA) to the list of known hosts.</div><div class="line">Permission denied (publickey).</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1668,7 +1981,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

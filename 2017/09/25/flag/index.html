@@ -1,0 +1,733 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/zeno.png?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="flag第一版目标功能立flag
+目标标题
+目标详情
+
+总目标截止日期
+目标拆分
+
+打卡周期：N天1次子目标： 目标  + 截止日期
+
+奖惩措施
+
+
+
+打卡/完成
+文字
+图片 （图片上传）
+
+时光轴  完成前是否生成？
+分享数据库
+目标
+
+标题
+开始日期
+结束日期
+子目标 （关联表）
+奖惩措施 （文字）
+
+
+子目标
+
+子标题
+打卡时间
+截止日期
+打卡状态
+文字打卡
+图片
+
+
+
+api服务器（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zeno Tian">
+<meta property="og:url" content="http://yoursite.com/2017/09/25/flag/index.html">
+<meta property="og:site_name" content="Zeno Tian">
+<meta property="og:description" content="flag第一版目标功能立flag
+目标标题
+目标详情
+
+总目标截止日期
+目标拆分
+
+打卡周期：N天1次子目标： 目标  + 截止日期
+
+奖惩措施
+
+
+
+打卡/完成
+文字
+图片 （图片上传）
+
+时光轴  完成前是否生成？
+分享数据库
+目标
+
+标题
+开始日期
+结束日期
+子目标 （关联表）
+奖惩措施 （文字）
+
+
+子目标
+
+子标题
+打卡时间
+截止日期
+打卡状态
+文字打卡
+图片
+
+
+
+api服务器（">
+<meta property="og:updated_time" content="2017-09-25T07:30:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zeno Tian">
+<meta name="twitter:description" content="flag第一版目标功能立flag
+目标标题
+目标详情
+
+总目标截止日期
+目标拆分
+
+打卡周期：N天1次子目标： 目标  + 截止日期
+
+奖惩措施
+
+
+
+打卡/完成
+文字
+图片 （图片上传）
+
+时光轴  完成前是否生成？
+分享数据库
+目标
+
+标题
+开始日期
+结束日期
+子目标 （关联表）
+奖惩措施 （文字）
+
+
+子目标
+
+子标题
+打卡时间
+截止日期
+打卡状态
+文字打卡
+图片
+
+
+
+api服务器（">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/25/flag/"/>
+
+
+  <title>  | Zeno Tian </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Zeno Tian</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-25T10:31:37+08:00" content="2017-09-25">
+              2017-09-25
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="flag"><a href="#flag" class="headerlink" title="flag"></a>flag</h1><h2 id="第一版目标"><a href="#第一版目标" class="headerlink" title="第一版目标"></a>第一版目标</h2><h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><h5 id="立flag"><a href="#立flag" class="headerlink" title="立flag"></a>立flag</h5><ul>
+<li>目标标题</li>
+<li><p>目标详情</p>
+<ul>
+<li>总目标截止日期</li>
+<li>目标拆分</li>
+</ul>
+<p>打卡周期：N天1次<br>子目标： 目标  + 截止日期</p>
+<ul>
+<li>奖惩措施</li>
+</ul>
+</li>
+</ul>
+<h5 id="打卡-完成"><a href="#打卡-完成" class="headerlink" title="打卡/完成"></a>打卡/完成</h5><ul>
+<li>文字</li>
+<li>图片 （图片上传）</li>
+</ul>
+<h5 id="时光轴"><a href="#时光轴" class="headerlink" title="时光轴"></a>时光轴</h5><p>  完成前是否生成？</p>
+<h5 id="分享"><a href="#分享" class="headerlink" title="分享"></a>分享</h5><h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><ul>
+<li><p>目标</p>
+<ul>
+<li>标题</li>
+<li>开始日期</li>
+<li>结束日期</li>
+<li>子目标 （关联表）</li>
+<li>奖惩措施 （文字）</li>
+</ul>
+</li>
+<li><p>子目标</p>
+<ul>
+<li>子标题</li>
+<li>打卡时间</li>
+<li>截止日期</li>
+<li>打卡状态</li>
+<li>文字打卡</li>
+<li>图片</li>
+</ul>
+</li>
+</ul>
+<h3 id="api服务器"><a href="#api服务器" class="headerlink" title="api服务器"></a>api服务器</h3><p>（测试/正式）</p>
+<ul>
+<li>域名</li>
+<li>图片上传<ul>
+<li>七牛</li>
+</ul>
+</li>
+<li>mongoDB</li>
+<li>https??</li>
+</ul>
+<h3 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h3><ul>
+<li>推送</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/21/小程序swiper组件的问题/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/26/nginx配置详解/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Zeno Tian" />
+          <p class="site-author-name" itemprop="name">Zeno Tian</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zenotian" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#flag"><span class="nav-number">1.</span> <span class="nav-text">flag</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一版目标"><span class="nav-number">1.1.</span> <span class="nav-text">第一版目标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能"><span class="nav-number">1.1.1.</span> <span class="nav-text">功能</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#立flag"><span class="nav-number">1.1.1.0.1.</span> <span class="nav-text">立flag</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#打卡-完成"><span class="nav-number">1.1.1.0.2.</span> <span class="nav-text">打卡/完成</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#时光轴"><span class="nav-number">1.1.1.0.3.</span> <span class="nav-text">时光轴</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分享"><span class="nav-number">1.1.1.0.4.</span> <span class="nav-text">分享</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库"><span class="nav-number">1.1.2.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#api服务器"><span class="nav-number">1.1.3.</span> <span class="nav-text">api服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公众号"><span class="nav-number">1.1.4.</span> <span class="nav-text">公众号</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zeno Tian</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

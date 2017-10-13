@@ -96,7 +96,7 @@
 1.安装git1yum install -y git
 2.添加用户/用户组创建一个git用户组，和git用户因为考虑到可能会和多人共用git代码库，所以建立一个专门的分享系统用户给开发者们。123sudo groupadd gitsudo adduser git -g gitsudo passwd git
 1vim">
-<meta property="og:updated_time" content="2017-09-17T09:34:07.000Z">
+<meta property="og:updated_time" content="2017-09-27T07:31:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zeno Tian">
 <meta name="twitter:description" content="title 在centOS部署自己的代码库参照网上的一些教程，总结一份较好的方案
@@ -312,6 +312,11 @@
 <p>git init –bare test.git #以test.git为例子,当然你可以叫任意名字<br>裸仓库是没有工作区的，纯粹为了共享</p>
 <p>3.修改仓库用户属主</p>
 <p>chown -R git:git test.git</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone git@xxx.xxx.xxx.xxx:test.git</div></pre></td></tr></table></figure>
+<p>1、查看git-shell的位置</p>
+<p>which git-shell<br>得到的位置：/usr/bin/git-shell</p>
+<p>2、将git-shell添加到shell当中<br>1）vim /etc/shells<br>2）/usr/bin/git-shell 将这写到 /etc/shells的最后一行</p>
+<p>3、更改git用户使用的shell<br>chsh git<br>到此位置git的用户权限已全部设置完成</p>
 
       
     </div>
@@ -415,7 +420,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
