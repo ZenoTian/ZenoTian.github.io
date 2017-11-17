@@ -88,8 +88,9 @@
 这种情况我们可以分情况配置ssh
 
 分别生成gitlab和github的ssh-key
-1$ ssh-keygen -t rsa -C &amp;quot;youremail@yourcompany.com&amp;quot; -f ~/.ssh/gitlab-rsa
-在~/.ssh/目录会生成gitlab-rsa私钥和git">
+
+   1$ ssh-keygen -t rsa -C &amp;quot;youremail@yourcompany.com&amp;quot; -f ~/.ssh/gitlab-rsa
+   在~/.ssh/目录会生成gitlab-rs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="配置多个ssh">
 <meta property="og:url" content="http://yoursite.com/2017/01/10/配置多个ssh/index.html">
@@ -98,17 +99,19 @@
 这种情况我们可以分情况配置ssh
 
 分别生成gitlab和github的ssh-key
-1$ ssh-keygen -t rsa -C &amp;quot;youremail@yourcompany.com&amp;quot; -f ~/.ssh/gitlab-rsa
-在~/.ssh/目录会生成gitlab-rsa私钥和git">
-<meta property="og:updated_time" content="2017-09-11T11:02:35.000Z">
+
+   1$ ssh-keygen -t rsa -C &amp;quot;youremail@yourcompany.com&amp;quot; -f ~/.ssh/gitlab-rsa
+   在~/.ssh/目录会生成gitlab-rs">
+<meta property="og:updated_time" content="2017-11-07T09:14:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="配置多个ssh">
 <meta name="twitter:description" content="刚到公司是没有再重新配置ssh，导致了自己的github和公司gitlab提交的混乱。
 这种情况我们可以分情况配置ssh
 
 分别生成gitlab和github的ssh-key
-1$ ssh-keygen -t rsa -C &amp;quot;youremail@yourcompany.com&amp;quot; -f ~/.ssh/gitlab-rsa
-在~/.ssh/目录会生成gitlab-rsa私钥和git">
+
+   1$ ssh-keygen -t rsa -C &amp;quot;youremail@yourcompany.com&amp;quot; -f ~/.ssh/gitlab-rsa
+   在~/.ssh/目录会生成gitlab-rs">
 
 
 
@@ -295,15 +298,16 @@
         <p>刚到公司是没有再重新配置ssh，导致了自己的github和公司gitlab提交的混乱。</p>
 <p>这种情况我们可以分情况配置ssh</p>
 <ol>
-<li><p>分别生成gitlab和github的ssh-key</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;youremail@yourcompany.com&quot; -f ~/.ssh/gitlab-rsa</div></pre></td></tr></table></figure>
-<p>在~/.ssh/目录会生成gitlab-rsa私钥和gitlab-rsa.pub公钥。 我们将id-rsa.pub中的内容粘帖到公司gitlab服务器的SSH-key的配置中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;youremail@your.com&quot; -f ~/.ssh/github-rsa</div></pre></td></tr></table></figure>
-<p>在~/.ssh/目录会生成github-rsa私钥和github-rsa.pub公钥。 我们将github-rsa.pub中的内容粘帖到github服务器的SSH-key的配置中。</p>
-<p>​</p>
-<p>在创建ssh-key的时候会有提示</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Enter passphrase (empty for no passphrase):</div><div class="line">//输入密语，可以为空</div><div class="line">Enter same passphrase again:</div><div class="line">//再次输入确认</div></pre></td></tr></table></figure>
-</li>
+<li>分别生成gitlab和github的ssh-key</li>
+</ol>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;youremail@yourcompany.com&quot; -f ~/.ssh/gitlab-rsa</div></pre></td></tr></table></figure>
+<p>   在~/.ssh/目录会生成gitlab-rsa私钥和gitlab-rsa.pub公钥。 我们将id-rsa.pub中的内容粘帖到公司gitlab服务器的SSH-key的配置中。</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C &quot;youremail@your.com&quot; -f ~/.ssh/github-rsa</div></pre></td></tr></table></figure>
+<p>   在~/.ssh/目录会生成github-rsa私钥和github-rsa.pub公钥。 我们将github-rsa.pub中的内容粘帖到github服务器的SSH-key的配置中。</p>
+<p>   ​</p>
+<p>   在创建ssh-key的时候会有提示</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Enter passphrase (empty for no passphrase):</div><div class="line">//输入密语，可以为空</div><div class="line">Enter same passphrase again:</div><div class="line">//再次输入确认</div></pre></td></tr></table></figure>
+<ol>
 <li><p>将密钥加入到ssh-agent</p>
 <p>ssh-agent是用于管理密钥，通过ssh-add命令将两个将密钥加入到ssh-agent中，SSH可以和ssh-agent通信获取密钥，这样就不需要手工输入密码了。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ssh-add ~/.ssh/gitlab-rsa</div><div class="line">$ ssh-add ~/.ssh/github-rsa</div></pre></td></tr></table></figure>
@@ -320,10 +324,16 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh git@github.com</div></pre></td></tr></table></figure>
 <p>出现以下提示即为成功</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">The authenticity of host &apos;github.com (192.30.253.112)&apos; can&apos;t be established.</div><div class="line">RSA key fingerprint is SHA256:xxxxxxxxxxxxxxxxxxxxx.</div><div class="line">Are you sure you want to continue connecting (yes/no)? </div><div class="line">//输入yes，按回车</div><div class="line">Warning: Permanently added &apos;github.com,192.30.253.112&apos; (RSA) to the list of known hosts.</div><div class="line">Permission denied (publickey).</div></pre></td></tr></table></figure>
-<p>​</p>
 </li>
 </ol>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># flag-api</div><div class="line">git remote remove origin</div><div class="line">git remote add origin git@code.aliyun.com:546405040/flag-api.git</div><div class="line"></div><div class="line">git push --set-upstream origin master #第一次可能需要</div><div class="line"></div><div class="line"># xl</div><div class="line">git remote remove origin</div><div class="line">git remote add origin git@code.aliyun.com:546405040/xl.git</div><div class="line"></div><div class="line">git push --set-upstream origin master #第一次可能需要</div></pre></td></tr></table></figure>
+<h1 id="gitlab"><a href="#gitlab" class="headerlink" title="gitlab"></a>gitlab</h1><p>Host gitlab.com<br>    HostName gitlab.com<br>    PreferredAuthentications publickey<br>   IdentityFile ~/.ssh/id_rsa</p>
+<h1 id="github"><a href="#github" class="headerlink" title="github"></a>github</h1><p>Host github.com<br>    HostName github.com<br>    PreferredAuthentications publickey<br>    IdentityFile ~/.ssh/github-rsa</p>
+<h1 id="zeno"><a href="#zeno" class="headerlink" title="zeno"></a>zeno</h1><p>Host 47.52.30.225<br>    HostName 47.52.30.225<br>    PreferredAuthentications publickey<br>    IdentityFile ~/.ssh/zeno-rsa</p>
+<pre><code>#User git
+</code></pre><p>阿里<br>Host code.aliyun.com<br>    HostName code.aliyun.com<br>    PreferredAuthentications publickey<br>    IdentityFile ~/.ssh/gitali-rsa</p>
+<p>origin    git@47.52.30.225:xl.git</p>
+<h1 id="配置文件参数"><a href="#配置文件参数" class="headerlink" title="配置文件参数"></a>配置文件参数</h1><h1 id="Host-Host可以看作是一个你要识别的模式，对识别的模式，进行配置对应的的主机名和ssh文件"><a href="#Host-Host可以看作是一个你要识别的模式，对识别的模式，进行配置对应的的主机名和ssh文件" class="headerlink" title="Host : Host可以看作是一个你要识别的模式，对识别的模式，进行配置对应的的主机名和ssh文件"></a>Host : Host可以看作是一个你要识别的模式，对识别的模式，进行配置对应的的主机名和ssh文件</h1><h1 id="HostName-要登录主机的主机名"><a href="#HostName-要登录主机的主机名" class="headerlink" title="HostName : 要登录主机的主机名"></a>HostName : 要登录主机的主机名</h1><h1 id="User-用户名"><a href="#User-用户名" class="headerlink" title="User :           用户名"></a>User :           用户名</h1><h1 id="IdentityFile-指明对应的identityFile路径"><a href="#IdentityFile-指明对应的identityFile路径" class="headerlink" title="IdentityFile : 指明对应的identityFile路径"></a>IdentityFile : 指明对应的identityFile路径</h1>
       
     </div>
 
@@ -434,7 +444,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-count">38</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -484,7 +494,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gitlab"><span class="nav-number">1.</span> <span class="nav-text">gitlab</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#github"><span class="nav-number">2.</span> <span class="nav-text">github</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zeno"><span class="nav-number">3.</span> <span class="nav-text">zeno</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置文件参数"><span class="nav-number">4.</span> <span class="nav-text">配置文件参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Host-Host可以看作是一个你要识别的模式，对识别的模式，进行配置对应的的主机名和ssh文件"><span class="nav-number">5.</span> <span class="nav-text">Host : Host可以看作是一个你要识别的模式，对识别的模式，进行配置对应的的主机名和ssh文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HostName-要登录主机的主机名"><span class="nav-number">6.</span> <span class="nav-text">HostName : 要登录主机的主机名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#User-用户名"><span class="nav-number">7.</span> <span class="nav-text">User :           用户名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IdentityFile-指明对应的identityFile路径"><span class="nav-number">8.</span> <span class="nav-text">IdentityFile : 指明对应的identityFile路径</span></a></li></ol></div>
             
           </div>
         </section>
